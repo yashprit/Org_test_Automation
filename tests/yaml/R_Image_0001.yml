@@ -4,6 +4,6 @@ resources:
     configuration:
        registry: s_artifactory
        sourceRepository: docker-local  # required if Docker registry is Artifactory
-       imageName: artifactory
-       imageTag: latest
+       imageName: u16node
+       imageTag: 0.9.1
        autoPull: true
