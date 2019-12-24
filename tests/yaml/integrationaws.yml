@@ -1,0 +1,8 @@
+resources:
+  - name: r_aws
+    type: Image
+    configuration:
+      registry: i_aws
+      region: us-east-1	 # required if registry is AWS
+      imageName: u16
+      imageTag: master
