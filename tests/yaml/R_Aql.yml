@@ -1,0 +1,38 @@
+resources:
+  - name: r_Aql
+    type: Aql
+    configuration:
+      sourceArtifactory: s_artifactory
+      query: items.find({"@build.name":{"$eq":"artifactory"}})
+      addedProperties:
+        key1: value1
+        key2: value2
+      mappings:
+        - name: mapping1
+          input: IN
+          output: test1
+        - name: mapping2
+          input: IN
+          output: test2
+
+pipelines:
+  - name: pipelines_r_Aql
+    steps:
+      - name: Bash_Aql_Output
+        type: Bash
+        configuration:
+          outputResources:
+            - name: r_Aql
+        execution:
+          onExecute:
+            - echo "executing step..."
+           # - write_output r_Aql "query=items.find({"repo": "mvn_test_repo"})"
+
+      - name: Bash_Aql_Input
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_Aql
+        execution:
+          onExecute:
+            - echo "executing step..."
