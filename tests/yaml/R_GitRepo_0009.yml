@@ -1,0 +1,12 @@
+resources:
+  # This resource is for BitBucketServer
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      path: PIP/automation
+      files:  # optional
+        include: readme
+        exclude:
+      branches:
+        include: master
+      gitProvider: s_bitbucketServer

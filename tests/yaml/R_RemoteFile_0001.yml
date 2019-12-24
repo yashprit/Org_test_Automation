@@ -1,0 +1,15 @@
+resources:
+
+  - name: r_RemoteFile_artifactory
+    type: RemoteFile
+    configuration:
+      source: s_artifactory
+      fileLocation: gs://pipelines_bucker_01
+      fileName: test.sh # optional
+      fileDateTime: 01/01/2018
+
+  - name: r_RemoteFile_artifactory_onlyMandatoryFields
+    type: RemoteFile
+    configuration:
+      source: s_artifactory
+      fileLocation: gs://pipelines_bucker_01      

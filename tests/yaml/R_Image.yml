@@ -1,0 +1,9 @@
+resources:
+
+  - name: image_google
+    type: Image
+    configuration:
+       registry: google
+       imageName: ubuntu
+       imageTag: latest
+       autoPull: true

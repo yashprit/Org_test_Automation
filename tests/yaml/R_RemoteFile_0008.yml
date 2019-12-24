@@ -1,0 +1,15 @@
+resources:
+
+  - name: r_RemoteFile_aws
+    type: RemoteFile
+    configuration:
+      source: i_aws
+      fileLocation: gs://pipelines_bucker_01
+      fileName: test.sh # optional
+      fileDateTime: 01/01/2018
+
+  - name: r_RemoteFile_aws_onlyMandatoryFields
+    type: RemoteFile
+    configuration:
+      source: i_aws
+      fileLocation: gs://pipelines_bucker_01 

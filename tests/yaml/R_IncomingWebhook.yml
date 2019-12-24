@@ -1,0 +1,26 @@
+resources:
+  - name: r_IncomingWebhook
+    type: IncomingWebhook
+    configuration:
+      webhookName: i_incomingWebhook
+
+pipelines:
+  - name: pipelines_r_IncomingWebhook
+    steps:
+      - name: Bash_IncomingWebhook_Output
+        type: Bash
+        configuration:
+          outputResources:
+            - name: r_IncomingWebhook
+        execution:
+          onExecute:
+            - echo "executing step..."
+
+      - name: Bash_Incoming_Input
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_IncomingWebhook
+        execution:
+          onExecute:
+            - echo "executing step..."

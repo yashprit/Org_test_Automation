@@ -1,0 +1,7 @@
+resources:
+  - name: r_RemoteFile_googleCloud
+    type: RemoteFile
+    configuration:    
+      fileLocation: gs://pipelines_bucker_01
+      fileName: test.sh # optional
+      fileDateTime: 01/01/2018

@@ -1,0 +1,56 @@
+resources:
+  - name: r_FileSpec_pattern
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      pattern: "artifactory-build*"
+
+  - name: r_FileSpec_aql
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      aql: items.find({"stat.downloads":{"$eq":null}})
+
+  - name: r_FileSpec
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      aql: "docker/local"
+      target: "pipelines*"
+      props: <string>
+      recursive: false
+      flat: false
+      excludePatterns: "dummy*"
+      archiveEntries: "art*"
+      # buildName: "maven"
+      # buildNumber: "v7.*"
+      sortBy: "fileName"
+      sortOrder: "ascending"
+      limit: 20
+      offset: 0
+
+pipelines:
+  - name: pipelines_r_FileSpec
+    steps:
+      - name: Bash_FileSpec_Output
+        type: Bash
+        configuration:
+          outputResources:
+            - name: r_FileSpec_pattern
+            - name: r_FileSpec_aql
+            - name: r_FileSpec
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output r_FileSpec_pattern "pattern=example-repo-local"
+
+      - name: Bash_FileSpec_Input
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_FileSpec_pattern
+            - name: r_FileSpec_aql
+            - name: r_FileSpec
+        execution:
+          onExecute:
+            - echo "executing step..."

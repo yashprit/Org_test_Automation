@@ -1,0 +1,10 @@
+resources:
+
+  - name: image_aws
+    type: Image
+    configuration:
+       registry: AWS
+       region: us-east-1	 # required if registry is AWS
+       imageName: ubuntu
+       imageTag: latest
+       autoPull: true

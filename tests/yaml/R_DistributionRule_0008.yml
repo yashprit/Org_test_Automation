@@ -1,0 +1,12 @@
+resources:
+  - name: myDistributionRule
+    type: DistributionRule
+    configuration:
+      sourceDistribution: disttest
+      serviceName: 
+      siteName: "*"
+      cityName: "*"
+      countryCodes:
+        - IN
+        - US
+        - UK

@@ -1,0 +1,7 @@
+resources:  
+  - name: my_releaseBundle
+    type: ReleaseBundle
+    configuration:
+      name: myRel
+      version: v1.0
+      isSigned: false  

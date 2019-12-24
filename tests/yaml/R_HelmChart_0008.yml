@@ -1,0 +1,8 @@
+resources:
+  - name: myHelmChart
+    #type: HelmChart
+    configuration:
+      sourceArtifactory: s_artifactory
+      repository: helm-remote
+      chart: consul
+      version: 1.0.0

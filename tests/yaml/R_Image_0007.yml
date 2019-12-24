@@ -1,0 +1,9 @@
+resources:
+
+ - name: image_azure
+   type: Image
+   configuration:
+      registry: azure
+      imageName: vijayreddy1991/python
+      imageTag: app
+      autoPull: true

@@ -1,0 +1,10 @@
+resources:
+  - name: outgoingWebhook
+    type: OutgoingWebhook
+    configuration:
+      webhookName: outgoingwebhook
+      method:  #default POST
+      #Parameters: <query string to be added>
+     # path: “/api/v1/issues”
+      #headers:
+       # accept: xyc

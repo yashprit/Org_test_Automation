@@ -1,0 +1,9 @@
+resources:
+
+#  - name: r_Remotefile_azure
+#    type: RemoteFile
+#    configuration:
+#      source: i_azure
+#      fileLocation: ftp://pipelines_bucker_01
+#      fileName: test.sh # optional
+#      fileDateTime: 01/01/2018

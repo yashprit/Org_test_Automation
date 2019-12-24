@@ -1,0 +1,9 @@
+resources:
+
+  - name: r_Remotefile_fileServer
+    type: RemoteFile
+    configuration:
+      source: i_fileServer
+      fileLocation: ftp://pipelines_bucker_01
+      fileName: test.sh # optional
+      fileDateTime: 01/01/2018

@@ -1,0 +1,29 @@
+resources:
+  - name: r_BuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: s_artifactory
+      buildName: mvn_sample_build_auto
+
+
+pipelines:
+  - name: pipelines_auto
+    steps:
+      - name: Bash_BuildInfo_Output
+        type: Bash
+        configuration:
+          outputResources:
+            - name: r_BuildInfo
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output r_BuildInfo "buildNumber=3"
+
+      - name: Bash_BuildInfo_Input
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_BuildInfo
+        execution:
+          onExecute:
+            - echo "executing step..."

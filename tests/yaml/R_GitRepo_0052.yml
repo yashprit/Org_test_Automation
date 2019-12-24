@@ -1,0 +1,9 @@
+resources:
+  - name: bitbucketServer
+    type: GitRepo
+    configuration:
+      gitProvider: bitbucketServer
+      path: ~ranjanks/test
+      files:  # optional
+        include: <regularExp>
+        exclude: 

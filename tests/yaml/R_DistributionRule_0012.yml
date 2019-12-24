@@ -1,0 +1,11 @@
+resources:  
+  - name: myDistributionRule
+    type: DistributionRule
+    configuration:
+      sourceDistribution: disttest
+      serviceName: svce
+      siteName: "*"
+      countryCodes:
+        - IN
+        - US
+        - UK 

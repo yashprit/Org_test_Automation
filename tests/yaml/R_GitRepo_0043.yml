@@ -1,0 +1,6 @@
+resources:
+  - name: r_gitlab
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitlab
+      path: shiptest-rc-me/vijay-test
