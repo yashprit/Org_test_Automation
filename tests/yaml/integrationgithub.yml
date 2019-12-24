@@ -1,0 +1,6 @@
+resources:
+  - name: r_github
+    type: GitRepo
+    configuration:
+      gitProvider: i_GitHub
+      path: jfbetapipeorg/Org_test_Automation
