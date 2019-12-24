@@ -1,0 +1,5 @@
+resources:
+  - name: r_incomingwebhook
+    type: IncomingWebhook
+    configuration:
+      webhookName: i_testUserIncomingWebhook
