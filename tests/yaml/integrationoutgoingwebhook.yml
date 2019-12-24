@@ -1,0 +1,6 @@
+resources:
+  - name: r_outgoingwebhook
+    type: OutgoingWebhook
+    configuration:
+      webhookName: i_testUserOutgoingWebhook
+      method: POST
