@@ -1,0 +1,12 @@
+pipelines:
+  - name: pipelines_S_PipelineSource
+    steps:
+      - name: S_PipelineSource
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - echo automation > test.sh
+            - jfrog rt u test.sh example-repo-local/setup/test.sh
