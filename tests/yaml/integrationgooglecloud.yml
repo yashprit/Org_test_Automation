@@ -1,0 +1,6 @@
+resources:
+  - name: r_googlecloud
+    type: RemoteFile
+    configuration:
+      source: i_gcpkeys
+      fileLocation: gs://pipelines_bucker_01
