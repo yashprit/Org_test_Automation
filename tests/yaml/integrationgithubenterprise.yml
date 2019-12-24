@@ -1,0 +1,6 @@
+resources:
+  - name: r_githubenterprise
+    type: GitRepo
+    configuration:
+      gitProvider: i_GitHubEnterprise
+      path:   
