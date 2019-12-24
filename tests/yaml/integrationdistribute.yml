@@ -1,0 +1,10 @@
+resources:
+  - name: r_distribute
+    type: DistributionRule
+    configuration:
+      sourceDistribution: i_distribute
+      serviceName: pipeline
+      siteName: India
+      cityName: Banaglore
+      countryCodes:
+        - IN
