@@ -1,37 +1,4 @@
 resources:
-  - name: image_docker
-    type: Image
-    configuration:
-       registry: Docker
-       imageName: ubuntu
-       imageTag: app
-       autoPull: true
-
-  - name: image_aws
-    type: Image
-    configuration:
-       registry: AWS
-       region: us-east-1	 # required if registry is AWS
-       imageName: ubuntu
-       imageTag: latest
-       autoPull: true
-
-  - name: image_google
-    type: Image
-    configuration:
-       registry: google
-       imageName: ubuntu
-       imageTag: latest
-       autoPull: true
-
-# - name: image_azure
-#   type: Image
-#   configuration:
-#      registry: azure
-#      imageName: ubuntu
-#      imageTag: app
-#      autoPull: true
-
   - name: image_art
     type: Image
     configuration:
