@@ -1,0 +1,7 @@
+resources:
+  - name: r_artifactory
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: i_artifactory
+      buildName: mvn_sample_build_auto
+      buildNumber: 1
