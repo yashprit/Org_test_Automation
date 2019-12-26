@@ -1,6 +1,7 @@
 resources:
- - name: r_gitlab
-   type: GitRepo
-   configuration:
-     gitProvider: i_gitlab
-     path: shiptest-rc-me/tests
+  - name: r_gitlab
+    type: GitRepo
+    configuration:
+      gitProvider: i_gitlab
+      path: shiptest-rc-me/tests
+ 
