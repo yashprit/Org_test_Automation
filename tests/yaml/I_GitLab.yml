@@ -3,5 +3,5 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: i_gitlab
-      path: shiptest-rc-me/tests
+      path: jfbeta/test_automation
  
