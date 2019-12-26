@@ -3,5 +3,5 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: i_gitlab
-      path: jfbeta/test_automation
+      path: jfbetapipeorg/org_test_automation
  
