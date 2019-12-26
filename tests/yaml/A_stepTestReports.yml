@@ -1,0 +1,25 @@
+resources:
+  - name: script_repo1
+    type: GitRepo
+    configuration:
+      gitProvider: s_bitbucketServer
+      path: PIP/automation/tests/core/yaml
+      
+pipelines:
+  - name: test_stepTestReports
+    steps:
+      - name: testReport
+        type: Bash
+        configuration:
+          inputResources:
+            - name: script_repo1
+        execution:
+          onExecute:
+            - cd $res_script_repo1_resourcePath
+            - python -m py_compile calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest
+            - cd $res_script_repo1_resourcePath            
+            - py.test --verbose --junit-xml test-reports/results.xml test_calc.py
+            - save_tests $res_script_repo1_resourcePath/test-reports/results.xml 

@@ -1,0 +1,21 @@
+resources:
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      path: PIP/automation/tests/core/yaml
+      gitProvider: s_bitbucketServer
+
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: api_pipeline
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_bitbucketServer
+        execution:
+          onExecute:
+            - echo "hi"
+          onComplete:
+            - echo "state=pipeline2" > pipeline_state.txt
+            - add_pipeline_files pipeline_state.txt pipeline_state_file 

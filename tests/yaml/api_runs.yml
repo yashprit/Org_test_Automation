@@ -1,0 +1,24 @@
+resources:
+  - name: bitbucketServer
+    type: GitRepo
+    configuration:
+     gitProvider: s_bitbucketServer
+     path: PIP/automation/tests/core/yaml
+
+pipelines:
+  - name: pipelinetest
+    steps:
+      - name: node
+        type: Bash
+        configuration:
+          inputResources:
+            - name: bitbucketServer
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo "hi"
+            - echo runs > cache.file
+            - add_cache_files cache.file runs.file
+            - echo "state=pipeline2" > cache.txt
+            - add_run_files cache.txt run_state_file

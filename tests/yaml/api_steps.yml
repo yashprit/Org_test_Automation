@@ -1,0 +1,29 @@
+resources:
+  - name: bitbucket
+    type: GitRepo
+    configuration:
+      gitProvider: s_bitbucketServer
+      path: PIP/automation/tests/core/yaml
+      files:  # optional
+        include: api_steps.yml
+
+
+
+pipelines:
+
+  - name: pipelines_1234
+
+    steps:
+      - name: s_Bash
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          environmentVariables:
+            env1: value1
+            env2: value2
+          inputResources:
+            - name: bitbucket
+        execution:
+          onExecute:
+            - add_cache_files cachefile.txt my_file

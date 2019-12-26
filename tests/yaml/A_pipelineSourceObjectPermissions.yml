@@ -1,0 +1,18 @@
+resources:
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      path: PIP/automation/tests/core/yaml
+      gitProvider: s_bitbucketServer
+
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: api_pipeline
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_bitbucketServer
+        execution:
+          onExecute:
+            - echo "hi"

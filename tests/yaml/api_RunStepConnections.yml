@@ -1,0 +1,50 @@
+resources:
+ - name: git
+   type: GitRepo
+   configuration:
+     gitProvider: s_bitbucketServer
+     path: PIP/automation/tests/core/yaml
+
+ - name: bitbucket
+   type: GitRepo
+   configuration:
+     gitProvider: s_bitbucketServer
+     path: PIP/automation/tests/core/yaml
+
+
+pipelines:
+
+  - name: pipelines_1234
+
+    steps:
+      - name: s_Bash
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          environmentVariables:
+            env1: value1
+            env2: value
+          inputResources:
+            - name: git
+          integrations:
+            - name: s_bitbucketServer
+        execution:
+          onExecute:
+            - echo runStepConnections > cachefile.txt
+            - add_cache_files cachefile.txt my_file
+
+      - name: s_Bash1
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          environmentVariables:
+            env1: value1
+            env2: value
+          inputSteps:
+            - name: s_Bash
+        execution:
+          onExecute:
+            - echo runStepConnections > cachefile.txt
+            - add_cache_files cachefile.txt my_file

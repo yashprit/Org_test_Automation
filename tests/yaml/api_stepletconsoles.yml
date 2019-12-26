@@ -1,0 +1,20 @@
+resources:
+  - name: stepletconsoles
+    type: GitRepo
+    configuration:
+     gitProvider: s_bitbucketServer
+     path: PIP/automation/tests/core/yaml
+
+pipelines:
+  - name: pipelinetest
+    steps:
+      - name: node
+        type: Bash
+        configuration:
+          inputResources:
+            - name: stepletconsoles
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo "hi"

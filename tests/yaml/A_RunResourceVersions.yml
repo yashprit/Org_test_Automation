@@ -1,0 +1,22 @@
+resources:
+
+  - name: A_RunResourceVersions_Image
+    type: Image
+    configuration:
+      registry: i_dockerRegistry
+      imageName: shippabledocker/sample_node_pvt
+      imageTag: master
+
+pipelines:
+
+  - name: pipeline_A_RunResourceVersions
+    steps:
+      - name: A_RunResourceVersions
+        type: Bash
+        configuration:
+          outputResources:
+            - name: A_RunResourceVersions_Image
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output A_RunResourceVersions_Image "imageTag=$run_id"
