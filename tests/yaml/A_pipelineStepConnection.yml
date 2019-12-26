@@ -2,8 +2,8 @@ resources:
   - name: r_GitRepo
     type: GitRepo
     configuration:
-      path: PIP/automation/tests/core/yaml
-      gitProvider: s_bitbucketServer
+      path: jfbetapipeorg/Org_test_Automation
+      gitProvider: s_gitHub
 
 pipelines:
   - name: pipelineStepConnection_automation
@@ -12,7 +12,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: s_bitbucketServer
+            - name: s_gitHub
         execution:
           onExecute:
             - echo "hi"
