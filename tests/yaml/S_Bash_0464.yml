@@ -1,0 +1,19 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0464
+        type: Bash
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - "8"
+        execution:
+          onExecute:
+            - java -version
+            - var=$(java -version 2>&1 >/dev/null |  awk '{print $3}' | head -1)
+            - |
+              [[ $var == *"1.8.0_222"* ]]

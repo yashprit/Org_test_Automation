@@ -1,0 +1,20 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0446
+        type: Bash
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - "11"
+        execution:
+          onExecute:
+            - |
+              [[ "$(java --version)" == *"$step_image_tag"* ]]
+        execution:
+          onExecute:
+            - echo "executing step..."
