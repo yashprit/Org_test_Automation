@@ -2,8 +2,8 @@ resources:
   - name: resourceversions
     type: GitRepo
     configuration:
-     gitProvider: s_bitbucketServer
-     path: PIP/automation/tests/core/yaml
+     gitProvider: s_gitHub
+     path: jfbetapipeorg/Org_test_Automation
 
 pipelines:
   - name: pipelinetest
