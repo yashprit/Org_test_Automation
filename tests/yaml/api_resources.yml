@@ -6,13 +6,13 @@ resources:
      path: jfbetapipeorg/Org_test_Automation
 
 pipelines:
- -name: sample_pipelines
-  steps:
-  - name: api_PipelineStepConnection
-     type: Bash
-     configuration:
-       integrations:
-         - name: s_gitHub
-     execution:
-       onExecute:
-         - echo "hi"
+ - name: sample_pipelines
+   steps:
+   - name: api_PipelineStepConnection
+      type: Bash
+      configuration:
+        integrations:
+          - name: s_gitHub
+      execution:
+        onExecute:
+          - echo "hi"
