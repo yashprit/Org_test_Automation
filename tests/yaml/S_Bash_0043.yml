@@ -1,0 +1,18 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0043
+        type: Bash
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - "10.16.3"
+        execution:
+          onExecute:
+            - node --version
+            - |
+              [[ "$(node --version)" == *"10.16.3"* ]]

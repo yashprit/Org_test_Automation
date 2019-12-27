@@ -1,0 +1,19 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0041
+        type: Bash
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - "11"
+        execution:
+          onExecute:
+            - java --version
+            - |
+              [[ "$(java --version)" == *"11.0.5"* ]]
+          
