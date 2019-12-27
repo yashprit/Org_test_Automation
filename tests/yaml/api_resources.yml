@@ -1,6 +1,6 @@
 resources:
- - name: r_bitbucket
+ - name: r_gitHub
    type: GitRepo
    configuration:
-     gitProvider: s_bitbucketServer
-     path: PIP/automation/tests/core/yaml
+     gitProvider: s_gitHub
+     path: jfbetapipeorg/Org_test_Automation
