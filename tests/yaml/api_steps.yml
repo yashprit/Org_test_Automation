@@ -1,9 +1,7 @@
 pipelines:
-
-  - name: pipelines_1234
-
+  - name: api_steps
     steps:
-      - name: s_Bash
+      - name: s_steps
         type: Bash
         configuration:
           runtime:
