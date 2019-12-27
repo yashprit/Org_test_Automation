@@ -1,6 +1,6 @@
 pipelines:
 
-  - name: pipelines_1234
+  - name: pipelines_RunStepConnections
 
     steps:
       - name: s_Bash
@@ -11,8 +11,6 @@ pipelines:
           environmentVariables:
             env1: value1
             env2: value
-          integrations:
-            - name: s_bitbucketServer
         execution:
           onExecute:
             - echo runStepConnections > cachefile.txt
