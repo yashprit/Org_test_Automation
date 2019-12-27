@@ -1,12 +1,5 @@
-resources:
-  - name: r_GitRepo
-    type: GitRepo
-    configuration:
-      path: jfbetapipeorg/Org_test_Automation
-      gitProvider: s_gitHub
-
 pipelines:
-  - name: PipelineSteps_automation
+  - name: pipeline_api_PipelineSteps
     steps:
       - name: api_PipelineSteps
         type: Bash
@@ -15,7 +8,7 @@ pipelines:
             - name: s_gitHub
         execution:
           onExecute:
-            - echo "hi"
+            - echo "executing step..."
           onComplete:
             - echo "state=step" > step_state.txt
             - add_cache_files step_state.txt step_state_file 
