@@ -1,14 +1,3 @@
-resources:
-  - name: bitbucket
-    type: GitRepo
-    configuration:
-      gitProvider: s_bitbucketServer
-      path: PIP/automation/tests/core/yaml
-      files:  # optional
-        include: api_steplets.yml
-
-
-
 pipelines:
 
   - name: pipelines_1234
@@ -22,8 +11,6 @@ pipelines:
           environmentVariables:
             env1: value1
             env2: value2
-          inputResources:
-            - name: bitbucket
         execution:
           onExecute:
             - echo api_steplets > cachefile.txt
