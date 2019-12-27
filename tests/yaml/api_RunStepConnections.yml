@@ -1,17 +1,3 @@
-resources:
- - name: git
-   type: GitRepo
-   configuration:
-     gitProvider: s_bitbucketServer
-     path: PIP/automation/tests/core/yaml
-
- - name: bitbucket
-   type: GitRepo
-   configuration:
-     gitProvider: s_bitbucketServer
-     path: PIP/automation/tests/core/yaml
-
-
 pipelines:
 
   - name: pipelines_1234
@@ -25,8 +11,6 @@ pipelines:
           environmentVariables:
             env1: value1
             env2: value
-          inputResources:
-            - name: git
           integrations:
             - name: s_bitbucketServer
         execution:
