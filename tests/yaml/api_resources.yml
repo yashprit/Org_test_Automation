@@ -13,6 +13,8 @@ pipelines:
      configuration:
        integrations:
          - name: s_gitHub
+       inputResources:
+         - name: r_gitHub
      execution:
        onExecute:
          - echo "hi"
