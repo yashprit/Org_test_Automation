@@ -1,6 +1,8 @@
-resources:
- - name: r_bitbucket
-   type: GitRepo
-   configuration:
-     gitProvider: s_bitbucketServer
-     path: PIP/automation/tests/core/yaml
+pipelines:
+  - name: pipeline_api_PipelineSteps
+    steps:
+      - name: api_PipelineSteps
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
