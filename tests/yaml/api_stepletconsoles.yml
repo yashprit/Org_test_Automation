@@ -1,18 +1,9 @@
-resources:
-  - name: stepletconsoles
-    type: GitRepo
-    configuration:
-     gitProvider: s_bitbucketServer
-     path: PIP/automation/tests/core/yaml
-
 pipelines:
-  - name: pipelinetest
+  - name: api_stepletconsoles
     steps:
-      - name: node
+      - name: s_stepletconsoles
         type: Bash
         configuration:
-          inputResources:
-            - name: stepletconsoles
           runtime:
             type: host
         execution:
