@@ -78,8 +78,7 @@ pipelines:
               [ ! -z "$res_S_Bash_0142_GitRepo_compareUrl" ]
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_repositoryProvider" ]
-            - |
-              [ ! -z "$res_S_Bash_0142_GitRepo_releasedAt" ]
+            
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_sysPrivateDeployKey" ]
             - |
@@ -112,4 +111,6 @@ pipelines:
             #  [ ! -z "$res_S_Bash_0142_GitRepo_releaseBody" ]
             #- |
             #  [ ! -z "$res_S_Bash_0142_GitRepo_baseCommitRef" ]
+            #- |
+            #  [ ! -z "$res_S_Bash_0142_GitRepo_releasedAt" ]
 
