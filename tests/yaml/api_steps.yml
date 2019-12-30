@@ -1,7 +1,7 @@
 pipelines:
   - name: api_steps
     steps:
-      - name: s_steps
+      - name: api_steps
         type: Bash
         configuration:
           runtime:
