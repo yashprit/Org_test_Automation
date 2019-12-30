@@ -32,8 +32,7 @@ pipelines:
               [ ! -z "$res_S_Bash_0142_GitRepo_gitProvider_id" ]
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_integrationName" ]
-            - |
-              [ ! -z "$res_S_Bash_0142_GitRepo_pullRequestNumber" ]
+            
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_operation" ]
             - |
@@ -108,4 +107,6 @@ pipelines:
             #   [ ! -z "$res_S_Bash_0142_GitRepo_releaseName" ]
             # - |
             #  [ ! -z "$res_S_Bash_0142_GitRepo_gitTagName" ]
+            #- |
+            #  [ ! -z "$res_S_Bash_0142_GitRepo_pullRequestNumber" ]
 
