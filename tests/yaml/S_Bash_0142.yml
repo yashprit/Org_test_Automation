@@ -46,8 +46,7 @@ pipelines:
               [ ! -z "$res_S_Bash_0142_GitRepo_gitRepoSourceDefaultBranch" ]
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_isTrigger" ]
-            - |
-              [ ! -z "$res_S_Bash_0142_GitRepo_releaseBody" ]
+            
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_resourceId" ]
             - |
@@ -110,4 +109,6 @@ pipelines:
             #  [ ! -z "$res_S_Bash_0142_GitRepo_gitTagName" ]
             #- |
             #  [ ! -z "$res_S_Bash_0142_GitRepo_pullRequestNumber" ]
+            #- |
+            #  [ ! -z "$res_S_Bash_0142_GitRepo_releaseBody" ]
 
