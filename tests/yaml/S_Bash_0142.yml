@@ -20,8 +20,6 @@ pipelines:
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_lastAuthorEmail" ]
             - |
-              [ ! -z "$res_S_Bash_0142_GitRepo_gitTagName" ]
-            - |
               [ ! -z "$res_S_Bash_0142_GitRepo_gitProvider_token" ]
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_pullRequestBaseBranch" ]
@@ -107,4 +105,6 @@ pipelines:
               [ ! -z "$res_S_Bash_0142_GitRepo_commitMessage" ]
             # - |
             #   [ ! -z "$res_S_Bash_0142_GitRepo_releaseName" ]
+            # - |
+            #  [ ! -z "$res_S_Bash_0142_GitRepo_gitTagName" ]
 
