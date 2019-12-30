@@ -65,8 +65,7 @@ pipelines:
               [ ! -z "$res_S_Bash_0142_GitRepo_gitRepoRepositorySshUrl" ]
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_isRelease" ]
-            - |
-              [ ! -z "$res_S_Bash_0142_GitRepo_baseCommitRef" ]
+            
             - |
               [ ! -z "$res_S_Bash_0142_GitRepo_committerLogin" ]
             - |
@@ -111,4 +110,6 @@ pipelines:
             #  [ ! -z "$res_S_Bash_0142_GitRepo_pullRequestNumber" ]
             #- |
             #  [ ! -z "$res_S_Bash_0142_GitRepo_releaseBody" ]
+            #- |
+            #  [ ! -z "$res_S_Bash_0142_GitRepo_baseCommitRef" ]
 
