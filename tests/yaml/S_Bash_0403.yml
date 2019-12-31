@@ -3,7 +3,7 @@ resources:
     type: RemoteFile
     configuration:
       source: s_artifactory
-      fileLocation: example-repo-local/setup/test.sh
+      fileLocation: example-repo-local/help
      # fileName: test # optional
       #fileDateTime: 01/01/2018
 
