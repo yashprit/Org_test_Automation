@@ -3,9 +3,7 @@ resources:
     type: RemoteFile
     configuration:
       source: s_artifactory
-      fileLocation: auto-generic-local/test.sh
-      fileName: test # optional
-      fileDateTime: 01/01/2018
+      fileName: invalid
 
 pipelines:
 
@@ -26,4 +24,3 @@ pipelines:
              - echo "Preparing for work..."
           onExecute:
             - echo "executing step..."
-            - jfrog rt dl example-repo-local/test 
