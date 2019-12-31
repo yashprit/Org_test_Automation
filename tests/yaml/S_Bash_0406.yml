@@ -3,9 +3,9 @@ resources:
     type: RemoteFile
     configuration:
       source: s_artifactory
-      fileLocation: auto-generic-local/test.sh
-      fileName: test.sh # optional
-      fileDateTime: 19/12/19
+      fileLocation: example-repo-local/setup/test.sh
+     # fileName: test.sh # optional
+      #fileDateTime: 19/12/19
 
 pipelines:
 
@@ -25,4 +25,4 @@ pipelines:
           onStart:
              - echo "Preparing for work..."
           onExecute:
-            - jfrog rt dl auto-generic-local/test.sh
+            - jfrog rt dl example-repo-local/setup/test.sh
