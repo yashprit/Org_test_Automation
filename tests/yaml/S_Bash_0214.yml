@@ -4,7 +4,7 @@ resources:
     configuration:
       source: s_artifactory
       fileLocation: example-repo-local/setup/test.sh
-      #fileName: test.sh # optional
+      fileName: test.sh # optional
       #fileDateTime: 01/01/2018
 
 pipelines:
@@ -20,5 +20,4 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - echo testing > auto.sh
             - write_output S_Bash_0214_RemoteFile "fileName=$run_id"
