@@ -25,10 +25,10 @@ pipelines:
               [ ! -z "$res_S_Bash_0209_RemoteFile_source_url" ]
             - |
               [ ! -z "$res_S_Bash_0209_RemoteFile_resourceId" ]
-            - |
-              [ ! -z "$res_S_Bash_0209_RemoteFile_fileDateTime" ]
-            - |
-              [ ! -z "$res_S_Bash_0209_RemoteFile_fileLocation" ]
+           # - |
+           #   [ ! -z "$res_S_Bash_0209_RemoteFile_fileDateTime" ]
+           # - |
+           #   [ ! -z "$res_S_Bash_0209_RemoteFile_fileLocation" ]
             - |
               [ ! -z "$res_S_Bash_0209_RemoteFile_integrationAlias" ]
             - |
