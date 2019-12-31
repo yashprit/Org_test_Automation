@@ -1,0 +1,19 @@
+resources:
+  - name: s_bash_0407
+    type: RemoteFile
+    configuration:
+      source: s_artifactory
+      fileName: test.sh
+
+pipelines:
+
+  - name: pipelines_auto
+    steps:
+      - name: S_Bash_0407
+        type: Bash
+        configuration:
+          inputResources:
+            - name: s_bash_0407
+        execution:
+          onExecute:
+            - echo "executing step..."
