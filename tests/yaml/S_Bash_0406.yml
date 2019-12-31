@@ -23,6 +23,6 @@ pipelines:
             - name: s_bash_0406
         execution:
           onStart:
-             - echo "Preparing for work..."
+            - echo "Preparing for work..."
           onExecute:
             - jfrog rt dl example-repo-local/setup/test.sh
