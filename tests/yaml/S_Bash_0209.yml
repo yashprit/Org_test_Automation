@@ -27,14 +27,14 @@ pipelines:
               [ ! -z "$res_S_Bash_0209_RemoteFile_resourceId" ]
            # - |
            #   [ ! -z "$res_S_Bash_0209_RemoteFile_fileDateTime" ]
-           # - |
-           #   [ ! -z "$res_S_Bash_0209_RemoteFile_fileLocation" ]
+            - |
+              [ ! -z "$res_S_Bash_0209_RemoteFile_fileLocation" ]
             - |
               [ ! -z "$res_S_Bash_0209_RemoteFile_integrationAlias" ]
             - |
               [ ! -z "$res_S_Bash_0209_RemoteFile_isTrigger" ]
-            - |
-              [ ! -z "$res_S_Bash_0209_RemoteFile_fileName" ]
+           # - |
+           #   [ ! -z "$res_S_Bash_0209_RemoteFile_fileName" ]
             - |
               [ ! -z "$res_S_Bash_0209_RemoteFile_source_name" ]
             - |
