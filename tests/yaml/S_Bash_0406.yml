@@ -4,8 +4,8 @@ resources:
     configuration:
       source: s_artifactory
       fileLocation: example-repo-local/setup/test.sh
-     # fileName: test.sh # optional
-      #fileDateTime: 19/12/19
+      fileName: test.sh 
+      fileDateTime: 19/12/19
 
 pipelines:
 
