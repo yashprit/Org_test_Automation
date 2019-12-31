@@ -3,9 +3,9 @@ resources:
     type: RemoteFile
     configuration:
       source: s_artifactory
-      fileLocation: gs://pipelines_bucker_01
-      fileName: test.sh # optional
-      fileDateTime: 01/01/2018
+      fileLocation: example-repo-local/setup/test.sh
+     # fileName: test.sh # optional
+     # fileDateTime: 01/01/2018
 
 pipelines:
   - name: pipelines_auto
