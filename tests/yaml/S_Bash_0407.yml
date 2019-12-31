@@ -3,6 +3,7 @@ resources:
     type: RemoteFile
     configuration:
       source: s_artifactory
+      fileLocation: example-repo-local/setup/test.sh
 
 pipelines:
 
