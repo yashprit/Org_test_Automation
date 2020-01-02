@@ -16,10 +16,10 @@ pipelines:
         execution:
           onExecute:
             - cd $res_script_repo1_resourcePath
-            - python -m py_compile calc.py
+            - python -m py_compile testReports/calc.py
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
             - cd $res_script_repo1_resourcePath            
-            - py.test --verbose --junit-xml test-reports/results.xml test_calc.py
+            - py.test --verbose --junit-xml test-reports/results.xml testReports/test_calc.py
             - save_tests $res_script_repo1_resourcePath/test-reports/results.xml 
