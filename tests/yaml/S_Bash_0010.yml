@@ -9,3 +9,4 @@ pipelines:
             - echo "executing step..."
             - |
               [ $step_node_pool_name == "u16node "  ]
+# automation_node_default
