@@ -17,3 +17,5 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
+            - |
+              [ $step_runtime == "host" ]
