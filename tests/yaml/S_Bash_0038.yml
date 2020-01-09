@@ -22,4 +22,4 @@ pipelines:
           onExecute:
             - echo "executing step..."
             - |
-              [ $step_image_name == "drydock/u16nodall"  ]
+              [ "$step_image_name" == "drydock/u16nodall"  ]
