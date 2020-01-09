@@ -13,13 +13,7 @@ pipelines:
         type: Bash
         configuration:
           runtime:
-            type: image
-            image:
-              custom:
-                name: drydock/u16nodall
-                tag: master
+            type: host
         execution:
           onExecute:
             - echo "executing step..."
-            - |
-              [ "$step_image_name" == "drydock/u16nodall"  ]
