@@ -8,6 +8,7 @@ pipelines:
             type: host
         execution:
           onExecute:
+            - printenv
             - echo "executing step..."
             - |
               [ $step_node_pool_name == "u16node "  ]
