@@ -3,9 +3,6 @@ pipelines:
     steps:
       - name: S_Bash_0010
         type: Bash
-        configuration:
-          runtime:            
-            type: host
         execution:
           onExecute:
             - printenv
