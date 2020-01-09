@@ -13,7 +13,7 @@ pipelines:
         type: Bash
         configuration:
           runtime:
-            type: host
+            type: image
             image:
               custom:
                 name: drydock/u16nodall
