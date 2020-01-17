@@ -10,9 +10,9 @@ pipelines:
               auto:
                 language: node
                 versions:
-                  - "8.16.0"
+                  - "8.17.0"
         execution:
           onExecute:
             - node -v
             - |
-              [[ "$(node -v)" == *"8.16.0"* ]]
+              [[ "$(node -v)" == *"8.17.0"* ]]
