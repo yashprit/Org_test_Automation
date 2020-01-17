@@ -10,7 +10,7 @@ pipelines:
               auto:
                 language: node
                 versions:
-                  - 10.16.3
+                  - 10.18.0
         execution:
           onExecute:
             - |
