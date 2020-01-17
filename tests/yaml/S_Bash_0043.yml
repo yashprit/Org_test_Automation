@@ -10,9 +10,9 @@ pipelines:
               auto:
                 language: node
                 versions:
-                  - "10.16.3"
+                  - 10.18.0
         execution:
           onExecute:
             - node --version
             - |
-              [[ "$(node --version)" == *"10.16.3"* ]]
+              [[ "$(node --version)" == *"10.18.0"* ]]
