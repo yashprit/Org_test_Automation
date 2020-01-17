@@ -10,7 +10,7 @@ pipelines:
               auto:
                 language: go
                 versions:
-                  - 1.11.11
+                  - 1.11.13
         execution:
           onExecute:
             - source /root/.gvm/scripts/gvm
