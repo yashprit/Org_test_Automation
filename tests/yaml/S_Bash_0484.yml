@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_bitbucketServer
-      path: jfbeta/test_automation
+      path: PIP/test_automation
 
 pipelines:
   - name: pipelines_S_Bash_0484
