@@ -5,6 +5,7 @@ resources:
       registry: i_aws
       imageName: ubuntu
       imageTag: latest
+      region: us-east-1
 
 pipelines:
   - name: pipelines_S_Bash_0501
