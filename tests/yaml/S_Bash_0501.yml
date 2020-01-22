@@ -3,7 +3,7 @@ resources:
     type: Image
     configuration:
       registry: i_aws
-      imageName: 754160106182.dkr.ecr.us-east-1.amazonaws.com/ubuntu
+      imageName: ubuntu
       imageTag: latest
 
 pipelines:
@@ -16,7 +16,37 @@ pipelines:
             - name: S_Bash_0501_Image
         execution:
           onExecute:
-            - printenv
             - echo "Executing step..."
             - |
-              [ ! -z "$res_S_Bash_0156_Image_registry_email" ]
+              [ ! -z "$res_S_Bash_0501_Image_operation" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_isTrigger" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_integrationName" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_registry_masterName" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_resourceId" ]
+            - |
+              [ ! -z "res_S_Bash_0501_Image_imageTag" ]
+            - |
+              [ ! -z "res_S_Bash_0501_Image_registry_id" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_registry_name" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_integrationAlias" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_registry_secretAccessKey" ]
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_registry_accessKeyId" ] 
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_region" ] 
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_resourcePath" ] 
+            - |
+              [ ! -z "$res_S_Bash_0501_Image_imageName" ]   
+   
+   
+ 
+  
+  
