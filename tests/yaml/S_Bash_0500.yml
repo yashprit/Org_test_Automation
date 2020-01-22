@@ -3,8 +3,9 @@ resources:
     type: Image
     configuration:
       registry: i_aws
-      imageName: 754160106182.dkr.ecr.us-east-1.amazonaws.com/ubuntu
+      imageName: ubuntu
       imageTag: latest
+      region: us-east-1
 
 pipelines:
   - name: pipelines_S_Bash_0500
