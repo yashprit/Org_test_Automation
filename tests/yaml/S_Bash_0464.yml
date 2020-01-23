@@ -13,7 +13,5 @@ pipelines:
                   - "8"
         execution:
           onExecute:
-            - java -version
-            - var=$(java -version 2>&1 >/dev/null |  awk '{print $3}' | head -1)
             - |
-              [[ $var == *"1.8.0_222"* ]]
+              [[ "$(java --version)" == *"$step_image_tag"* ]]
