@@ -3,6 +3,7 @@ resources:
     type: Image
     configuration:
       registry: i_gcpkeys
+      sourceRepository: docker-local 
       imageName: ubuntu
       imageTag: latest
 
