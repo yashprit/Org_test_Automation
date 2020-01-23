@@ -29,9 +29,9 @@ pipelines:
             - |
               [ ! -z "$res_S_Bash_0501_Image_resourceId" ]
             - |
-              [ ! -z "res_S_Bash_0501_Image_imageTag" ]
+              [ ! -z "$res_S_Bash_0501_Image_imageTag" ]
             - |
-              [ ! -z "res_S_Bash_0501_Image_registry_id" ]
+              [ ! -z "$res_S_Bash_0501_Image_registry_id" ]
             - |
               [ ! -z "$res_S_Bash_0501_Image_registry_name" ]
             - |
