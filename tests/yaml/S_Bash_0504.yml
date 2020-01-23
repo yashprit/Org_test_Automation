@@ -18,33 +18,29 @@ pipelines:
           onExecute:
             - echo "Executing step..."
             - |
-              [ ! -z "$res_S_Bash_0501_Image_operation" ]
+              [ ! -z "$res_S_Bash_0504_Image_isTrigger" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_isTrigger" ]
+              [ ! -z "$res_S_Bash_0504_Image_registry_id" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_integrationName" ]
+              [ ! -z "$res_S_Bash_0504_Image_imageName" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_registry_masterName" ]
+              [ ! -z "$res_S_Bash_0504_Image_resourceId" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_resourceId" ]
+              [ ! -z "$res_S_Bash_0504_Image_registry_name" ]
             - |
-              [ ! -z "res_S_Bash_0501_Image_imageTag" ]
+              [ ! -z "res_S_Bash_0504_Image_operation" ]
             - |
-              [ ! -z "res_S_Bash_0501_Image_registry_id" ]
+              [ ! -z "$res_S_Bash_0504_Image_registry_masterName" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_registry_name" ]
+              [ ! -z "$res_S_Bash_0504_Image_integrationName" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_integrationAlias" ]
+              [ ! -z "$res_S_Bash_0504_Image_registry_jsonKey" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_registry_secretAccessKey" ]
+              [ ! -z "$res_S_Bash_0504_Image_imageTag" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_registry_accessKeyId" ] 
+              [ ! -z "$res_S_Bash_0504_Image_integrationAlias" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_region" ] 
-            - |
-              [ ! -z "$res_S_Bash_0501_Image_resourcePath" ] 
-            - |
-              [ ! -z "$res_S_Bash_0501_Image_imageName" ]   
+              [ ! -z "$res_S_Bash_0504_Image_resourcePath" ]
    
    
  
