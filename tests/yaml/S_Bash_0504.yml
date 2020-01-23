@@ -28,7 +28,7 @@ pipelines:
             - |
               [ ! -z "$res_S_Bash_0504_Image_registry_name" ]
             - |
-              [ ! -z "res_S_Bash_0504_Image_operation" ]
+              [ ! -z "$res_S_Bash_0504_Image_operation" ]
             - |
               [ ! -z "$res_S_Bash_0504_Image_registry_masterName" ]
             - |
