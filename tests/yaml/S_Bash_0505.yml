@@ -2,7 +2,7 @@ resources:
   - name: S_Bash_0505_Image
     type: Image
     configuration:
-      registry: i_artifactory
+      registry: s_artifactory
       sourceRepository: docker-local
       imageName: ubuntu
       imageTag: latest
