@@ -14,4 +14,4 @@ pipelines:
         execution:
           onExecute:
             - |
-              [[ "$(java --version)" == *"$step_image_tag"* ]]
+              [[ "$(java -version)" == *"$step_image_tag"* ]]
