@@ -2,7 +2,7 @@ resources:
   - name: S_Bash_0507_Image
     type: Image
     configuration:
-      registry: i_artifactory
+      registry: s_artifactory
       sourceRepository: pipelines-docker-release-local
       imageName: pipelines-docker.jfrog.io/jfrog/pipelines-u16node
       imageTag: 10.18.0
