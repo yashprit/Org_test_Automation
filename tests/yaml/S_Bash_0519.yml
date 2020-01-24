@@ -1,0 +1,20 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0519
+        type: Bash
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: go
+                versions:
+                  - 1.13.5
+        execution:
+          onExecute:
+            - source /root/.gvm/scripts/gvm
+            - gvm list
+            - gvm use 1.13
+            - |
+              [[ "$(go version)" == *"$step_image_tag"* ]]
