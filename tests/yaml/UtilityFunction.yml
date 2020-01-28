@@ -57,9 +57,7 @@ pipelines:
           inputSteps:
             - name: utilityFunction
           inputResources:
-            - name: repo_pipe      
-          outputResources:
-            - name: repo_pipe1             
+            - name: repo_pipe                
         execution:
           onExecute:
             - printenv
