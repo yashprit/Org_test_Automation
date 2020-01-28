@@ -63,7 +63,7 @@ pipelines:
             - printenv
             - pushd $res_repo_pipe_resourcePath
             - restore_run_files jfrog $PWD/test.txt
-            - cat $PWD/tests
+            - cat $PWD/test.txt
             - restore_cache_files jfrog_pipe $PWD/file.txt
             - echo "$imageTag"
             - popd
