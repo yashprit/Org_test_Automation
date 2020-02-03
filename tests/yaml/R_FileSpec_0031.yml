@@ -3,8 +3,8 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: s_artifactory
-      pattern: art-docker # required, either this or aql
-      aql: items.find({"@build.name":{"$eq":"artifactory"}}) # required, either this or pattern
+      pattern: #art-docker # required, either this or aql
+      aql: #items.find({"@build.name":{"$eq":"artifactory"}}) # required, either this or pattern
       props: "key=value"
       recursive: true
       flat: true
