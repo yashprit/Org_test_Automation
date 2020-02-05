@@ -10,10 +10,10 @@ pipelines:
               auto:
                 language: cpp
                 versions:
-                  - "7.0.1"
+                  - "3.4.2"
         execution:
           onExecute:
             - clang --version
             - gcc --version
             - |
-              [[ "$(clang --version)" == *"7.0.1"* ]]
+              [[ "$(clang --version)" == *"3.4.2"* ]]
