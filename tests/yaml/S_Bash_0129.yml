@@ -16,6 +16,7 @@ pipelines:
         configuration:
           inputResources:
             - name: S_Bash_0129_FileSpec
+              trigger: true
         execution:
           onExecute:
             - echo "executing step..."
