@@ -20,8 +20,6 @@ pipelines:
           onExecute:
             - echo "Executing step..."
             - |
-              [ ! -z "$res_S_Bash_0156_Image_registry_email" ]
-            - |
               [ ! -z "$res_S_Bash_0156_Image_integrationName" ]
             - |
               [ ! -z "$res_S_Bash_0156_Image_operation" ]
