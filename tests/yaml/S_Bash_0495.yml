@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_bitbucket
-      path: jfbeta/test_automation
+      path: jfbeta/jfrogtesting
 
 pipelines:
   - name: pipelines_S_Bash_0495
