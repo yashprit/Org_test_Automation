@@ -15,6 +15,7 @@ pipelines:
             - name: S_Bash_0483_GitRepo
         execution:
           onExecute:
+            - printenv
             - echo "executing step..."
             - |
               [ ! -z "$res_S_Bash_0483_GitRepo_lastAuthorEmail" ]
