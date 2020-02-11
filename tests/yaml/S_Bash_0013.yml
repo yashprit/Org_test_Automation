@@ -16,7 +16,7 @@ pipelines:
           nodePool: u16
           affinityGroup: together
           inputSteps:
-            - name: S_Bash_0013
+            - name: S_Bash_0013_ag1
         execution:
           onExecute:
             - echo "hi"
