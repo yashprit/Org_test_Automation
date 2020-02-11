@@ -1,7 +1,7 @@
 pipelines:
   - name: pipeline_automation
     steps:
-      - name: ag_step_1
+      - name: S_Bash_0013
         type: Bash
         configuration:
           nodePool: u16
@@ -10,7 +10,7 @@ pipelines:
           onExecute:
             - echo "hi"
 
-      - name: ag_step_2
+      - name: S_Bash_0013
         type: Bash
         configuration:
           nodePool: u16
