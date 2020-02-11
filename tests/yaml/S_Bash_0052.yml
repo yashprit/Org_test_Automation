@@ -1,0 +1,16 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0052
+        type: Bash
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - 8.17.0
+        execution:
+          onExecute:
+            - echo $"hello"
