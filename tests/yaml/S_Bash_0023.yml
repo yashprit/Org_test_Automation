@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_Bash_0520
+    steps:
+      - name: S_Bash_520
+        type: Bash
+        configuration:
+          timeoutSeconds: 120
+        execution:
+          onExecute:
+            - sleep 5m
