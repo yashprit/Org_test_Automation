@@ -4,7 +4,7 @@ pipelines:
       - name: S_Bash_0023
         type: Bash
         configuration:
-          timeoutSeconds: 120
+          timeoutSeconds: 30
         execution:
           onExecute:
             - sleep 2m
