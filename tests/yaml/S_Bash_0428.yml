@@ -5,7 +5,7 @@ pipelines:
         type: Bash
         configuration:
           integrations: 
-            - name: i_DockerRegistry
+            - name: docker # i_DockerRegistry
           runtime:   
             type: image
             image: 
