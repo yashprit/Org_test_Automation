@@ -10,8 +10,8 @@ pipelines:
             type: image
             image: 
               custom:
-                name: shipbeta00/app #ubuntu
-                tag: latest #master
+                name: shipbeta00/ubuntu #app
+                tag: master  #latest
                 autoPull: true
         execution:
           onExecute:
