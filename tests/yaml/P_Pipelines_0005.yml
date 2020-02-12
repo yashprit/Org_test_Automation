@@ -1,0 +1,18 @@
+pipelines:
+  - name: P_Pipelines_0005
+    configuration:
+      environmentVariables:
+        readOnly:
+          ENV1: value1
+          ENV2: value2    
+      runtime:       
+        type: image
+        image:
+          auto:
+            language: node
+            versions: 
+              - 10.18.0
+          custom:
+            name: shippabledocker/jfreq
+            tag: latest
+            registry: i_dockerRegistry
