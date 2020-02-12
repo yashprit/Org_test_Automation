@@ -5,13 +5,13 @@ pipelines:
         type: Bash
         configuration:
           integrations: 
-            - name: docker # i_DockerRegistry
+            - name: i_DockerRegistry
           runtime:   
             type: image
             image: 
               custom:
-                name: shippabledocker/sample_node_pvt #shipbeta00/ubuntu #app
-                tag: masterpyt # master  #latest
+                name: shipbeta00/ubuntu
+                tag: master  
                 autoPull: true
         execution:
           onExecute:
