@@ -1,0 +1,18 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0426
+        type: Bash
+        configuration:
+           Integrations: 
+            - name: i_DockerRegistry
+          type: image
+            image: 
+              custom:
+                name: shipbeta00/ubuntu
+                tag: latest
+                autoPull: true
+        execution:
+          onExecute:
+            - printenv
+            - echo "hi"
