@@ -10,12 +10,10 @@ pipelines:
             type: image
             image: 
               custom:
-                name: shipbeta00/ubuntu #app
-                tag: master  #latest
+                name: shippabledocker/sample_node_pvt #shipbeta00/ubuntu #app
+                tag: masterpyt # master  #latest
                 autoPull: true
         execution:
-          onStart:
-            - docker login --username=shipbeta00 --password=CatBoo!23
           onExecute:
             - printenv
             - echo "hi"
