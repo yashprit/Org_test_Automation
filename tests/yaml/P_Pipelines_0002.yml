@@ -1,0 +1,9 @@
+pipelines:
+
+  - name: P_Pipelines@#$0002
+    steps:
+      - name: P_Pipelines_0002
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
