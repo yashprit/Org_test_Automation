@@ -12,7 +12,7 @@ pipelines:
               custom:
                 name: shipbeta00/ubuntu
                 tag: master  
-                autoPull: true
+              #  autoPull: true
         execution:
           onExecute:
             - printenv
