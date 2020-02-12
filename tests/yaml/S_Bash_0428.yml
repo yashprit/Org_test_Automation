@@ -4,14 +4,14 @@ pipelines:
       - name: S_Bash_0428
         type: Bash
         configuration:
-          integrations: 
-            - name: i_DockerRegistry
+          
           runtime:   
             type: image
             image: 
               custom:
                 name: shipbeta00/ubuntu
-                tag: master  
+                tag: master
+                registry: i_DockerRegistry
               #  autoPull: true
         execution:
           onExecute:
