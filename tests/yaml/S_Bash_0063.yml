@@ -5,6 +5,6 @@ pipelines:
         type: Bash
         execution:
           onExecute:
-            - echo "-- onExecute"
+            - echo + onExecute
           onSuccess:
             - echo "onSuccess"
