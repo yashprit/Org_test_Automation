@@ -10,7 +10,7 @@ pipelines:
             type: image
             image: 
               custom:
-                name: shipbeta00/ubuntu
+                name: shipbeta00/app #ubuntu
                 tag: master
                 autoPull: true
         execution:
