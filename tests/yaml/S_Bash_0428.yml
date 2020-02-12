@@ -4,9 +4,9 @@ pipelines:
       - name: S_Bash_0428
         type: Bash
         configuration:
-          Integrations: 
+          integrations: 
             - name: i_DockerRegistry
-          Runtime:   
+          runtime:   
             type: image
             image: 
               custom:
