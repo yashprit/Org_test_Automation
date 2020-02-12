@@ -1,3 +1,4 @@
 pipelines:
 
   - name: P_Pipelines_0001
+    steps:
