@@ -4,15 +4,15 @@ pipelines:
       - name: S_Bash_0426
         type: Bash
         configuration:
-           Integrations: 
-            - name: i_DockerRegistry
-          type: image
+         # integrations: 
+         #   - name: i_gcpkeys
+          runtime:   
+            type: image
             image: 
               custom:
-                name: shipbeta00/ubuntu
-                tag: latest
-                autoPull: true
+                name: gcr.io/ship-rc/ubuntu
+                tag: latest 
+                registry: i_gcpkeys
         execution:
           onExecute:
             - printenv
-            - echo "hi"
