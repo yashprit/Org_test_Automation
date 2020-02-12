@@ -1,0 +1,12 @@
+pipelines:
+
+  - name: P_Pipelines_0004
+    steps:
+      - name: P_Pipelines_0004
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - if [ $operating_system == "CentOS_7" ]
+            - |
+              [  ]
