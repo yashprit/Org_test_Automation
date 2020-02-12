@@ -4,9 +4,10 @@ pipelines:
       - name: S_Bash_0428
         type: Bash
         configuration:
-           Integrations: 
+          Integrations: 
             - name: i_DockerRegistry
-          type: image
+          Runtime:   
+            type: image
             image: 
               custom:
                 name: shipbeta00/ubuntu
