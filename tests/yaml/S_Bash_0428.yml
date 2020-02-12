@@ -11,7 +11,7 @@ pipelines:
             image: 
               custom:
                 name: shipbeta00/ubuntu
-                tag: latest
+                tag: master
                 autoPull: true
         execution:
           onExecute:
