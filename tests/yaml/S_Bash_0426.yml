@@ -4,15 +4,15 @@ pipelines:
       - name: S_Bash_0426
         type: Bash
         configuration:
-         # integrations: 
-         #   - name: i_gcpkeys
+         integrations: 
+           - name: i_gcpkeys
           runtime:   
             type: image
             image: 
               custom:
                 name: gcr.io/ship-rc/ubuntu
                 tag: latest 
-                registry: i_gcpkeys
+#                 registry: i_gcpkeys
         execution:
           onExecute:
             - printenv
