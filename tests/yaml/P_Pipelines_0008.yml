@@ -1,0 +1,12 @@
+pipelines:
+  - name: P_Pipelines_0008 
+      runtime:       
+        type: image
+    steps:
+      - name: P_Pipelines_0008
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$step_image_name" ]
