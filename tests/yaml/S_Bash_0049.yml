@@ -8,8 +8,8 @@ pipelines:
             type: image
             image: # should be present if type is image
               custom:
-                name: drydock/u16nodall
+                name: drydock/u16
                 tag: master
         execution:
           onExecute:
-            - node --version
+            - echo "hi"
