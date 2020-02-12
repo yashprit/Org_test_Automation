@@ -1,0 +1,18 @@
+pipelines:
+  - name: P_Pipelines_0007
+    configuration: 
+      runtime:       
+        type: host
+        image:
+          custom:
+            name: shippabledocker/jfreq
+            tag: latest
+            registry: i_dockerRegistry
+    steps:
+      - name: P_Pipelines_0007
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ -z "$step_image_name" ]
