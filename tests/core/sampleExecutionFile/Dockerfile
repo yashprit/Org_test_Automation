@@ -1,0 +1,1 @@
+FROM shippabledocker/jfreq:latest
