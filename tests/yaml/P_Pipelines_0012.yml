@@ -25,11 +25,13 @@ pipelines:
           integrations:
             - name: i_dockerRegistry
             - name: s_artifactory
+          inputResources:
+            - name: P_Pipelines_0012_gitRepo
         execution:
           onStart:
             - printenv
-            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath #/tests/core/sampleExecutionFile
-            - docker build --pull --no-cache -t 192.168.50.7:8082/docker-local/jfreq:$run_number --build-arg REGISTRY=${int_s_artifactory_url} .
+            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath/tests/core/sampleExecutionFile
+            - docker build --pull --no-cache -t 192.168.50.7:8082/docker-local/jfreq:$run_number --build-arg REGISTRY="192.168.50.7:8082" .
            # - jfrog rt bce $pipeline_name $run_number
             - jfrog rt docker-push 192.168.50.7:8082/docker-local/jfreq:$run_number docker-local --build-name="test_build_name" --build-number="test_build_no"
             
