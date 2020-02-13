@@ -33,4 +33,5 @@ pipelines:
         execution:
           onExecute:
             - docker pull hello-world
+            - printenv
             
