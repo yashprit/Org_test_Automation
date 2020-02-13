@@ -19,7 +19,7 @@ pipelines:
             - name: i_dockerRegistry
             - name: s_artifactory
         execution:
-          onstart:
+          onStart:
             - printenv
             - docker pull shippabledocker/jfreq:latest
             - docker login $int_s_artifactory_url -u $int_s_artifactory_user -p $int_s_artifactory_apikey
