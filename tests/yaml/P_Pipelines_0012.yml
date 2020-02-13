@@ -1,6 +1,6 @@
 pipelines:
   - name: P_Pipelines_0012
-    configuration:  
+    #configuration:  
     #  runtime:       
        # type: image
        # image:
