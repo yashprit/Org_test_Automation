@@ -1,16 +1,15 @@
 pipelines:
   - name: P_Pipelines_0012
-    configuration: 
-      
-      runtime:       
-        type: image
-        image:
-          custom:
-            registry: s_artifactory
-            sourceRepository: docker-local  # required if Docker registry is Artifactory
-            name: jfreq
-            tag: latest
-            autoPull: true
+    configuration:  
+    #  runtime:       
+       # type: image
+       # image:
+       #   custom:
+        #    registry: s_artifactory
+         #   sourceRepository: docker-local  # required if Docker registry is Artifactory
+         #   name: jfreq
+         #   tag: latest
+         #   autoPull: true
     steps:
       - name: P_Pipelines_0012
         type: Bash
@@ -27,7 +26,9 @@ pipelines:
             - docker push $int_s_artifactory_url/docker-local/jfreq
           onExecute:
             - echo "executing step..."
+            
             - printenv
+            - docker pull $int_s_artifactory_url/docker-local/jfreq
             - |
               [ "$step_image_name" == "docker-local/jfreq" ]
             - |
