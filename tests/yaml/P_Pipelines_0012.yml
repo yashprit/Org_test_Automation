@@ -1,0 +1,22 @@
+pipelines:
+  - name: P_Pipelines_0012
+    configuration: 
+      runtime:       
+        type: image
+        image:
+          custom:
+            registry: s_artifactory
+            sourceRepository: docker-local  # required if Docker registry is Artifactory
+            name: u16node
+            tag: 0.9.1
+            autoPull: true
+    steps:
+      - name: P_Pipelines_0012
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [[ "$step_image_name" == "docker-local/u16node" ]]
+            - |
+              [[ "$step_image_tag" == "0.9.1" ]]
