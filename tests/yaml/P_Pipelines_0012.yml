@@ -1,22 +1,33 @@
 pipelines:
   - name: P_Pipelines_0012
     configuration: 
+      integrations:
+        - name: i_dockerRegistry
+        - name: s_artifactory
       runtime:       
         type: image
         image:
           custom:
             registry: s_artifactory
             sourceRepository: docker-local  # required if Docker registry is Artifactory
-            name: u16node
-            tag: 0.9.1
+            name: jfreq
+            tag: latest
             autoPull: true
     steps:
       - name: P_Pipelines_0012
         type: Bash
         execution:
+          onstart:
+            - printenv
+            - docker pull shippabledocker/jfreq:latest
+            - docker login $int_s_artifactory_url -u $int_s_artifactory_user -p $int_s_artifactory_apikey
+            - docker tag jfreq $int_s_artifactory_url/docker-local/jfreq
+            - docker push $int_s_artifactory_url/docker-local/jfreq
           onExecute:
             - echo "executing step..."
+            - printenv
             - |
-              [[ "$step_image_name" == "docker-local/u16node" ]]
+              [[ "$step_image_name" == "docker-local/jfreq" ]]
             - |
-              [[ "$step_image_tag" == "0.9.1" ]]
+              [[ "$step_image_tag" == "latest" ]]
+
