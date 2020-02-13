@@ -28,7 +28,7 @@ pipelines:
         execution:
           onStart:
             - printenv
-            - pushd $res_be_gitRepo_resourcePath/tests/core/sampleExecutionFile
+            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath/tests/core/sampleExecutionFile
             - docker build --pull --no-cache -t 192.168.50.7:8082/docker-local/jfreq:$run_number --build-arg REGISTRY=${int_s_artifactory_url} .
            # - jfrog rt bce $pipeline_name $run_number
             - jfrog rt docker-push 192.168.50.7:8082/docker-local/jfreq:$run_number docker-local --build-name="test_build_name" --build-number="test_build_no"
