@@ -20,16 +20,20 @@ pipelines:
         execution:
           onStart:
             - printenv
-            - docker pull shippabledocker/jfreq:latest
-            - sudo docker login http://192.168.50.7:8082 -u admin -p AKCp5ek8CczGurADC6LVx8L6TaMgwSVakK7vQQTNpiJFMHDXvBgz7MsRX6LEz5zv37SwWuL9E
+            - docker build --pull --no-cache -t 192.168.50.7:8082/docker-local/jfreq:$run_number --build-arg REGISTRY=${int_s_artifactory_url} .
+           # - jfrog rt bce $pipeline_name $run_number
+            - jfrog rt docker-push 192.168.50.7:8082/docker-local/jfreq:$run_number docker-local --build-name="test_build_name" --build-number="test_build_no"
+            
+           # - docker pull shippabledocker/jfreq:latest
+           # - sudo docker login http://192.168.50.7:8082 -u admin -p AKCp5ek8CczGurADC6LVx8L6TaMgwSVakK7vQQTNpiJFMHDXvBgz7MsRX6LEz5zv37SwWuL9E
             #- sudo docker login $int_s_artifactory_url -u $int_s_artifactory_user -p $int_s_artifactory_apikey
-            - sudo docker tag jfreq http://192.168.50.7:8082/docker-local/jfreq
-            - sudo docker push $int_s_artifactory_url/docker-local/jfreq
+           # - sudo docker tag jfreq http://192.168.50.7:8082/docker-local/jfreq
+           # - sudo docker push $int_s_artifactory_url/docker-local/jfreq
             
           onExecute:
             - echo "executing step..."
             - printenv
-            - sudo docker pull $int_s_artifactory_url/docker-local/jfreq
+            - sudo docker pull 192.168.50.7:8082/docker-local/jfreq:$run_number #$int_s_artifactory_url/docker-local/jfreq
             - |
               [ "$step_image_name" == "docker-local/jfreq" ]
             - |
