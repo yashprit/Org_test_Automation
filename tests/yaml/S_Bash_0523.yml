@@ -1,5 +1,5 @@
 resources:
-   - name: S_Bash_0522_vmCluster
+   - name: S_Bash_0523_vmCluster
      type: VmCluster
      configuration:
        sshKey: invalidsshkeys
@@ -9,11 +9,11 @@ resources:
 pipelines:
   - name: pipelines_auto
     steps:
-      - name: S_Bash_0522
+      - name: S_Bash_0523
         type: Bash
         configuration:
           inputResources:
-            - name: S_Bash_0522_vmCluster
+            - name: S_Bash_0523_vmCluster
         execution:
           onExecute:
             - echo "executing step..."
