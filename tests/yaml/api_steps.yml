@@ -11,4 +11,4 @@ pipelines:
             env2: value2
         execution:
           onExecute:
-            - add_cache_files cachefile.txt my_file
+            - echo "executing step..."
