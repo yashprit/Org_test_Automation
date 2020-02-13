@@ -23,7 +23,7 @@ pipelines:
             - docker pull shippabledocker/jfreq:latest
             - sudo docker login http://192.168.50.7:8082 -u admin -p AKCp5ek8CczGurADC6LVx8L6TaMgwSVakK7vQQTNpiJFMHDXvBgz7MsRX6LEz5zv37SwWuL9E
             #- sudo docker login $int_s_artifactory_url -u $int_s_artifactory_user -p $int_s_artifactory_apikey
-            - sudo docker tag jfreq $int_s_artifactory_url/docker-local/jfreq
+            - sudo docker tag jfreq http://192.168.50.7:8082/docker-local/jfreq
             - sudo docker push $int_s_artifactory_url/docker-local/jfreq
             
           onExecute:
