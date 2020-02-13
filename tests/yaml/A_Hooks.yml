@@ -19,7 +19,7 @@ pipelines:
             - name: s_gitHub
         execution:
           onExecute:
-            - echo "hi"
+            - echo "executing step..."
           onComplete:
             - echo "state=step" > step_state.txt
             - add_cache_files step_state.txt step_state_file 
