@@ -1,9 +1,7 @@
 pipelines:
   - name: P_Pipelines_0012
     configuration: 
-      integrations:
-        - name: i_dockerRegistry
-        - name: s_artifactory
+      
       runtime:       
         type: image
         image:
@@ -16,6 +14,10 @@ pipelines:
     steps:
       - name: P_Pipelines_0012
         type: Bash
+        configuration:
+          integrations:
+            - name: i_dockerRegistry
+            - name: s_artifactory
         execution:
           onstart:
             - printenv
@@ -27,7 +29,7 @@ pipelines:
             - echo "executing step..."
             - printenv
             - |
-              [[ "$step_image_name" == "docker-local/jfreq" ]]
+              [ "$step_image_name" == "docker-local/jfreq" ]
             - |
-              [[ "$step_image_tag" == "latest" ]]
+              [ "$step_image_tag" == "latest" ]
 
