@@ -1,0 +1,17 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: S_Bash_0399
+        type: Bash
+        configuration:    
+          runtime:   
+            type: image
+            image: 
+              custom:
+                name: shipbeta00/ubuntu
+                tag: master
+                registry: i_DockerRegistry
+        execution:
+          onExecute:
+            - printenv
+            - echo "hi"
