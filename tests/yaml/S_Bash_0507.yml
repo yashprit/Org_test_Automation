@@ -23,7 +23,7 @@ pipelines:
             - docker tag hello-world pipe-master.jfrog.info:8082/docker-local/hello:latest
             - jfrog rt dp pipe-master.jfrog.info:8082/docker-local/hello:latest docker-local --build-name=docker-hello --build-number=1 
             
-      - name: S_Bash_0507
+      - name: S_Bash_0507_1
         type: Bash
         configuration:
           integrations:
