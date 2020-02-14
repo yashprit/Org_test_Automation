@@ -15,6 +15,8 @@ pipelines:
         configuration:
           runtime:
             type: host
+          inputResources:
+            - name: r_gitHub
           environmentVariables:
             env1: value1
             env2: value
@@ -26,6 +28,8 @@ pipelines:
       - name: s_Bash1
         type: Bash
         configuration:
+          inputResources:
+            - name: r_gitHub
           runtime:
             type: host
           environmentVariables:
