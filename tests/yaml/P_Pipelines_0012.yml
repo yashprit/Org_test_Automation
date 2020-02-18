@@ -40,14 +40,16 @@ pipelines:
           custom:
             registry: i_artifactoryRegistry
             sourceRepository: docker-local 
-            name: ${artifactoryRegistry_url}/docker-local/jfreq
-            tag: \${image_tag}
+            name: $artifactoryRegistry_url/docker-local/jfreq
+            tag: $image_tag
             autoPull: true
     steps:
       - name: P_Pipelines_0012
         type: Bash
         execution:
           onExecute:
+            - echo "1"-$image_tag
+            - echo "2"-${image_tag}
             - printenv
             - |
               [ $step_image_name == $artifactoryRegistry_url/docker-local/jfreq ] 
