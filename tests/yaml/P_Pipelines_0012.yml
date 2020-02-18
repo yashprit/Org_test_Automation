@@ -2,51 +2,53 @@ resources:
   - name: P_Pipelines_0012_gitRepo
     type: GitRepo
     configuration:
-      path: jfbetapipeorg/Org_test_Automation
       gitProvider: s_gitHub
-
+      path: Varsha-Arun/pipelines
 
 pipelines:
+
+  - name: P_Pipelines_0012_ImagePush
+    configuration:
+      environmentVariables:
+        readOnly:
+          image_tag: latest
+    steps:
+      - name: P_Pipelines_0012_ImagePush
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_Pipelines_0012_gitRepo
+          integrations:
+            - name: i_artifactoryRegistry
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - printenv
+            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath
+            - docker build -t $int_s_artifactory_url/docker-local/jfreq:$image_tag .
+            - jfrog rt c entplus --url=$int_s_artifactory_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
+            - jfrog rt docker-push $int_s_artifactory_url/docker-local/jfreq:$image_tag docker-local
+
   - name: P_Pipelines_0012
     configuration:  
+      environmentVariables:
+        readOnly:
+          image_tag: latest
       runtime:       
         type: image
         image:
           custom:
-            registry: s_artifactory
-            sourceRepository: docker-local  # required if Docker registry is Artifactory
-            name: jfreq
-            tag: latest
+            registry: i_artifactoryRegistry
+            sourceRepository: docker-local 
+            name: $int_s_artifactory_url/docker-local/jfreq
+            tag: $image_tag
             autoPull: true
     steps:
       - name: P_Pipelines_0012
         type: Bash
-        configuration:
-          integrations:
-            - name: i_dockerRegistry
-            - name: s_artifactory
-          inputResources:
-            - name: P_Pipelines_0012_gitRepo
         execution:
-          onStart:
-            - printenv
-            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath/tests/core/sampleExecutionFile
-            - docker build --pull --no-cache -t 192.168.50.7:8082/docker-local/jfreq:$run_number --build-arg REGISTRY="192.168.50.7:8082" .
-           # - jfrog rt bce $pipeline_name $run_number
-            - jfrog rt docker-push 192.168.50.7:8082/docker-local/jfreq:$run_number docker-local --build-name="test_build_name" --build-number="test_build_no"
-            
-           # - docker pull shippabledocker/jfreq:latest
-           # - sudo docker login http://192.168.50.7:8082 -u admin -p AKCp5ek8CczGurADC6LVx8L6TaMgwSVakK7vQQTNpiJFMHDXvBgz7MsRX6LEz5zv37SwWuL9E
-            #- sudo docker login $int_s_artifactory_url -u $int_s_artifactory_user -p $int_s_artifactory_apikey
-           # - sudo docker tag jfreq http://192.168.50.7:8082/docker-local/jfreq
-           # - sudo docker push $int_s_artifactory_url/docker-local/jfreq
-            
           onExecute:
-            - echo "executing step..."
-            - printenv
-            #- sudo docker pull 192.168.50.7:8082/docker-local/jfreq:$run_number #$int_s_artifactory_url/docker-local/jfreq
             - |
-              [ "$step_image_name" == "docker-local/jfreq" ]
+              [ $step_image_name == $int_s_artifactory_url/docker-local/jfreq ] 
             - |
-              [ "$step_image_tag" == "latest" ]
-
+              [ $step_image_tag == $image_tag ]
