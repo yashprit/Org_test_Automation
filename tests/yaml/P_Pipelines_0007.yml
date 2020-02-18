@@ -1,10 +1,10 @@
 pipelines:
-  - name: P_Pipelines_0006
+  - name: P_Pipelines_0007
     configuration: 
       runtime:       
         type: host
     steps:
-      - name: P_Pipelines_0006
+      - name: P_Pipelines_0007
         type: Bash
         execution:
           onExecute:
