@@ -1,5 +1,5 @@
 pipelines:
-  - name: P_Pipelines_0007
+  - name: P_Pipelines_0008
     configuration: 
       runtime:       
         type: host
@@ -9,7 +9,7 @@ pipelines:
             tag: latest
             registry: i_dockerRegistry
     steps:
-      - name: P_Pipelines_0007
+      - name: P_Pipelines_0008
         type: Bash
         execution:
           onExecute:
