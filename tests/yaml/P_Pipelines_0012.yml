@@ -23,7 +23,6 @@ pipelines:
             - name: s_artifactory
         execution:
           onExecute:
-            - printenv
             - pushd $res_P_Pipelines_0012_gitRepo_resourcePath/tests/core/sampleExecutionFile
             - docker build -t $artifactoryRegistry_url/docker-local/jfreq:$image_tag .
             - jfrog rt c entplus --url=$int_s_artifactory_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
@@ -41,16 +40,13 @@ pipelines:
             registry: i_artifactoryRegistry
             sourceRepository: docker-local 
             name: $artifactoryRegistry_url/docker-local/jfreq
-            tag: ${image_tag}
+            tag: $image_tag
             autoPull: true
     steps:
       - name: P_Pipelines_0012
         type: Bash
         execution:
           onExecute:
-            - echo "1"-$image_tag
-            - echo "2"-${image_tag}
-            - printenv
             - |
               [ $step_image_name == $artifactoryRegistry_url/docker-local/jfreq ] 
             - |
