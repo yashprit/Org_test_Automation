@@ -25,9 +25,9 @@ pipelines:
           onExecute:
             - printenv
             - pushd $res_P_Pipelines_0012_gitRepo_resourcePath
-            - docker build -t $int_s_artifactory_url/docker-local/jfreq:$image_tag .
-            - jfrog rt c entplus --url=$int_s_artifactory_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
-            - jfrog rt docker-push $int_s_artifactory_url/docker-local/jfreq:$image_tag docker-local
+            - docker build -t $int_i_artifactoryRegistry_url/docker-local/jfreq:$image_tag .
+            - jfrog rt c entplus --url=$int_i_artifactoryRegistry_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
+            - jfrog rt docker-push $int_i_artifactoryRegistry_url/docker-local/jfreq:$image_tag docker-local
 
   - name: P_Pipelines_0012
     configuration:  
