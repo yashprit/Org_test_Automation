@@ -24,7 +24,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath
+            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath/tests/core/sampleExecutionFile
             - docker build -t $artifactoryRegistry_url/docker-local/jfreq:$image_tag .
             - jfrog rt c entplus --url=$int_s_artifactory_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
             - jfrog rt docker-push $artifactoryRegistry_url/docker-local/jfreq:$image_tag docker-local
