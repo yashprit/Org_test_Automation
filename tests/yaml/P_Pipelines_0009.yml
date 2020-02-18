@@ -1,9 +1,9 @@
 pipelines:
-  - name: P_Pipelines_0008 
+  - name: P_Pipelines_0009
       runtime:       
         type: image
     steps:
-      - name: P_Pipelines_0008
+      - name: P_Pipelines_0009
         type: Bash
         execution:
           onExecute:
