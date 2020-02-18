@@ -1,5 +1,5 @@
 pipelines:
-  - name: P_Pipelines_0009
+  - name: P_Pipelines_0010
       runtime:       
         type: image
         image:
@@ -8,10 +8,11 @@ pipelines:
             versions:
               - 10.18.0
     steps:
-      - name: P_Pipelines_0009
+      - name: P_Pipelines_0010
         type: Bash
         execution:
           onExecute:
+            - echo $(node --version)
             - node --version
             - |
-              [[ "$(node --version)" == *"10.18.0"* ]]
+              [[ "$(node --version)" == "10.18.0" ]]
