@@ -1,5 +1,5 @@
 resources:
-  - name: P_Pipelines_0012_gitRepo
+  - name: P_Pipelines_0013_gitRepo
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -7,28 +7,28 @@ resources:
 
 pipelines:
 
-  - name: P_Pipelines_0012_ImagePush
+  - name: P_Pipelines_0013_ImagePush
     configuration:
       environmentVariables:
         readOnly:
           image_tag: latest
     steps:
-      - name: P_Pipelines_0012_ImagePush
+      - name: P_Pipelines_0013_ImagePush
         type: Bash
         configuration:
           inputResources:
-            - name: P_Pipelines_0012_gitRepo
+            - name: P_Pipelines_0013_gitRepo
           integrations:
             - name: i_artifactoryRegistry
             - name: s_artifactory
         execution:
           onExecute:
-            - pushd $res_P_Pipelines_0012_gitRepo_resourcePath/tests/core/sampleExecutionFile
+            - pushd $res_P_Pipelines_0013_gitRepo_resourcePath/tests/core/sampleExecutionFile
             - docker build -t $artifactoryRegistry_url/docker-local/jfreq:$image_tag .
             - jfrog rt c entplus --url=$int_s_artifactory_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
             - jfrog rt docker-push $artifactoryRegistry_url/docker-local/jfreq:$image_tag docker-local
 
-  - name: P_Pipelines_0012
+  - name: P_Pipelines_0013
     configuration:  
       environmentVariables:
         readOnly:
@@ -43,7 +43,7 @@ pipelines:
             tag: $image_tag
             autoPull: true
     steps:
-      - name: P_Pipelines_0012
+      - name: P_Pipelines_0013
         type: Bash
         execution:
           onExecute:
