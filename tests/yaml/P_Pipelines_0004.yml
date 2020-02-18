@@ -1,19 +1,19 @@
 pipelines:
 
-  - name: P_Pipelines_0003
+  - name: P_Pipelines_0004
     configuration:
       environmentVariables:
         readOnly:
           ENV1: value1
           ENV2: value2 
     steps:
-      - name: P_Pipelines_0003
+      - name: P_Pipelines_0004
         type: Bash
         execution:
           onExecute:
             - echo "executing step..."
             - |
-              [ $ENV1 === value1 ]
+              [ $ENV1 == value1 ]
             - |
-              [ $ENV2 === value2 ]
+              [ $ENV2 == value2 ]
       
