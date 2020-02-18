@@ -41,7 +41,7 @@ pipelines:
             registry: i_artifactoryRegistry
             sourceRepository: docker-local 
             name: ${artifactoryRegistry_url}/docker-local/jfreq
-            tag: ${image_tag}
+            tag: \$\{image_tag\}
             autoPull: true
     steps:
       - name: P_Pipelines_0012
