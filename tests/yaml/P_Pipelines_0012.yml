@@ -1,15 +1,15 @@
 pipelines:
-  - name: P_Pipelines_0011
+  - name: P_Pipelines_0012
     configuration: 
       runtime:       
         type: image
         image:
           custom:
-            name: shippabledocker/jfreqtesthelloworldtext
+            name: shippabledocker/helloworldtext
             tag: work
             registry: i_dockerRegistry
     steps:
-      - name: P_Pipelines_0011
+      - name: P_Pipelines_0012
         type: Bash
         execution:
           onExecute:
