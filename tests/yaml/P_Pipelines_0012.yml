@@ -48,6 +48,7 @@ pipelines:
         type: Bash
         execution:
           onExecute:
+            - printenv
             - |
               [ $step_image_name == $artifactoryRegistry_url/docker-local/jfreq ] 
             - |
