@@ -1,5 +1,5 @@
 pipelines:
-  - name: P_Pipelines_0005
+  - name: P_Pipelines_0006
     configuration:
       environmentVariables:
         readOnly:
@@ -17,7 +17,7 @@ pipelines:
             tag: latest
             registry: i_dockerRegistry
     steps:
-      - name: P_Pipelines_0005
+      - name: P_Pipelines_0006
         type: Bash
         execution:
           onExecute:
