@@ -1,3 +1,4 @@
+  
 resources:
 
   - name: S_Bash_0076_Aql
@@ -24,16 +25,6 @@ pipelines:
         configuration:
           inputResources:
             - name: S_Bash_0076_Aql
-          runtime:
-            type: image
-            image: # should be present if type is image
-              auto:
-                language: node
-                versions:
-                  - 10.18.0
-              custom:
-                name: ubuntu
-                tag: latest  
         execution:
           onExecute:
             - echo "executing step..."
