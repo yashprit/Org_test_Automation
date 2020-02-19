@@ -23,6 +23,8 @@ pipelines:
             - name: s_artifactory
         execution:
           onExecute:
+            - echo $image_tag
+            - echo $artifactoryRegistry_url
             - pushd $res_push_image_artifactory_gitRepo_resourcePath/tests/core/sampleExecutionFile
             - docker build -t $artifactoryRegistry_url/docker-local/jfreq:$image_tag .
             - jfrog rt c entplus --url=$int_s_artifactory_url --user=$int_s_artifactory_user --apikey=$int_s_artifactory_apikey
@@ -47,6 +49,8 @@ pipelines:
         type: Bash
         execution:
           onExecute:
+            - echo $image_tag
+            - echo $artifactoryRegistry_url
             - |
               [ $step_image_name == $artifactoryRegistry_url/docker-local/jfreq ] 
             - |
