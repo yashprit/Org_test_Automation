@@ -16,4 +16,4 @@ pipelines:
             - echo $(node --version)
             - node --version
             - |
-              [[ "$(node --version)" == "10.18.0" ]]
+              [[ "$(node --version)" == "v10.18.0" ]]
