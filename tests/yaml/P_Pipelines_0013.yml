@@ -23,6 +23,7 @@ pipelines:
             - name: s_artifactory
         execution:
           onExecute:
+            - printenv
             - echo $image_tag
             - echo $artifactoryRegistry_url
             - pushd $res_push_image_artifactory_gitRepo_resourcePath/tests/core/sampleExecutionFile
@@ -49,6 +50,7 @@ pipelines:
         type: Bash
         execution:
           onExecute:
+            - printenv
             - echo $image_tag
             - echo $artifactoryRegistry_url
             - |
