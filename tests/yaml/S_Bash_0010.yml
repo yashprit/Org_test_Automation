@@ -7,6 +7,4 @@ pipelines:
           onExecute:
             - printenv
             - echo "executing step..."
-            - |
-              [ $step_node_pool_name == "automation_node_default" ]
-
+            
