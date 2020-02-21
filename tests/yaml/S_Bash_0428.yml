@@ -18,7 +18,7 @@ pipelines:
             - printenv
             - echo "executing step..."
             - |
-              [ "$step_image_name" == "shippabledocker/jfreq" ]
+              [ "$step_image_name" == "shipbeta00/ubuntu" ]
             - |
-              [ "$step_image_tag" == "latest" ]
+              [ "$step_image_tag" == "master" ]
 
