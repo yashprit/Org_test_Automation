@@ -13,5 +13,9 @@ pipelines:
                 registry: i_DockerRegistry
         execution:
           onExecute:
-            - printenv
-            - echo "hi"
+            - echo "executing step..."
+            - |
+              [ "$step_image_name" == "shippabledocker/jfreq" ]
+            - |
+              [ "$step_image_tag" == "latest" ]
+
