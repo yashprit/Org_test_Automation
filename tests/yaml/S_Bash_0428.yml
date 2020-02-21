@@ -12,8 +12,12 @@ pipelines:
                 name: shipbeta00/ubuntu
                 tag: master
                 registry: i_DockerRegistry
-              #  autoPull: true
+                autoPull: true
         execution:
           onExecute:
-            - printenv
-            - echo "hi"
+            - echo "executing step..."
+            - |
+              [ "$step_image_name" == "shippabledocker/jfreq" ]
+            - |
+              [ "$step_image_tag" == "latest" ]
+
