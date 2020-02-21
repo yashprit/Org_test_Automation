@@ -14,4 +14,8 @@ pipelines:
                 registry: i_aws
         execution:
           onExecute:
-            - printenv
+            - echo "executing step..."
+            - |
+              [ "$step_image_name" == "ubuntu" ]
+            - |
+              [ "$step_image_tag" == "latest" ]
