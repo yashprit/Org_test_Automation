@@ -11,7 +11,7 @@ pipelines:
                 name: ubuntu
                 tag: latest 
                 region: us-east-1	
-                registry: s_aws
+                registry: i_aws
         execution:
           onExecute:
             - printenv
