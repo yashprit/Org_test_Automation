@@ -13,4 +13,8 @@ pipelines:
                 registry: i_gcpkeys
         execution:
           onExecute:
-            - printenv
+            - echo "executing step..."
+            - |
+              [ "$step_image_name" == "gcr.io/ship-rc/ubuntu" ]
+            - |
+              [ "$step_image_tag" == "latest" ]
