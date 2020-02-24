@@ -1,0 +1,9 @@
+resources:
+
+  - name: image_aws
+    type: Image
+    configuration:
+       registry: AWS
+       imageName: ubuntu
+       imageTag: latest
+       autoPull: true
