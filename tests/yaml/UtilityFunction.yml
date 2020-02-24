@@ -47,6 +47,21 @@ pipelines:
             - find_resource_variable repo_pipe resourcePath
             - restore_cache_files jfrog_pipe $PWD/file.txt
             - cat file.txt
+            - openssl genrsa -out key.pem 1024 
+            - openssl rsa -in key.pem -text -noout
+            - openssl rsa -in key.pem -pubout -out pub.pem 
+            - openssl rsa -in pub.pem -pubin -text -noout 
+            - encrypt_string "secretValue" --key pub.pem
+            - encrypted=$(encrypt_string "secretValue" --key pub.pem)
+            - echo "$encrypted"
+            - decrypt_string "$encrypted" --key key.pem
+            - ls -l
+            - touch crypt.txt
+            - echo "testing for sample encryption" >> crypt.txt
+            - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
+            - cat encrypted.txt
+            - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
+            - cat decrypted.txt            
             - popd
 
       - name: utilityFunction2
