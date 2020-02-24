@@ -28,6 +28,12 @@ resources:
       sortOrder: "ascending"
       limit: 20
       offset: 0
+      
+  - name: r_FileSpecDelete
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      aql: "docker/local"       
 
 pipelines:
   - name: pipelines_r_FileSpec
