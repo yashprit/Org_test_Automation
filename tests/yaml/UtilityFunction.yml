@@ -47,7 +47,7 @@ pipelines:
             - echo "Hello pipelines team" >> test.txt
             - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD UtilityFunction.yml
             - update_commit_status repo_pipe --status failure --message "My description 123" --context "stepB"            
-            - read_json sample.json "DOCKER_USERNAME"
+            - read_json $res_repo_pipe_resourcePath/tests/yaml/sample.json "DOCKER_USERNAME"
             - write_output imageTest "imageTag=master" 
             - add_cache_files $PWD/file.txt jfrog_pipe 
             - add_run_variables imageTag="master"
