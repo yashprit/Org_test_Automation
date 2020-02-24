@@ -8,7 +8,7 @@ resources:
   - name: imageTest
     type: Image
     configuration:
-       registry: s_docker
+       registry: i_DockerRegistry
        imageName: shipbeta00/ubuntu
        imageTag: master
      
