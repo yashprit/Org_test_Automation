@@ -3,4 +3,4 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitlab
-      path: shiptest-rc-me/vijay-test
+      path: jfbeta/jfrogtesting
