@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation/tests/core/yaml
+      path: jfbetapipeorg/Org_test_Automation/tests/yaml
       
   - name: imageTest
     type: Image
