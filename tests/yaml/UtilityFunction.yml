@@ -34,9 +34,9 @@ pipelines:
             - touch test.txt
             - echo "Hello pipelines team" >> test.txt
             - compare_git --resource repo_pipe --commit-range HEAD~3..HEAD pipelines.yml
+            - update_commit_status repo_pipe --status failure --message "My description 123" --context "stepB"            
             - read_json sample.json "DOCKER_USERNAME"
-#             - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
-#             - save_tests test.sh 
+            - write_output repo_pipe1 "imageTag=master" "sha=$commitSha" 
             - add_cache_files $PWD/file.txt jfrog_pipe 
             - add_run_variables imageTag="master"
             - export_run_variables 
