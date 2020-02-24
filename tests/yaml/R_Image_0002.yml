@@ -1,0 +1,8 @@
+resources:
+  - name: image_art
+    type: Image
+    configuration:
+       registry: s_artifactory
+       imageName: u16node
+       imageTag: 0.9.1
+       autoPull: true
