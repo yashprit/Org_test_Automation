@@ -59,7 +59,13 @@ pipelines:
             - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
             - cat encrypted.txt
             - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
-            - cat decrypted.txt    
+            - cat decrypted.txt 
+            - python -m py_compile tests/core/sampleExecutionFile/calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest           
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+            - save_tests $res_repo_pipe_resourcePath/test-reports/results.xml             
             - popd
 
       - name: utilityFunction2
