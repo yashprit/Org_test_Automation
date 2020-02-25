@@ -17,7 +17,7 @@ resources:
 pipelines:
   - name: utilityfuctiontest
     steps:
-      - name: utilityFunctionSaveTests
+      - name: UtilityFunctionSaveTests
         type: Bash
         configuration:
           integrations:
