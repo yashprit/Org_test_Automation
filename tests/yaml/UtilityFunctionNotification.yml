@@ -8,7 +8,7 @@ resources:
 pipelines:
   - name: UtilityNotification
     steps:
-      - name: utilityFunctionNotification
+      - name: UtilityFunctionNotification
         type: Bash
         configuration:
           integrations:
