@@ -17,7 +17,7 @@ resources:
 pipelines:
   - name: utilityfuctiontest
     steps:
-      - name: UtilityFunctionSaveTests
+      - name: UtilityFunctionWriteOutput
         type: Bash
         configuration:
           integrations:
@@ -30,12 +30,7 @@ pipelines:
         execution:
           onExecute: 
             - pushd $res_repo_pipe_resourcePath  
-            - python -m py_compile tests/core/sampleExecutionFile/calc.py
-            - pip install --upgrade pip
-            - hash -d pip
-            - pip install pytest           
-            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-            - save_tests $res_repo_pipe_resourcePath/test-reports/results.xml   
+            - write_output imageTest "imageTag=master"  
             - popd
 
 
