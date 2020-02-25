@@ -3,16 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
-      
-  - name: imageTest
-    type: Image
-    configuration:
-       registry: i_DockerRegistry
-       imageName: shipbeta00/ubuntu
-       imageTag: master
-     
-            
+      path: jfbetapipeorg/Org_test_Automation           
       
 pipelines:
   - name: utilityfuctiontest1
@@ -22,12 +13,8 @@ pipelines:
         configuration:
           integrations:
             - name: s_gitHub
-            - name: slack
           inputResources:
             - name: repo_pipe
-            
-          outputResources:
-            - name: imageTest
             
         execution:
           onExecute: 
@@ -73,16 +60,7 @@ pipelines:
             - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
             - cat encrypted.txt
             - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
-            - cat decrypted.txt  
-            - cd $res_repo_pipe_resourcePath
-            - python -m py_compile tests/core/sampleExecutionFile/calc.py
-            - pip install --upgrade pip
-            - hash -d pip
-            - pip install pytest
-            - cd $res_repo_pipe_resourcePath            
-            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-            - save_tests $res_repo_pipe_resourcePath/test-reports/results.xml   
-            - send_notification slack
+            - cat decrypted.txt    
             - popd
 
       - name: utilityFunction2
