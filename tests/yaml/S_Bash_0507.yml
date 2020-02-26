@@ -4,7 +4,7 @@ resources:
     configuration:
       registry: i_artifactoryRegistry
       sourceRepository: test-automation-docker-local
-      imageName: $artifactory_registry_url/test-automation-docker-local/jfreq
+      imageName: ${artifactory_registry_url}/test-automation-docker-local/jfreq
       imageTag: latest
 
 pipelines:
