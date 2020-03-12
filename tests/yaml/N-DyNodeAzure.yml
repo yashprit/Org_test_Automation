@@ -1,0 +1,15 @@
+pipelines:
+
+  - name: pipeline_N_DyNodeAzure
+    steps:
+      - name: N_DyNodeAzure
+        type: Bash
+        configuration:
+          nodePool: azure_dynamic_nodePool
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ "$step_configuration_nodePool" == "azure_dynamic_nodePool"]
+            - |
+              [ "$step_configuration_isOnDemand" == "true" ]
