@@ -1,0 +1,12 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_GitLab_0001
+    steps:
+      - name: S_PS_I_GitLab_0001
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_gitlab
+        execution:
+          onExecute:
+             - echo "executing step..."

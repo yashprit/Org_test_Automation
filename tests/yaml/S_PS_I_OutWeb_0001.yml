@@ -1,0 +1,33 @@
+pipelines:
+  - name: pipelines_S_PS_I_OutWeb_0001
+    steps:
+      - name: S_PS_I_OutWeb_0001_TokenAuth
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_outgoingWebhookTokenAuth
+        execution:
+          onExecute:
+            - echo "executing step..."
+
+      - name: S_PS_I_OutWeb_0001_BasicAuth
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_outgoingWebhookBasicAuth
+          inputSteps:
+            - name: S_PS_I_OutWeb_0001_TokenAuth
+        execution:
+          onExecute:
+            - echo "executing step..."
+
+      - name: S_PS_I_OutWeb_0001_Hmac
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_outgoingWebhookHmac
+          inputSteps:
+            - name: S_PS_I_OutWeb_0001_BasicAuth
+        execution:
+          onExecute:
+            - echo "executing step..."

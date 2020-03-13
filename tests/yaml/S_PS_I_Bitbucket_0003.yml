@@ -1,0 +1,12 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_Bitbucket_0003
+    steps:
+      - name: S_PS_I_Bitbucket_0003
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_bitbucket
+        execution:
+          onExecute:
+            - echo "executing step..."

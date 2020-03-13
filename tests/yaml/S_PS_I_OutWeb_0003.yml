@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_PS_I_OutWeb_0003
+    steps:
+      - name: S_PS_I_OutWeb_0003
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_outgoingWebhookBasicAuth
+          onExecute:
+            - echo "executing step..."

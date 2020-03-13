@@ -1,0 +1,24 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_Bitbucket_0002
+    steps:
+      - name: S_PS_I_Bitbucket_0002
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_bitbucket
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$int_s_bitbucket_name" ]
+            - |
+              [ ! -z "$int_s_bitbucket_masterName" ]
+            - |
+              [ ! -z "$int_s_bitbucket_token" ]
+            - |
+              [ ! -z "$int_s_bitbucket_url" ]
+            - |
+              [ ! -z "$int_s_bitbucket_id" ]
+            - |
+              [ ! -z "$int_s_bitbucket_username" ]

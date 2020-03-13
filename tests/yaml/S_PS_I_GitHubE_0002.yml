@@ -1,0 +1,27 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_GitHubE_0002
+    steps:
+      - name: S_PS_I_GitHubE_0002
+        type: PowerShell
+        configuration:
+          environmentVariables:
+            env1: value1
+            env2: value2
+          integrations:
+            - name: s_githubEnterprise
+        execution:
+          onStart:
+             - echo "Preparing for work..."
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$int_s_githubEnterprise_id" ]
+            - |
+              [ ! -z "$int_s_githubEnterprise_url" ]
+            - |
+              [ ! -z "$int_s_githubEnterprise_masterName" ]
+            - |
+              [ ! -z "$int_s_githubEnterprise_token" ]
+            - |
+              [ ! -z "$int_s_githubEnterprise_name" ]
