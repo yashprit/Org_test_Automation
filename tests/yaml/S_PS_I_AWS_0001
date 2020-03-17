@@ -1,0 +1,13 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_AWS_0001
+    steps:
+      - name: S_PS_I_AWS_0001
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_aws
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - aws s3 ls

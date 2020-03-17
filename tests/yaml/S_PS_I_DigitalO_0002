@@ -1,0 +1,20 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_DigitalO_0002
+    steps:
+      - name: S_PS_I_DigitalO_0002
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_digitalocean
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$int_i_digitalocean_id"  ]
+            - |
+              [ ! -z "$int_i_digitalocean_token"  ]
+            - |
+              [ ! -z "$int_i_digitalocean_masterName"  ]
+            - |
+              [ ! -z "$int_i_digitalocean_name"  ]

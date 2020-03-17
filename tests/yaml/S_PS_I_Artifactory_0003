@@ -1,0 +1,23 @@
+pipelines:
+  - name: pipelines_S_PS_I_Artifactory_0003
+    steps:
+      - name: S_PS_I_Artifactory_0003
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$int_s_artifactory_url"  ]
+            - |
+              [ ! -z "$int_s_artifactory_masterName" ]
+            - |
+              [ ! -z "$int_s_artifactory_apikey" ]
+            - |
+              [ ! -z "$int_s_artifactory_id" ]
+            - |
+              [ ! -z "$int_s_artifactory_name" ]
+            - |
+              [ ! -z  "$int_s_artifactory_user" ]

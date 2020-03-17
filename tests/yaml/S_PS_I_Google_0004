@@ -1,0 +1,11 @@
+pipelines:
+  - name: pipelines_S_PS_I_Google_0004
+    steps:
+      - name: S_PS_I_Google_0004
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_googleCloud
+        execution:
+          onExecute:
+            - echo "executing step..."

@@ -1,0 +1,11 @@
+pipelines:
+  - name: pipelines_S_PS_I_Artifactory_0002
+    steps:
+      - name: S_PS_I_Artifactory_0002
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - echo "executing step..."

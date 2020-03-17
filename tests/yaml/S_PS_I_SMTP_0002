@@ -1,0 +1,33 @@
+pipelines:
+  - name: pipelines_S_PS_I_SMTP_0002
+    steps:
+      - name: S_PS_I_SMTP_0002
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_smtp
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$int_i_smtp_emailSender"  ]
+            - |
+              [ ! -z "$int_i_smtp_emailAuthUser"  ]
+            - |
+              [ ! -z "$int_i_smtp_hostname"  ]
+            - |
+              [ ! -z "$int_i_smtp_id"  ]
+            - |
+              [ ! -z "$int_i_smtp_masterName"  ]
+            - |
+              [ ! -z "$int_i_smtp_secure"  ]
+            - |
+              [ ! -z "$int_i_smtp_emailAuthPassword"  ]
+            - |
+              [ ! -z "$int_i_smtp_proxy"  ]
+            - |
+              [ ! -z "$int_i_smtp_port"  ]
+            - |
+              [ ! -z "$int_i_smtp_name"  ]
+            - |
+              [ ! -z "$int_i_smtp_host"  ]

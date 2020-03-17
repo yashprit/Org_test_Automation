@@ -1,0 +1,12 @@
+pipelines:
+
+  - name: pipelines_S_PS_I_AWS_0002
+    steps:
+      - name: S_PS_I_AWS_0002
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: i_aws
+        execution:
+          onExecute:
+            - echo "executing step..."
