@@ -1,0 +1,15 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0042
+    steps:
+      - name: S_PS_Generic_0042
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image: 
+              custom:
+                name: drydock/u16nodalls
+                tag: master
+        execution:
+          onExecute:
+            - echo "hi"

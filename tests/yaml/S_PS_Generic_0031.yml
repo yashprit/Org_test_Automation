@@ -1,0 +1,17 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: api_pipeline
+        type: PowerShell
+        execution:
+          onExecute:
+            - echo "executing step..."
+
+      - name: api_pipeline_PowerShell
+        type: PowerShell
+        configuration:
+          inputSteps:
+            - name: PowerShell_step
+        execution:
+          onExecute:
+            - echo "executing step..."

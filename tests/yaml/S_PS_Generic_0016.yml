@@ -1,0 +1,22 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: api_pipeline
+        type: PowerShell
+        configuration:
+          nodePool: automation_node_default
+          affinityGroup: PowerShellGroup
+        execution:
+          onExecute:
+            - echo "hi"
+
+      - name: api_pipelineauto
+        type: PowerShell
+        configuration:
+          nodePool: automation_node_default
+          affinityGroup: PowerShellGroup
+          inputSteps:
+            - name: api_pipeline
+        execution:
+          onExecute:
+            - echo "hello"

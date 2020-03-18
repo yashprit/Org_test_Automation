@@ -1,6 +1,6 @@
 resources:
 
-  - name: S_Bash_0058_Image
+  - name: S_PS_Generic_0046_Image
     type: Image
     configuration:
       registry: i_dockerRegistry
@@ -10,15 +10,15 @@ resources:
 
 pipelines:
 
-  - name: pipelines_S_Bash_0058
+  - name: pipelines_S_PS_Generic_0046
     steps:
-      - name: S_Bash_0058
-        type: Bash
+      - name: S_PS_Generic_0046
+        type: PowerShell
         configuration:
           inputResources:
-            - name: S_Bash_0058_Image
+            - name: S_PS_Generic_0046_Image
         execution:
           onExecute:
             - echo "executing step..."
             - |
-              [ $res_S_Bash_0058_Image_isTrigger == "true"  ]
+              [ $res_S_PS_Generic_0046_Image_isTrigger == "true"  ]

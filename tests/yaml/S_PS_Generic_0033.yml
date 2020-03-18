@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0033
+    steps:
+      - name: S_PS_Generic_0033
+        type: PowerShell
+        execution:
+          onExecute:
+            - image_name=$step_image_name:$step_image_tag
+            - |
+              [[ "$image_name" == *"$imageAutomation"* ]]

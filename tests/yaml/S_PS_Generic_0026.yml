@@ -1,0 +1,16 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0026
+    steps:
+      - name: S_PS_Generic_0026
+        type: PowerShell
+        configuration:
+          environmentVariables:
+            key: values
+            test: key
+        execution:
+          onExecute:
+            - echo "Hi"
+            - |
+              [ $key == "values" ]
+            - |
+              [ $test == "key" ]

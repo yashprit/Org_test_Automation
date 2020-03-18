@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: api_pipeline
+        type: PowerShell
+        configuration:
+          timeoutSeconds: -8000
+        execution:
+          onExecute:
+            - echo "hi"

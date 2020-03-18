@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0047
+    steps:
+      - name: S_PS_Generic_0047
+        type: PowerShell
+        execution:
+          onExecute:
+            - ech "onExecute"
+          onFailure:
+            - echo "Job well done!"

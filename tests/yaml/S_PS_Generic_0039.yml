@@ -1,0 +1,17 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0039
+    steps:
+      - name: S_PS_Generic_0039
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - 12.14.0
+        execution:
+          onExecute:
+            - |
+              [[ "$(node --version)" == *"$step_image_tag"* ]]

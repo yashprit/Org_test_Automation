@@ -1,0 +1,21 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0037
+    configuration:
+      runtime:
+        type: image
+        image:
+          custom:
+            name: drydock/u16javall
+            tag: master
+
+    steps:
+      - name: S_PS_Generic_0037
+        type: PowerShell
+        configuration:
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ $step_runtime == "host" ]

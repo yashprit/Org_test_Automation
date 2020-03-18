@@ -1,8 +1,8 @@
 pipelines:
-  - name: pipeline_automation
+  - name: pipeline_S_PS_Generic_0009
     steps:
-      - name: S_Bash_0010
-        type: Bash
+      - name: S_PS_Generic_0009
+        type: PowerShell
         execution:
           onExecute:
             - echo "executing step..."

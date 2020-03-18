@@ -1,0 +1,12 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0010
+    steps:
+      - name: S_PS_Generic_0010
+        type: PowerShell
+        configuration:
+          nodePool: automation_node_custom
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ $step_node_pool_name == "automation_node_custom"  ]

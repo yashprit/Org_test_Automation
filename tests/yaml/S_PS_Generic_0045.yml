@@ -1,0 +1,12 @@
+pipelines:
+  - name: pipeline_automation
+    steps:
+      - name: api_pipeline
+        type: PowerShell
+        configuration:
+          outputResources:
+            - name: PowerShellResource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - echo "hi"
