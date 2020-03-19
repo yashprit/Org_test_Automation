@@ -1,0 +1,30 @@
+resources:
+
+  - name: S-PS-R-ART-0005_Aql
+    type: Aql
+    configuration:
+      sourceArtifactory: s_artifactory
+      query: items.find({"@build.name":{"$eq":"artifactory"}})
+      addedProperties:
+        key1: value1
+        key2: value2
+      mappings:
+        - name: mapping1
+          input: IN
+          output: test1
+        - name: mapping2
+          input: IN
+          output: test2
+
+pipelines:
+  - name: pipelines_S-PS-R-ART-0005
+    steps:
+      - name: S-PS-R-ART-0005
+        type: PowerShell
+        configuration:
+          outputResources:
+            - name: S-PS-R-ART-0005_Aql
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output S_Bash_0080_Aql "query=updating"
