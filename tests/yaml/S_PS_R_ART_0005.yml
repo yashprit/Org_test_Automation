@@ -27,4 +27,4 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - write_output S_Bash_0080_Aql "query=updating"
+            - write_output S-PS-R-ART-0005_Aql "query=updating"

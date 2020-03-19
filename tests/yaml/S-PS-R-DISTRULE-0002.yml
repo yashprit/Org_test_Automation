@@ -1,0 +1,25 @@
+resources:
+  - name: S-PS-R-DISTRULE-0002_DistributionRule
+    type: DistributionRule
+    configuration:
+      sourceDistribution: i_distribution
+      serviceName: svce
+      siteName: "*"
+      cityName: "*"
+      countryCodes:
+        - IN
+        - US
+        - UK
+
+pipelines:
+  - name: pipelines_S-PS-R-DISTRULE-0002
+    steps:
+      - name: S-PS-R-DISTRULE-0002
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S-PS-R-DISTRULE-0002_DistributionRule
+              trigger: true            
+        execution:
+          onExecute:
+            - echo "executing step..."

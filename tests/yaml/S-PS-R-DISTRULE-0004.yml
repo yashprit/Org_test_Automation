@@ -1,0 +1,60 @@
+resources:
+  - name: S-PS-R-DISTRULE-0004_DistributionRule
+    type: DistributionRule
+    configuration:
+      sourceDistribution: i_distribution
+      serviceName: svce
+      siteName: "*"
+      cityName: "*"
+      countryCodes:
+        - IN
+        - US
+        - UK
+
+pipelines:
+  - name: pipelines_S-PS-R-DISTRULE-0004
+    steps:
+      - name: S-PS-R-DISTRULE-0004
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S-PS-R-DISTRULE-0004_DistributionRule
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_sourceDistribution_url"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_isTrigger"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_cityName"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_countryCodes_2"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_resourceId"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_countryCodes_1"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_sourceDistribution_masterName"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_sourceDistribution_id"  ]
+            - |
+              [ ! -z "$es_S-PS-R-DISTRULE-0004_DistributionRule_sourceDistribution_user"  ]
+            - |
+              [ ! -z "$es_S-PS-R-DISTRULE-0004_DistributionRule_operation"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_siteName"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_sourceDistribution_name"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_integrationName"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_serviceName"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_countryCodes_len"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_sourceDistribution_apikey"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_integrationAlias"  ]
+            - |
+              [ ! -z "$res_S-PS-R-DISTRULE-0004_DistributionRule_resourcePath"  ]

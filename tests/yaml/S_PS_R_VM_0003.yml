@@ -1,0 +1,21 @@
+
+resources:
+   - name: S_PS_R_VM_0003_vmCluster
+     type: VmCluster
+     configuration:
+       sshKey: sshkeys
+       targets:
+         - 1.2.3.4
+
+pipelines:
+  - name: pipelines_auto
+    steps:
+      - name: S_PS_R_VM_0003
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_R_VM_0003_vmCluster
+              trigger: false
+        execution:
+          onExecute:
+            - echo "executing step..."

@@ -1,0 +1,24 @@
+
+resources:
+  - name: S_PS_R_GIT_0010_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_githubEnterprise
+      path: jfbetapipeorg/Org_test_Automation
+      branches:
+        include: master
+      buildOn:  # optional
+        tagCreate: true      
+
+pipelines:
+  - name: pipelines_S_PS_R_GIT_0010
+    steps:
+      - name: S_PS_R_GIT_0010
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_R_GIT_0010_GitRepo
+              trigger: true
+        execution:
+          onExecute:
+            - echo "executing step..."

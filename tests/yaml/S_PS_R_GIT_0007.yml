@@ -1,0 +1,24 @@
+
+resources:
+  - name: S_PS_R_GIT_0007_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_bitbucket
+      path: jfbeta/jfrogtesting
+      branches:
+        include: master
+      buildOn:  # optional
+        tagCreate: true
+
+pipelines:
+  - name: pipelines_S_PS_R_GIT_0007
+    steps:
+      - name: S_PS_R_GIT_0007
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_R_GIT_0007_GitRepo
+              trigger: true
+        execution:
+          onExecute:
+            - echo "executing step..."

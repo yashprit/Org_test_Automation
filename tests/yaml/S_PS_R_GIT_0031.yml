@@ -1,0 +1,27 @@
+
+resources:
+  - name: S_PS_R_GIT_0031_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+      branches:
+        include: master
+      buildOn:  # optional
+        tagCreate: true
+      shallowDepth: 4  # optional
+
+pipelines:
+  - name: pipelines_S_PS_R_GIT_0031
+    steps:
+      - name: S_PS_R_GIT_0031
+        type: PoerShell
+        configuration:
+          inputResources:
+            - name: S_PS_R_GIT_0031_GitRepo
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - pushd $res_S_PS_R_GIT_0031_GitRepo_resourcePath
+            - git log
+            - ls

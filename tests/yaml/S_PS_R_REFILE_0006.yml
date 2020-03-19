@@ -1,0 +1,24 @@
+
+resources:
+  - name: S_PS_R_REFILE_0006_RemoteFile
+    type: RemoteFile
+    configuration:
+      source: s_artifactory
+      fileLocation: example-repo-local/setup/test.sh
+      #fileName: test.sh # optional
+     # fileDateTime: 19/12/19
+
+pipelines:
+  - name: pipelines_auto
+    steps:
+      - name: S_PS_R_REFILE_0006
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_artifactory
+          outputResources:
+            - name: S_PS_R_REFILE_0006_RemoteFile
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output S_PS_R_REFILE_0006_RemoteFile "fileName=$run_id"

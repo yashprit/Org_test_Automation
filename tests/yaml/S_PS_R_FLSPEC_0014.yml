@@ -1,0 +1,22 @@
+resources:
+
+  - name: S_PS_R_FLSPEC_0014_FileSpec
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      pattern: "test-local/setup/"
+      recursive: false
+      offset: 1@3
+
+pipelines:
+
+  - name: pipelines_S_PS_R_FLSPEC_0014
+    steps:
+      - name: S_PS_R_FLSPEC_0014
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_R_FLSPEC_0014_FileSpec
+        execution:
+          onExecute:
+            - echo "executing step..."

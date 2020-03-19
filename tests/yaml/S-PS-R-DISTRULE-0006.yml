@@ -1,0 +1,25 @@
+resources:
+  - name: S-PS-R-DISTRULE-0006_DistributionRule
+    type: DistributionRule
+    configuration:
+      sourceDistribution: i_distribution
+      serviceName: svce
+      siteName: "*"
+      cityName: "*"
+      countryCodes:
+        - IN
+        - US
+        - UK
+
+pipelines:
+  - name: pipelines_S-PS-R-DISTRULE-0006
+    steps:
+      - name: S-PS-R-DISTRULE-0006
+        type: PowerShell
+        configuration:
+          outputResources:
+            - name: S-PS-R-DISTRULE-0006_DistributionRule
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output S-PS-R-DISTRULE-0006_DistributionRule "serviceName=$run_id"
