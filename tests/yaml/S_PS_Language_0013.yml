@@ -1,0 +1,17 @@
+pipelines:
+  - name: pipeline_S_PS_Language_0013
+    steps:
+      - name: S_PS_Language_0013
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: dotnetcore
+                versions:
+                  - 3.1
+        execution:
+          onExecute:
+            - |
+              [[ "$(dotnet --version)" == *"3.1"* ]]
