@@ -1,0 +1,18 @@
+pipelines:
+  - name: pipeline_S_PS_Language_0004
+    steps:
+      - name: S_PS_Language_0004
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - 8.17.0
+        execution:
+          onExecute:
+            - node --version
+            - |
+              [[ "$(node --version)" == *"8.17.0"* ]]
