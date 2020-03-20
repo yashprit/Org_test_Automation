@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0050
+    steps:
+      - name: S_PS_Generic_0050
+        type: PowerShell
+        execution:
+          onExecute:
+            - echo "onExecute"
+          onStart:
+            - echo "onStart"
