@@ -1,0 +1,13 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0015
+    steps:
+      - name: S_PS_Generic_0015
+        type: PowerShell
+        configuration:
+          nodePool: automation_node_default
+          affinityGroup: bldGroup
+          integrations:
+            - name: s_bitbucketServer
+        execution:
+          onExecute:
+            - echo "hi"
