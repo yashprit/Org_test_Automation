@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0051
+    steps:
+      - name: S_PS_Generic_0051
+        type: PowerShell
+        execution:
+          onExecute:
+            - echo "onExecute"
+          onCancel:
+            - echo "onCancel"
