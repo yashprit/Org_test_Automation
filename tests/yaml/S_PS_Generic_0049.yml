@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0049
+    steps:
+      - name: S_PS_Generic_0049
+        type: PowerShell
+        execution:
+          onExecute:
+            - java -- version
+          onSuccess:
+            - echo "onSuccess"
