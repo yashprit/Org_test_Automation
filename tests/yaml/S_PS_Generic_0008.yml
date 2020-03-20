@@ -1,0 +1,11 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0008
+    steps:
+      - name: S_PS_Generic_0008
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - echo "executing step..."
