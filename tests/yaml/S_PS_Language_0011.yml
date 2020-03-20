@@ -10,7 +10,7 @@ pipelines:
               auto:
                 language: cpp
                 versions:
-                  - "9.0.0"
+                  - 9.0.0
         execution:
           onExecute:
             - clang --version
