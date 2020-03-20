@@ -1,0 +1,18 @@
+pipelines:
+  - name: pipeline_S_PS_Language_0002
+    steps:
+      - name: S_PS_Language_0002
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - 11
+        execution:
+          onExecute:
+            - java --version
+            - |
+              [[ "$(java --version)" == *"11.0.5"* ]]
