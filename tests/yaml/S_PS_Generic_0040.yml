@@ -1,0 +1,20 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0040
+    steps:
+      - name: S_PS_Generic_0040
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              custom:
+                name: shippabledocker/jfreq
+                tag: latest
+                registry: i_dockerRegistry
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ "$step_image_name" == "shippabledocker/jfreq" ]
+            - |
+              [ "$step_image_tag" == "latest" ]
