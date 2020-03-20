@@ -1,0 +1,19 @@
+pipelines:
+  - name: pipeline_S_PS_Language_0011
+    steps:
+      - name: S_PS_Language_0011
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: cpp
+                versions:
+                  - "9.0.0"
+        execution:
+          onExecute:
+            - clang --version
+            - gcc --version
+            - |
+              [[ "$(clang --version)" == *"9.0.0"* ]]
