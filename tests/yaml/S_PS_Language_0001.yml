@@ -1,0 +1,19 @@
+pipelines:
+  - name: pipeline_S_PS_Language_0001
+    steps:
+      - name: S_PS_Language_0001
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - 8
+        execution:
+          onExecute:
+            - java -version
+            - var=$(java -version 2>&1 >/dev/null |  awk '{print $3}' | head -1)
+            - |
+              [[ $var == *"1.8.0_242"* ]]
