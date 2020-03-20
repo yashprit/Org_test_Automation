@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipeline_S_PS_Generic_0053
+    steps:
+      - name: S_PS_Generic_0053
+        type: PowerShell
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - |
+              [ $step_type == "Bashs"  ]
