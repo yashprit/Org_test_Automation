@@ -1,0 +1,20 @@
+pipelines:
+  - name: pipeline_S_PS_Language_0007
+    steps:
+      - name: S_PS_Language_0007
+        type: PowerShell
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: go
+                versions:
+                  - 1.12.14
+        execution:
+          onExecute:
+            - source /root/.gvm/scripts/gvm
+            - gvm list
+            - gvm use 1.12
+            - |
+              [[ "$(go version)" == *"$step_image_tag"* ]]
