@@ -16,5 +16,5 @@ pipelines:
             - name: S_PS_R_INWEB_0007_IncomingWebhook
         execution:
           onExecute:
-            - echo "executing step..."
-            - write_output S_PS_R_INWEB_0007_IncomingWebhook "payload=$run_id"            
+            - write-output "executing step..."
+            - write_output S_PS_R_INWEB_0007_IncomingWebhook "payload=$run_id"

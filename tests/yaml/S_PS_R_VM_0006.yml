@@ -17,6 +17,6 @@ pipelines:
             - name: S_PS_R_VM_0006_vmCluster
         execution:
           onExecute:
-            - echo "executing step..."
-            - echo testing > auto.sh
-            - write_output S_PS_R_VM_0006_vmCluster "targets=$run_id"            
+            - write-output "executing step..."
+            - write-output testing > auto.sh
+            - write_output S_PS_R_VM_0006_vmCluster "targets=$run_id"

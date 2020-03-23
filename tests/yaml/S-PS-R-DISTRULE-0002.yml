@@ -19,7 +19,7 @@ pipelines:
         configuration:
           inputResources:
             - name: S-PS-R-DISTRULE-0002_DistributionRule
-              trigger: true            
+              trigger: true
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

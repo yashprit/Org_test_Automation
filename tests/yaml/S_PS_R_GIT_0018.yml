@@ -16,7 +16,7 @@ pipelines:
             - name: S_PS_R_GIT_0018_GitRepo
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ ! -z "$res_S_PS_R_GIT_0018_GitRepo_lastAuthorEmail" ]
             - |

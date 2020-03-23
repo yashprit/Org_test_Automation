@@ -19,5 +19,4 @@ pipelines:
             - name: S_PS_R_IMAGE_0023_Image
         execution:
           onExecute:
-            - echo "executing step..."
-            - printenv
+            - write-output "executing step..."

@@ -26,5 +26,5 @@ pipelines:
             - name: S-PS-R-ART-0006_Aql
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - write_output S-PS-R-ART-0006_Aql "query=$run_id"

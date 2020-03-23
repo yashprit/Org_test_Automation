@@ -21,7 +21,7 @@ pipelines:
             - name: S_PS_R_GIT_0031_GitRepo
         execution:
           onExecute:
-            - echo "executing step..."
-            - pushd $res_S_PS_R_GIT_0031_GitRepo_resourcePath
+            - write-output "executing step..."
+            - get-childitem $res_S_PS_R_GIT_0031_GitRepo_resourcePath
             - git log
             - ls

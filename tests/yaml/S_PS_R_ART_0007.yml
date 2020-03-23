@@ -24,4 +24,4 @@ pipelines:
             - name: S_PS_R_ART_0007
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

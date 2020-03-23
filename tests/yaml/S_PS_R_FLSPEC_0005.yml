@@ -17,4 +17,4 @@ pipelines:
             - name: S_PS_R_FLSPEC_0005_FileSpec
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

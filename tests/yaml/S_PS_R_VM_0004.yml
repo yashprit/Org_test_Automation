@@ -16,7 +16,7 @@ pipelines:
             - name: S_PS_R_VM_0003_vmCluster
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ ! -z "$res_S_PS_R_VM_0003_vmCluster_targets_0"  ]
             - |

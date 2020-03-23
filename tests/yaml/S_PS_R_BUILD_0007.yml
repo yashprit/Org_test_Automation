@@ -17,4 +17,4 @@ pipelines:
             - name: S_PS_R_BUILD_0007_BuildInfo
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

@@ -21,4 +21,4 @@ pipelines:
               trigger: false
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

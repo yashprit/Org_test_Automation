@@ -21,4 +21,4 @@ pipelines:
             - name: S-PS-R-DISTRULE-0005_DistributionRule
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

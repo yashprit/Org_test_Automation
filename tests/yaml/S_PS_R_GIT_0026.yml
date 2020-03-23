@@ -16,5 +16,5 @@ pipelines:
             - name: S_PS_R_GIT_0026_GitRepo
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - write_output S_PS_R_GIT_0026_GitRepo "pipelineSourceBranch=$run_id"

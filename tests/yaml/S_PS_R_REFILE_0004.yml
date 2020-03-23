@@ -21,7 +21,7 @@ pipelines:
         execution:
           onExecute:
             - jfrog rt dl example-repo-local/setup/test.sh
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_source_url" ]
             - |

@@ -16,4 +16,4 @@ pipelines:
             - name: S_PS_R_GIT_0021_GitRepo
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

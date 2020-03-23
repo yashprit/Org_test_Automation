@@ -20,5 +20,5 @@ pipelines:
             - name: S_PS_R_REFILE_0010_RemoteFile
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - jfrog rt dl example-repo-local/setup/test.sh

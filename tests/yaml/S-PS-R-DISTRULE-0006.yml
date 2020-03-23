@@ -21,5 +21,5 @@ pipelines:
             - name: S-PS-R-DISTRULE-0006_DistributionRule
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - write_output S-PS-R-DISTRULE-0006_DistributionRule "serviceName=$run_id"

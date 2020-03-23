@@ -18,7 +18,7 @@ pipelines:
         configuration:
           inputResources:
             - name: S_PS_R_GIT_0009_GitRepo
-              trigger: true            
+              trigger: true
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

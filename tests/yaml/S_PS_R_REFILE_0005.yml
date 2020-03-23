@@ -20,4 +20,4 @@ pipelines:
             - name: S_PS_R_REFILE_0005_RemoteFile
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

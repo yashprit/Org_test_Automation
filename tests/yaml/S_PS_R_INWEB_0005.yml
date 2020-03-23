@@ -16,7 +16,7 @@ pipelines:
             - name: S_PS_R_INWEB_0005_IncomingWebhook
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             # if auth type is basic
             - |
               [ ! -z "$res_S_PS_R_INWEB_0005_IncomingWebhook_webhookName_username"  ]

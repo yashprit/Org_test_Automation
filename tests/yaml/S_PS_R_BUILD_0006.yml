@@ -17,5 +17,5 @@ pipelines:
             - name: S_PS_R_BUILD_0006_BuildInfo
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - write_output S_PS_R_BUILD_0006_BuildInfo "buildNumber=$run_id"

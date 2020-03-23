@@ -18,5 +18,5 @@ pipelines:
             - name: S_PS_R_IMAGE_0003_Image
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - write_output S_PS_R_IMAGE_0003_Image "imageTag=$run_id"

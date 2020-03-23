@@ -17,4 +17,4 @@ pipelines:
             - name: S_PS_R_VM_0008_vmCluster
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

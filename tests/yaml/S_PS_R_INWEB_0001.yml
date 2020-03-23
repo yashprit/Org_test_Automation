@@ -16,4 +16,4 @@ pipelines:
             - name: S_PS_R_INWEB_0001_IncomingWebhook
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

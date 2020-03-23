@@ -6,7 +6,7 @@ resources:
       gitProvider: s_gitHub
       path: jfbetapipeorg/Org_test_Automation
       branches:
-        include: master      
+        include: master
 
 pipelines:
   - name: pipelines_S_PS_R_GIT_0006
@@ -19,4 +19,4 @@ pipelines:
               trigger: true
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

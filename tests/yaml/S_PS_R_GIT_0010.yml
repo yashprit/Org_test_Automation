@@ -8,7 +8,7 @@ resources:
       branches:
         include: master
       buildOn:  # optional
-        tagCreate: true      
+        tagCreate: true
 
 pipelines:
   - name: pipelines_S_PS_R_GIT_0010
@@ -21,4 +21,4 @@ pipelines:
               trigger: true
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

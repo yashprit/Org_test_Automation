@@ -26,7 +26,7 @@ pipelines:
             - name: S-PS-R-ART-0004_Aql
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ ! -z "$res_S-PS-R-ART-0004_Aql_mappings_0_output" ]
             - |
