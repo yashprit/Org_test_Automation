@@ -1,0 +1,8 @@
+pipelines:
+  - name: pipelines_NP_DyAzure_0040
+    steps:
+      - name: NP_DyAzure_0040
+        type: Bash
+        execution:
+          onExecute:
+            - sleep 5m
