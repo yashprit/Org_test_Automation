@@ -3,8 +3,10 @@ pipelines:
     steps:
       - name: S_PS_Generic_0049
         type: PowerShell
+        configuration:
+          nodePool: win_2019
         execution:
           onExecute:
             - java -- version
           onSuccess:
-            - echo "onSuccess"
+            - write-output "onSuccess"

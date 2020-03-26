@@ -4,6 +4,7 @@ pipelines:
       - name: S_PS_Generic_0044
         type: PowerShell
         configuration:
+          nodePool: win_2019
           type: host
             image:
               custom:
@@ -11,4 +12,4 @@ pipelines:
                 tag: master
         execution:
           onExecute:
-            - echo "hi"
+            - write-output "hi"

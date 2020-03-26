@@ -4,12 +4,13 @@ pipelines:
       - name: S_PS_Generic_0026
         type: PowerShell
         configuration:
+          nodePool: win_2019
           environmentVariables:
             key: values
             test: key
         execution:
           onExecute:
-            - echo "Hi"
+            - write-output "Hi"
             - |
               [ $key == "values" ]
             - |

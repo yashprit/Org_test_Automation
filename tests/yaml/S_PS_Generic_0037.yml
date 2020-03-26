@@ -1,6 +1,7 @@
 pipelines:
   - name: pipeline_S_PS_Generic_0037
     configuration:
+      nodePool: win_2019
       runtime:
         type: image
         image:
@@ -12,10 +13,11 @@ pipelines:
       - name: S_PS_Generic_0037
         type: PowerShell
         configuration:
+          nodePool: win_2019
           runtime:
             type: host
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ $step_runtime == "host" ]

@@ -11,9 +11,11 @@ pipelines:
     steps:
       - name: pipeline_S_PS_Generic_0054
         type: Bash
+        configuration:
+          nodePool: win_2019
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - node --version
             - |
               [[ "$(node --version)" == *"12.14.0"* ]]

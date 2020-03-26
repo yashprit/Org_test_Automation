@@ -3,9 +3,10 @@ pipelines:
     steps:
       - name: api_pipeline
         type: PowerShell
-        configuration:
+        cconfiguration:
+          nodePool: win_2019
           integrations:
             - name: s_gitHub
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

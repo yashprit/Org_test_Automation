@@ -4,19 +4,19 @@ pipelines:
       - name: api_pipeline
         type: PowerShell
         configuration:
-          nodePool: automation_node_default
+          nodePool: win_2019
           affinityGroup: PowerShellGroup
         execution:
           onExecute:
-            - echo "hi"
+            - write-output "hi"
 
       - name: api_pipelineauto
         type: PowerShell
         configuration:
-          nodePool: automation_node_default
+          nodePool: win_2019
           affinityGroup: PowerShellGroup
           inputSteps:
             - name: api_pipeline
         execution:
           onExecute:
-            - echo "hello"
+            - write-output "hello"

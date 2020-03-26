@@ -7,4 +7,4 @@ pipelines:
           nodePool: automation_node_invalid
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

@@ -3,15 +3,18 @@ pipelines:
     steps:
       - name: api_pipeline
         type: PowerShell
+        configuration:
+          nodePool: win_2019
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
 
       - name: api_pipeline_PowerShell
         type: PowerShell
         configuration:
+          nodePool: win_2019:
           inputSteps:
             - name: api_pipeline
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."

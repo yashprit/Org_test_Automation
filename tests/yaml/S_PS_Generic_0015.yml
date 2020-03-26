@@ -3,11 +3,11 @@ pipelines:
     steps:
       - name: S_PS_Generic_0015
         type: PowerShell
-        configuration:
-          nodePool: automation_node_default
+        cconfiguration:
+          nodePool: win_2019
           affinityGroup: bldGroup
           integrations:
             - name: s_bitbucketServer
         execution:
           onExecute:
-            - echo "hi"
+            - write-output "hi"

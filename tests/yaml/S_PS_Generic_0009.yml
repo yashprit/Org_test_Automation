@@ -5,6 +5,6 @@ pipelines:
         type: PowerShell
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
-              [ $step_node_pool_name == "automation_node_default"  ]
+              [ $step_node_pool_name == "automation_win_node_default"  ]

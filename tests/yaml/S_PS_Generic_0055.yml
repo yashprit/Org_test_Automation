@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0055
+    steps:
+      - name: S_PS_Generic_0055
+        type: PowerShell
+        configuration:
+          nodePool: u16dynamic
+        execution:
+          onExecute:
+            - write-output "onExecute"

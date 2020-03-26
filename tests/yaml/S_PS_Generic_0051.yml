@@ -3,8 +3,10 @@ pipelines:
     steps:
       - name: S_PS_Generic_0051
         type: PowerShell
+        configuration:
+          nodePool: win_2019
         execution:
           onExecute:
-            - echo "onExecute"
+            - write-output "onExecute"
           onCancel:
-            - echo "onCancel"
+            - write-output "onCancel"

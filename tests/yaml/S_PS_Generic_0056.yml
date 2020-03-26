@@ -1,12 +1,10 @@
 pipelines:
-  - name: pipelines_S_PS_Generic_0050
+  - name: pipeline_S_PS_Generic_0056
     steps:
-      - name: S_PS_Generic_0050
-        type: PowerShell
+      - name: S_PS_Generic_0056
+        type: Bash
         configuration:
           nodePool: win_2019
         execution:
           onExecute:
             - write-output "onExecute"
-          onStart:
-            - write-output "onStart"
