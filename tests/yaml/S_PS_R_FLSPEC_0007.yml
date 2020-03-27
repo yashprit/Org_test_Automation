@@ -3,7 +3,7 @@ resources:
   - name: S_PS_R_FLSPEC_0007_FileSpec
     type: FileSpec
     configuration:
-      sourceArtifactory: s_artifactory
+      sourceArtifactory: varsha_artifactory
       pattern: "test-local/setup/"
       recursive: false
       archiveEntries: "#/artifactory"
