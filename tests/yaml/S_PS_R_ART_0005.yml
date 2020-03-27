@@ -3,7 +3,7 @@ resources:
   - name: S_PS_R_ART_0005_Aql
     type: Aql
     configuration:
-      sourceArtifactory: varsha_artifactory
+      sourceArtifactory: s_artifactory
       query: items.find({"@build.name":{"$eq":"artifactory"}})
       addedProperties:
         key1: value1
