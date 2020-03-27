@@ -3,7 +3,7 @@ resources:
   - name: S_PS_R_FLSPEC_0014_FileSpec
     type: FileSpec
     configuration:
-      sourceArtifactory: varsha_artifactory
+      sourceArtifactory: s_artifactory
       pattern: "test-local/setup/"
       recursive: false
       offset: 1@3
