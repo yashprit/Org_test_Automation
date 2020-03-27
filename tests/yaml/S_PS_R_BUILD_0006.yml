@@ -2,7 +2,7 @@ resources:
   - name: S_PS_R_BUILD_0006_BuildInfo
     type: BuildInfo
     configuration:
-      sourceArtifactory: s_artifactory
+      sourceArtifactory: varsha_artifactory
       buildName: mvn_sample_build_auto
       buildNumber: 1
 
