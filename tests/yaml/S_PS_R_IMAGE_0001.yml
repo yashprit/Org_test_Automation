@@ -3,7 +3,7 @@ resources:
   - name: S_PS_R_IMAGE_0001_Image
     type: Image
     configuration:
-      registry: i_dockerRegistry
+      registry: varsha_dockerRegistry
       imageName: shipbeta00/ubuntu
       imageTag: master
 
