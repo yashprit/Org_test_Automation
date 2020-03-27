@@ -2,7 +2,7 @@ resources:
   - name: r_FileSpec
     type: FileSpec
     configuration:
-      sourceArtifactory: artifactory
+      sourceArtifactory: invalid_artifactory
       pattern: art-docker # required, either this or aql
       aql: kumar # required, either this or pattern
       props: "key=value"
