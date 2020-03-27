@@ -17,7 +17,7 @@ resources:
           output: test2
 
 pipelines:
-  - name: pipelines_ S_PS_R_ART_0005
+  - name: pipelines_S_PS_R_ART_0005
     steps:
       - name:  S_PS_R_ART_0005
         type: PowerShell
