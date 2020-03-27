@@ -1,9 +1,9 @@
 resources:
 
-  - name: S-PS-R-ART-0006_Aql
+  - name: S_PS_R_ART_0006_Aql
     type: Aql
     configuration:
-      sourceArtifactory: s_artifactory
+      sourceArtifactory: varsha_artifactory
       query: items.find({"@build.name":{"$eq":"artifactory"}})
       addedProperties:
         key1: value1
@@ -17,14 +17,14 @@ resources:
           output: test2
 
 pipelines:
-  - name: pipelines_S-PS-R-ART-0006
+  - name: pipelines_S_PS_R_ART_0006_Aql
     steps:
-      - name: S-PS-R-ART-0006
+      - name: S_PS_R_ART_0006_Aql
         type: PowerShell
         configuration:
           outputResources:
-            - name: S-PS-R-ART-0006_Aql
+            - name: S_PS_R_ART_0006_Aql
         execution:
           onExecute:
             - write-output "executing step..."
-            - write_output S-PS-R-ART-0006_Aql "query=$run_id"
+            - write_output S_PS_R_ART_0006_Aql "query=$run_id"
