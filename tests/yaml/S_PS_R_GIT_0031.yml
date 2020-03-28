@@ -15,7 +15,7 @@ pipelines:
   - name: pipelines_S_PS_R_GIT_0031
     steps:
       - name: S_PS_R_GIT_0031
-        type: PoerShell
+        type: PowerShell
         configuration:
           inputResources:
             - name: S_PS_R_GIT_0031_GitRepo
