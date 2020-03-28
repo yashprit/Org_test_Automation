@@ -4,9 +4,10 @@ pipelines:
       - name: S_PS_I_Google_0001
         type: PowerShell
         configuration:
+          nodePool: win_2019
           integrations:
             - name: i_googleCloud
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - gcloud container images list

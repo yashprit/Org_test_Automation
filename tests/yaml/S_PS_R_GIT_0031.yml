@@ -17,6 +17,7 @@ pipelines:
       - name: S_PS_R_GIT_0031
         type: PowerShell
         configuration:
+          nodePool: win_2019
           inputResources:
             - name: S_PS_R_GIT_0031_GitRepo
         execution:

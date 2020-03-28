@@ -4,11 +4,12 @@ pipelines:
       - name: S_PS_I_GitLab_0002
         type: PowerShell
         configuration:
+          nodePool: win_2019
           integrations:
             - name: s_gitlab
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ ! -z "$int_s_gitlab_id"  ]
             - |

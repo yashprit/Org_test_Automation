@@ -5,11 +5,12 @@ pipelines:
       - name: S_PS_I_Bitbucket_0002
         type: PowerShell
         configuration:
+          nodePool: win_2019
           integrations:
             - name: s_bitbucket
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - |
               [ ! -z "$int_s_bitbucket_name" ]
             - |

@@ -5,9 +5,10 @@ pipelines:
       - name: S_PS_I_AWS_0001
         type: PowerShell
         configuration:
+          nodePool: win_2019
           integrations:
             - name: i_aws
         execution:
           onExecute:
-            - echo "executing step..."
+            - write-output "executing step..."
             - aws s3 ls

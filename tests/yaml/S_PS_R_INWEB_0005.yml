@@ -12,6 +12,7 @@ pipelines:
       - name: S_PS_R_INWEB_0005
         type: Bash
         configuration:
+          nodePool: win_2019
           inputResources:
             - name: S_PS_R_INWEB_0005_IncomingWebhook
         execution:

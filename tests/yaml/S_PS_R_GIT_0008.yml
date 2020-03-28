@@ -16,6 +16,7 @@ pipelines:
       - name: S_PS_R_GIT_0008
         type: PowerShell
         configuration:
+          nodePool: win_2019
           inputResources:
             - name: S_PS_R_GIT_0008_GitRepo
               trigger: true

@@ -14,6 +14,7 @@ pipelines:
       - name: S_PS_R_FLSPEC_0004
         type: PowerShell
         configuration:
+          nodePool: win_2019
           inputResources:
             - name: S_PS_R_FLSPEC_0004_FileSpec
         execution:

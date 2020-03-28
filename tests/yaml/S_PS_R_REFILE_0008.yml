@@ -6,18 +6,19 @@ resources:
       source: s_artifactory
       # fileLocation: example-repo-local/setup/help
       # #fileName: test.sh # optional
-     fileDateTime: tr
+      fileDateTime: 0/25/25
 
 pipelines:
   - name: pipelines_auto
     steps:
-      - name: S_PS_R_REFILE_0006
+      - name: S_PS_R_REFILE_0008
         type: PowerShell
         configuration:
+          nodePool: win_2019
           integrations:
             - name: s_artifactory
           outputResources:
-            - name: S_PS_R_REFILE_0006_RemoteFile
+            - name: S_PS_R_REFILE_0008_RemoteFile
         execution:
           onExecute:
             - write-output "executing step..."
