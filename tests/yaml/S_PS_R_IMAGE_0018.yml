@@ -3,7 +3,7 @@ resources:
     type: Image
     configuration:
       registry: i_gcpkeys
-      imageName: ubuntu
+      imageName: gcr.io/ship-rc/ubuntu
       imageTag: latest
       autoPull: true
 

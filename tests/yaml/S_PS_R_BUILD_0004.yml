@@ -30,20 +30,20 @@ pipelines:
             - |
               [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_operation" ]
             - |
-              [ ! -z  "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_name" ]
+              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_name" ]
             - |
               [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_apikey" ]
             - |
               [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_id" ]
             - |
-              [ ! -z  "$res_S_PS_R_BUILD_0004_BuildInfo_integrationName" ]
+              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_integrationName" ]
             - |
               [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_buildNumber" ]
             - |
               [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_resourceId" ]
             - |
-              [ ! -z  "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_masterName" ]
+              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_masterName" ]
             - |
               [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_resourcePath" ]
             - |
-              [ ! -z  "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_url" ]
+              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_url" ]

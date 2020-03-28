@@ -5,6 +5,6 @@ resources:
     configuration:
        registry: AWS
        region: us-east-1	 # required if registry is AWS
-       imageName: ubuntu
+       imageName: 754160106182.dkr.ecr.us-east-1.amazonaws.com/jfbeta
        imageTag: latest
        autoPull: true

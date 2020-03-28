@@ -1,6 +1,6 @@
 resources:
 
-  - name: S-PS-R-ART-0005_Aql
+  - name: S_PS_R_ART_0005_Aql
     type: Aql
     configuration:
       sourceArtifactory: s_artifactory
@@ -17,14 +17,14 @@ resources:
           output: test2
 
 pipelines:
-  - name: pipelines_S-PS-R-ART-0005
+  - name: pipelines_S_PS_R_ART_0005
     steps:
-      - name: S-PS-R-ART-0005
+      - name:  S_PS_R_ART_0005
         type: PowerShell
         configuration:
           outputResources:
-            - name: S-PS-R-ART-0005_Aql
+            - name:  S_PS_R_ART_0005_Aql
         execution:
           onExecute:
             - write-output "executing step..."
-            - write_output S-PS-R-ART-0005_Aql "query=updating"
+            - write_output S_PS_R_ART_0005_Aql "query=updating"

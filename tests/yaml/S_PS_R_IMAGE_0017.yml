@@ -3,7 +3,7 @@ resources:
     type: Image
     configuration:
       registry: i_aws
-      imageName: ubuntu
+      imageName: 754160106182.dkr.ecr.us-east-1.amazonaws.com/jfbeta
       imageTag: latest
       region: us-east-1
 
