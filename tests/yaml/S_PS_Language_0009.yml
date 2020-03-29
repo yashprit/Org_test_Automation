@@ -11,11 +11,10 @@ pipelines:
               auto:
                 language: go
                 versions:
-                  - 1.13.5
+                  - 1.13.7
         execution:
           onExecute:
-            - source /root/.gvm/scripts/gvm
-            - gvm list
-            - gvm use 1.13
-            - |
-              [[ "$(go version)" == *"$step_image_tag"* ]]
+            - go version
+            - if($(go version) -ne "go version go1.13.7 windows/amd64"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
