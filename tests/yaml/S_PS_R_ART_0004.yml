@@ -36,7 +36,7 @@ pipelines:
 #             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
 #             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_user -eq $null){ Write-Error "Stop" -ErrorAction Stop}
 #             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-#             - if($res_S_PS_R_ART_0004_Aql_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_ART_0004_Aql_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
             - if($res_S_PS_R_ART_0004_Aql_query -eq $null){ Write-Error "Stop" -ErrorAction Stop}
 #             - if($res_S_PS_R_ART_0004_Aql_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop}
 #             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_url -eq $null){ Write-Error "Stop" -ErrorAction Stop}
