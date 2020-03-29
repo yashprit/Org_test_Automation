@@ -15,4 +15,6 @@ pipelines:
         execution:
           onExecute:
             - node -v
-            - npm --version
+            - if($(node -v) -ne "v10.18.0"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
