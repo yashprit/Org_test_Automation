@@ -1,0 +1,60 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0032
+    steps:
+      - name: S_PS_UTIL_0032
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          # outputResources:
+          #   - name: outgoing
+          inputResources:
+            - name: repo_pipe
+
+        execution:
+          onExecute:
+            - try { add_cache_files } catch {$_} # no arguments
+            - try { add_cache_files "blah" } catch {$_} # one argument
+            - try { add_cache_files -sources a,b,c } catch {$_} # missing name
+            - try { add_cache_files -sources "test" -name "hello world"} catch {$_} #space not allowed
+            #cache
+            - try { get-childitem $step_workspace_dir\download\cache } catch {$_}
+            - try {restore_cache_files -name myCount -path "."} catch {$_}
+            - ls
+            - try {cat myCount} catch {$_}
+            - try {restore_cache_files -name myRepo -path "$step_tmp_dir"} catch {$_}
+            - ls $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+            - try {restore_cache_files -name myDirs -path "$step_tmp_dir"} catch {$_}
+            - ls $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+            - try {restore_cache_files -name myFiles -path "$step_tmp_dir"} catch {$_}
+            - ls $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+            - try {restore_cache_files -name myMixed -path "$step_tmp_dir"} catch {$_}
+            - ls $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+
+            - if (!(test-path "sum.txt")) {Set-Content -Path "sum.txt" -Value "{`"count`":1}"}
+            - if (test-path "sum.txt") {$contents = get-content sum.txt | ConvertFrom-Json ; $contents.count +=1; $contents | convertTo-Json | set-content -Path "sum.txt" }
+            - try {$count = (Get-Content sum.txt | ConvertFrom-Json).count ; write-output "count is -- $count"} catch {$_}
+            - try {add_cache_files -sources sum.txt -name myCount} catch {$_}
+            - add_cache_files -sources "$res_myRepo_resourcePath" -name myRepo
+            - add_cache_files -sources "$res_myRepo_resourcePath\bas*" -name myDirs
+            - add_cache_files -sources "$res_myRepo_resourcePath\file*" -name myFiles
+            - add_cache_files -sources "$res_myRepo_resourcePath\file1.txt", "$res_myRepo_resourcePath\base" -name myMixed
+            - try { get-childitem $step_workspace_dir\download\cache } catch {$_}
+            - try { get-childitem $step_workspace_dir\download\cache\myRepo } catch {$_}
+            - try { get-childitem $step_workspace_dir\download\cache\myDirs } catch {$_}
+            - try { get-childitem $step_workspace_dir\download\cache\myFiles } catch {$_}
+            - try { get-childitem $step_workspace_dir\download\cache\myMixed } catch {$_}
+            - add_run_variables "testvariable=asdffdjksfjk"
+            - try {save_tests -sources "$res_myRepo_resourcePath\tests\sampleoutput.xml"} catch {$_}
+            - New-Item -Path ".\faketests" -ItemType Directory
+            - try {save_tests -sources faketests} catch {$_}

@@ -1,0 +1,38 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0049
+    steps:
+      - name: S_PS_UTIL_0049
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          # outputResources:
+          #   - name: outgoing
+          inputResources:
+            - name: repo_pipe
+
+        execution:
+          onExecute:
+            - try { add_run_files } catch {$_} # no arguments
+            - try { add_run_files "blah" } catch {$_} # one argument
+            - try { add_run_files -sources a,b,c } catch {$_} # missing name
+            - try { add_run_files -sources "test" -name "hello world"} catch {$_} #space not allowed
+            - get-childitem $run_dir\workspace
+            - get-childitem $res_repo_pipe_resourcePath
+
+            # runs
+            - add_run_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
+            - add_run_files -sources "$res_repo_pipe_resourcePath\bas*" -name myDirs
+            - add_run_files -sources "$res_repo_pipe_resourcePath\file*" -name myFiles
+            - add_run_files -sources "$res_repo_pipe_resourcePath\file1.txt", "$res_repo_pipe_resourcePath\base" -name myMixed
+            - get-childitem $run_dir\workspace
+            - get-childitem $run_dir\workspace\repo_pipe
+            - get-childitem $run_dir\workspace\myDirs
+            - get-childitem $run_dir\workspace\myFiles
+            - get-childitem $run_dir\workspace\myMixed

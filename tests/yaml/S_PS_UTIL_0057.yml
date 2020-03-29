@@ -1,0 +1,68 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0057
+    steps:
+      - name: S_PS_UTIL_0057
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          # outputResources:
+          #   - name: outgoing
+          inputResources:
+            - name: repo_pipe
+
+        execution:
+          onExecute:
+            - try { add_pipeline_files } catch {$_} # no arguments
+            - try { add_pipeline_files "blah" } catch {$_} # one argument
+            - try { add_pipeline_files -sources a,b,c } catch {$_} # missing name
+            - try { add_pipeline_files -sources "test" -name "hello world"} catch {$_} #space not allowed
+            - get-childitem $run_dir\workspace
+            - get-childitem $res_repo_pipe_resourcePath
+
+            #pipelines
+            - get-childitem $pipeline_workspace_dir
+            - add_pipeline_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
+            - add_pipeline_files -sources "$res_repo_pipe_resourcePath\bas*" -name myDirs
+            - add_pipeline_files -sources "$res_repo_pipe_resourcePath\file*" -name myFiles
+            - add_pipeline_files -sources "$res_repo_pipe_resourcePath\file1.txt", "$res_repo_pipe_resourcePath\base" -name myMixed
+            - get-childitem $pipeline_workspace_dir
+            - get-childitem $pipeline_workspace_dir\repo_pipe
+            - get-childitem $pipeline_workspace_dir\myDirs
+            - get-childitem $pipeline_workspace_dir\myFiles
+            - get-childitem $pipeline_workspace_dir\myMixed
+
+      - name: S_PS_UTIL_0057_2
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          # outputResources:
+          #   - name: outgoing
+          inputResources:
+            - name: repo_pipe
+          inputSteps:
+            - name:  S_PS_UTIL_0057
+
+        execution:
+          onExecute:
+            #pipelines
+            - get-childitem $step_tmp_dir
+            - get-childitem $pipeline_workspace_dir
+            - restore_pipeline_files -name repo_pipe -path $step_tmp_dir
+            - get-childitem $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+            - restore_pipeline_files -name myDirs -path $step_tmp_dir
+            - get-childitem $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+            - restore_pipeline_files -name myFiles -path $step_tmp_dir
+            - get-childitem $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*
+            - restore_pipeline_files -name myMixed -path $step_tmp_dir
+            - get-childitem $step_tmp_dir
+            - remove-item -recurse -path $step_tmp_dir\*

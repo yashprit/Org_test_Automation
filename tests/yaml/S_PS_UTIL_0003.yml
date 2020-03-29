@@ -1,0 +1,14 @@
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0003
+    steps:
+      - name: S_PS_UTIL_0003
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+        execution:
+          onExecute:
+            - write-output "onExecute"
+            - bump_semver v1.0.0 patch
+          onSuccess:
+            - write-output "onSuccess"

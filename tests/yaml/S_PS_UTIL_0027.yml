@@ -1,0 +1,24 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0027
+    steps:
+      - name: S_PS_UTIL_0027
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          # outputResources:
+          #   - name: outgoing
+          inputResources:
+            - name: repo_pipe
+
+        execution:
+          onExecute:
+            - try {save_tests -sources "$res_myRepo_resourcePath\tests\sampleoutput.xml"} catch {$_}
+            - New-Item -Path ".\faketests" -ItemType Directory
+            - try {save_tests -sources faketests} catch {$_}            

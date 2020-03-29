@@ -1,0 +1,24 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0021
+    steps:
+      - name: S_PS_UTIL_0021
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          integrations:
+            - name: s_gitHub
+            - name: slack
+          inputResources:
+            - name: repo_pipe
+
+        execution:
+          onExecute:
+            - try { send_notification slack -project-id "PIP" } catch {$_}
+            - write-output "onExecute"

@@ -1,0 +1,23 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0034
+    steps:
+      - name: S_PS_UTIL_0034
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputResources:
+            - name: repo_pipe
+          environmentVariables:
+            foo: "bar"
+
+        execution:
+          onExecute:
+            - add_run_variables "scm=gitRepo"
+            - export_run_variables

@@ -1,0 +1,17 @@
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0016
+    steps:
+      - name: S_PS_UTIL_0016
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+        execution:
+          onExecute:
+            - write-output "onExecute"
+            - New-Item -Path 'D:\temp\Test Folder\Test\keys' -ItemType File
+            - write-output "name =$res_repo_pipe_gitProvider_name" >> D:\temp\Test Folder\Test\keys
+            - replace_envs $D:\temp\Test Folder\Test\keys
+            - Get-Content -Path D:\temp\Test Folder\Test\keys
+          onSuccess:
+            - write-output "onSuccess"
