@@ -3,7 +3,8 @@ pipelines:
     steps:
       - name: myStep1
         type: Bash
-        configuration: 
+        configuration:
+          nodePool: azure_dynamic_nodePool 
           runtime:
             type: host
         execution:
