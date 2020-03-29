@@ -10,15 +10,21 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$int_s_artifactory_url"  ]
-            - |
-              [ ! -z "$int_s_artifactory_masterName" ]
-            - |
-              [ ! -z "$int_s_artifactory_apikey" ]
-            - |
-              [ ! -z "$int_s_artifactory_id" ]
-            - |
-              [ ! -z "$int_s_artifactory_name" ]
-            - |
-              [ ! -z  "$int_s_artifactory_user" ]
+            - if($int_s_artifactory_url -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_artifactory_masterName -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_artifactory_apikey -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_artifactory_id -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_artifactory_name -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_artifactory_user -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }

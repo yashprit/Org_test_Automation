@@ -10,13 +10,18 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ "$int_s_gitHub_url"  ]
-            - |
-              [ "$int_s_gitHub_masterName"  ]
-            - |
-              [ "$int_s_gitHub_name" ]
-            - |
-              [ ! -z "$int_s_gitHub_token"  ]
-            - |
-              [ ! -z "$int_s_gitHub_id"  ]
+            - if($int_s_gitHub_url -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_gitHub_masterName -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_gitHub_name -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_gitHub_token -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_s_gitHub_id -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }  

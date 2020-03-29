@@ -10,9 +10,12 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$int_i_generic_name"  ]
-            - |
-              [ ! -z "$int_i_generic_id"  ]
-            - |
-              [ ! -z "$int_i_generic_masterName"  ]
+            - if($int_i_generic_name -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_generic_id -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_generic_masterName -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }

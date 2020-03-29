@@ -10,11 +10,15 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$int_i_slack_masterName" ]
-            - |
-              [ ! -z "$int_i_slack_url" ]
-            - |
-              [ ! -z "$int_i_slack_id" ]
-            - |
-              [ ! -z "$int_i_slack_name" ]
+            - if($int_i_slack_masterName -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_slack_url -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_slack_id-eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_slack_name -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }

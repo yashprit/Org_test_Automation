@@ -10,13 +10,18 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$int_i_aws_masterName" ]
-            - |
-              [ ! -z "$int_i_aws_accessKeyId" ]
-            - |
-              [ ! -z "$int_i_aws_name" ]
-            - |
-              [ ! -z "$int_i_aws_id" ]
-            - |
-              [ ! -z "$int_i_aws_secretAccessKey" ]
+            - if($int_i_aws_masterName -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_aws_accessKeyId -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_aws_name -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_aws_id -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_aws_secretAccessKey -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }

@@ -10,11 +10,15 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$int_i_googleCloud_masterName" ]
-            - |
-              [ ! -z "$int_i_googleCloud_id" ]
-            - |
-              [ ! -z "$int_i_googleCloud_name" ]
-            - |
-              [ ! -z "$int_i_googleCloud_jsonKey" ]
+            - if($int_i_googleCloud_masterName -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_googleCloud_id -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_googleCloud_name -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($int_i_googleCloud_jsonKey -eq $null){
+              Write-Error "Stop" -ErrorAction Stop
+              }
