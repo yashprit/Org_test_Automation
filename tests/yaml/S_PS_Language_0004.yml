@@ -14,6 +14,5 @@ pipelines:
                   - 8.17.0
         execution:
           onExecute:
-            - node --version
-            - |
-              [[ "$(node --version)" == *"8.17.0"* ]]
+            - node -v
+            - npm --version
