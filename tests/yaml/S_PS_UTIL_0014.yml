@@ -1,0 +1,14 @@
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0014
+    steps:
+      - name: S_PS_UTIL_0014
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+        execution:
+          onExecute:
+            - write-output "onExecute"
+            - execute_command [--retry] printen
+          onSuccess:
+            - write-output "onSuccess"
