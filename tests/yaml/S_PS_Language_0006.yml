@@ -14,6 +14,7 @@ pipelines:
                   - 12.14.0
         execution:
           onExecute:
-            - node --version
-            - |
-              [[ "$(node --version)" == *"12.14.0"* ]]
+            - node -v
+            - if($(node -v) -ne "v12.14.0"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
