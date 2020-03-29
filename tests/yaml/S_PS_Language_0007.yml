@@ -14,8 +14,7 @@ pipelines:
                   - 1.12.14
         execution:
           onExecute:
-            - source /root/.gvm/scripts/gvm
-            - gvm list
-            - gvm use 1.12
-            - |
-              [[ "$(go version)" == *"$step_image_tag"* ]]
+            - go version
+            - if($(go version) -ne "go version go1.12.14 windows/amd64"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
