@@ -27,7 +27,4 @@ pipelines:
               }
             - if($int_i_dockerRegistry_url -eq $null){
               Write-Error "Stop" -ErrorAction Stop
-              }
-            - if($int_i_dockerRegistry_email -eq $null){
-              Write-Error "Stop" -ErrorAction Stop
-              }     
+              }  
