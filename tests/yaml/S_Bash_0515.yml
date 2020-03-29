@@ -4,6 +4,7 @@ pipelines:
       - name: S_Bash_0515
         type: Bash
         configuration:
+          nodePool: c7test
           runtime:
             type: image
             image:
