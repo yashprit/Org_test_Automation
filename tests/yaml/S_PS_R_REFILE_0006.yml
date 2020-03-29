@@ -5,11 +5,11 @@ resources:
     configuration:
       source: s_artifactory
       fileLocation: example-repo-local/setup/test.sh
-      #fileName: test.sh # optional
+      fileName: test.sh # optional
      # fileDateTime: 19/12/19
 
 pipelines:
-  - name: pipelines_auto
+  - name: pipelines_S_PS_R_REFILE_0006
     steps:
       - name: S_PS_R_REFILE_0006
         type: PowerShell
