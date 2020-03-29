@@ -16,5 +16,4 @@ pipelines:
           onExecute:
             - clang --version
             - gcc --version
-            - |
-              [[ "$(clang --version)" == *"8.0.0"* ]]
+           
