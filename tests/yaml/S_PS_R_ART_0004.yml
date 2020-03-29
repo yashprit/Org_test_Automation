@@ -27,6 +27,7 @@ pipelines:
             - name: S_PS_R_ART_0004_Aql
         execution:
           onExecute:
+            - Get-Variable | format-table
             - write-output "executing step..."
             - if($res_S_PS_R_ART_0004_Aql_mappings_0_output -eq $null){ Write-Error "Stop" -ErrorAction Stop} ]
             - if($res_S_PS_R_ART_0004_Aql_mappings_0_output -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
