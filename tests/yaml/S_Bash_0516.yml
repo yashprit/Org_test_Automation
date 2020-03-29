@@ -5,13 +5,14 @@ pipelines:
       - name: S_Bash_0516
         type: Bash
         configuration:
+          nodePool: c7test
           runtime:
             type: image
             image:
               auto:
                 language: go
                 versions:
-                  - 1.13.5
+                  - 1.13.7
         execution:
           onExecute:
             - source /root/.gvm/scripts/gvm
