@@ -29,24 +29,24 @@ pipelines:
           onExecute:
             - Get-Variable | format-table
             - write-output "executing step..."
-            - if($res_S_PS_R_ART_0004_Aql_mappings_0_output -eq $null){ Write-Error "Stop" -ErrorAction Stop} ]
-            - if($res_S_PS_R_ART_0004_Aql_mappings_0_output -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-            - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_id -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_mappings_1_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-            - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_user -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-            - if($res_S_PS_R_ART_0004_Aql_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_0_output -eq $null){ Write-Error "Stop" -ErrorAction Stop} ]
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_0_output -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_id -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_1_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_user -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
             - if($res_S_PS_R_ART_0004_Aql_query -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_url -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_mappings_1_output -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_resourcePath -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_mappings_0_name -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_mappings_len -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_addedProperties -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_apikey -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-            - if($res_S_PS_R_ART_0004_Aql_mappings_1_input -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-            - if($res_S_PS_R_ART_0004_Aql_mappings_0_input -eq $null){ Write-Error "Stop" -ErrorAction Stop}
-            - if($res_S_PS_R_ART_0004_Aql_integrationAlias -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
-            - if($res_S_PS_R_ART_0004_Aql_resourceId -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_url -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_1_output -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_resourcePath -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_0_name -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_len -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_addedProperties -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_sourceArtifactory_apikey -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_1_input -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_mappings_0_input -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+#             - if($res_S_PS_R_ART_0004_Aql_integrationAlias -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+#             - if($res_S_PS_R_ART_0004_Aql_resourceId -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
