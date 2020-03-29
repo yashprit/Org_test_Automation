@@ -13,6 +13,8 @@ pipelines:
                   - "8.17.0"
         execution:
           onExecute:
+            - |
+              [[ "$step_image_name:$step_image_tag" == "docker.bintray.io/jfrog/pipelines-u16node:8.17.0" ]]
             - node -v
             - |
               [[ "$(node -v)" == *"8.17.0"* ]]
