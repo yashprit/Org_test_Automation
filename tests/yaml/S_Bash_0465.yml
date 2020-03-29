@@ -15,4 +15,6 @@ pipelines:
         execution:
           onExecute:
             - |
+              [[ "$step_image_name:$step_image_tag" == "docker.bintray.io/jfrog/pipelines-c7node:10.18.0" ]]
+            - |
               [[ "$(node --version)" == *"$step_image_tag"* ]]
