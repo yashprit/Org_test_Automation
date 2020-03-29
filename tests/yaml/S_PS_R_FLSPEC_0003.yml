@@ -20,31 +20,17 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_user" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_apikey" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_operation" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_url" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_integrationName" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_recursive" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_id" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_pattern" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_resourcePath" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_name" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_isTrigger" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_integrationAlias" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_resourceId" ]
-            - |
-              [ ! -z "$res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_masterName" ]
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_user -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_apikey -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_url -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_integrationName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_recursive -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_id -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_pattern -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_resourcePath -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_name -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_integrationAlias -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_resourceId -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_FLSPEC_0003_FileSpec_sourceArtifactory_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
