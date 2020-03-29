@@ -14,6 +14,8 @@ pipelines:
                   - "8"
         execution:
           onExecute:
+            - |
+              [[ "$step_image_name:$step_image_tag" == "docker.bintray.io/jfrog/pipelines-c7java:8" ]]
             - java -version
             - var=$(java -version 2>&1 >/dev/null |  awk '{print $3}' | head -1)
             - |
