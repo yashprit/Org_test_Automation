@@ -4,6 +4,7 @@ pipelines:
       - name: S_Bash_0518
         type: Bash
         configuration:
+          nodePool: u18dynamic
           runtime:
             type: image
             image:
