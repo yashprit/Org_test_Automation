@@ -18,5 +18,5 @@ pipelines:
               [[ "$step_image_name:$step_image_tag" == "docker.bintray.io/jfrog/pipelines-u16java:11" ]]
             - java --version
             - |
-              [[ "$(java --version)" == *"11.0.6"* ]]
+              [[ "$(java --version)" == *"11.0.5"* ]]
           
