@@ -8,5 +8,3 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ $step_node_pool_name == "win_2019"  ]
