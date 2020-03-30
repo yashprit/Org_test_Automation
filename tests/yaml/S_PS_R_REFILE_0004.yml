@@ -23,29 +23,20 @@ pipelines:
           onExecute:
             - jfrog rt dl example-repo-local/setup/test.sh
             - write-output "executing step..."
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_source_url" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_resourceId" ]
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_source_url -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_resourceId -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+              
            # - |
            #   [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_fileDateTime" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_fileLocation" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_integrationAlias" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_isTrigger" ]
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_fileLocation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_integrationAlias -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            
            # - |
            #   [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_fileName" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_source_name" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_resourcePath" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_operation" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_source_id" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_source_masterName" ]
-            - |
-              [ ! -z "$res_S_PS_R_REFILE_0004_RemoteFile_integrationName" ]
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_source_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_resourcePath -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_source_id -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_source_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_REFILE_0004_RemoteFile_integrationName -eq $null){ Write-Error "Stop" -ErrorAction Stop} 

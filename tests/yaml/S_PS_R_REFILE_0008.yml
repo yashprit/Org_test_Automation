@@ -9,7 +9,7 @@ resources:
       fileDateTime: 0/25/25
 
 pipelines:
-  - name: pipelines_auto
+  - name: pipelines_S_PS_R_REFILE_0008
     steps:
       - name: S_PS_R_REFILE_0008
         type: PowerShell
@@ -17,7 +17,7 @@ pipelines:
           nodePool: win_2019
           integrations:
             - name: s_artifactory
-          outputResources:
+          inputResources:
             - name: S_PS_R_REFILE_0008_RemoteFile
         execution:
           onExecute:

@@ -20,31 +20,17 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_integrationAlias"  ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_isTrigger" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_buildName" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_user" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_operation" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_name" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_apikey" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_id" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_integrationName" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_buildNumber" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_resourceId" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_masterName" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_resourcePath" ]
-            - |
-              [ ! -z "$res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_url" ]
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_integrationAlias -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_buildName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_user -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_name -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_apikey -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_id -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_integrationName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_buildNumber -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_resourceId -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_resourcePath -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_S_PS_R_BUILD_0004_BuildInfo_sourceArtifactory_url -eq $null){ Write-Error "Stop" -ErrorAction Stop}
