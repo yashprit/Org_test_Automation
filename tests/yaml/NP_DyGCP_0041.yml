@@ -3,6 +3,8 @@ pipelines:
     steps:
       - name: NP_DyGCP_0041
         type: Bash
+        configuration:
+          nodePool: test_automation_np_required_fields
         execution:
           onExecute:
-            - sleep 5m
+            - echo "hi"
