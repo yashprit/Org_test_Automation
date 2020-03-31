@@ -4,7 +4,7 @@ pipelines:
       - name: S_Bash_0446
         type: Bash
         configuration:
-          nodePool: c7test
+          nodePool: c7dynamic
           runtime:
             type: image
             image:
@@ -18,4 +18,3 @@ pipelines:
               [[ "$step_image_name:$step_image_tag" == "docker.bintray.io/jfrog/pipelines-c7java:11" ]]
             - |
               [[ "$(java --version)" == *"$step_image_tag"* ]]
-            - echo "executing step..."
