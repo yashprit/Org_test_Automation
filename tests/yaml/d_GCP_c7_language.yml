@@ -1,7 +1,7 @@
 pipelines:
   - name: pipelines_auto1
     steps:
-      - name: myStep1
+      - name: d_GCP_c7_language
         type: Bash
         configuration:
           nodePool: GCP_dynamic_nodePool 
