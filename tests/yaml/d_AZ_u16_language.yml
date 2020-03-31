@@ -1,7 +1,7 @@
 pipelines:
   - name: pipelines_auto1
     steps:
-      - name: myStep1
+      - name: d_AZ_u16_language
         type: Bash
         configuration: 
           nodePool: azure_dynamic_nodePool
