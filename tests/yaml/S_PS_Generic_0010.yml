@@ -8,3 +8,6 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
+            - if($step_node_pool_name -ne "win_2019"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
