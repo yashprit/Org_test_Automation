@@ -4,7 +4,7 @@ pipelines:
       - name: S_Bash_0466
         type: Bash
         configuration:
-          nodePool: c7test
+          nodePool: c7dynamic
           runtime:
             type: image
             image:
