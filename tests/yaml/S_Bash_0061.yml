@@ -5,6 +5,6 @@ pipelines:
         type: Bash
         execution:
           onExecute:
-            - ech "onExecute"
+            - java --version
           onFailure:
             - echo "Job well done!"
