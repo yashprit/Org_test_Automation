@@ -19,6 +19,14 @@ pipelines:
 
         execution:
           onExecute:
-            - try {save_tests -sources "$res_myRepo_resourcePath\tests\sampleoutput.xml"} catch {$_}
-            - New-Item -Path ".\faketests" -ItemType Directory
-            - try {save_tests -sources faketests} catch {$_}
+            - choco install python2
+            - python --version
+            - python -m pip install --upgrade pip
+            - pip --version
+            - pip install pytest
+            - pytest --version
+            - Push-Location $res_gitRepo_win_image_resourcePath
+            #- pytest tests/test_sample.py
+            - py.test --verbose --junit-xml test-reports/results.xml tests/test_sample.py
+            - Get-Content -Path test-reports/results.xml
+            - save_tests test-reports/results.xml
