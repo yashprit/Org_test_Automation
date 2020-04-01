@@ -5,13 +5,13 @@ pipelines:
         type: image
         image:
           auto:
-            language: java
+            language: node
             versions:
-              - "11"
+              - 10.18.0
     steps:
       - name: S_Bash_0067
         type: Bash
         execution:
           onExecute:
             - |
-              [[ "$(java --version)" == *"11.0.5"* ]] 
+              [[ "$(node --version)" == *"10.18.0"* ]] 
