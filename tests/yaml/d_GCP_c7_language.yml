@@ -10,6 +10,7 @@ pipelines:
         execution:
           onExecute:
             #images should be in this order it self
+            - docker images
             - images=(docker.bintray.io/jfrog/pipelines-u18go docker.bintray.io/jfrog/pipelines-u18node docker.bintray.io/jfrog/pipelines-u18java docker.bintray.io/jfrog/pipelines-u18cpp)
             - javatags=(8 11 13)
             - gotags=(1.13.7 1.12.14 1.11.13)
