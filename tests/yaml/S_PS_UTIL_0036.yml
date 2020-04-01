@@ -20,4 +20,4 @@ pipelines:
         execution:
           onExecute:
             - add_run_variables "scm=gitRepo"
-            - export_run_variables
+            - export_run_variables "windows=poweshell"

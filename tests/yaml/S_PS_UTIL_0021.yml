@@ -20,5 +20,6 @@ pipelines:
 
         execution:
           onExecute:
-            - try { send_notification slack -project-id "PIP" } catch {$_}
+            - send_notification varsha_slack
+            - try { retry_command testing } catch {$_}
             - write-output "onExecute"

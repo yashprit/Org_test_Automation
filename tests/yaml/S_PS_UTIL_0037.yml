@@ -20,4 +20,4 @@ pipelines:
         execution:
           onExecute:
             - add_pipeline_variables "scm=s_gitHub"
-            - export_pipeline_variables
+            - export_pipeline_variables "jfrog=pipelines"

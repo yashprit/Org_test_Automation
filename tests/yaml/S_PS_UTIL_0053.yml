@@ -19,15 +19,4 @@ pipelines:
 
         execution:
           onExecute:
-            - try { add_pipeline_files } catch {$_} # no arguments
-            - try { add_pipeline_files "blah" } catch {$_} # one argument
-            - try { add_pipeline_files -sources a,b,c } catch {$_} # missing name
-            - try { add_pipeline_files -sources "test" -name "hello world"} catch {$_} #space not allowed
-            - get-childitem $run_dir\workspace
-            - get-childitem $res_repo_pipe_resourcePath
-            - write-output "$global:pipeline_writeable_env"
-            - write-output "$pipeline_writeable_env"
-            - write-output "$global:pipeline_readonly_env"
-            - write-output "$pipeline_readonly_env"
-            - get-variable -name pipeline_readonly_env
-            - get-variable -name pipeline_readonly_env -scope global
+            - add_pipeline_variables "providername=GitHub"
