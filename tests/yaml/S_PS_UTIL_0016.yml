@@ -7,7 +7,7 @@ pipelines:
         configuration:
           nodePool: win_2019
         execution:
-          onExecute:
+          onExecute:           
             - $env:tempPath = $env:Path
             - $env:Path = $env:Path + ';' + ((Get-Command git).Path -replace 'cmd\\git\.exe$','usr\bin')
             - echo $env:Path

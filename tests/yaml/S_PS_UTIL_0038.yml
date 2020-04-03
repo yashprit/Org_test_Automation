@@ -19,5 +19,6 @@ pipelines:
 
         execution:
           onExecute:
+            - get-childitem $res_repo_pipe_resourcePath            
             - add_pipeline_variables "scm=s_gitHub"
             - export_pipeline_variables "jfrog=pipelines"

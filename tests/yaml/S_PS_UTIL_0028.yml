@@ -25,7 +25,7 @@ pipelines:
             - pip --version
             - pip install pytest
             - pytest --version
-            - Push-Location $res_gitRepo_win_image_resourcePath
+            - Push-Location $res_repo_pipe_resourcePath
             #- pytest tests/test_sample.py
             - py.test --verbose --junit-xml test-reports/results.xml tests/test_sample.py
             - Get-Content -Path test-reports/results.xml

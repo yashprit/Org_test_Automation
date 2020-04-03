@@ -17,7 +17,7 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-            - get-childitem $res_myRepo_resourcePath
+            - get-childitem $res_GitRepo_resourcePath
             - write-output "image resource path is $res_GitRepo_resourcePath"
             - compare_git --resource GitRepo --commit-range HEAD~3..HEAD S_PS_UTIL_0008.yml
           onSuccess:
