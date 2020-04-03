@@ -9,6 +9,7 @@ pipelines:
             type: host
         execution:
           onExecute:
+            - Get-Variable | format-table
             - if($step_image_tag  -ne "3.1"){
               Write-Error "Stop" -ErrorAction Stop
               }
