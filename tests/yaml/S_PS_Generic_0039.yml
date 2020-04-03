@@ -5,14 +5,9 @@ pipelines:
         type: PowerShell
         configuration:
           nodePool: win_2019
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - 12.14.0
         execution:
           onExecute:
-            - |
-              [[ "$(node --version)" == *"$step_image_tag"* ]]
+            - dotnet --version
+            - if($(dotnet --version) -ne "3.1.102"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
