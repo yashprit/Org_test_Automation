@@ -11,6 +11,7 @@ pipelines:
               custom:
                 name: drydock/u16nodalls
                 tag: master
+                registry: i_dockerRegistry
         execution:
           onExecute:
             - write-output "hi"
