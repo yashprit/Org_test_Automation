@@ -17,6 +17,6 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-            - read_json $res_GitRepo_resourcePath/tests/yaml/sample.json "DOCKER_USERNAME"
+#             - read_json $res_GitRepo_resourcePath/tests/yaml/sample.json "DOCKER_USERNAME" # in powershell read json is not added
           onSuccess:
             - write-output "onSuccess"
