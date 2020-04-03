@@ -1,7 +1,7 @@
 pipelines:
   - name: pipeline_automation
     steps:
-      - name: api_pipeline
+      - name: S_PS_Generic_0027
         type: PowerShell
         cconfiguration:
           nodePool: win_2019
