@@ -9,13 +9,10 @@ pipelines:
             type: image
             image:
               custom:
-                name: shippabledocker/jfreq
+                name: shippabledocker/jfreq_win
                 tag: latest
                 registry: i_dockerRegistry
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ "$step_image_name" == "shippabledocker/jfreq" ]
-            - |
-              [ "$step_image_tag" == "latest" ]
+           
