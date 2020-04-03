@@ -18,6 +18,7 @@ pipelines:
           onExecute:
             - write-output "onExecute"
             - write-output "image resource path is $res_GitRepo_resourcePath"
+            - get-childitem $res_myRepo_resourcePath
             - update_commit_status GitRepo --status failure --message "My description 123" --context "stepB"
           onSuccess:
             - write-output "onSuccess"
