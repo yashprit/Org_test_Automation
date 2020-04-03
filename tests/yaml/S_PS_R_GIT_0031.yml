@@ -7,8 +7,8 @@ resources:
       path: jfbetapipeorg/Org_test_Automation
       branches:
         include: master
-      buildOn:  # optional
-        tagCreate: true
+      #buildOn:  # optional
+       # tagCreate: true
       shallowDepth: 4  # optional
 
 pipelines:
