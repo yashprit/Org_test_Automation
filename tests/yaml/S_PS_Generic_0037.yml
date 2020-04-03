@@ -18,10 +18,7 @@ pipelines:
             type: host
         execution:
           onExecute:
-            - write-output "executing step..."
-            - if($step_image_tag  -ne "3.1"){
+            - Get-Variable | format-table
+            - if($HOST  -eq "System.Management.Automation.Internal.Host.InternalHost"){
               Write-Error "Stop" -ErrorAction Stop
-              }
-            - if($step_image_name  -ne "docker.bintray.io/jfrog/pipelines-w19dotnetcore"){
-              Write-Error "Stop" -ErrorAction Stop
-              }  
+              } 
