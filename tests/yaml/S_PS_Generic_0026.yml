@@ -11,7 +11,9 @@ pipelines:
         execution:
           onExecute:
             - write-output "Hi"
-            - |
-              [ $key == "values" ]
-            - |
-              [ $test == "key" ]
+            - if($key -eq $values){
+              Write-Error "Stop" -ErrorAction Stop
+              }
+            - if($test -eq $key){
+              Write-Error "Stop" -ErrorAction Stop
+              } 
