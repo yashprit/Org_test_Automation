@@ -7,6 +7,6 @@ pipelines:
           nodePool: win_2019
         execution:
           onExecute:
-            - write-output "onExecute"
+            - java --version
           onFailure:
             - write-output "Job well done!"
