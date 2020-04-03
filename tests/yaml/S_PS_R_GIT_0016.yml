@@ -18,83 +18,40 @@ pipelines:
         execution:
           onExecute:
             - write-output "executing step..."
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_lastAuthorEmail" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitProvider_token" ]
-
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isGitTag" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_commitUrl" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_shaData" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitProvider_id" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_integrationName" ]
-
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_operation" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitRepoFullName" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitProvider_name" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitProvider_url" ]
-
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitRepoSourceDefaultBranch" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isTrigger" ]
-
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_resourceId" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitProvider_masterName" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_commitSha" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isPullRequest" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_path" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isPrivateRepository" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isPrerelease" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitRepoRepositorySshUrl" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isRelease" ]
-
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_committerLogin" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_integrationAlias" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_branchName" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_resourcePath" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_compareUrl" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_repositoryProvider" ]
-
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_sysPrivateDeployKey" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_sysPublicDeployKey" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_lastAuthorLogin" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_beforeCommitSha" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitRepoRepositoryHttpsUrl" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_isPullRequestClose" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_gitRepoRepositoryUrl" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_masterName" ]
-            - |
-              [ ! -z "$res_S_PS_R_GIT_0016_GitRepo_commitMessage" ]
+            - if($res_S_PS_R_GIT_0016_GitRepo_lastAuthorEmail -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitProvider_token -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isGitTag -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_commitUrl -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_shaData -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitProvider_id -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_integrationName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_operation -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitRepoFullName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitProvider_name -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitProvider_url -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitRepoSourceDefaultBranch -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isTrigger -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_resourceId -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitProvider_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_commitSha -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isPullRequest -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_path -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isPrivateRepository -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isPrerelease -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitRepoRepositorySshUrl -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isRelease -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_committerLogin -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_integrationAlias -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_branchName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_resourcePath -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_compareUrl -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_repositoryProvider -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_sysPrivateDeployKey -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_sysPublicDeployKey -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_lastAuthorLogin -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_beforeCommitSha -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitRepoRepositoryHttpsUrl -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_isPullRequestClose -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_gitRepoRepositoryUrl -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_masterName -eq $null){ Write-Error "Stop" -ErrorAction Stop}
+            - if($res_S_PS_R_GIT_0016_GitRepo_commitMessage -eq $null){ Write-Error "Stop" -ErrorAction Stop}
