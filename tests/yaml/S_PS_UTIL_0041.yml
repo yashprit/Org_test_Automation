@@ -41,6 +41,7 @@ pipelines:
           onExecute:
             - $testvariable
             - get-childitem $run_dir\workspace
+            - get-childitem $res_repo_pipe_resourcePath
             #runs
             - restore_run_files -name repo_pipe -path $step_tmp_dir
             - get-childitem $step_tmp_dir

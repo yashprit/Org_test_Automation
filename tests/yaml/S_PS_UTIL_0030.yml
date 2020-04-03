@@ -19,6 +19,7 @@ pipelines:
 
         execution:
           onExecute:
+            - get-childitem $res_repo_pipe_resourcePath            
             - try { get-childitem $step_workspace_dir\download\cache } catch {$_}
             - try {restore_cache_files -name myCount -path "."} catch {$_}
             - ls
