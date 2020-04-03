@@ -4,7 +4,7 @@ pipelines:
       - name: S_PS_Generic_0015
         type: PowerShell
         cconfiguration:
-          nodePool: win_2019
+          nodePool: win1_2019
           affinityGroup: bldGroup
           integrations:
             - name: s_bitbucketServer
