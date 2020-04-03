@@ -3,7 +3,7 @@ pipelines:
     steps:
       - name: S_PS_Generic_0027
         type: PowerShell
-        cconfiguration:
+        configuration:
           nodePool: win_2019
           integrations:
             - name: s_gitHub
