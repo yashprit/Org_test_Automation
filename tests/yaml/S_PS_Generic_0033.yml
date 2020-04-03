@@ -7,6 +7,7 @@ pipelines:
           nodePool: win_2019
         execution:
           onExecute:
-            - image_name=$step_image_name:$step_image_tag
-            - |
-              [[ "$image_name" == *"$imageAutomation"* ]]
+            - dotnet --version
+            - if($(dotnet --version) -ne "3.1.102"){
+              Write-Error "Stop" -ErrorAction Stop
+              }
