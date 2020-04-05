@@ -8,6 +8,6 @@ pipelines:
         execution:
           onExecute:
           #  - if($(value) -ne "test1"){
-              Write-Error "Stop" -ErrorAction Stop
-              }
+           #   Write-Error "Stop" -ErrorAction Stop
+            #  }
             - Get-Variable
