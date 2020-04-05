@@ -10,5 +10,5 @@ pipelines:
           #  - if($(value) -ne "test1"){
            #   Write-Error "Stop" -ErrorAction Stop
             #  }
-            - Get-Variable
+           # - Get-Variable
             - $pipeline_name = "updated name which should not happen"
