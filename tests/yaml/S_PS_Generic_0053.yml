@@ -11,3 +11,4 @@ pipelines:
            #   Write-Error "Stop" -ErrorAction Stop
             #  }
             - Get-Variable
+            - $pipeline_name = "updated name which should not happen"
