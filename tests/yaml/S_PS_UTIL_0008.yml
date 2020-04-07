@@ -19,6 +19,6 @@ pipelines:
             - write-output "onExecute"
             - get-childitem $res_GitRepo_resourcePath
             - write-output "image resource path is $res_GitRepo_resourcePath"
-            - compare_git --resource GitRepo --commit-range HEAD~3..HEAD S_PS_UTIL_0008.yml
+            - compare_git --resource GitRepo --commit-range HEAD~3..HEAD Org_test_Automation
           onSuccess:
             - write-output "onSuccess"
