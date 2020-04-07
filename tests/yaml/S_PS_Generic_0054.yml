@@ -9,7 +9,7 @@ pipelines:
             versions:
               - 12.14.0
     steps:
-      - name: pipeline_S_PS_Generic_0054
+      - name: S_PS_Generic_0054
         type: PowerShell
         configuration:
           nodePool: win_2019
