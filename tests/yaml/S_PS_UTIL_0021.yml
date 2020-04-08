@@ -20,6 +20,5 @@ pipelines:
 
         execution:
           onExecute:
-            - send_notification varsha_slack
-            - try { retry_command testing } catch {$_}
+            - send_notification slack
             - write-output "onExecute"
