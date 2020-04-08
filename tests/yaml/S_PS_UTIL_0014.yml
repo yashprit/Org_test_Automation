@@ -9,6 +9,6 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-#             - execute_command [--retry] 
+            - execute_command Get-Host 
           onSuccess:
             - write-output "onSuccess"
