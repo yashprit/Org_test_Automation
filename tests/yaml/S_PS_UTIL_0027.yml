@@ -28,6 +28,6 @@ pipelines:
             - pytest --version
             - Push-Location $res_repo_pipe_resourcePath
             #- pytest tests/test_sample.py
-            - py.test --verbose --junit-xml test-reports/results.xml tests/test_sample.py
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_sample.py
             - Get-Content -Path test-reports/results.xml
             - save_tests test-reports/results.xml
