@@ -20,5 +20,5 @@ pipelines:
         execution:
           onExecute:
             - get-childitem $res_repo_pipe_resourcePath            
-            - add_run_variables "scm=gitRepo"
+            - add_run_variables "scm=gitRepo" 'runVariable1="A string with spaces."' runVariable2='A string with $.'
             - export_run_variables "windows=poweshell"
