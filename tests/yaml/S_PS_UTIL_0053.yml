@@ -20,4 +20,4 @@ pipelines:
         execution:
           onExecute:
             - get-childitem $res_repo_pipe_resourcePath            
-            - add_pipeline_variables "providername=GitHub"
+            - add_pipeline_variables "providername=GitHub" 'pipelineVariable1="A string with spaces."' pipelineVariable2='A string with $.'
