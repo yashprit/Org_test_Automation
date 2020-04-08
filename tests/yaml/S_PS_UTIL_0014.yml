@@ -9,6 +9,6 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-            - execute_command [--retry] printen
+#             - execute_command [--retry] 
           onSuccess:
             - write-output "onSuccess"
