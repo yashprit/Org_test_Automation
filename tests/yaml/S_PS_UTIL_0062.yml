@@ -25,10 +25,9 @@ pipelines:
 
 
       - name: S_PS_UTIL_0062_2
-        type: Bash
+        type: PowerShell
         configuration:
-          # outputResources:
-          #   - name: outgoing
+          nodePool: win_2019
           inputResources:
             - name: repo_pipe
           inputSteps:
@@ -36,6 +35,5 @@ pipelines:
 
         execution:
           onExecute:
-            - echo $testvariable
-            - |
-              [ ! -z "$res_repo_pipe_pipelineVariable" ]
+            - if($res_repo_pipe_pipelineVariable -eq $null){ Write-Error "Stop" -ErrorAction Stop}         
+
