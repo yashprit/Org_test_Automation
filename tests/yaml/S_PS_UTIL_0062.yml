@@ -35,5 +35,6 @@ pipelines:
 
         execution:
           onExecute:
-            - if($res_repo_pipe_pipelineVariable -eq $null){ Write-Error "Stop" -ErrorAction Stop}         
+            - $pipelineVariable
+#             - if($res_repo_pipe_pipelineVariable -eq $null){ Write-Error "Stop" -ErrorAction Stop}         
 
