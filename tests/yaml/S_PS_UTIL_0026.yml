@@ -1,5 +1,5 @@
 resources:
-  - name: win_customImage
+  - name: winAuto_image
     type: Image
     configuration:
       registry: varsha_docker
@@ -14,7 +14,7 @@ pipelines:
         configuration:
           nodePool: win_2019
           outputResources:
-            - name: repo_pipe
+            - name: winAuto_image
         execution:
           onExecute:
-            - write_output win_customImage "imageTag=masterarm"
+            - write_output winAuto_image "imageTag=masterarm"
