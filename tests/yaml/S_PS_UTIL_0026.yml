@@ -17,4 +17,4 @@ pipelines:
             - name: winAuto_image
         execution:
           onExecute:
-            - write_output winAuto_image "imageTag=masterarm"
+            - write_output winAuto_image "imageTag=$run_id"
