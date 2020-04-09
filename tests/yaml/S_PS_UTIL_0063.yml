@@ -12,8 +12,6 @@ pipelines:
         type: PowerShell
         configuration:
           nodePool: win_2019
-          # outputResources:
-          #   - name: outgoing
           inputResources:
             - name: repo_pipe
 
@@ -25,10 +23,9 @@ pipelines:
 
 
       - name: S_PS_UTIL_0063_2
-        type: Bash
+        type: PowerShell
         configuration:
-          # outputResources:
-          #   - name: outgoing
+          nodePool: win_2019
           inputResources:
             - name: repo_pipe
           inputSteps:
@@ -36,6 +33,4 @@ pipelines:
 
         execution:
           onExecute:
-            - echo "Hello"
-            - |
-              [ ! -z "$res_repo_pipe_runVariable" ]
+            - if($res_repo_pipe_runVariable -eq $null){ Write-Error "Stop" -ErrorAction Stop}  
