@@ -9,9 +9,9 @@ pipelines:
   - name: pipeline_S_PS_UTIL_0041
     steps:
       - name: S_PS_UTIL_0041
-        type: PowerShell
+        type: Bash
         configuration:
-          nodePool: win_2019
+#           nodePool: win_2019
           # outputResources:
           #   - name: outgoing
           inputResources:
@@ -19,17 +19,21 @@ pipelines:
 
         execution:
           onExecute:
-            - get-childitem $run_dir\workspace
-            - get-childitem $res_repo_pipe_resourcePath
+#             - get-childitem $run_dir\workspace
+#             - get-childitem $res_repo_pipe_resourcePath
+            - touch test.txt
+            - echo "Hello pipelines team" >> test.txt
+            - add_run_files $PWD/test.txt jfrog
 
-            # runs
-            - add_run_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
+#             # runs
+#             - add_run_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
+    
 
 
       - name: S_PS_UTIL_0041_2
-        type: PowerShell
+        type: Bash
         configuration:
-          nodePool: win_2019
+#           nodePool: win_2019
           # outputResources:
           #   - name: outgoing
           inputResources:
@@ -39,9 +43,10 @@ pipelines:
 
         execution:
           onExecute:
-            - $testvariable
-            - get-childitem $run_dir\workspace
-            - get-childitem $res_repo_pipe_resourcePath
-            #runs
+#             - $testvariable
+#             - get-childitem $run_dir\workspace
+#             - get-childitem $res_repo_pipe_resourcePath
+#             #runs
             - restore_run_files -name repo_pipe -path $step_tmp_dir
-            - get-childitem $step_tmp_dir
+            - restore_run_files jfrog $PWD/test.txt
+#             - get-childitem $step_tmp_dir
