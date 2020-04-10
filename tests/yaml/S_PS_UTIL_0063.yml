@@ -20,12 +20,12 @@ pipelines:
             - get-childitem $run_dir\workspace
             - get-childitem $res_repo_pipe_resourcePath
             - add_run_variables runVariable="asdffdjksfj.       k455457457"
+            - export_run_variables
 
 
       - name: S_PS_UTIL_0063_2
-        type: PowerShell
+        type: Bash
         configuration:
-          nodePool: win_2019
           inputResources:
             - name: repo_pipe
           inputSteps:
@@ -33,4 +33,4 @@ pipelines:
 
         execution:
           onExecute:
-            - $runVariable
+            - echo $runVariable
