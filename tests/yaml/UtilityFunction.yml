@@ -37,10 +37,12 @@ pipelines:
             - read_json $res_repo_pipe_resourcePath/tests/yaml/sample.json "DOCKER_USERNAME"
             - add_cache_files $PWD/file.txt jfrog_pipe 
             - add_run_variables imageTag="master"
+            - add_run_variables runVaribale="foo   $123"
             - export_run_variables 
             - export_pipeline_variables 
             - add_run_files $PWD/test.txt jfrog
             - add_pipeline_variables scm=$int_s_gitHub_masterName
+            - add_run_variables pipelineVaribale="foo   $123"
             - add_pipeline_files $PWD/file.txt jfrog_pipeline
             - find_resource_variable repo_pipe resourcePath
             - restore_cache_files jfrog_pipe $PWD/file.txt
@@ -85,6 +87,8 @@ pipelines:
             - cat $PWD/test.txt
             - restore_cache_files jfrog_pipe $PWD/file.txt
             - echo "$imageTag"
+            - echo $runVariable
+            - echo $pipelineVariable
             - popd
 
       - name: utilityFunction3
