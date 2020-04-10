@@ -12,8 +12,6 @@ pipelines:
         type: PowerShell
         configuration:
           nodePool: win_2019
-          # outputResources:
-          #   - name: outgoing
           inputResources:
             - name: repo_pipe
 
@@ -21,13 +19,12 @@ pipelines:
           onExecute:
             - get-childitem $run_dir\workspace
             - add_pipeline_variables pipelineVariable="asdffdjksfj.       k455457457"
-
+            - export_pipeline_variables
 
 
       - name: S_PS_UTIL_0062_2
-        type: PowerShell
+        type: Bash
         configuration:
-          nodePool: win_2019
           inputResources:
             - name: repo_pipe
           inputSteps:
@@ -35,6 +32,6 @@ pipelines:
 
         execution:
           onExecute:
-            - $pipelineVariable
+            - echo $pipelineVariable
         
 
