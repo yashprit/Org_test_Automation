@@ -32,3 +32,5 @@ pipelines:
         execution:
           onExecute:
             - restore_pipeline_files newFile test_sample.py
+            - ls
+            - cat test_sample.py           
