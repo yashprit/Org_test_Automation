@@ -37,12 +37,12 @@ pipelines:
             - read_json $res_repo_pipe_resourcePath/tests/yaml/sample.json "DOCKER_USERNAME"
             - add_cache_files $PWD/file.txt jfrog_pipe 
             - add_run_variables imageTag="master"
-            - add_run_variables runVaribale="foo   $123"
-            - export_run_variables 
-            - export_pipeline_variables 
+#             - add_run_variables runVaribale="foo   $123"
+            - export_run_variables jfrog="pipelines"
+            - export_pipeline_variables jfrog1="pipelines1"
             - add_run_files $PWD/test.txt jfrog
             - add_pipeline_variables scm=$int_s_gitHub_masterName
-            - add_run_variables pipelineVaribale="foo   $123"
+#             - add_pipeline_variables pipelineVaribale="foo   $123"
             - add_pipeline_files $PWD/file.txt jfrog_pipeline
             - find_resource_variable repo_pipe resourcePath
             - restore_cache_files jfrog_pipe $PWD/file.txt
@@ -109,3 +109,20 @@ pipelines:
 #             - execute_command [--retry] printen
 #             - retry_command printen
             - popd
+            
+      - name: utilityFunction4
+        type: PowerShell
+        configuration:
+          nodePool: win_2019        
+          integrations:
+            - name: s_gitHub
+          inputResources:
+            - name: repo_pipe
+          inputSteps:
+            - name: utilityFunction3         
+
+        execution:
+          onExecute:
+            - if($res_myRepo_jfrog1 -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+            - if($res_myRepo_jfrog -eq $null){ Write-Error "Stop" -ErrorAction Stop} 
+         
