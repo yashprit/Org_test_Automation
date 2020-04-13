@@ -14,7 +14,7 @@ pipelines:
         configuration:
           nodePool: win_2019
           inputResources:
-            - name: S_PS_R_GIT_0032_GitRepo
+            - name: S_PS_R_GIT_0032
         execution:
           onExecute:
             - write-output "executing step..."
