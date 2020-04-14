@@ -1,7 +1,7 @@
 pipelines:
-  - name: pipelinetest
+  - name: api_runs
     steps:
-      - name: node
+      - name: api_runs
         type: Bash
         configuration:
           runtime:
