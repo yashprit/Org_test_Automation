@@ -32,5 +32,5 @@ pipelines:
 
         execution:
           onExecute:
-            - restore_run_files -name jfrog_pipeline -path $step_tmp_dir
+            - restore_pipeline_files -name jfrog_pipeline -path $step_tmp_dir
             - get-childitem $step_tmp_dir
