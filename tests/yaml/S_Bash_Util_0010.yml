@@ -21,5 +21,5 @@ pipelines:
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
-            - save_tests $res_repo_pipe_resourcePath/test-reports
+            - save_tests $res_repo_pipe_resourcePath/test_reports
             - popd
