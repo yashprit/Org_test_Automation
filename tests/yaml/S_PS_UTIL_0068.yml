@@ -1,0 +1,38 @@
+resources:
+  - name: repo_pipe
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+      branches:
+        include: master
+
+pipelines:
+  - name: pipeline_S_PS_UTIL_0068
+    steps:
+      - name: S_PS_UTIL_0068
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          # outputResources:
+          #   - name: outgoing
+          inputResources:
+            - name: repo_pipe
+
+        execution:
+          onExecute:
+            - get-childitem $res_repo_pipe_resourcePath
+            - choco install python2
+            - python --version
+            - python -m pip install --upgrade pip
+            - pip --version
+            - pip install pytest
+            - pytest --version
+            - Push-Location $res_repo_pipe_resourcePath
+            - get-childitem $res_repo_pipe_resourcePath
+            # - get-childitem tests/core/sampleExecutionFile
+            #- pytest tests/test_sample.py
+            # - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_sample.py
+
+            # - Get-Content -Path test-reports/results.xml
+            - save_tests $res_repo_pipe_resourcePath
