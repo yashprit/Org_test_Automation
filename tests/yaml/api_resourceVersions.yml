@@ -6,7 +6,7 @@ resources:
      path: jfbetapipeorg/Org_test_Automation
 
 pipelines:
-  - name: pipelinetest
+  - name: api_resourceVersions
     steps:
       - name: node
         type: Bash
