@@ -2,7 +2,7 @@ pipelines:
   - name: d_AZ_win19_language
     steps:
       - name: d_AZ_win19_language
-        type: Bash
+        type: PowerShell
         configuration: 
           nodePool: win_2019
           runtime:
