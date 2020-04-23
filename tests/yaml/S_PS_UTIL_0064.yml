@@ -18,7 +18,7 @@ pipelines:
         execution:
           onExecute:
             - get-childitem $run_dir\workspace
-            - add_run_files -sources "$res_repo_resourcePath\tests\yaml\test_sample.py" -name newFile 
+            - add_run_files -sources "$res_repo_resourcePath\tests\core\sampleExecutionFile\test_sample.py" -name newFile 
 
 
       - name: S_PS_UTIL_0064_2
