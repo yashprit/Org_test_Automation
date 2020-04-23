@@ -4,7 +4,7 @@ pipelines:
       - name: d_AZ_win19_language
         type: Bash
         configuration: 
-          nodePool: azure_dynamic_nodePool
+          nodePool: win_2019
           runtime:
             type: host
         execution:
