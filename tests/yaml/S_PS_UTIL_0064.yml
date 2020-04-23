@@ -19,7 +19,8 @@ pipelines:
           onExecute:
             - get-childitem $run_dir\workspace
             - Push-Location $res_repo_pipe_resourcePath
-            - add_run_files -sources "$res_repo_resourcePath\tests\core\sampleExecutionFile\test_sample.py" -name newFile 
+            - get-childitem $res_repo_pipe_resourcePath
+            - add_run_files -sources "tests\core\sampleExecutionFile\test_sample.py" -name newFile 
 
 
       - name: S_PS_UTIL_0064_2
