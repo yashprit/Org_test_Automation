@@ -4,9 +4,9 @@ pipelines:
       - name: S_Bash_0011
         type: Bash
         configuration:
-          nodePool: automation_node_custom
+          nodePool: u16dynamic
         execution:
           onExecute:
             - echo "executing step..."
             - |
-              [ $step_node_pool_name == "automation_node_custom"  ]
+              [ $step_node_pool_name == "u16dynamic"  ]
