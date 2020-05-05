@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_S_PS_Generic_0061
+    steps:
+      - name: S_PS_Generic_0061
+        type: PowerShell
+        execution:
+          onExecute:
+            - write-output "testvariable1={{kumar}}"
+            - write-output "variable123={{ something }"
+            - write-output "testvariable2={{gitBranch}}"
