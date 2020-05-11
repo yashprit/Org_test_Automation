@@ -1,7 +1,7 @@
 pipelines:
-  - name: N_DyNodeAWS_0001
+  - name: N_DyNodeAWS_u16
     steps:
-      - name: N_DyNodeAWS_0001
+      - name: N_DyNodeAWS_u16
         type: Bash
         configuration:
           nodePool: AWS_dynamic_node_u16
