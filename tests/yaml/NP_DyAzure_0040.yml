@@ -7,4 +7,5 @@ pipelines:
           nodePool: azure_dynamic_node_u18
         execution:
           onExecute:
-            - sleep 5m
+            - echo "Executing step"
+           # - sleep 5m
