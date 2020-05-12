@@ -15,4 +15,4 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - write_output S_Bash_0004_propertyBag "property1=$run_id"
+            - write_output S_Bash_0004_propertyBag "test=$run_id"
