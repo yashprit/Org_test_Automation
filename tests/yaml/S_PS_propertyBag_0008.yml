@@ -3,8 +3,8 @@ resources:
   - name: ps_propertyBag
     type: PropertyBag
     configuration:
-      property/1: "jfrog/pipelines"
-      property/2: "Automation/testing"
+      property/1: "jfrogpipelines"
+      property/2: "Automationtesting"
 
 pipelines:
   - name: pipeline_S_PS_PropertyBag_0008
