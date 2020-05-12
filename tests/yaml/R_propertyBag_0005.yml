@@ -1,0 +1,5 @@
+resources:
+  - name: 
+    type: PropertyBag
+    configuration:
+      key1: value1
