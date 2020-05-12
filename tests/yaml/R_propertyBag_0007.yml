@@ -1,0 +1,4 @@
+resources:
+  - name: mypropertyBag
+    type: PropertyBag
+    configuration:
