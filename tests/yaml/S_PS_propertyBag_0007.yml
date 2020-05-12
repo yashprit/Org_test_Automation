@@ -1,0 +1,23 @@
+
+resources:
+  - name: ps_propertyBag
+    type: PropertyBag
+    configuration:
+      property1: "jfrog"
+      property2: "Automation"
+
+pipelines:
+  - name: pipeline_S_PS_PropertyBag_0007
+    steps:
+      - name: S_PS_propertyBag_0007
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputResources:
+            - name: ps_propertyBag
+        execution:
+          onExecute:
+            - write-output "onExecute"
+            - $res_ps_propertyBag_property1
+          onSuccess:
+            - write-output "onSuccess"
