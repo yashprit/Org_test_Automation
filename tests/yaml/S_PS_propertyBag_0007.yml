@@ -18,6 +18,7 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-            - $res_ps_propertyBag_property1
+            - get-variable -name res_ps_propertyBag_property1
+            - get-variable -name res_ps_propertyBag_property1
           onSuccess:
             - write-output "onSuccess"
