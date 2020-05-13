@@ -12,7 +12,7 @@ pipelines:
       - name: S_PS_propertyBag_0009
         type: PowerShell
         configuration:
-          nodePool: win-dyna-test
+          nodePool: win_2019
           inputResources:
             - name: ps_propertyBag
         execution:
@@ -20,6 +20,5 @@ pipelines:
             - write-output "onExecute"
             - get-variable -name property1
             - get-variable -name property2
-            - get-variable -name property5
           onSuccess:
             - write-output "onSuccess"
