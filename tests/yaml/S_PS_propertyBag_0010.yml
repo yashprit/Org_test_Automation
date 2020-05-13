@@ -18,7 +18,7 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-            - $property_1
-            - $property_2
+            - get-variable -name property_1
+            - get-variable -name property_2
           onSuccess:
             - write-output "onSuccess"
