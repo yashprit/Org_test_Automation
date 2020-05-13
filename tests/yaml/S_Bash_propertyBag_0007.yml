@@ -15,4 +15,5 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - echo $res_resourceName_key
+            - |
+              [ ! -z "$res_S_Bash_0007_propertyBag_property1"  ]
