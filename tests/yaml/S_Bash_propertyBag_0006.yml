@@ -17,5 +17,6 @@ pipelines:
             - echo "executing step..."
             - echo "$property1"
             - echo "$property2"
+            - [ ! -z “$property1” ]
             
             
