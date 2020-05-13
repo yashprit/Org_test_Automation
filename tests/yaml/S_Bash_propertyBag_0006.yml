@@ -15,8 +15,8 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-#             - echo "$property1"
-#             - echo "$property2"
+            - echo "$property1"
+            - echo "$property2"
 #             - [ ! -z “$property1” ]
             
             
