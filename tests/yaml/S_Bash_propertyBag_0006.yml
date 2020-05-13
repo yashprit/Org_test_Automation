@@ -14,9 +14,9 @@ pipelines:
             - name: S_Bash_0006_propertyBag
         execution:
           onExecute:
-            - echo "executing step..."
-            - echo "$property1"
-            - echo "$property2"
-#             - [ ! -z “$property1” ]
+#             - echo "executing step..."
+#             - echo "$property1"
+#             - echo "$property2"
+            - [ ! -z “$property1” ]
             
             
