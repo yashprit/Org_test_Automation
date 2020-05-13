@@ -15,4 +15,7 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - echo $property1
+            - echo "$property1"
+            - echo "$property2"
+            
+            
