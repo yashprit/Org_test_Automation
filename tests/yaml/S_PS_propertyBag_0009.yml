@@ -20,6 +20,5 @@ pipelines:
             - write-output "onExecute"
             - get-variable -name property1
             - get-variable -name property2
-            - get-variable -name property6
           onSuccess:
             - write-output "onSuccess"
