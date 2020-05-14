@@ -1,0 +1,12 @@
+pipelines:
+  - name: N_DyNodeAZ_w19
+    steps:
+      - name: N_DyNodeAZ_w19
+        type: PowerShell
+        configuration: 
+          nodePool: AZ_dynamic_node_w19
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - write-output  "executing step..."
