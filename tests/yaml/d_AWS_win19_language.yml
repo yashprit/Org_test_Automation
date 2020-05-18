@@ -1,7 +1,7 @@
 pipelines:
-  - name: d_AZ_win19_language
+  - name: d_AWS_win19_language
     steps:
-      - name: d_AZ_win19_language
+      - name: d_AWS_win19_language
         type: PowerShell
         configuration: 
           nodePool: AWS_dynamic_node_win19
