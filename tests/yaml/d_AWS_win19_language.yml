@@ -4,7 +4,7 @@ pipelines:
       - name: d_AZ_win19_language
         type: PowerShell
         configuration: 
-          nodePool: azure_dynamic_nodePool
+          nodePool: AWS_dynamic_node_win19
           runtime:
             type: host
         execution:
