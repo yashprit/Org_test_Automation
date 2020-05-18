@@ -1,0 +1,12 @@
+pipelines:
+  - name: N_DyNodeAWS_w19
+    steps:
+      - name: N_DyNodeAWS_w19
+        type: PowerShell
+        configuration: 
+          nodePool: AWS_dynamic_node_win19
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - write-output  "executing step..."
