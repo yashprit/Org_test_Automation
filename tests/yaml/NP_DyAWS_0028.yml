@@ -8,3 +8,4 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step on AWS dynamic node pool"
+            - sleep 3m
