@@ -1,7 +1,7 @@
 pipelines:
-  - name: AWS_u16_language
+  - name: d_AWS_u16_language
     steps:
-      - name: AWS_u16_language
+      - name: d_AWS_u16_language
         type: Bash
         configuration: 
           nodePool: AWS_dynamic_node_u16
