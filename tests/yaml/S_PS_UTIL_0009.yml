@@ -1,5 +1,5 @@
 resources:
-  - name: GitRepo
+  - name: test_repo
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
