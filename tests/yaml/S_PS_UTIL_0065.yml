@@ -17,6 +17,7 @@ pipelines:
 
         execution:
           onExecute:
+            - Push-Location $res_S_PS_UTIL_resourcePath
             - get-childitem $run_dir\workspace
             - add_pipeline_files -sources "$res_S_PS_UTIL_resourcePath\tests\yaml\test_sample.py" -name newFile
 
