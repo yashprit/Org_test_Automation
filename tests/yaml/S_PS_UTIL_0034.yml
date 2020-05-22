@@ -1,5 +1,5 @@
 resources:
-  - name: repo_pipe
+  - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -13,12 +13,11 @@ pipelines:
         configuration:
           nodePool: win_2019
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
           environmentVariables:
             foo: "bar"
 
         execution:
           onExecute:
-            - get-childitem $res_repo_pipe_resourcePath            
+            - get-childitem $res_S_PS_UTIL_resourcePath
             - add_run_variables "scm=gitRepo" 'runVariable1="A string with spaces."' runVariable2='A string with $.'
-

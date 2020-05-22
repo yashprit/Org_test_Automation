@@ -1,5 +1,5 @@
 resources:
-  - name: repo_pipe
+  - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -15,30 +15,26 @@ pipelines:
           # outputResources:
           #   - name: outgoing
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
 
         execution:
           onExecute:
-            - get-childitem $res_repo_pipe_resourcePath            
+            - get-childitem $res_S_PS_UTIL_resourcePath
             - try { get-childitem $step_workspace_dir\download\cache } catch {$_}
             - try {restore_cache_files -name myCount -path "."} catch {$_}
             - ls
             - try {cat myCount} catch {$_}
-            - try {restore_cache_files -name repo_pipe -path "$step_tmp_dir"} catch {$_}
+            - try {restore_cache_files -name S_PS_UTIL -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
             - try {restore_cache_files -name myDirs -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
             - try {restore_cache_files -name myFiles -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
             - try {restore_cache_files -name myMixed -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
 
             - if (!(test-path "sum.txt")) {Set-Content -Path "sum.txt" -Value "{`"count`":1}"}
             - if (test-path "sum.txt") {$contents = get-content sum.txt | ConvertFrom-Json ; $contents.count +=1; $contents | convertTo-Json | set-content -Path "sum.txt" }
             - try {$count = (Get-Content sum.txt | ConvertFrom-Json).count ; write-output "count is -- $count"} catch {$_}
             - try {add_cache_files -sources sum.txt -name myCount} catch {$_}
-            - add_cache_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
+            - add_cache_files -sources "$res_S_PS_UTIL_resourcePath" -name S_PS_UTIL

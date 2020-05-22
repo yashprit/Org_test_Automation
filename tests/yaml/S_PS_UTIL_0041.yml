@@ -1,5 +1,5 @@
 resources:
-  - name: repo_pipe
+  - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -14,12 +14,12 @@ pipelines:
           nodePool: win_2019
 
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
 
         execution:
           onExecute:
-            - add_run_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
-    
+            - add_run_files -sources "$res_S_PS_UTIL_resourcePath" -name S_PS_UTIL
+
 
       - name: S_PS_UTIL_0041_2
         type: PowerShell
@@ -27,11 +27,11 @@ pipelines:
           nodePool: win_2019
 
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
           inputSteps:
             - name:  S_PS_UTIL_0041
 
         execution:
           onExecute:
-            - restore_run_files -name repo_pipe -path $step_tmp_dir
+            - restore_run_files -name S_PS_UTIL -path $step_tmp_dir
             - get-childitem $step_tmp_dir
