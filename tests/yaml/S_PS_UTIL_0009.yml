@@ -13,7 +13,7 @@ pipelines:
         configuration:
           nodePool: win_2019
           inputResources:
-            - name: GitRepo
+            - name: test_repo
         execution:
           onExecute:
             - write-output "onExecute"
