@@ -17,8 +17,8 @@ pipelines:
         execution:
           onExecute:
             - write-output "onExecute"
-            - write-output "image resource path is $res_GitRepo_resourcePath"
-            - get-childitem $res_GitRepo_resourcePath
-            - update_commit_status GitRepo -context "Windows" -message "testing step $step_id" -status failure
+            - write-output "image resource path is $res_test_repo_resourcePath"
+            - get-childitem $res_test_repo_resourcePath
+            - update_commit_status test_repo -context "Windows" -message "testing step $step_id" -status failure
           onSuccess:
             - write-output "onSuccess"
