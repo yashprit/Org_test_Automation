@@ -20,7 +20,7 @@ pipelines:
             - get-childitem $run_dir\workspace
             - Push-Location $res_S_PS_UTIL_resourcePath
             - get-childitem $res_S_PS_UTIL_resourcePath
-            - add_run_files -sources "$res_S_PS_UTIL_resourcePath\tests\yaml\test_sample.py" -name newFile
+            - add_run_files -sources "$res_S_PS_UTIL_resourcePath\\tests\core\sampleExecutionFile\test_calc.py" -name newFile
 
 
       - name: S_PS_UTIL_0064_2
@@ -33,6 +33,6 @@ pipelines:
 
         execution:
           onExecute:
-            - restore_run_files newFile test_sample.py
+            - restore_run_files newFile test_calc.py
             - ls
-            - cat test_sample.py
+            - cat test_calc.py
