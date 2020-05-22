@@ -1,5 +1,5 @@
 resources:
-  - name: repo_pipe
+  - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -15,16 +15,16 @@ pipelines:
           # outputResources:
           #   - name: outgoing
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
 
         execution:
           onExecute:
 
             - get-childitem $run_dir\workspace
-            - get-childitem $res_repo_pipe_resourcePath
+            - get-childitem $res_S_PS_UTIL_resourcePath
 
             # runs
-            - add_run_files -sources "$res_repo_pipe_resourcePath" -name repo_pipe
+            - add_run_files -sources "$res_S_PS_UTIL_resourcePath" -name S_PS_UTIL
 
 
       - name: S_PS_UTIL_0042_2
@@ -34,7 +34,7 @@ pipelines:
           # outputResources:
           #   - name: outgoing
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
           inputSteps:
             - name:  S_PS_UTIL_0042
 
@@ -42,7 +42,7 @@ pipelines:
           onExecute:
             - $testvariable
             - get-childitem $run_dir\workspace
-            - get-childitem $res_repo_pipe_resourcePath            
+            - get-childitem $res_S_PS_UTIL_resourcePath
             #runs
-            - restore_run_files -name repo_pipe -path $step_tmp_dir
+            - restore_run_files -name S_PS_UTIL -path $step_tmp_dir
             - get-childitem $step_tmp_dir

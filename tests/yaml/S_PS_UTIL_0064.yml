@@ -1,5 +1,5 @@
 resources:
-  - name: repo_pipe
+  - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -13,21 +13,21 @@ pipelines:
         configuration:
           nodePool: win_2019
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
 
         execution:
           onExecute:
             - get-childitem $run_dir\workspace
-            - Push-Location $res_repo_pipe_resourcePath
-            - get-childitem $res_repo_pipe_resourcePath
-            - add_run_files -sources "$res_repo_pipe_resourcePath\tests\yaml\test_sample.py" -name newFile 
+            - Push-Location $res_S_PS_UTIL_resourcePath
+            - get-childitem $res_S_PS_UTIL_resourcePath
+            - add_run_files -sources "$res_S_PS_UTIL_resourcePath\tests\yaml\test_sample.py" -name newFile
 
 
       - name: S_PS_UTIL_0064_2
         type: Bash
         configuration:
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
           inputSteps:
             - name:  S_PS_UTIL_0064
 
@@ -35,4 +35,4 @@ pipelines:
           onExecute:
             - restore_run_files newFile test_sample.py
             - ls
-            - cat test_sample.py            
+            - cat test_sample.py
