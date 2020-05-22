@@ -26,16 +26,12 @@ pipelines:
             - try {cat myCount} catch {$_}
             - try {restore_cache_files -name repo_pipe -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
             - try {restore_cache_files -name myDirs -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
             - try {restore_cache_files -name myFiles -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
             - try {restore_cache_files -name myMixed -path "$step_tmp_dir"} catch {$_}
             - ls $step_tmp_dir
-            - remove-item -recurse -path $step_tmp_dir\*
 
             - if (!(test-path "sum.txt")) {Set-Content -Path "sum.txt" -Value "{`"count`":1}"}
             - if (test-path "sum.txt") {$contents = get-content sum.txt | ConvertFrom-Json ; $contents.count +=1; $contents | convertTo-Json | set-content -Path "sum.txt" }
