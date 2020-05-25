@@ -19,4 +19,4 @@ pipelines:
             - write-output "onExecute"
           onSuccess:
             - write-output "onSuccess"
-            - write_output ps_propertyBag "pipelines=users"
+            - write_output ps_propertyBag "pipelines=$run_id"
