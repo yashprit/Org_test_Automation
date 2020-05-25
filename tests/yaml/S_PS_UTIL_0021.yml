@@ -1,5 +1,5 @@
 resources:
-  - name: repo_pipe
+  - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -16,7 +16,7 @@ pipelines:
             - name: s_gitHub
             - name: slack
           inputResources:
-            - name: repo_pipe
+            - name: S_PS_UTIL
 
         execution:
           onExecute:

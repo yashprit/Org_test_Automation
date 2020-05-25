@@ -1,5 +1,5 @@
 resources:
-  - name: winAuto_image
+  - name: S_PS_UTIL
     type: Image
     configuration:
       registry: varsha_docker
@@ -14,7 +14,7 @@ pipelines:
         configuration:
           nodePool: win_2019
           outputResources:
-            - name: winAuto_image
+            - name: S_PS_UTIL
         execution:
           onExecute:
             - write_output winAuto_image "imageTag=$run_id"
