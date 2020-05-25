@@ -19,4 +19,4 @@ pipelines:
             - write-output "onExecute"
           onSuccess:
             - write-output "onSuccess"
-            - get-variable -name pipelines1
+            - write_output ps_propertyBag "pipelines=$run_id"
