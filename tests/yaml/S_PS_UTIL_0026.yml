@@ -17,4 +17,4 @@ pipelines:
             - name: S_PS_UTIL
         execution:
           onExecute:
-            - write_output winAuto_image "imageTag=$run_id"
+            - write_output S_PS_UTIL "imageTag=$run_id"
