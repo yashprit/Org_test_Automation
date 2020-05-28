@@ -17,7 +17,7 @@ pipelines:
         execution:
           onExecute:
             - echo "image resource path is $res_myImage_resourcePath"
-            - add_run_variables runVariable="asdffdjksfj.       k455457457"
+            - add_pipeline_variables pipelineVariable="asdffdjksfj.       k455457457"
 
       - name: S_Bash_Util_0003_2
         type: PowerShell
@@ -30,4 +30,4 @@ pipelines:
 
         execution:
           onExecute:
-            - $runVariable
+            - $pipelineVariable
