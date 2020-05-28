@@ -11,4 +11,5 @@ pipelines:
             env2: value2
         execution:
           onExecute:
+            - touch cachefile.txt
             - add_cache_files cachefile.txt my_file
