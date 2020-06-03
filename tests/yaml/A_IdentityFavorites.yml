@@ -8,16 +8,27 @@ resources:
       gitProvider: s_gitHub
       
 pipelines:
-  - name: PipelineSteps_automation
+  - name: Pipelines_IdentityFavorites
     steps:
       - name: api_PipelineSteps
         type: Bash
-        configuration:
-          inputResources:
-            - name: r_GitRepo
-          integrations:
-            - name: s_gitHub
         execution:
           onExecute:
             - echo "executing step..."
+            
+  - name: Pipelines_IdentityF_admin
+    steps:
+      - name: api_PipelineSteps
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."  
+     
+  - name: Pipelines_IdentityF_member
+    steps:
+      - name: api_PipelineSteps
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."    
           
