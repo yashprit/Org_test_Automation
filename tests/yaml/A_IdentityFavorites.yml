@@ -1,0 +1,23 @@
+resources:
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      path: jfbetapipeorg/Org_test_Automation
+      branches:
+        include: master
+      gitProvider: s_gitHub
+      
+pipelines:
+  - name: PipelineSteps_automation
+    steps:
+      - name: api_PipelineSteps
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_GitRepo
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - echo "executing step..."
+          
