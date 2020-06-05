@@ -1,12 +1,3 @@
-resources:
-  - name: r_GitRepo
-    type: GitRepo
-    configuration:
-      path: jfbetapipeorg/Org_test_Automation
-      branches:
-        include: master
-      gitProvider: s_gitHub
-      
 pipelines:
   - name: Pipelines_IdentityFavorites
     steps:
