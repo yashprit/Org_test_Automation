@@ -4,7 +4,7 @@ pipelines:
       - name: N_DyNodeK8s_u16
         type: Bash
         configuration:
-          nodePool: kubernetesNodePool_u16
+          nodePool: test_automation_kubernetesNodePool_u16
         execution:
           onExecute:
             - echo "executing step..."
