@@ -1,0 +1,39 @@
+pipelines:
+  - name: Pipelines_PipelineSteplets
+    steps:
+      - name: api_PipelineMatrixSteps
+        type: Matrix
+        stepMode: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - env1: one
+              env2: two
+        execution:
+          onExecute:
+            - echo "executing step..."
+            
+  - name: Pipelines_Steplets_admin
+    steps:
+      - name: api_PipelineMatrixSteps
+        type: Matrix
+        stepMode: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - env1: one
+              env2: two
+        execution:
+          onExecute:
+            - echo "executing step..."  
+     
+  - name: Pipelines_Steplets_member
+    steps:
+      - name: api_PipelineMatrixSteps
+        type: Matrix
+        stepMode: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - env1: one
+              env2: two
+        execution:
+          onExecute:
+            - echo "executing step..."    
