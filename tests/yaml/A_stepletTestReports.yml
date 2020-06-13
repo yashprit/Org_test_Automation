@@ -14,7 +14,7 @@ pipelines:
         configuration:
           inputResources:
             - name: script_repo1
-        matrix:
+        stepletMultipliers:
           environmentVariables:
             - env1: one
               env2: two
