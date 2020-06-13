@@ -17,19 +17,6 @@ pipelines:
         stepletMultipliers:
           environmentVariables:
             - env1: one
-              env2: two
-              env3: three
-            - env1: changed1
-              env2: changed2
-            - key_1: value1
-              key_2: value2
-          runtimes:
-            - type: image
-              image:
-                auto:
-                  language: java
-                  versions:
-                    - 13.0
         execution:
           onExecute:
             - cd $res_script_repo1_resourcePath
