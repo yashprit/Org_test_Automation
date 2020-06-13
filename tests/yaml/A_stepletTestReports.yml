@@ -1,0 +1,42 @@
+resources:
+  - name: script_repo1
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: jfbetapipeorg/Org_test_Automation
+      
+pipelines:
+  - name: Pipelines_martrix
+    steps:
+      - name: my_Step
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          inputResources:
+            - name: script_repo1
+        matrix:
+          environmentVariables:
+            - env1: one
+              env2: two
+              env3: three
+            - env1: changed1
+              env2: changed2
+            - key_1: value1
+              key_2: value2
+          runtimes:
+            - type: image
+              image:
+                auto:
+                  language: java
+                  versions:
+                    - 13.0
+        execution:
+          onExecute:
+            - cd $res_script_repo1_resourcePath
+            - python -m py_compile tests/core/sampleExecutionFile/calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest
+            - cd $res_script_repo1_resourcePath            
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+            - save_tests $res_script_repo1_resourcePath/test-reports/results.xml  
