@@ -4,7 +4,7 @@ pipelines:
       - name: NP_DyAzure_0040
         type: Bash
         configuration:
-          nodePool: azure_dynamic_node_u18
+          nodePool: azure_dynamic_node_test
         execution:
           onExecute:
             - sleep 5m
