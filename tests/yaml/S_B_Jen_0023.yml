@@ -16,8 +16,8 @@ pipelines:
       - name: S_B_Jen_0023_2
         type: Bash
         configuration:
+          inputSteps:
+            - name : S_B_Jen_0023_1        
         execution:
           onExecute:
             - echo "hello world"
-          inputSteps:
-            - name : S_B_Jen_0023_1
