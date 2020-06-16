@@ -6,7 +6,7 @@ pipelines:
         configuration:
           jenkinsJobName: jenkinsstep1    # Jenkins job/pipeline name. required   
           jenkinsBranchName: master # optional. For jenkins multibranch
-          priority:          
+          priority: 2         
           buildParameters:
             key1: 1
             key2: 2                   
