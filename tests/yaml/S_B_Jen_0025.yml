@@ -4,6 +4,8 @@ pipelines:
       - name: S_B_Jen_0025_1
         type: Bash
         configuration:
+          integrations:
+            - name: i_testJenkins         
         execution:
           onExecute:
             - echo "hello world"
