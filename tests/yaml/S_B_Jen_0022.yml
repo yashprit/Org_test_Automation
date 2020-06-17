@@ -4,7 +4,7 @@ pipelines:
       - name: S_B_Jen_0022_1
         type: Jenkins
         configuration:
-          jenkinsJobName: var-pipeline-proj    # Jenkins job/pipeline name. required
+          jenkinsJobName: var_output_job    # Jenkins job/pipeline name. required
           priority: 1
           buildParameters:
             key1: 1
@@ -15,7 +15,7 @@ pipelines:
       - name: S_B_Jen_0022_2
         type: Jenkins
         configuration:
-          jenkinsJobName: var-pipeline-proj   # Jenkins job/pipeline name. required
+          jenkinsJobName: var_output_job   # Jenkins job/pipeline name. required
           priority: 2
           buildParameters:
             key1: 1
