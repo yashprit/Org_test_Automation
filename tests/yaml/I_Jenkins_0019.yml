@@ -4,8 +4,7 @@ pipelines:
       - name: I_Jenkins_0019                  
         type: Jenkins
         configuration:
-          jenkinsJobName: jenkinsstep1    # Jenkins job/pipeline name. required   
-          jenkinsBranchName: master # optional. For jenkins multibranch
+          jenkinsJobName: var-pipeline-proj    # Jenkins job/pipeline name. required   
           priority: 2         
           buildParameters:
             key1: 1
