@@ -13,8 +13,7 @@ pipelines:
       - name: S_B_Jen_0025_2
         type: Jenkins
         configuration:
-          jenkinsJobName: jenkinsstep1    # Jenkins job/pipeline name. required
-          jenkinsBranchName: master # optional. For jenkins multibranch
+          jenkinsJobName: var-pipeline-proj    # Jenkins job/pipeline name. required
           priority: 1
           buildParameters:
             key1: 1
