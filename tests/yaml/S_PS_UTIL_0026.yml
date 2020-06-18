@@ -2,7 +2,7 @@ resources:
   - name: S_PS_UTIL
     type: Image
     configuration:
-      registry: varsha_docker
+      registry: ps_docker
       imageName: shippabledocker/jfreq_win
       imageTag: latest
 
