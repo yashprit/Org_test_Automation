@@ -107,7 +107,7 @@ pipelines:
             - restore_pipeline_files jfrog_pipeline $PWD/file.txt
             - cat file.txt
 #             - execute_command [--retry] printen
-#             - retry_command printen
+            - retry_command printen
             - popd
             
       - name: utilityFunction4
