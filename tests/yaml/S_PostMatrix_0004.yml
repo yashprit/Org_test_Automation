@@ -31,8 +31,6 @@ pipelines:
 
       - name: fanin_demo
         type: PostMatrix
-          inputResources:
-            - name: self_repo
           inputSteps: 
             - name: matrix_step1
             - name: matrix_step2
