@@ -1,11 +1,11 @@
 pipelines:
   - name: PostMatrix_pipeline
     steps:
-      - name: PostMatrix_step
-        type: PreMatrix
-        execution:
-          onExecute:
-            - echo "Executing fanout step...."
+#       - name: PreMatrix_step
+#         type: PreMatrix
+#         execution:
+#           onExecute:
+#             - echo "Executing fanout step...."
 
       - name: matrix_step1
         type: Matrix
@@ -34,8 +34,8 @@ pipelines:
           inputResources:
             - name: self_repo
           inputSteps: 
-            - name: matrix_demo
-            - name: matrix_demo_2
+            - name: matrix_step1
+            - name: matrix_step2
         execution:
           onExecute:
             - echo "Executing fanin step"
