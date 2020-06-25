@@ -31,6 +31,7 @@ pipelines:
 
       - name: fanin_demo
         type: PostMatrix
+        configuration:
           inputSteps: 
             - name: matrix_step1
             - name: matrix_step2
