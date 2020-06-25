@@ -1,8 +1,8 @@
 pipelines:
-  - name: Matrix_Demo_Env
+  - name: PreMatrix_pipeline
     steps:
-      - name: fanout_demo
+      - name: PreMatrix_step
         type: PreMatrix
         execution:
           onExecute:
-            - echo "Executing fanout step...."
+            - echo "Executing PreMatrix step...."
