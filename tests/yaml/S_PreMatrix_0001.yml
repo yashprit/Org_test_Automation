@@ -1,0 +1,8 @@
+pipelines:
+  - name: Matrix_Demo_Env
+    steps:
+      - name: fanout_demo
+        type: PreMatrix
+        execution:
+          onExecute:
+            - echo "Executing fanout step...."
