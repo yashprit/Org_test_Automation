@@ -10,9 +10,9 @@ pipelines:
       - name: matrix_step1
         type: Matrix
         stepMode: Bash
-        configuration:
-          inputSteps:
-            - name: PostMatrix_step
+#         configuration:
+#           inputSteps:
+#             - name: PostMatrix_step
         stepletMultipliers:
           environmentVariables:
             - key1: value1
