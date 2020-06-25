@@ -14,6 +14,8 @@ pipelines:
           inputSteps:
             - name: PostMatrix_step
         stepletMultipliers:
+          environmentVariables:
+            - key1: value1
         execution:
           onExecute:
             - echo "Executing matrix step"
@@ -25,6 +27,8 @@ pipelines:
           inputSteps:
             - name: matrix_step1
         stepletMultipliers:
+          environmentVariables:
+            - key1: value2
         execution:
           onExecute:
             - echo "Executing matrix step"
