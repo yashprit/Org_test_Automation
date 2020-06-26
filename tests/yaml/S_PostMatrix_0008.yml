@@ -23,3 +23,5 @@ pipelines:
             - echo "Executing fanin step"
             - printenv
             - get_step_var matrix_step1 my_Step
+            - |
+              [[ "$get_step_var matrix_step1 my_Step" == "value1" ]]
