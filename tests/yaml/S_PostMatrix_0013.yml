@@ -20,7 +20,7 @@ pipelines:
         configuration:
           inputSteps: 
             - name: PreMatrix_step
-            - name: PreMatrix_step1
+            - name: PreMatrix_step2
         execution:
           onExecute:
             - echo "Executing fanin step"
