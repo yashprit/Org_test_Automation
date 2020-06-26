@@ -10,6 +10,9 @@ pipelines:
             
       - name: PreMatrix_step2
         type: PreMatrix
+        configuration:
+          inputSteps: 
+            - name: PreMatrix_step
         execution:
           onExecute:
             - echo "Hello World"
@@ -19,15 +22,14 @@ pipelines:
         type: PostMatrix
         configuration:
           inputSteps: 
-            - name: PreMatrix_step
             - name: PreMatrix_step2
         execution:
           onExecute:
             - echo "Executing fanin step"
             - printenv
             
-            - ls -l ./matrix_step1/PreMatrix_step
-            - tem=$( ls -l ./matrix_step1/PreMatrix_step | sed -n '2p' )
+            - ls -l ./PreMatrix_step2
+            - tem=$( ls -l ./PreMatrix_step2 | sed -n '2p' )
             - echo $tem
             - x=$( echo $tem | awk -F " " '{print $NF}' )
             - echo $x
