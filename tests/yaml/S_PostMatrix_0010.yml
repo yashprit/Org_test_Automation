@@ -12,7 +12,8 @@ pipelines:
             - echo "Executing matrix step"
             - set_step_var test_key "automation"
             - printenv
-            - add_run_variables id="$steplet_id"
+            - add_run_variables id=$steplet_id
+            - export_run_variables 
 
       - name: PostMatrix_step
         type: PostMatrix
@@ -22,6 +23,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing fanin step"
+            - echo $id
             - get_step_var matrix_step1 test_key
             - printenv
             - printenv | grep test_key
