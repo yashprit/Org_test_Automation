@@ -32,10 +32,10 @@ pipelines:
             
             
             
-            - ls -l ./S_PostMatrix_0013
-            - tem=$( ls -l ./S_PostMatrix_0013| sed -n '2p' )
-            - echo $tem
-            - x=$( echo $tem | awk -F " " '{print $NF}' )
-            - echo $x
-            - |
-              [[ "$x" == "PreMatrix_1.txt" ]]
+#             - ls -l ./S_PostMatrix_0013
+#             - tem=$( ls -l ./S_PostMatrix_0013| sed -n '2p' )
+#             - echo $tem
+#             - x=$( echo $tem | awk -F " " '{print $NF}' )
+#             - echo $x
+#             - |
+#               [[ "$x" == "PreMatrix_1.txt" ]]
