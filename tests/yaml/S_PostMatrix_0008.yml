@@ -20,8 +20,6 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing fanin step"
-            - printenv
             - text=$( get_step_var S_PostMatrix_0008 my_Step )
-            - echo $text
             - |
               [[ "$text" == "value1" ]]
