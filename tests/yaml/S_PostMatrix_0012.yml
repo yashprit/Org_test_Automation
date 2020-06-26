@@ -32,10 +32,10 @@ pipelines:
             - echo "Executing fanin step"
             - printenv
             - ls -l ./matrix_step1
-            - ls -l ./matrix_step1 | head -1 
-            - ls -l ./matrix_step1 | head -1 | awk " " '{print $NF}'
+            - ls -l ./matrix_step1 | head -2 
+            - ls -l ./matrix_step1 | head -2 | awk " " '{print $NF}'
             
             - ls -l ./matrix_step1/PreMatrix_step
-            - txt=$( ls -l ./matrix_step1 | head -1 | awk " " '{print $NF}' )
+            - txt=$( ls -l ./matrix_step1 | head -2 | awk " " '{print $NF}' )
             - echo $txt
             
