@@ -1,0 +1,34 @@
+pipelines:
+  - name: PostMatrix_pipeline
+    steps:
+      - name: PreMatrix_step
+        type: PreMatrix
+        execution:
+          onExecute:
+            - echo "Hello World"
+            - echo "Fan out working" > PreMatrix_1.txt
+            
+      - name: matrix_step1
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          inputSteps:
+            - name: PreMatrix_step
+        stepletMultipliers:
+          environmentVariables:
+            - key1: value1
+        execution:
+          onExecute:
+            - echo "Executing matrix step"
+            - echo "Fan out working" > PreMatrix_2.txt
+
+      - name: PostMatrix_step
+        type: PostMatrix
+        configuration:
+          inputSteps: 
+            - name: matrix_step1
+        execution:
+          onExecute:
+            - echo "Executing fanin step"
+            - printenv
+            - ls -l ./matrix_step1
