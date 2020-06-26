@@ -26,8 +26,8 @@ pipelines:
             - echo "Executing fanin step"
             - printenv
             
-            - ls -l ./PreMatrix_step2
-            - tem=$( ls -l ./PreMatrix_step2 | sed -n '2p' )
+            - ls -l ./PreMatrix_step1
+            - tem=$( ls -l ./PreMatrix_step1 | sed -n '2p' )
             - echo $tem
             - x=$( echo $tem | awk -F " " '{print $NF}' )
             - echo $x
