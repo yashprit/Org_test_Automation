@@ -29,7 +29,7 @@ pipelines:
             - res=$(printenv | grep test_key | sed -n '1p')
             - echo $res
             - |
-              [[ "$res" == matrix_step1_"$id"_test_key=automation ]]
+              [[ $res == matrix_step1_"$id"_test_key=automation ]]
             
             
             
