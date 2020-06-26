@@ -25,6 +25,6 @@ pipelines:
             - text=$( get_step_var matrix_step1 my_Step )
             - text=$?
             - [[ "$text" == 0 ]]
-            - $test
+            - $text
             - |
               [[ "$text" == "value1" ]]
