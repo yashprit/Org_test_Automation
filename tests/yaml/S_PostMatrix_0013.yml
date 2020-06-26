@@ -10,9 +10,6 @@ pipelines:
             
       - name: PreMatrix_step2
         type: PreMatrix
-        configuration:
-          inputSteps: 
-            - name: PreMatrix_step
         execution:
           onExecute:
             - echo "Hello World"
@@ -23,6 +20,7 @@ pipelines:
         configuration:
           inputSteps: 
             - name: PreMatrix_step2
+            - name: PreMatrix_step
         execution:
           onExecute:
             - echo "Executing fanin step"
