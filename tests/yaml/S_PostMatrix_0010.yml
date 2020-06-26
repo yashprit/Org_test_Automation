@@ -1,0 +1,41 @@
+pipelines:
+  - name: PostMatrix_pipeline
+    steps:
+      - name: matrix_step1
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          inputSteps:
+            - name: PreMatrix_step
+        stepletMultipliers:
+          environmentVariables:
+            - key1: value1
+        execution:
+          onExecute:
+            - echo "Executing matrix step"
+            - set_step_var test_key "automation"
+            - printenv
+
+      - name: PostMatrix_step
+        type: PostMatrix
+        configuration:
+          inputSteps: 
+            - name: PreMatrix_step2
+            - name: S_PostMatrix_0013
+        execution:
+          onExecute:
+            - echo "Executing fanin step"
+            - get_step_var matrix_step1 test_key
+            - printenv
+            - printenv | grep test_key
+            
+            
+            
+            
+            - ls -l ./S_PostMatrix_0013
+            - tem=$( ls -l ./S_PostMatrix_0013| sed -n '2p' )
+            - echo $tem
+            - x=$( echo $tem | awk -F " " '{print $NF}' )
+            - echo $x
+            - |
+              [[ "$x" == "PreMatrix_1.txt" ]]
