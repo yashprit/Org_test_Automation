@@ -25,7 +25,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello World"
-            - echo "Fan out working" > PreMatrix_1.txt     
+            - echo "Fan out working" > PreMatrix_2.txt     
 
       - name: PostMatrix_step
         type: PostMatrix
@@ -38,10 +38,18 @@ pipelines:
             - echo "Executing fanin step"
             - printenv
             
-            - ls -l ./S_PostMatrix_0013
-            - tem=$( ls -l ./S_PostMatrix_0013| sed -n '2p' )
+            - ls -l ./PreMatrix_step1
+            - tem=$( ls -l ./PreMatrix_step1| sed -n '2p' )
             - echo $tem
             - x=$( echo $tem | awk -F " " '{print $NF}' )
             - echo $x
             - |
               [[ "$x" == "PreMatrix_1.txt" ]]
+              
+           - ls -l ./PreMatrix_step2
+            - tem=$( ls -l ./PreMatrix_step2| sed -n '2p' )
+            - echo $tem
+            - x=$( echo $tem | awk -F " " '{print $NF}' )
+            - echo $x
+            - |
+              [[ "$x" == "PreMatrix_2.txt" ]]   
