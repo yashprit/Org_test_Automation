@@ -4,9 +4,6 @@ pipelines:
       - name: matrix_step1
         type: Matrix
         stepMode: Bash
-        configuration:
-          inputSteps:
-            - name: PreMatrix_step
         stepletMultipliers:
           environmentVariables:
             - key1: value1
@@ -20,8 +17,7 @@ pipelines:
         type: PostMatrix
         configuration:
           inputSteps: 
-            - name: PreMatrix_step2
-            - name: S_PostMatrix_0013
+            - name: matrix_step1
         execution:
           onExecute:
             - echo "Executing fanin step"
