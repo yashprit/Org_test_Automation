@@ -24,4 +24,4 @@ pipelines:
             - echo "Executing fanin step"
             - res=$(printenv | grep test_key | sed -n '1p')
             - |
-              [[ "$res" == matrix_step1_"$id"_test_key=automation ]]
+              [[ "$res" == S_PostMatrix_0010_"$id"_test_key=automation ]]
