@@ -26,7 +26,7 @@ pipelines:
             - echo $id
             - get_step_var matrix_step1 test_key
             - printenv
-            - printenv | grep test_key | head -1 > tem
+            - printenv | grep test_key 
             - echo $tem
             - |
               [[ "$tem" == "matrix_step1_$id_test_key=automation" ]]
