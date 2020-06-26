@@ -22,6 +22,6 @@ pipelines:
           onExecute:
             - echo "Executing fanin step"
             - printenv
-            - get_step_var matrix_step1 my_Step >> text
+            - text=$get_step_var matrix_step1 my_Step 
             - |
               [[ "$text" == "value1" ]]
