@@ -34,10 +34,16 @@ pipelines:
             - ls -l ./matrix_step1
             - txt=$( ls -l ./matrix_step1 | sed -n '2p' )
             - echo $txt
-            - nxt=$( echo $txt | awk -F " " '{print $NF}' )
-            - echo $nxt
+            - y=$( echo $txt | awk -F " " '{print $NF}' )
+            - echo $y
+            - |
+              [[ "$y" == "PreMatrix_2.txt" ]]
             
             - ls -l ./matrix_step1/PreMatrix_step
-            - txt=$( ls -l ./matrix_step1 | awk " " '{print $NF}' | sed -n '2p')
-            - echo $txt
+            - tem=$( ls -l ./matrix_step1/PreMatrix_step | sed -n '2p' )
+            - echo $tem
+            - x=$( echo $tem | awk -F " " '{print $NF}' )
+            - echo $x
+            - |
+              [[ "$x" == "PreMatrix_1.txt" ]]
             
