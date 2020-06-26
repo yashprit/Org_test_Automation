@@ -16,7 +16,7 @@ pipelines:
           onExecute:
             - echo "Hello World"  
             
-     - name: PostMatrix_step3
+      - name: PostMatrix_step3
         type: PostMatrix
         configuration:
           inputSteps: 
