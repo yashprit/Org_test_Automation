@@ -33,6 +33,6 @@ pipelines:
             - printenv
             - ls -l ./matrix_step1
             - ls -l ./matrix_step1/PreMatrix_step
-            - txt=$(head -1|awk -f " " '{print $NF}')
+            - txt=$(ls -l ./matrix_step1|head -1|awk -f " " '{print $NF}')
             - echo $txt
             
