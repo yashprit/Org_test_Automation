@@ -2,7 +2,16 @@ pipelines:
   - name: PostMatrix_pipeline
     steps:
       - name: S_PostMatrix_0013
+        type: Bash
+        execution:
+          onStart:
+            - echo "Lets start"
+            
+      - name: PreMatrix_step1
         type: PreMatrix
+        configuration:
+          inputSteps: 
+            - name: S_PostMatrix_0013
         execution:
           onExecute:
             - echo "Hello World"
@@ -10,6 +19,9 @@ pipelines:
             
       - name: PreMatrix_step2
         type: PreMatrix
+        configuration:
+          inputSteps: 
+            - name: S_PostMatrix_0013
         execution:
           onExecute:
             - echo "Hello World"
@@ -20,7 +32,7 @@ pipelines:
         configuration:
           inputSteps: 
             - name: PreMatrix_step2
-            - name: S_PostMatrix_0013
+            - name: PreMatrix_step1
         execution:
           onExecute:
             - echo "Executing fanin step"
