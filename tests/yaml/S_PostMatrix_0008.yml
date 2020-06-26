@@ -18,7 +18,6 @@ pipelines:
         configuration:
           inputSteps: 
             - name: matrix_step1
-            - name: matrix_step2
         execution:
           onExecute:
             - echo "Executing fanin step"
