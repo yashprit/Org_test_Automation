@@ -1,0 +1,26 @@
+pipelines:
+  - name: PostMatrix_pipeline
+    steps:
+            
+      - name: matrix_step1
+        type: Matrix
+        stepMode: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - key1: value1
+        execution:
+          onExecute:
+            - echo "Executing matrix step"
+            - set_step_var my_Step value1
+
+      - name: PostMatrix_step
+        type: PostMatrix
+        configuration:
+          inputSteps: 
+            - name: matrix_step1
+            - name: matrix_step2
+        execution:
+          onExecute:
+            - echo "Executing fanin step"
+            - printenv
+            - get_step_var matrix_step1 my_Step
