@@ -1,7 +1,7 @@
 pipelines:
   - name: PostMatrix_pipeline
     steps:
-      - name: PreMatrix_step
+      - name: S_PostMatrix_0013
         type: PreMatrix
         execution:
           onExecute:
