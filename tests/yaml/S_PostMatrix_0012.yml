@@ -34,7 +34,7 @@ pipelines:
             - ls -l ./matrix_step1
             - txt=$( ls -l ./matrix_step1 | sed -n '2p' )
             - echo $txt
-            - nxt=$( $txt | awk -F " " '{print $NF}' )
+            - nxt=$( echo $txt | awk -F " " '{print $NF}' )
             - echo $nxt
             
             - ls -l ./matrix_step1/PreMatrix_step
