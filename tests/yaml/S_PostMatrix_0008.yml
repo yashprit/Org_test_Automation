@@ -24,7 +24,7 @@ pipelines:
             - printenv
             - text=$( get_step_var matrix_step1 my_Step )
             - text=$?
-            - [[ "$text" == "0" ]]
+#             - [[ "$text" == "0" ]]
             - $text
             - |
               [[ "$text" == "value1" ]]
