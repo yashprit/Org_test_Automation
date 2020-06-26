@@ -12,6 +12,7 @@ pipelines:
             - echo "Executing matrix step"
             - set_step_var test_key "automation"
             - printenv
+            - add_run_variables id="$steplet_id"
 
       - name: PostMatrix_step
         type: PostMatrix
