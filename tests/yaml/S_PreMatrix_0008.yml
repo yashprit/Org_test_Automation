@@ -2,7 +2,7 @@ pipelines:
   - name: PreMatrix_pipeline
     steps:
       - name: S_PreMatrix_0008
-        type: PostMatrix
+        type: PreMatrix
         execution:
           onExecute:
             - echo "Executing PostMatrix step"
