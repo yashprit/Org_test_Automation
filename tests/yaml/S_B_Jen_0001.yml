@@ -2,7 +2,7 @@ pipelines:
   - name: S_B_Jen_0001_pipelines
 
     steps:
-    - name: S_B_Jen_0001_step
+    - name: S_B_Jen_0001
       type: Jenkins
       configuration:
         jenkinsJobName: auto_job
