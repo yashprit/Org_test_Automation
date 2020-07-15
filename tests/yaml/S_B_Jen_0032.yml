@@ -1,0 +1,27 @@
+resources:
+  - name: S_B_Jen_0032_pb
+    type: PropertyBag
+    configuration:
+      passing: 0
+      failing: 0
+
+pipelines:
+  - name: S_B_Jen_0032_pipelines
+    steps:
+      - name: S_B_Jen_0032_bash
+        type: Bash
+        configuration:
+          outputResources:
+            - name: S_B_Jen_0032_pb  
+        execution:
+          onExecute:
+            - echo "executing step..."
+              
+      - name: S_B_Jen_0032
+        type: Jenkins
+        configuration:
+          jenkinsJobName: auto_job
+          inputResourcess:
+            - name: S_B_Jen_0032_pb
+          integrations:
+            - name: S_B_jenkins
