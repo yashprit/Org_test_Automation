@@ -3,9 +3,6 @@ pipelines:
     steps:
       - name: S_B_Jen_0031_bash1
         type: Bash
-        configuration:
-          inputSteps:
-            - name: S_B_Jen_0031
         execution:
           onExecute:
             - echo "executing step.."
