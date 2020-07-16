@@ -23,3 +23,10 @@ pipelines:
           onExecute:
             - echo "executing step..."    
           
+  - name: Pipelines_IdentityF_projectadmin
+    steps:
+      - name: api_PipelineSteps
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..." 
