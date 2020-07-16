@@ -1,0 +1,13 @@
+pipelines:
+  - name: S_B_Jen_0047_pipelines
+    steps:
+
+      - name: S_B_Jen_0047
+        type: Jenkins
+        configuration:
+          jenkinsJobName: auto_job   
+        buildParameters:
+          run1: 'test1frombash'
+          run2: ${run_number}
+        integrations:
+          - name: S_B_jenkins  
