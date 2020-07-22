@@ -11,7 +11,7 @@ pipelines:
           auto:
             language: node
             versions: 
-              - 10.18.0
+              - 10.21.0
           custom:
             name: shippabledocker/jfreq
             tag: latest
