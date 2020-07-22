@@ -8,6 +8,5 @@ pipelines:
           jenkinsJobName: auto_job   
         buildParameters:
           run1: 'test1frombash'
-          run2: ${run_number}
         integrations:
           - name: S_B_jenkins  
