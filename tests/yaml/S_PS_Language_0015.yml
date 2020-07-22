@@ -1,7 +1,7 @@
 pipelines:
-  - name: pipeline_S_PS_Language_0013
+  - name: pipeline_S_PS_Language_0015
     steps:
-      - name: S_PS_Language_0013
+      - name: S_PS_Language_0015
         type: PowerShell
         configuration:
           nodePool: win_2019
@@ -9,12 +9,12 @@ pipelines:
             type: image
             image:
               auto:
-                language: dotnetcore
+                language: go
                 versions:
-                  - 3.1
+                  - 1.14.4
         execution:
           onExecute:
-            - dotnet --version
-            - if($(dotnet --version) -ne "3.1.301"){
+            - go version
+            - if($(go version) -ne "go version go1.14.4 windows/amd64"){
               Write-Error "Stop" -ErrorAction Stop
               }

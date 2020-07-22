@@ -3,7 +3,7 @@ pipelines:
     steps:
       - name: d_AWS_win19_language
         type: PowerShell
-        configuration: 
+        configuration:
           nodePool: AWS_dynamic_node_win19
           runtime:
             type: host
@@ -13,9 +13,11 @@ pipelines:
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.11"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.12"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.13"
-            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "10.18"
-            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "12.14"
+            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.14"
+            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "10.21"
+            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "12.18"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "8.17"
+            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19java" | Select-String "14"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19java" | Select-String "11"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19java" | Select-String "13"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19java" | Select-String "8"
@@ -23,3 +25,4 @@ pipelines:
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19dotnet" | Select-String "3.1"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19cpp" | Select-String "8.0.0"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19cpp" | Select-String "9.0.0"
+            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19cpp" | Select-String "10.0.0"
