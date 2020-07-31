@@ -1,0 +1,46 @@
+pipelines:
+
+  - name: pipelines_P_Pipelines_0042_1
+    steps:
+      - name: P_Pipelines_0042_1_failure
+        type: Bash
+        configuration:
+          outputResources:
+            - name: P_Pipelines_0042_resource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            - write_output P_Pipelines_0042_resource test=$run_number
+            - return 1
+
+      - name: P_Pipelines_0042_1_success
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: P_Pipelines_0042_1_failure
+        execution:
+          onExecute:
+            - echo "executing step..."
+  - name: pipelines_P_Pipelines_0042_2
+    configuration:
+      dependencyMode:
+        waitOnParentComplete: false
+        waitOnParentSuccess: true
+    steps:
+      - name: P_Pipelines_0042_2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_Pipelines_0042_resource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+
+
+resources:
+  - name: P_Pipelines_0042_resource
+    type: PropertyBag
+    configuration:
+      test: test

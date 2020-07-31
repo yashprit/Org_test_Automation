@@ -1,0 +1,12 @@
+pipelines:
+
+  - name: pipelines_P_Pipelines_0023
+    configuration:
+      dependencyMode:
+        waitOnParentSuccess: "true"
+    steps:
+      - name: P_Pipelines_0023
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
