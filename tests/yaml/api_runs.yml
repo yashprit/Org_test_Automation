@@ -12,3 +12,14 @@ pipelines:
             - add_cache_files cache.file runs.file
             - echo "state=pipeline2" > cache.txt
             - add_run_files cache.txt run_state_file
+
+  - name: api_runs_ProjectAdmin
+    steps:
+      - name: api_runs_ProjectAdmin
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo "helloworld"
