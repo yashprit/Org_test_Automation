@@ -5,6 +5,12 @@ resources:
      gitProvider: s_gitHub
      path: jfbetapipeorg/Org_test_Automation
 
+  - name: resourceversionProjectAdmin
+    type: GitRepo
+    configuration:
+     gitProvider: s_gitHub
+     path: jfbetapipeorg/Org_test_Automation
+
 pipelines:
   - name: api_resourceVersions
     steps:
