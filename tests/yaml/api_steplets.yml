@@ -13,3 +13,17 @@ pipelines:
           onExecute:
             - echo api_steplets > cachefile.txt
             - add_cache_files cachefile.txt my_file
+
+  - name: api_Steplets_ProjectAdmin
+    steps:
+      - name: s_steplets_ProjectAdmin
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          environmentVariables:
+            env1: value1
+            env2: value2
+        execution:
+          onExecute:
+            - echo "jfrogpipelines"
