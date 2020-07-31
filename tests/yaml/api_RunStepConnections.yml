@@ -41,3 +41,20 @@ pipelines:
           onExecute:
             - echo runStepConnections > cachefile.txt
             - add_cache_files cachefile.txt my_file
+            
+  - name: pipelines_RunStepConnectionsProjectAdmin
+
+    steps:
+      - name: s_Bash_ProjectAdmin
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          inputResources:
+            - name: r_gitHub
+          environmentVariables:
+            env1: value1
+            env2: value
+        execution:
+          onExecute:
+            - echo "hello"         
