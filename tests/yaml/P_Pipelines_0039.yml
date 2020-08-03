@@ -34,7 +34,7 @@ pipelines:
 
   - name: pipelines_P_Pipelines_0039_3
     steps:
-      - name: P_Pipelines_0039_2
+      - name: P_Pipelines_0039_3
         type: Bash
         configuration:
           inputResources:
