@@ -57,4 +57,21 @@ pipelines:
             env2: value
         execution:
           onExecute:
-            - echo "hello"         
+            - echo "hello"    
+            
+      - name: s_Bash_ProjectAdmin1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_gitHub
+          runtime:
+            type: host
+          environmentVariables:
+            env1: value1
+            env2: value
+          inputSteps:
+            - name: s_Bash_ProjectAdmin
+        execution:
+          onExecute:
+            - echo runStepConnections > cachefile.txt
+            - add_cache_files cachefile.txt my_file            
