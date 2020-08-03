@@ -20,3 +20,15 @@ pipelines:
           onExecute:
             - echo "executing step..."
             - write_output A_RunResourceVersions_Image "imageTag=$run_id"
+
+  - name: pipeline_A_RunResourceVersionsProjectAdmin
+    steps:
+      - name: A_RunResourceVersionsProjectAdmin
+        type: Bash
+        configuration:
+          outputResources:
+            - name: A_RunResourceVersions_Image
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - write_output A_RunResourceVersions_Image "imageTag=$run_id"
