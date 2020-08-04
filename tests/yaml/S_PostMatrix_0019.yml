@@ -6,5 +6,6 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello World"
-            - |
-              [ ! -z "$step_configuration_environmentVariables_0_keyjfrog" ]             
+            - printenv
+#             - |
+#               [ ! -z "$step_configuration_environmentVariables_0_key" ]             
