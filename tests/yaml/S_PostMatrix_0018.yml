@@ -6,6 +6,5 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello World"
-            - printenv
             - |
-              [ ! -z "$step_configuration_environmentVariables_0_key123" ]          
+              [ ! -z "$step_configuration_environmentVariables_0_key" ]          
