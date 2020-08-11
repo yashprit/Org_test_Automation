@@ -8,6 +8,7 @@ pipelines:
             - echo "Executing matrix step"
 
   - name: Matrix_pipeline_Custom
+    steps:  
       - name: S_Matrix_0025_Custom
         type: Matrix
         execution:

@@ -17,7 +17,7 @@ pipelines:
           onExecute:
             - echo "Executing matrix step"
 
-            - tem=$( ls -l ./matrix_step1/S_Matrix_0022| sed -n '2p' )
+            - tem=$( ls -l ./S_Matrix_0022| sed -n '2p' )
             - x=$( echo $tem | awk -F " " '{print $NF}' )
             - |
               [[ "$x" == "PreMatrix_1.txt" ]]

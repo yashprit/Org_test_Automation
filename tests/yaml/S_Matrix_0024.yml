@@ -9,14 +9,19 @@ pipelines:
             - env1: one
             - env2: two
           runtimes:                   # optional, only needed if customer
-            - image:                  # wants to execute step against
-                auto:                 # multiple images
-                  language: node
-                  version: 10.21.0
-            - image:
+            - type: image
+              image:
                 auto:
                   language: node
-                  version: 12.140.0
+                  versions:
+                    - 10.21.0
+
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                    - 8.120.0
         execution:
           onExecute:
             - echo "Hello world"
