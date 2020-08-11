@@ -1,0 +1,9 @@
+pipelines:
+  - name: Pipelines_S_Matrix_0007
+    steps:
+      - name: my_Step_1
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          onExecute:
+            - echo "Hello world"

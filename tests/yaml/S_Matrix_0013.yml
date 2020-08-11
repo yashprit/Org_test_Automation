@@ -1,0 +1,26 @@
+pipelines:
+  - name: Matrix_pipeline
+    steps:
+      - name: PreMatrix_step
+        type: PreMatrix
+        stepMode: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - key1: value1
+        execution:
+          onExecute:
+            - echo "Executing matrix step"
+            - set_step_var my_Step value1
+
+
+      - name: S_Matrix_0013
+        type: Matrix
+        configuration:
+          inputSteps:
+            - name: PreMatrix_step
+        execution:
+          onExecute:
+            - echo "Executing Matrix step"
+            - text=$( get_step_var PreMatrix_step my_Step )
+            - |
+              [[ "$text" == "value1" ]]

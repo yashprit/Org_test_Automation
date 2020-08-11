@@ -1,0 +1,23 @@
+pipelines:
+  - name: Pipelines_S_Matrix_0019
+    steps:
+      - name: my_Step_1
+        type: Matrix
+        stepMode: Bash
+        configuration:
+        stepletMultipliers:
+          environmentVariables:
+            - env1: one
+            - env2: two
+          runtimes:                   # optional, only needed if customer
+            - image:                  # wants to execute step against
+                auto:                 # multiple images
+                  language: node
+                  version: 10.21.0
+            - image:
+                auto:
+                  language:
+                  version:
+        execution:
+          onExecute:
+            - echo "Hello world"
