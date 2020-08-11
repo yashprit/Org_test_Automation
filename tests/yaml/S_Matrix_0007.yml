@@ -1,7 +1,7 @@
 pipelines:
   - name: Pipelines_S_Matrix_0007
     steps:
-      - name: my_Step_1
+      - name: S_Matrix_0007
         type: Matrix
         stepMode: Bash
         configuration:

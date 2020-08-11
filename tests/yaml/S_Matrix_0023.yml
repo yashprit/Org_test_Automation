@@ -8,7 +8,7 @@ resources:
 pipelines:
   - name: Pipelines_matrix
     steps:
-      - name: my_Step
+      - name: S_Matrix_0023
         type: Matrix
         stepMode: Bash
         configuration:

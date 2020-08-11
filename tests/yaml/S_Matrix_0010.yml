@@ -1,7 +1,7 @@
 pipelines:
   - name: Matrix_pipeline
     steps:
-      - name: Matrix_step
+      - name: S_Matrix_0010
         type: Matrix
         execution:
           onExecute:
