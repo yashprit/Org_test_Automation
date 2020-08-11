@@ -4,7 +4,6 @@ pipelines:
       - name: S_Matrix_0014
         type: Matrix
         stepMode: Bash
-        configuration:
         stepletMultipliers:
           environmentVariables:
             - env1: one

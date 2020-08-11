@@ -3,7 +3,6 @@ pipelines:
     steps:
       - name: S_Matrix_0025
         type: Matrix
-        configuration:
         execution:
           onExecute:
             - echo "Executing matrix step"
@@ -11,7 +10,6 @@ pipelines:
   - name: Matrix_pipeline_Custom
       - name: S_Matrix_0025_Custom
         type: Matrix
-        configuration:
         execution:
           onExecute:
             - echo "Executing Matrix step"

@@ -3,10 +3,6 @@ pipelines:
     steps:
       - name: S_Matrix_0013
         type: PreMatrix
-        stepMode: Bash
-        stepletMultipliers:
-          environmentVariables:
-            - key1: value1
         execution:
           onExecute:
             - echo "Executing matrix step"

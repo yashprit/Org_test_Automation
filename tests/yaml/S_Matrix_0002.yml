@@ -12,6 +12,7 @@ pipelines:
       - name: S_Matrix_0002_2
         type: Matrix
         stepMode: Bash
+        configuration:        
           inputSteps:
             - name: S_Matrix_0002
         execution:
