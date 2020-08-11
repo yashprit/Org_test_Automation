@@ -14,14 +14,14 @@ pipelines:
                 auto:
                   language: node
                   versions:
-                    - 10.17.0
+                    - 10.21.0
 
             - type: image
               image:
                 auto:
                   language:
                   versions:
-                  
+
         execution:
           onExecute:
             - echo "Hello world"
