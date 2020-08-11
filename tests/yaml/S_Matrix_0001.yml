@@ -4,7 +4,6 @@ pipelines:
       - name: my_Step
         type: Matrix
         stepMode: Bash
-        configuration:
         execution:
           onExecute:
             - echo "Hello world"
