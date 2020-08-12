@@ -1,0 +1,24 @@
+pipelines:
+  - name: jb_test
+    configuration:
+      environmentVariables:
+        readOnly:
+          MY_MESSAGE: '"Hello World!"'
+    steps:
+      - name: step_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo1 $MY_MESSAGE
+            - echo "step_1"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"      
+      - name: step_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1
+        execution:
+          onExecute:
+            - echo1 $MY_MESSAGE
+            - echo "step_2"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
