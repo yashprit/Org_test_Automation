@@ -1,0 +1,49 @@
+resources:
+  - name: S_Bash_0539_resource1
+    type: PropertyBag
+    configuration:
+      runNumber: 0
+  - name: S_Bash_0539_resource2
+    type: PropertyBag
+    configuration:
+      runNumber: 0
+
+pipelines:
+  - name: pipeline_S_Bash_0539
+    steps:
+      - name: S_Bash_0539_trigger
+        type: Bash
+        execution:
+          onExecute:
+            - echo "test"
+      - name: S_Bash_0539_input1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_0539_trigger
+          outputResources:
+            - name: S_Bash_0539_resource1
+        execution:
+          onExecute:
+            - write_output S_Bash_0539_resource1 runNumber=${run_number}
+      - name: S_Bash_0539_input2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_0539_trigger
+          outputResources:
+            - name: S_Bash_0539_resource2
+        execution:
+          onExecute:
+            - echo "test"
+      - name: S_Bash_0539
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_Bash_0539_resource1
+              newVersionOnly: true
+            - name: S_Bash_0539_resource2
+              newVersionOnly: true
+        execution:
+          onExecute:
+            - echo "test"

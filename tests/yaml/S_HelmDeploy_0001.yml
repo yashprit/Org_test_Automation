@@ -1,0 +1,19 @@
+resources:
+  - name: S_HelmDeploy_0001_resource
+    type: PropertyBag
+    configuration:
+      runNumber: 0
+
+pipelines:
+  - name: pipeline_S_HelmDeploy_0001
+    steps:
+      - name: S_HelmDeploy_0001
+        type: HelmDeploy
+        configuration:
+          releaseName: release
+          integrations:
+            - name: s_artifactory
+            - name: s_kubernetes
+          inputResources:
+            - name: S_HelmDeploy_0001_resource
+              newVersionOnly: true
