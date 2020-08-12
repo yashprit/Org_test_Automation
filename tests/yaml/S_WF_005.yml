@@ -1,22 +1,22 @@
 pipelines:
-  - name: S_WF_004
+  - name: S_WF_005
     configuration:
       environmentVariables:
         readOnly:
           MY_MESSAGE: '"Hello World!"'
     steps:
-      - name: S_WF_004_1
+      - name: S_WF_005_1
         type: Bash
         execution:
           onExecute:
             - echo $MY_MESSAGE
             - echo "step_1"
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"      
-      - name: S_WF_004_2
+      - name: S_WF_005_2
         type: Bash
         configuration:
           inputSteps:
-            - name: S_WF_004_1
+            - name: S_WF_005_1
         execution:
           onExecute:
             - echo $MY_MESSAGE
