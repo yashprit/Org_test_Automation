@@ -7,7 +7,6 @@ pipelines:
     steps:
       - name: S_WF_007_1
         type: Bash
-        configuration:
         execution:
           onExecute:
             - echo $MY_MESSAGE
