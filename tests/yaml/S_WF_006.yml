@@ -1,0 +1,27 @@
+pipelines:
+  - name: S_WF_006
+    configuration:
+      environmentVariables:
+        readOnly:
+          MY_MESSAGE: '"Hello World!"'
+    steps:
+      - name: S_WF_006_1
+        type: Bash
+        configuration:
+          timeoutSeconds: 120
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - sleep 180s
+            - echo "step_1"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"      
+      - name: S_WF_006_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_006_1
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "step_2"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
