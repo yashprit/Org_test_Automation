@@ -1,5 +1,5 @@
 pipelines:
-  - name: jb_test
+  - name: S_WF_001
     configuration:
       environmentVariables:
         readOnly:
