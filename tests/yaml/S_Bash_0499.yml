@@ -4,7 +4,7 @@ resources:
     configuration:
       registry: i_aws
       imageName: ubuntu
-      imageTag: latest
+      imageTag: master
       autoPull: true
       region: us-east-1
 
