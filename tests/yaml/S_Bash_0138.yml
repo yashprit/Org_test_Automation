@@ -5,7 +5,7 @@ resources:
        gitProvider: s_gitHub
        path: jfbetapipeorg/Org_test_Automation
        branches:
-         include: master
+         include: test
        buildOn:  # optional
         # releaseCreate: <Boolean>
          tagCreate: true
