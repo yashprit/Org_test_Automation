@@ -1,50 +1,50 @@
 resources:
-  - name: S_Bash_0540_resource1
+  - name: S_WF_011_resource1
     type: PropertyBag
     configuration:
       runNumber: 0
-  - name: S_Bash_0540_resource2
+  - name: S_WF_011_resource2
     type: PropertyBag
     configuration:
       runNumber: 0
 
 pipelines:
-  - name: pipeline_S_Bash_0540
+  - name: pipeline_S_WF_011
     steps:
-      - name: S_Bash_0540_input1
+      - name: S_WF_011_input1
         type: Bash
         configuration:
           outputResources:
-            - name: S_Bash_0540_resource1
+            - name: S_WF_011_resource1
         execution:
           onExecute:
-            - write_output S_Bash_0540_resource1 runNumber=${run_number}
-      - name: S_Bash_0540_input2
+            - write_output S_WF_011_resource1 runNumber=${run_number}
+      - name: S_WF_011_input2
         type: Bash
         configuration:
           outputResources:
-            - name: S_Bash_0540_resource2
+            - name: S_WF_011_resource2
         execution:
           onExecute:
             - echo "test"
-      - name: S_Bash_0540
+      - name: S_WF_011
         type: Bash
         configuration:
-          affinityGroup: S_Bash_0540
+          affinityGroup: S_WF_011
           inputResources:
-            - name: S_Bash_0540_resource1
+            - name: S_WF_011_resource1
               newVersionOnly: true
-            - name: S_Bash_0540_resource2
+            - name: S_WF_011_resource2
               newVersionOnly: true
         execution:
           onExecute:
             - echo "test"
-      - name: S_Bash_0540_following
+      - name: S_WF_011_following
         type: Bash
         configuration:
-          affinityGroup: S_Bash_0540
+          affinityGroup: S_WF_011
           inputSteps:
-            - name: S_Bash_0540
+            - name: S_WF_011
         execution:
           onExecute:
             - echo "test"

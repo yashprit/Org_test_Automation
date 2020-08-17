@@ -1,36 +1,36 @@
 resources:
-  - name: S_Bash_0544_resource
+  - name: S_WF_015_resource
     type: PropertyBag
     configuration:
       runNumber: 0
 
 pipelines:
-  - name: pipeline_S_Bash_0544_001
+  - name: pipeline_S_WF_015_001
     steps:
-      - name: S_Bash_0544_step1
+      - name: S_WF_015_step1
         type: Bash
         configuration:
           outputResources:
-            - name: S_Bash_0544_resource
+            - name: S_WF_015_resource
         execution:
           onExecute:
-            - write_output S_Bash_0544_resource runNumber=${run_number}
-      - name: S_Bash_0544_step2
+            - write_output S_WF_015_resource runNumber=${run_number}
+      - name: S_WF_015_step2
         type: Bash
         configuration:
           inputResources:
-            - name: S_Bash_0544_resource
+            - name: S_WF_015_resource
               newVersionOnly: true
         execution:
           onExecute:
             - echo "test"
-      - name: S_Bash_0544_step3
+      - name: S_WF_015_step3
         type: Bash
         configuration:
           inputSteps:
-            - name: S_Bash_0544_step2
+            - name: S_WF_015_step2
           inputResources:
-            - name: S_Bash_0544_resource
+            - name: S_WF_015_resource
               newVersionOnly: true
         execution:
           onExecute:
