@@ -1,0 +1,9 @@
+pipelines:
+
+  - name: I_Generic_0001
+    steps:
+      - name: I_Generic_0001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
