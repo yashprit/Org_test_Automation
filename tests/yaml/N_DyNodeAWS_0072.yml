@@ -5,8 +5,6 @@ pipelines:
         type: Bash
         configuration:
           nodePool: AWS_dynamic_node_C7
-          runtime:
-            type: host
         execution:
           onExecute:
             - echo "N_DyNodeAWS_0072_1"

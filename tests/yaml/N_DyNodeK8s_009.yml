@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeK8s_009
+    steps:
+      - name: N_DyNodeK8s_009
+        type: Bash
+        configuration:
+          nodePool: test_automation_kubernetesNodePool_c7
+        execution:
+          onExecute:
+            - echo "executing step..."

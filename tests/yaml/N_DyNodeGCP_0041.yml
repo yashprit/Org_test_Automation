@@ -5,8 +5,6 @@ pipelines:
         type: Bash
         configuration:
           nodePool: GCP_dynamic_nodePool
-          runtime:
-            type: host
         execution:
           onExecute:
             - echo "N_DyNodeGCP_0041_1"

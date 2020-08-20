@@ -1,12 +1,10 @@
 pipelines:
-  - name: N_DyNodeAzure_0033
+  - name: N_DyNodeAzure_0035
     steps:
-      - name: N_DyNodeAzure_0033_1
+      - name: N_DyNodeAzure_0035_1
         type: Bash
         configuration:
           nodePool: azure_dynamic_nodePool
-          runtime:
-            type: host
         execution:
           onExecute:
-            - echo "N_DyNodeAzure_0033_1"
+            - echo "N_DyNodeAzure_0035_1"
