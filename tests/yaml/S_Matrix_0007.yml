@@ -5,5 +5,5 @@ pipelines:
         type: Matrix
         stepMode: Bash
         configuration:
-          onExecute:
+          execution:
             - echo "Hello world"
