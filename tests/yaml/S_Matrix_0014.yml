@@ -16,8 +16,7 @@ pipelines:
             - steplet2=`printenv | grep "env2"`
             - |
               if [ "$steplet1" || "$steplet2" ]
-              then
-              elif [ "$steplet1" ]
+              if [ "$steplet1" ]
               then
               [[ "$env1" == "one" ]]
               elif [ "$steplet2" ]
