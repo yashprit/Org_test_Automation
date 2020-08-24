@@ -10,4 +10,5 @@ pipelines:
             - env2: two
         execution:
           onExecute:
+            - printenv
             - echo "Hello world"
