@@ -2,7 +2,7 @@ resources:
   - name: r_GitRepo
     type: GitRepo
     configuration:
-      path: deepikasl/Org_test_Automation
+      path: jfbetapipeorg/Org_test_Automation
       branches:
         include: master
       gitProvider: s_gitHub
