@@ -16,11 +16,12 @@ pipelines:
             - steplet2=`printenv | grep "env2"`
             - |
               if [ "$steplet1" | "$steplet2" ]
-              if [ "$steplet1" ]
               then
-              [[ "$env1" == "one" ]]
-              elif [ "$steplet2" ]
-              then
-              [[ "$env2" == "two" ]]
+                if [ "$steplet1" ]
+                then
+                [[ "$env1" == "one" ]]
+                elif [ "$steplet2" ]
+                then
+                [[ "$env2" == "two" ]]
               fi
 
