@@ -21,7 +21,7 @@ pipelines:
             - echo "Executing Matrix step"
             - key=S_Matrix_0013_$(step_id_preMatrix)_preMatrixStep
             - echo $key
-            - [[ "$key" === "value" ]]
+            - [[ "$key" == "value" ]]
             - text=$( get_step_var S_Matrix_0013 preMatrixStep )
             - |
               [[ "$text" == "value" ]]
