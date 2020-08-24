@@ -22,5 +22,5 @@ pipelines:
             - res=`printenv | grep "$key"`
             - echo "$res"
             - | 
-              [ ! -z "varsha" ]
+              [ -z "varsha" ]
             
