@@ -17,9 +17,15 @@ pipelines:
             - |
               if [ "$steplet1" | "$steplet2" ]; then
                 if [ "$steplet1" ]; then
-                [[ "$env1" == "one" ]]
+                  if [ "$env1" == "one" ]; then
+                  else 
+                    exit -1
+                  fi
                 elif [ "$steplet2" ]; then
-                [[ "$env2" == "two" ]]
+                  if [ "$env2" == "two" ]; then
+                  else 
+                    exit -1
+                  fi
                 fi
               fi
 
