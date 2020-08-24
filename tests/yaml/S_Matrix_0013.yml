@@ -19,7 +19,7 @@ pipelines:
           onExecute:
             - printenv
             - echo "Executing Matrix step"
-            - key="S_Matrix_0013_" + $step_id_preMatrix + "_preMatrixStep"
+            - key="S_Matrix_0013_"$step_id_preMatrix"_preMatrixStep"
             - echo "$key"
 #             - [[ "$key" == "value" ]]
 #             - text=$( get_step_var S_Matrix_0013 preMatrixStep )
