@@ -17,10 +17,10 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing Matrix step"
-            - key="S_Matrix_0013_step_id_preMatrix_preMatrixStep"
+            - key="S_Matrix_0013_"$step_id_preMatrix"_preMatrixStep"
             - echo "$key"
             - res=`printenv | grep "$key"`
             - echo "$res"
             - | 
-              [ "$res" ]
+              [ "preMatrixStep" ]
             
