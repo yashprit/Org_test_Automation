@@ -14,6 +14,8 @@ pipelines:
             - echo "Hello world"
             - steplet1=`printenv | grep "env1"`
             - steplet2=`printenv | grep "env2"`
+            - echo "$steplet1"
+            - echo "$steplet2"
             - |
                 if [ "$steplet1" ]; then
                   if [ "$env1" == "one" ]; then
