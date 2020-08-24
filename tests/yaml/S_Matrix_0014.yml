@@ -23,5 +23,6 @@ pipelines:
                 elif [ "$steplet2" ]
                 then
                 [[ "$env2" == "two" ]]
+                fi
               fi
 
