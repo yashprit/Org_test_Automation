@@ -5,9 +5,9 @@ pipelines:
         type: PreMatrix
         execution:
           onExecute:
-            - echo "Executing matrix step"
-            - set_step_var my_Step value1
-
+            - printenv
+            - echo "Executing Pre-Matrix step"
+            - set_step_var preMatrixStep1 value1 preMatrixStep2 value2
 
       - name: S_Matrix_0013_1
         type: Matrix
@@ -16,6 +16,7 @@ pipelines:
             - name: S_Matrix_0013
         execution:
           onExecute:
+            - printenv
             - echo "Executing Matrix step"
             - text=$( get_step_var S_Matrix_0013 my_Step )
             - |
