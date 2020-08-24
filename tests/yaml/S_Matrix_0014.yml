@@ -15,7 +15,7 @@ pipelines:
             - steplet1=`printenv | grep "env1"`
             - steplet2=`printenv | grep "env2"`
             - |
-              if [ "$steplet1" || "$steplet2" ]
+              if [ "$steplet1" | "$steplet2" ]
               if [ "$steplet1" ]
               then
               [[ "$env1" == "one" ]]
