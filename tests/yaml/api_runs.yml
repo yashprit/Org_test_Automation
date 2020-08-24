@@ -1,3 +1,12 @@
+resources:
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      path: jfbetapipeorg/Org_test_Automation
+      branches:
+        include: master
+      gitProvider: s_gitHub
+
 pipelines:
   - name: api_runs
     steps:
@@ -6,6 +15,8 @@ pipelines:
         configuration:
           runtime:
             type: host
+          inputResources:
+            - name: r_GitRepo
         execution:
           onExecute:
             - echo runs > cache.file
@@ -20,6 +31,8 @@ pipelines:
         configuration:
           runtime:
             type: host
+          inputResources:
+            - name: r_GitRepo
         execution:
           onExecute:
             - echo runs > cache.file
