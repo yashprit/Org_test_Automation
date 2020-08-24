@@ -22,7 +22,7 @@ pipelines:
             - echo "$key"
             - |
               [ ! -z "$key" ]
-            - res=(printenv | grep "$key" )
+            - res=(printenv | grep "$key")
             - | 
               [ "$res" ]
             
