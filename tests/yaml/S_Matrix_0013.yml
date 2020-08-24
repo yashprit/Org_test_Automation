@@ -7,7 +7,8 @@ pipelines:
           onExecute:
             - printenv
             - echo "Executing Pre-Matrix step"
-            - set_step_var preMatrixStep1 value1 preMatrixStep2 value2
+            - set_step_var preMatrixStep value
+            - add_run_variables step_id_preMatrix=$step_id
 
       - name: S_Matrix_0013_1
         type: Matrix
@@ -18,6 +19,9 @@ pipelines:
           onExecute:
             - printenv
             - echo "Executing Matrix step"
-            - text=$( get_step_var S_Matrix_0013 my_Step )
+            - key=S_Matrix_0013_$(step_id_preMatrix)_preMatrixStep
+            - echo $key
+            - [[ key === "value" ]]
+            - text=$( get_step_var S_Matrix_0013 preMatrixStep )
             - |
-              [[ "$text" == "value1" ]]
+              [[ "$text" == "value" ]]
