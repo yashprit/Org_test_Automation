@@ -15,17 +15,21 @@ pipelines:
             - steplet1=`printenv | grep "env1"`
             - steplet2=`printenv | grep "env2"`
             - |
-              if [ "$steplet1" | "$steplet2" ]; then
                 if [ "$steplet1" ]; then
                   if [ "$env1" == "one" ]; then
+                    echo "success"
                   else 
                     exit -1
                   fi
                 elif [ "$steplet2" ]; then
                   if [ "$env2" == "two" ]; then
+                    echo "success"
                   else 
                     exit -1
                   fi
+                else 
+                  echo "invalid" 
+                  exit -1
                 fi
-              fi
+              
 
