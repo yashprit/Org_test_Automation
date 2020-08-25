@@ -1,7 +1,7 @@
 pipelines:
   - name: N_DyNodeK8s_A_0008
     steps:
-      - name: N_DyNodeK8s_A_0008
+      - name: N_DyNodeK8s_A_0008_1
         type: Bash
         configuration:
           nodePool: test_automation_kubernetesNodePool_u18
