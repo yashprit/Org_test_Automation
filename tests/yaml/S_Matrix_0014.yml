@@ -7,28 +7,7 @@ pipelines:
         stepletMultipliers:
           environmentVariables:
             - env1: one
-              e12: sha
-              e13: test
             - env2: two
-              e21: v21
-              e22: v22
         execution:
           onExecute:
-            - printenv
-            - echo "Hello world"
-            - automation=true
-            - steplet1env=`printenv env1`
-            - steplet2env=`printenv env2`
-            - echo "$steplet1env"
-            - echo "$steplet2env"
-            - |
-                if [ "$steplet1env" == "one" ]; then
-                  echo "success"
-                elif [ "$steplet2env" == "two" ]; then
-                  echo "success"
-                else 
-                  echo "invalid" 
-                  exit -1
-                fi
-              
-
+            - echo "steplet no : $steplet_number"
