@@ -7,7 +7,7 @@ pipelines:
           onExecute:
             - echo "Executing Pre-Matrix step"
             - set_step_var preMatrixStep value
-            - add_run_variables step_id_preMatrix=$step_id
+            - add_run_variables step_id_preMatrix=$steplet_id
 
       - name: S_Matrix_0013_1
         type: Matrix
