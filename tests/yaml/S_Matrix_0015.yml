@@ -13,17 +13,22 @@ pipelines:
             - printenv
             - echo "Hello world"
             - res=`printenv`
+            - echo $env1
             - echo "$res"
             - steplet1env=`echo "$res" | grep "env1"`
             - steplet2env=`echo "$res" | grep "env2"`
             - echo "$steplet1env"
             - echo "$steplet2env"
             - |
-              if [ steplet1env ] 
+              if [ "$steplet1env" ] 
+                test1=`echo "$steplet1env" | grep "env1=one"
+                echo "$test1"
                 if [ "$steplet1env" == "one" ]; then
                   echo "success"
                 fi
-              elif [ steplet2env ]
+              elif [ "$steplet2env" ]
+                test2=`echo "$steplet2env" | grep "env1"
+                echo "$test1"
                 if [ "$steplet2env" == "two" ]; then
                   echo "success"
                 fi
