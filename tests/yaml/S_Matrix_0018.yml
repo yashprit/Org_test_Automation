@@ -5,9 +5,6 @@ pipelines:
         type: Matrix
         stepMode: Bash
         stepletMultipliers:
-          environmentVariables:
-            - env1: one
-            - env2: two
           runtimes:
             - type: image
               image:
@@ -15,7 +12,6 @@ pipelines:
                   language: node
                   versions:
                     - 10.21.0
-
             - type: image
               image:
                 auto:
@@ -24,4 +20,12 @@ pipelines:
                     - 8.17.0
         execution:
           onExecute:
-            - echo "Hello world"
+            - |
+              if [[ "$step_image_tag" == "10.21.0" ]]; then 
+                echo "this steplet is running on runtime node-10.21.0 "
+              elif [[ "$step_image_tag" == "8.17.0" ]]; then
+                echo "this steplet is running on runtime node-8.17.0"
+              else 
+                echo "invalid" 
+                exit -1
+              fi
