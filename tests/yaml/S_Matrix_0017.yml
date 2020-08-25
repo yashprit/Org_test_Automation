@@ -4,9 +4,6 @@ pipelines:
       - name: S_Matrix_0017
         type: Matrix
         stepMode: Bash
-        configuration:
-          environmentVariables: 
-            flag: none
         stepletMultipliers:
           runtimes:
             - type: image
