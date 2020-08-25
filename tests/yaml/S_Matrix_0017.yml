@@ -4,9 +4,6 @@ pipelines:
       - name: S_Matrix_0017
         type: Matrix
         stepMode: Bash
-        configuration:
-          environmentVariables: 
-            flag: none
         stepletMultipliers:
           runtimes:
             - type: image
@@ -23,26 +20,15 @@ pipelines:
                     - 8.17.0
         execution:
           onExecute:
-            - printenv
-            - echo "Hello world"
-            - set_step_var test $step_name
-            - testValue=`get_step_var S_Matrix_0017 test`
+            - testValue=$step_name
             - |
-              if [ ! -z "$env1" ]; then
-                if [ "$testValue" == "S_Matrix_0017" ]; then
+              if [[ "$step_image_tag" == "10.21.0" || "$step_image_tag" == "8.17.0" ]]; then
+                if [[ "$testValue" == "S_Matrix_0017" ]]; then
                   echo "success"
                 else
                   exit -1
                 fi
+              else 
+                echo "invalid"
+                exit -1
               fi
-            - |
-              if [ ! -z "$env2" ]; then
-                if [ "$testValue" == "S_Matrix_0017" ]; then
-                  echo "success"
-                else
-                  exit -1
-                fi
-              fi
-
-
-            

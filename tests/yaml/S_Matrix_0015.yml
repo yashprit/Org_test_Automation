@@ -10,14 +10,11 @@ pipelines:
             - env2: two
         execution:
           onExecute:
-            - printenv
-            - echo "Hello world"
-            - echo $env1
             - |
               if [ ! -z "$env1" ]; then 
-                echo "steplet1"
+                echo "env1 is present in this steplet"
               elif [ ! -z "$env2" ]; then
-                echo "steplet2"
+                echo "env2 is present in this steplet"
               else 
                 echo "invalid" 
                 exit -1
