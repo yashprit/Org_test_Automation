@@ -14,7 +14,7 @@ pipelines:
             - testValue=`get_step_var S_Matrix_0014 test`
             - sleep 10s
             - |
-              if [[ ! -z "$env1" || ! -z "$env2" ]]; then
+              if [ ! -z "$env1" ] || [ ! -z "$env2" ]; then
                 if [[ "$testValue" == "S_Matrix_0014" ]]; then
                   echo "success"
                 else
