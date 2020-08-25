@@ -4,6 +4,9 @@ pipelines:
       - name: S_Matrix_0017
         type: Matrix
         stepMode: Bash
+        configuration:
+          environmentVariables: 
+            flag: none
         stepletMultipliers:
           environmentVariables:
             - env1: one
@@ -25,17 +28,20 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello world"
-            - set_step_var test "auto"
-            - get_step_var S_Matrix_0017 test
+            - set_step_var test $step_name
             - |
               if [ ! -z "$env1" ]; then
-                set_step_var foo "bar"
-                get_step_var S_Matrix_0017 foo
+                if [ "$test" == "S_Matrix_0017" ]; then
+                  echo "success"
+                else
+                  exit -1
               fi
             - |
               if [ ! -z "$env2" ]; then
-                steplet2env=`get_step_var S_Matrix_0017 foo`
-                echo $steplet2env
+                if [ "$test" == "S_Matrix_0017" ]; then
+                  echo "success"
+                else
+                  exit -1
               fi
 
 
