@@ -30,6 +30,7 @@ pipelines:
             - |
               if [ ! -z "$env1" ]; then
                 set_step_var foo "bar"
+                get_step_var S_Matrix_0017 foo
               fi
             - |
               if [ ! -z "$env2" ]; then
