@@ -16,6 +16,7 @@ pipelines:
             - name: S_Matrix_0013
         execution:
           onExecute:
+            - printenv
             - echo "Executing Matrix step"
             - key="S_Matrix_0013_"$step_id_preMatrix"_preMatrixStep"
             - res=`printenv | grep "$key"`
