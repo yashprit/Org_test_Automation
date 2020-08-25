@@ -10,6 +10,7 @@ pipelines:
             - env2: two
         execution:
           onExecute:
+            - printenv
             - echo "Hello world"
             - steplet1env=`printenv env1`
             - steplet2env=`printenv env2`
