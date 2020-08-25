@@ -4,7 +4,7 @@ pipelines:
       - name: N_DyNodeAWS_0073_1
         type: PowerShell
         configuration:
-          nodePool: AWS_dynamic_node_Win19
+          nodePool: AWS_dynamic_node_win19
         execution:
           onExecute:
             - echo "N_DyNodeAWS_0073_1"
