@@ -1,28 +1,55 @@
 resources:
-  - name: r_GitRepo
-    type: GitRepo
+  - name: api_in_runs_propertyBag
+    type: PropertyBag
     configuration:
-      path: deepikasl/Org_test_Automation
-      branches:
-        include: master
-      gitProvider: s_gitHub
+      pipelines: "user_in"
+
+  - name: api_out_runs_propertyBag
+    type: PropertyBag
+    configuration:
+      pipelines: "user_out"
+      
+  - name: api_in_runs_propertyBag_2
+    type: PropertyBag
+    configuration:
+      pipelines: "user_in_2"
+
+  - name: api_out_runs_propertyBag_2
+    type: PropertyBag
+    configuration:
+      pipelines: "user_out_2"
+      
 
 pipelines:
   - name: api_runs
     steps:
-      - name: api_runs
+      - name: api_runs_step
         type: Bash
         configuration:
-          runtime:
-            type: host
           inputResources:
-            - name: r_GitRepo
+            - name: api_in_runs_propertyBag
+          outputResources:
+            - name: api_out_runs_propertyBag
         execution:
           onExecute:
             - echo runs > cache.file
             - add_cache_files cache.file runs.file
             - echo "state=pipeline2" > cache.txt
             - add_run_files cache.txt run_state_file
+            - write_output api_out_runs_propertyBag "pipelines=$run_id"
+            
+      - name: api_runs_step_in
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_runs_step
+          inputResources:
+            - name: api_in_runs_propertyBag_2
+          outputResources:
+            - name: api_out_runs_propertyBag_2
+        execution:
+          onExecute:
+            - echo "executing step"
 
   - name: api_runs_ProjectAdmin
     steps:
@@ -31,8 +58,6 @@ pipelines:
         configuration:
           runtime:
             type: host
-          inputResources:
-            - name: r_GitRepo
         execution:
           onExecute:
             - echo runs > cache.file
