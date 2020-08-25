@@ -5,10 +5,7 @@ pipelines:
         type: Matrix
         stepMode: Bash
         stepletMultipliers:
-          environmentVariables:
-            - env1: one
-            - env2: two
-          runtimes:                   # optional, only needed if customer
+          runtimes:                  
             - type: image
               image:
                 auto:
