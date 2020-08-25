@@ -14,8 +14,8 @@ pipelines:
             - echo "Hello world"
             - res=`printenv`
             - echo "$res"
-            - steplet1env=`echo "$res" | grep "env1=one"`
-            - steplet2env=`echo "$res" | grep "env2=two"`
+            - steplet1env=`echo "$res" | grep "env1"`
+            - steplet2env=`echo "$res" | grep "env2"`
             - echo "$steplet1env"
             - echo "$steplet2env"
             - |
