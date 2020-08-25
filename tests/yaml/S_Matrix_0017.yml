@@ -24,6 +24,7 @@ pipelines:
             - echo "Hello world"
             - set_step_var test $step_name
             - testValue=`get_step_var S_Matrix_0017 test`
+            - echo $testValue
             - |
               if [[ "$step_image_tag" == "10.21.0" || "$step_image_tag" == "8.17.0" ]]; then
                 if [[ "$testValue" == "S_Matrix_0017" ]]; then
