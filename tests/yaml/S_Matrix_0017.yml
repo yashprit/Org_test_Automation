@@ -26,13 +26,15 @@ pipelines:
           onExecute:
             - echo "Hello world"
             - set_step_var test "auto"
+            - get_step_var S_Matrix_0017 test
             - |
               if [ ! -z "$env1" ]; then
                 set_step_var foo "bar"
               fi
             - |
               if [ ! -z "$env2" ]; then
-                get_step_var S_Matrix_0017 foo
+                steplet2env=`get_step_var S_Matrix_0017 foo`
+                echo $steplet2env
               fi
 
 
