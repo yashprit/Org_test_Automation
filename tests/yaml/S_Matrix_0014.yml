@@ -10,4 +10,17 @@ pipelines:
             - env2: two
         execution:
           onExecute:
-            - echo "steplet no $steplet_number"
+            - set_step_var test $step_name
+            - testValue=`get_step_var S_Matrix_0014 test`
+            - echo $testValue
+            - |
+              if [[ ! -z "$env1" || ! -z "$env2" ]]; then
+                if [[ "$testValue" == "S_Matrix_0014" ]]; then
+                  echo "success"
+                else
+                  exit -1
+                fi
+              else 
+                echo "invalid"
+                exit -1
+              fi
