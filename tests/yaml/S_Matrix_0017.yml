@@ -25,3 +25,12 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello world"
+            - if [ ! -z "$env1 ]; then
+                set_step_var foo “bar”
+              fi
+            - if [ ! -z "$env2 ]; then
+                get_step_var S_Matrix_0017 foo
+              fi
+
+
+            
