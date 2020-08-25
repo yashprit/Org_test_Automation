@@ -12,7 +12,7 @@ pipelines:
           onExecute:
             - printenv
             - echo "Hello world"
-            - res=printenv
+            - res=`printenv`
             - echo "$res"
             - steplet1env=`echo "$res" | grep "env1=one"`
             - steplet2env=`echo "$res" | grep "env2=two"`
