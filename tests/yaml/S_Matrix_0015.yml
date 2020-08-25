@@ -19,11 +19,15 @@ pipelines:
             - echo "$steplet1env"
             - echo "$steplet2env"
             - |
+              if [ `echo "$res" | grep "env1"` ] 
                 if [ "$steplet1env" == "one" ]; then
                   echo "success"
-                elif [ "$steplet2env" == "two" ]; then
-                  echo "success"
-                else 
-                  echo "invalid" 
-                  exit -1
                 fi
+              elif [ `echo "$res" | grep "env2"` ]
+                if [ "$steplet2env" == "two" ]; then
+                  echo "success"
+                fi
+              else 
+                echo "invalid" 
+                exit -1
+              fi
