@@ -12,23 +12,15 @@ pipelines:
           onExecute:
             - printenv
             - echo "Hello world"
-            - steplet1=`printenv | grep "env1=one"`
-            - steplet2=`printenv | grep "env2=two"`
-            - echo "$steplet1"
-            - echo "$steplet2"
+            - steplet1env=`printenv env1`
+            - steplet2env=`printenv env2`
+            - echo "$steplet1env"
+            - echo "$steplet2env"
             - |
-                if [ "$steplet1" ]; then
-                  if [ "$env1" == "one" ]; then
-                    echo "success"
-                  else 
-                    exit -1
-                  fi
-                elif [ "$steplet2" ]; then
-                  if [ "$env2" == "two" ]; then
-                    echo "success"
-                  else 
-                    exit -1
-                  fi
+                if [ "$steplet1env" == "one" ]; then
+                  echo "success"
+                elif [ "$steplet2env" == "two" ]; then
+                  echo "success"
                 else 
                   echo "invalid" 
                   exit -1
