@@ -10,4 +10,4 @@ pipelines:
             - env2: two
         execution:
           onExecute:
-            - echo "steplet no : $steplet_number"
+            - echo "steplet no $steplet_number"
