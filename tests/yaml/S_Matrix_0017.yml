@@ -25,6 +25,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello world"
+            - set_step_var test "auto"
             - if [ ! -z "$env1" ]; then
                 set_step_var foo "bar"
               fi
