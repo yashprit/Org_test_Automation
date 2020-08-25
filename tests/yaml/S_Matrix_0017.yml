@@ -8,30 +8,28 @@ pipelines:
           environmentVariables: 
             flag: none
         stepletMultipliers:
-          environmentVariables:
-            - env1: one
-            - env2: two
-#           runtimes:
-#             - type: image
-#               image:
-#                 auto:
-#                   language: node
-#                   versions:
-#                     - 10.21.0
-
-#             - type: image
-#               image:
-#                 auto:
-#                   language: node
-#                   versions:
-#                     - 8.17.0
+          runtimes:
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                    - 10.21.0
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                    - 8.17.0
         execution:
           onExecute:
+            - printenv
             - echo "Hello world"
             - set_step_var test $step_name
+            - testValue=`get_step_var S_Matrix_0017 test`
             - |
               if [ ! -z "$env1" ]; then
-                if [ "$test" == "S_Matrix_0017" ]; then
+                if [ "$testValue" == "S_Matrix_0017" ]; then
                   echo "success"
                 else
                   exit -1
@@ -39,7 +37,7 @@ pipelines:
               fi
             - |
               if [ ! -z "$env2" ]; then
-                if [ "$test" == "S_Matrix_0017" ]; then
+                if [ "$testValue" == "S_Matrix_0017" ]; then
                   echo "success"
                 else
                   exit -1
