@@ -16,6 +16,7 @@ pipelines:
           onExecute:
             - printenv
             - echo "Hello world"
+            - automation=true
             - steplet1env=`printenv env1`
             - steplet2env=`printenv env2`
             - echo "$steplet1env"
