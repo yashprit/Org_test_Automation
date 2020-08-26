@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeGCP_0039
+    steps:
+      - name: N_DyNodeGCP_0039_1
+        type: Bash
+        configuration:
+          nodePool: GCP_dynamic_nodePool
+        execution:
+          onExecute:
+            - echo "N_DyNodeGCP_0039_1"

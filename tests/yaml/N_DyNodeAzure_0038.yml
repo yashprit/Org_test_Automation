@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeAzure_0038
+    steps:
+      - name: N_DyNodeAzure_0038_1
+        type: PowerShell
+        configuration:
+          nodePool: azure_dynamic_nodePool
+        execution:
+          onExecute:
+            - echo "N_DyNodeAzure_0038_1"
