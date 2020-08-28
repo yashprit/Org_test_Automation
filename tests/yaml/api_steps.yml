@@ -14,6 +14,17 @@ pipelines:
             - touch cachefile.txt
             - add_cache_files cachefile.txt my_file
 
+      - name: api_steps_2
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          inputSteps:
+            - name: api_steps
+        execution:
+          onExecute:
+            - echo "step 2.."
+
   - name: api_steps_ProjectAdmin
     steps:
       - name: api_steps_ProjectAdmin
@@ -28,3 +39,14 @@ pipelines:
           onExecute:
             - touch cachefile.txt
             - add_cache_files cachefile.txt my_file
+
+      - name: api_steps_ProjectAdmin_2
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          inputSteps:
+            - name: api_steps_ProjectAdmin
+        execution:
+          onExecute:
+            - echo "step 2.."
