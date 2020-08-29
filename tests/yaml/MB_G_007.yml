@@ -1,0 +1,16 @@
+
+pipelines:
+  - name: pipeline_MB_G_007
+    steps:
+      - name: MB_G_007_step1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: MB_G_007_resource
+              branch: master
+            - name: MB_G_007_resource
+              branch: MultiBranch-1
+        execution:
+          onExecute:
+            - echo "test"
+    

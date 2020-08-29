@@ -1,0 +1,9 @@
+resources:
+  - name: MB_G_001_inputResource
+    type: PropertyBag
+    configuration:
+      test: MB_G_001
+  - name: MB_G_001_outputResource
+    type: PropertyBag
+    configuration:
+      test: MB_G_001
