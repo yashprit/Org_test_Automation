@@ -23,8 +23,6 @@ pipelines:
       - name: S_Bash_Util_0017_2
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0017
         execution:
@@ -35,8 +33,6 @@ pipelines:
       - name: S_Bash_Util_0017_3
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0017_2
         execution:
@@ -46,8 +42,6 @@ pipelines:
       - name: S_Bash_Util_0017_4
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0017_3
         execution:
@@ -57,8 +51,6 @@ pipelines:
       - name: S_Bash_Util_0017_5
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0017_4
         execution:

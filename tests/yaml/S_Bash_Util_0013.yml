@@ -22,8 +22,6 @@ pipelines:
       - name: S_Bash_Util_0013_2
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0013
         execution:
@@ -34,8 +32,6 @@ pipelines:
       - name: S_Bash_Util_0013_3
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0013_2
         execution:
