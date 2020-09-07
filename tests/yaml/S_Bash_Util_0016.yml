@@ -34,8 +34,6 @@ pipelines:
       - name: S_Bash_Util_0016_2
         type: Bash
         configuration:
-          inputResources:
-            - name: repo_pipe
           inputSteps:
             - name: S_Bash_Util_0016
         execution:
