@@ -1,0 +1,25 @@
+pipelines:
+  - name: pipeline_MB_G_005
+    steps:
+      - name: MB_G_005_step1
+        type: Bash
+        configuration:
+          outputResources:
+            - name: MB_G_005_outputResource
+              branch: master
+        execution:
+          onExecute:
+            - write_output MB_G_005_outputResource updatedBy=MB_G_005_step1
+      - name: MB_G_005_step2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: MB_G_005_outputResource
+              branch: master
+            - name: MB_G_005_inputResource
+              branch: master
+        execution:
+          onExecute:
+            - if [ "$res_MB_G_005_outputResource_updatedBy" != "MB_G_005_step1" ]; then return 1; fi
+            - if [ "$res_MB_G_005_inputResource_creatingBranch" != "master" ]; then return 1; fi
+            - if [ "$res_MB_G_005_outputResource_creatingBranch" != "master" ]; then return 1; fi
