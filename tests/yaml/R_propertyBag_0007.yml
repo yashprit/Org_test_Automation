@@ -1,4 +1,4 @@
 resources:
-  - name: mypropertyBag
+  - name: R_propertyBag_0007
     type: PropertyBag
     configuration:
