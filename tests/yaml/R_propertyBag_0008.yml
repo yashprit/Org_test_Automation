@@ -1,5 +1,5 @@
 resources:
-  - name: mypropertyBag
+  - name: R_propertyBag_0008
     type: PropertyBag
     configuration:
       111
