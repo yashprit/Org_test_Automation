@@ -1,5 +1,5 @@
 resources:
-  - name: image_google
+  - name: R_Image
     type: Image
     configuration:
        registry: google
