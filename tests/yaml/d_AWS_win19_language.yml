@@ -14,6 +14,7 @@ pipelines:
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.12"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.13"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.14"
+            - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19go" | Select-String "1.15"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "10.21"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "12.18"
             - docker images | Select-String "pipelines-docker.jfrog.io/jfrog/pipelines-w19node" | Select-String "8.17"
