@@ -1,0 +1,12 @@
+GitRepo:
+  name: P_Pipelines_0044_gitRepo
+  gitProvider: Github
+  path: rahulnlb1/Org_test_Automation
+  branches:
+    include: {{ gitBranch }}
+ 
+Pipeline:
+  name: pipelines_P_Pipelines_0044
+
+Step1:
+  name: pipelines_P_Pipelines_0044_1
