@@ -1,20 +1,20 @@
 
 template: true  
-valuesFilePath: P_Pipelines_0046_values.yml
+valuesFilePath: P_Pipelines_0052_values.yml
 
 resources:
-  - name: P_Pipelines_0046_gitRepo
+  - name: P_Pipelines_0052_gitRepo
     type: GitRepo
     configuration:
       gitProvider: Github
-      path: rahulnlb1/Org_test_Automation  
+      path: jfbetapipeorg/Org_test_Automation  
       branches:
         include: master
 
 pipelines:
-  - name: pipelines_P_Pipelines_0046
+  - name: pipelines_P_Pipelines_0052
     steps:
-      - name: pipelines_P_Pipelines_0044_1
+      - name: pipelines_P_Pipelines_0052_1
         type: Bash
         execution:
           onExecute:

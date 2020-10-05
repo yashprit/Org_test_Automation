@@ -1,5 +1,6 @@
+
 template: true  
-valuesFilePath: P_Pipelines_0044_values.yml
+valuesFilePath: P_Pipelines_0049_values.yml
 
 resources:
   - name: {{ Values.GitRepo.name }}
@@ -17,6 +18,7 @@ pipelines:
         type: Bash
         execution:
           onExecute:
-            - echo "Executing Step ${step_name} for branch {{ gitBranch }}"
+            - echo "Executing Step ${step_name}"
+            - echo "Hello world"
           onComplete:
             - echo "${step_name} Completed"
