@@ -1,0 +1,24 @@
+
+template: true  
+valuesFilePath: P_Pipelines_0046_values.yml
+
+resources:
+  - name: P_Pipelines_0046_gitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: Github
+      path: rahulnlb1/Org_test_Automation  
+      branches:
+        include: master
+
+pipelines:
+  - name: pipelines_P_Pipelines_0046
+    steps:
+      - name: pipelines_P_Pipelines_0044_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Executing Step ${step_name}"
+            - echo "Hello world"
+          onComplete:
+            - echo "${step_name} Completed"
