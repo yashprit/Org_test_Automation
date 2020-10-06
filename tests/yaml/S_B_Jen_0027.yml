@@ -7,4 +7,4 @@ pipelines:
       configuration:
         jenkinsJobName: invalid_job
         integrations:
-          - name: S_B_jenkins
+          - name: i_testJenkins
