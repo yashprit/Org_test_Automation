@@ -12,3 +12,17 @@ pipelines:
           onComplete:
             - echo "state=step" > step_state.txt
             - add_cache_files step_state.txt step_state_file 
+            
+  - name: pipeline_api_PipelineSteps_ProjectAdmin
+    steps:
+      - name: api_PipelineSteps_ProjectAdmin
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - echo "executing step..."
+          onComplete:
+            - echo "state=step" > step_state.txt
+            - add_cache_files step_state.txt step_state_file 
