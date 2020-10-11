@@ -1,0 +1,67 @@
+pipelines:
+  
+  - name: S_WF_024
+    steps:
+  
+      - name: S_WF_024_001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Step 1 is running"
+  
+      - name: S_WF_024_002
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_024_001
+        execution:
+          onStart:
+            - add_run_variables step_2_var="step2"
+          onExecute:
+            - echo "Step 2 is running"
+  
+      - name: S_WF_024_003
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_024_001
+        execution:
+          onExecute:
+            - echo "Step 3 is running"
+  
+      - name: S_WF_024_004
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_024_001
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - add_run_variables step_4_var="step4"
+          onExecute:
+            - echo "Step 4 is running"
+  
+      - name: S_WF_024_005
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_024_002
+            - name: S_WF_024_004
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "Step 5 is running"
+            - echo "step_2_var - ${step_2_var}"
+            - echo "step_4_var - ${step_4_var}"
+            - if [ "$step_2_var" != "step2" ]; then exit 1; fi
+            - if [ "$step_4_var" != "step4" ]; then exit 1; fi
+  
+      - name: S_WF_024_006
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_024_005
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "Step 6 is running"
