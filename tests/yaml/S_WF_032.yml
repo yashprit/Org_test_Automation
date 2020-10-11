@@ -1,0 +1,42 @@
+
+resources:
+  - name: S_WF_032_PropBag
+    type: PropertyBag
+    configuration:
+      foo: "bar"
+
+pipelines:
+
+  - name: S_WF_032
+    configuration:
+      nodePool: win_2019
+    steps:
+  
+      - name: S_WF_032_001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Step 1 is running"
+  
+      - name: S_WF_032_002
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_032_001
+          outputResources:
+            - name: S_WF_032_PropBag  
+        execution:
+          onStart:
+            - write_output S_WF_032_PropBag "step_id=${step_id}"
+          onExecute:
+            - echo "Step 2 is running"
+            - exit 1;
+  
+      - name: S_WF_032_003
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_WF_032_PropBag  
+        execution:
+          onExecute:
+            - echo "I should not be running"

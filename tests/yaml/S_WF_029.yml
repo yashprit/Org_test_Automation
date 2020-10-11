@@ -1,0 +1,42 @@
+pipelines:
+     
+  - name: S_WF_029
+    configuration:
+      nodePool: win_2019
+    steps:
+  
+      - name: S_WF_029_001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Step 1 is running"
+  
+      - name: S_WF_029_002
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_029_001
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - exit 1;
+  
+      - name: S_WF_029_003
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_029_002
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "I should not be running."
+  
+      - name: S_WF_029_004
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_029_003
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "I should not be running too."
