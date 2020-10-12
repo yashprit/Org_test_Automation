@@ -1,0 +1,51 @@
+pipelines:
+
+  - name: S_WF_017
+    steps:
+
+      - name: S_WF_017_001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Step 1 is running"
+
+      - name: S_WF_017_002
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_017_001
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - add_run_variables step_2_node_id="${step_node_id}"
+          onExecute:
+            - echo "Step 2 is running"
+
+      - name: S_WF_017_003
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_017_001
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - add_run_variables step_3_node_id="${step_node_id}"
+          onExecute:
+            - echo "Step 3 is running"
+
+      - name: S_WF_017_004
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_017_002
+            - name: S_WF_017_003
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - step_4_node_id="${step_node_id}"
+          onExecute:
+            - echo "step_2_node_id - ${step_2_node_id}"
+            - echo "step_3_node_id - ${step_3_node_id}"
+            - echo "step_4_node_id - ${step_4_node_id}"
+            - if [ "$step_2_node_id" != "$step_4_node_id" ]; then exit 1; fi
+            - if [ "$step_3_node_id" != "$step_4_node_id" ]; then exit 1; fi

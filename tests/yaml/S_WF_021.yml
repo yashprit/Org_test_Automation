@@ -1,0 +1,51 @@
+pipelines:
+
+  - name: S_WF_021
+    steps:
+  
+      - name: S_WF_021_001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Step 1 is running"
+  
+      - name: S_WF_021_002
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_021_001
+        execution:
+          onExecute:
+            - echo "Step 2 is running"
+            - exit 1;
+  
+      - name: S_WF_021_003
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_021_001
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "Step 3 is running"
+  
+      - name: S_WF_021_004
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_021_002
+            - name: S_WF_021_003
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "I should not be running."
+  
+      - name: S_WF_021_005
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_021_004
+          affinityGroup: some_ag
+        execution:
+          onExecute:
+            - echo "I should not be running too."
