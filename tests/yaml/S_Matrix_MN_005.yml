@@ -10,11 +10,11 @@ pipelines:
         stepletMultipliers:
           environmentVariables:
             - foo: "foo"
-              fail: false
+              fail: true
             - foo: "bar"
               fail: true
             - foo: "baz"
-              fail: false
+              fail: true
           fastFail: true
         execution:
           onExecute:
