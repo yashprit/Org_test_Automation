@@ -12,15 +12,15 @@ resources:
      path: jfbetapipeorg/Org_test_Automation
 
 pipelines:
-#   - name: api_resourceVersions
-#     steps:
-#       - name: node
-#         type: Bash
-#         configuration:
-#           inputResources:
-#             - name: resourceversions
-#           runtime:
-#             type: host
-#         execution:
-#           onExecute:
-#             - echo "test"
+  - name: api_resourceVersions
+    steps:
+      - name: node
+        type: Bash
+        configuration:
+          inputResources:
+            - name: resourceversions
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo "test"
