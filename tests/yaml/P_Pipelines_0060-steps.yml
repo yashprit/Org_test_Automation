@@ -1,0 +1,15 @@
+
+template: true  
+valuesFilePath: P_Pipelines_0060_values.yml
+
+pipelines:
+  - name: {{ Values.Pipeline.name }}
+    steps:
+      - name: {{ Values.Step1.name }}
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Executing Step ${step_name}"
+            - echo "Hello world"
+          onComplete:
+            - echo "${step_name} Completed"
