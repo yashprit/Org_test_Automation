@@ -1,7 +1,7 @@
 GitRepo:
   name: P_Pipelines_0049_gitRepo
   gitProvider: Github
-  path: jfbetapipeorg/Org_test_Automation
+  path: rahulnlb1/Org_test_Automation
   branches:
     include: master
  
