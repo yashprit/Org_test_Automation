@@ -1,0 +1,12 @@
+
+template: true  
+valuesFilePath: P_Pipelines_0049_values.yml
+
+resources:
+  - name: {{ Values.GitRepo.name }}
+    type: GitRepo
+    configuration:
+      gitProvider: {{ Values.GitRepo.gitProvider }} 
+      path: {{ Values.GitRepo.path }}   
+      branches:
+        include: {{ Values.GitRepo.branches.include }}
