@@ -1,6 +1,6 @@
 
 template: true  
-valuesFilePath: P_Pipelines_0049_values.yml
+valuesFilePath: P_Pipelines_0060_values.yml
 
 resources:
   - name: {{ Values.GitRepo.name }}
