@@ -1,0 +1,12 @@
+GitRepo:
+  name: P_Pipelines_0050_gitRepo
+  gitProvider: s_gitHub
+  path: jfbetapipeorg/Org_test_Automation
+  branches:
+    include: {{ gitBranch }}
+ 
+Pipeline:
+  name: pipelines_P_Pipelines_0050
+
+Step1:
+  name: pipelines_P_Pipelines_0050_1
