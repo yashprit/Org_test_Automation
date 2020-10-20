@@ -7,7 +7,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation  
+      path: rahulnlb1/Org_test_Automation  
       branches:
         include: master
 
