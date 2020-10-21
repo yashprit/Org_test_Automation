@@ -1,7 +1,7 @@
 GitRepo:
   name: fooGitRepo
   gitProvider: s_github_template
-  path: Bharath92/Org_test_Automation
+  path: jfbetapipeorg//Org_test_Automation
   branches:
     include: 'master'
 
