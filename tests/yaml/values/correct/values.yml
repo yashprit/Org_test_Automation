@@ -5,7 +5,7 @@ GitRepo:
   branches:
     include: 'master'
 
-artifactoryIntegration: s_artifactory_template
+artifactoryIntegration: s_artifactory
   
 Image:
   name: fooImage
