@@ -1,6 +1,6 @@
 GitRepo:
   name: fooGitRepo
-  gitProvider: s_github_template
+  gitProvider: s_gitHub
   path: jfbetapipeorg//Org_test_Automation
   branches:
     include: 'master'
