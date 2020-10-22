@@ -1,0 +1,14 @@
+pipelines:
+  - name: N_DyNodeAWS_0075
+    steps:
+      - name: N_DyNodeAWS_0075
+        type: PowerShell
+        configuration:
+          nodePool: AWS_dynamic_node_win19
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - $env:daemon_config_path = "C:\ProgramData\docker\config\daemon.json"
+            - If(!(Test-Path $env:daemon_config_path -PathType Leaf)) {throw "no daemon.json found"}
+            - $daemon_config = Get-Content -Raw -Path $env:daemon_config_path | ConvertFrom-Json; If(!($daemon_config."insecure-registries".Contains("0.0.0.0"))) {throw "expected insecure registry entry was not present in " + $daemon_config};
