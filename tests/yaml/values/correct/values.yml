@@ -1,3 +1,28 @@
-foo:
-  bar: 1
-  baz: 1
+GitRepo:
+  name: fooGitRepo
+  gitProvider: s_gitHub
+  path: jfbetapipeorg/Org_test_Automation
+  branches:
+    include: 'master'
+
+artifactoryIntegration: s_artifactory
+  
+Image:
+  name: fooImage
+  sourceRepository: foo
+
+DockerBuild:
+  name: foobuild
+  dockerImageName: foo
+  dockerFileName: foo
+  dockerFileLocation: '.'
+  dockerImageTag: ${run_number}
+
+Pipeline:
+  name: foo
+
+DockerPush:
+  name: foopush
+  dockerImageName: foo
+  dockerFileName: foo
+  targetRepository: foo
