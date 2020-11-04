@@ -1,0 +1,10 @@
+pipelines:
+  - name: Environments_WF_008
+    steps:
+      - name: Environments_WF_008
+        type: Bash
+        configuration:
+          nodePool: Environments_WF_1_DEV
+        execution:
+          onExecute:
+            - echo "step_1"

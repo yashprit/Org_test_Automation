@@ -1,0 +1,11 @@
+pipelines:
+  - name: Environments_WF_007
+    steps:
+      - name: Environments_WF_007
+        type: Bash
+        configuration:
+          integrations:
+            - name: Environments_WF_1_DEV
+        execution:
+          onExecute:
+            - echo "step_1"
