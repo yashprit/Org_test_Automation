@@ -3,10 +3,10 @@ template: true
 valuesFilePath: P_Pipelines_0060_values.yml
 
 resources:
-  - name: {{ Values.GitRepo.name }}
+  - name: {{ .Values.GitRepo.name }}
     type: GitRepo
     configuration:
-      gitProvider: {{ Values.GitRepo.gitProvider }} 
-      path: {{ Values.GitRepo.path }}   
+      gitProvider: {{ .Values.GitRepo.gitProvider }} 
+      path: {{ .Values.GitRepo.path }}   
       branches:
-        include: {{ Values.GitRepo.branches.include }}
+        include: {{ .Values.GitRepo.branches.include }}
