@@ -1,11 +1,11 @@
 
-template: true  
+template: true
 valuesFilePath: P_Pipelines_0060_values.yml
 
 pipelines:
-  - name: {{ Values.Pipeline.name }}
+  - name: {{ .Values.Pipeline.name }}
     steps:
-      - name: {{ Values.Step1.name }}
+      - name: {{ .Values.Step1.name }}
         type: Bash
         execution:
           onExecute:
