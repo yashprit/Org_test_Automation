@@ -1,0 +1,5 @@
+resources:
+  - name: api_passthrough_automation_propertyBag
+    type: PropertyBag
+    configuration:
+      test: "value"
