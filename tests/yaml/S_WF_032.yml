@@ -13,13 +13,13 @@ pipelines:
     steps:
   
       - name: S_WF_032_001
-        type: Bash
+        type: PowerShell
         execution:
           onExecute:
-            - echo "Step 1 is running"
+            - Write-Output "Step 1 is running"
   
       - name: S_WF_032_002
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_032_001
@@ -29,14 +29,14 @@ pipelines:
           onStart:
             - write_output S_WF_032_PropBag "step_id=${step_id}"
           onExecute:
-            - echo "Step 2 is running"
-            - exit 1;
+            - Write-Output "Step 2 is running"
+            - throw "intentionally failing the step"
   
       - name: S_WF_032_003
-        type: Bash
+        type: PowerShell
         configuration:
           inputResources:
             - name: S_WF_032_PropBag  
         execution:
           onExecute:
-            - echo "I should not be running"
+            - Write-Output "I should not be running"
