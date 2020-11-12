@@ -6,33 +6,33 @@ pipelines:
     steps:
   
       - name: S_WF_030_001
-        type: Bash
+        type: PowerShell
         execution:
           onExecute:
-            - echo "Step 1 is running"
+            - Write-Output "Step 1 is running"
   
       - name: S_WF_030_002
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_030_001
         execution:
           onExecute:
-            - echo "Step 2 is running"
-            - exit 1;
+            - Write-Output "Step 2 is running"
+            - throw "intentionally failing the step"
   
       - name: S_WF_030_003
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_030_001
           affinityGroup: some_ag
         execution:
           onExecute:
-            - echo "Step 3 is running"
+            - Write-Output "Step 3 is running"
   
       - name: S_WF_030_004
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_030_002
@@ -40,14 +40,14 @@ pipelines:
           affinityGroup: some_ag
         execution:
           onExecute:
-            - echo "I should not be running."
+            - Write-Output "I should not be running."
   
       - name: S_WF_030_005
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_030_004
           affinityGroup: some_ag
         execution:
           onExecute:
-            - echo "I should not be running too."
+            - Write-Output "I should not be running too."

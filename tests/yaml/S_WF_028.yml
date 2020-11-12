@@ -6,15 +6,15 @@ pipelines:
     steps:
 
       - name: S_WF_028_001
-        type: Bash
+        type: PowerShell
         execution:
           onStart:
             - add_run_variables step_1_var="step_1"
           onExecute:
-            - echo "step 1 is running"
+            - Write-Output "step 1 is running"
 
       - name: S_WF_028_002
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_028_001
@@ -22,14 +22,14 @@ pipelines:
           priority: 4
         execution:
           onStart:
-            - echo "step_4_var - ${step_4_var}"
-            - if [ "$step_4_var" != "step_4" ]; then exit 1; fi
+            - Write-Output "step_4_var - ${step_4_var}"
+            - if ("$step_4_var" -ne "step_4") { throw "variable does not match expected value" }
             - add_run_variables step_2_var="step_2"
           onExecute:
-            - echo "step 2 is running"
+            - Write-Output "step 2 is running"
 
       - name: S_WF_028_003
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_028_001
@@ -37,14 +37,14 @@ pipelines:
           priority: 1
         execution:
           onStart:
-            - echo "step_1_var - ${step_1_var}"
-            - if [ "$step_1_var" != "step_1" ]; then exit 1; fi
+            - Write-Output "step_1_var - ${step_1_var}"
+            - if ("$step_1_var" -ne "step_1") { throw "variable does not match expected value" }
             - add_run_variables step_3_var="step_3"
           onExecute:
-            - echo "step 3 is running"
+            - Write-Output "step 3 is running"
 
       - name: S_WF_028_004
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_028_001
@@ -52,14 +52,14 @@ pipelines:
           priority: 3
         execution:
           onStart:
-            - echo "step_3_var - ${step_3_var}"
-            - if [ "$step_3_var" != "step_3" ]; then exit 1; fi
+            - Write-Output "step_3_var - ${step_3_var}"
+            - if ("$step_3_var" -ne "step_3") { throw "variable does not match expected value" }
             - add_run_variables step_4_var="step_4"
           onExecute:
-            - echo "step 4 is running"
+            - Write-Output "step 4 is running"
 
       - name: S_WF_028_005
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_028_002
@@ -69,14 +69,14 @@ pipelines:
           priority: 4
         execution:
           onStart:
-            - echo "step_6_var - ${step_6_var}"
-            - if [ "$step_6_var" != "step_6" ]; then exit 1; fi
+            - Write-Output "step_6_var - ${step_6_var}"
+            - if ("$step_6_var" -ne "step_6") { throw "variable does not match expected value" }
             - add_run_variables step_5_var="step_5"
           onExecute:
-            - echo "step 5 is running"
+            - Write-Output "step 5 is running"
 
       - name: S_WF_028_006
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_028_002
@@ -86,18 +86,18 @@ pipelines:
           priority: 2
         execution:
           onStart:
-            - echo "step_2_var - ${step_2_var}"
-            - echo "step_3_var - ${step_3_var}"
-            - echo "step_4_var - ${step_4_var}"
-            - if [ "$step_2_var" != "step_2" ]; then exit 1; fi
-            - if [ "$step_3_var" != "step_3" ]; then exit 1; fi
-            - if [ "$step_4_var" != "step_4" ]; then exit 1; fi
+            - Write-Output "step_2_var - ${step_2_var}"
+            - Write-Output "step_3_var - ${step_3_var}"
+            - Write-Output "step_4_var - ${step_4_var}"
+            - if ("$step_2_var" -ne "step_2") { throw "variable does not match expected value" }
+            - if ("$step_3_var" -ne "step_3") { throw "variable does not match expected value" }
+            - if ("$step_4_var" -ne "step_4") { throw "variable does not match expected value" }
             - add_run_variables step_6_var="step_6"
           onExecute:
-            - echo "step 6 is running"
+            - Write-Output "step 6 is running"
 
       - name: S_WF_028_007
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_028_005
@@ -106,17 +106,17 @@ pipelines:
           priority: 2
         execution:
           onStart:
-            - echo "step_1_var - ${step_1_var}"
-            - echo "step_2_var - ${step_2_var}"
-            - echo "step_3_var - ${step_3_var}"
-            - echo "step_4_var - ${step_4_var}"
-            - echo "step_5_var - ${step_5_var}"
-            - echo "step_6_var - ${step_6_var}"
-            - if [ "$step_1_var" != "step_1" ]; then exit 1; fi
-            - if [ "$step_2_var" != "step_2" ]; then exit 1; fi
-            - if [ "$step_3_var" != "step_3" ]; then exit 1; fi
-            - if [ "$step_4_var" != "step_4" ]; then exit 1; fi
-            - if [ "$step_5_var" != "step_5" ]; then exit 1; fi
-            - if [ "$step_6_var" != "step_6" ]; then exit 1; fi
+            - Write-Output "step_1_var - ${step_1_var}"
+            - Write-Output "step_2_var - ${step_2_var}"
+            - Write-Output "step_3_var - ${step_3_var}"
+            - Write-Output "step_4_var - ${step_4_var}"
+            - Write-Output "step_5_var - ${step_5_var}"
+            - Write-Output "step_6_var - ${step_6_var}"
+            - if ("$step_1_var" -ne "step_1") { throw "variable does not match expected value" }
+            - if ("$step_2_var" -ne "step_2") { throw "variable does not match expected value" }
+            - if ("$step_3_var" -ne "step_3") { throw "variable does not match expected value" }
+            - if ("$step_4_var" -ne "step_4") { throw "variable does not match expected value" }
+            - if ("$step_5_var" -ne "step_5") { throw "variable does not match expected value" }
+            - if ("$step_6_var" -ne "step_6") { throw "variable does not match expected value" }
           onExecute:
-            - echo "step 7 is running"
+            - Write-Output "step 7 is running"

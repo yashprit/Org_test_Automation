@@ -6,13 +6,13 @@ pipelines:
     steps:
 
       - name: S_WF_027_001
-        type: Bash
+        type: PowerShell
         execution:
           onExecute:
-            - echo "Step 1 is running"
+            - Write-Output "Step 1 is running"
 
       - name: S_WF_027_002
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_027_001
@@ -21,10 +21,10 @@ pipelines:
           onStart:
             - add_run_variables step_2_var="foo"
           onExecute:
-            - echo "Step 2 is running"
+            - Write-Output "Step 2 is running"
 
       - name: S_WF_027_003
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_027_001
@@ -33,10 +33,10 @@ pipelines:
           onStart:
             - add_run_variables step_3_var="bar"
           onExecute:
-            - echo "Step 3 is running"
+            - Write-Output "Step 3 is running"
 
       - name: S_WF_027_004
-        type: Bash
+        type: PowerShell
         configuration:
           inputSteps:
             - name: S_WF_027_002
@@ -44,7 +44,7 @@ pipelines:
           affinityGroup: some_ag
         execution:
           onExecute:
-            - echo "step_2_var - ${step_2_var}"
-            - echo "step_3_var - ${step_3_var}"
-            - if [ "$step_2_var" != "foo" ]; then exit 1; fi
-            - if [ "$step_3_var" != "bar" ]; then exit 1; fi
+            - Write-Output "step_2_var - ${step_2_var}"
+            - Write-Output "step_3_var - ${step_3_var}"
+            - if ("$step_2_var" -ne "foo") { throw "variable does not match expected value" }
+            - if ("$step_3_var" -ne "bar") { throw "variable does not match expected value" }
