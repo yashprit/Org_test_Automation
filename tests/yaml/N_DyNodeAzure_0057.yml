@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeAzure_0057
+    steps:
+      - name: N_DyNodeAzure_0057_1
+        type: Bash
+        configuration:
+          nodePool: azure_dynamic_nodePool
+        execution:
+          onExecute:
+            - echo "N_DyNodeAzure_0057_1"
