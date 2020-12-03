@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeAWS_u20
+    steps:
+      - name: N_DyNodeAWS_u20
+        type: Bash
+        configuration:
+          nodePool: AWS_dynamic_node_u20
+        execution:
+          onExecute:
+            - echo "executing step..."
