@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeAZ_c8
+    steps:
+      - name: N_DyNodeAZ_c8
+        type: Bash
+        configuration:
+          nodePool: azure_dynamic_nodePool
+        execution:
+          onExecute:
+            - echo "executing step..."

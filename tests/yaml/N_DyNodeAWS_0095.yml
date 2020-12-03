@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeAWS_0095
+    steps:
+      - name: N_DyNodeAWS_0095_1
+        type: Bash
+        configuration:
+          nodePool: AWS_dynamic_node_C8
+        execution:
+          onExecute:
+            - echo "N_DyNodeAWS_0095_1"

@@ -1,0 +1,10 @@
+pipelines:
+  - name: N_DyNodeGCP_c8
+    steps:
+      - name: N_DyNodeGCP_c8
+        type: Bash
+        configuration:
+          nodePool: GCP_dynamic_nodePool
+        execution:
+          onExecute:
+            - echo "executing step..."

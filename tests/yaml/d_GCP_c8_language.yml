@@ -1,0 +1,19 @@
+pipelines:
+  - name: pipelines_auto1
+    steps:
+      - name: d_GCP_c8_language
+        type: Bash
+        configuration:
+          nodePool: GCP_dynamic_nodePool
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            # images should be in this order
+            - docker images
+            - images=(docker.bintray.io/jfrog/pipelines-c8go docker.bintray.io/jfrog/pipelines-c8node docker.bintray.io/jfrog/pipelines-c8java docker.bintray.io/jfrog/pipelines-c8cpp)
+            - javatags=(8 11 14)
+            - gotags=(1.15.2 1.14.4 1.13.12 1.12.17 1.11.13)
+            - nodetags=(12.19.0 10.23.0 8.17.0)
+            - cpptags=(9.0.1)
+            - for docker_images in "${images[@]}"; do case "$docker_images" in "${images[0]}") for tags in "${gotags[@]}"; do  docker images | grep $docker_images | grep $tags ; done ;; "${images[1]}") for tags in "${nodetags[@]}"; do  docker images | grep $docker_images | grep $tags ; done ;;  "${images[2]}") for tags in "${javatags[@]}"; do  docker images | grep $docker_images | grep $tags ; done ;; "${images[3]}") for tags in "${cpptags[@]}"; do  docker images | grep $docker_images | grep $tags ; done ;;  esac; done
