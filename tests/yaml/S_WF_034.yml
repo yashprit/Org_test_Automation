@@ -1,0 +1,56 @@
+resources:
+  - name: S_WF_034_prop_bag
+    type: PropertyBag
+    configuration:
+      key: value
+
+pipelines:
+
+  - name: S_WF_034
+    steps:
+
+      - name: S_WF_034_001
+        type: Bash
+        execution:
+          onExecute:
+            - echo "${step_name} running"
+
+      - name: S_WF_034_002
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_034_001
+          outputResources:
+            - name: S_WF_034_prop_bag
+        execution:
+          onStart:
+            - add_run_variables foo="bar"
+          onExecute:
+            - echo "${step_name} running"
+            - sleep 10s
+            - write_output S_WF_034_prop_bag "lastRunId=$run_id"
+
+      - name: S_WF_034_003
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_034_001
+        execution:
+          onExecute:
+            - echo "${step_name} running"
+            - sleep 40s
+
+      - name: S_WF_034_004
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_034_003
+          inputResources:
+            - name: S_WF_034_prop_bag
+        execution:
+          onStart:
+            - echo "foo ---> $foo"
+            - echo "lastRunId ---> $lastRunId"
+          onExecute:
+            - echo "${step_name} running"
+            - if [ "$foo" != "bar" ]; then exit 1; fi
