@@ -20,12 +20,13 @@ resources:
       props: <string>
       recursive: false
       flat: false
-      excludePatterns: "dummy*"
+      excludePatterns: 
+        - "dummy*"
       archiveEntries: "art*"
       # buildName: "maven"
       # buildNumber: "v7.*"
       sortBy: 
-        - name: "fileName"
+        - "fileName"
       sortOrder: "ascending"
       limit: 20
       offset: 0
