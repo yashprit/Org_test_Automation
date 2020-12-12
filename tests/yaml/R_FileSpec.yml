@@ -24,7 +24,8 @@ resources:
       archiveEntries: "art*"
       # buildName: "maven"
       # buildNumber: "v7.*"
-      sortBy: "fileName"
+      sortBy: 
+        - name: "fileName"
       sortOrder: "ascending"
       limit: 20
       offset: 0
