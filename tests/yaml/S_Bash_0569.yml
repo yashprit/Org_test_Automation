@@ -1,7 +1,7 @@
 pipelines:
   - name: pipeline_automation
     steps:
-      - name: S_Bash_0543
+      - name: S_Bash_0569
         type: Bash
         configuration:
           nodePool: c8dynamic
