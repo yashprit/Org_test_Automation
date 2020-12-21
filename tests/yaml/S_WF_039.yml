@@ -1,0 +1,10 @@
+pipelines:
+  - name: S_WF_039
+    steps:
+      - name: S_WF_039_1
+        type: Bash
+        configuration:
+          chronological: true
+        execution:
+          onExecute:
+            - echo "${step_name} running"

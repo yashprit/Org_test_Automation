@@ -1,0 +1,20 @@
+pipelines:
+  - name: S_WF_040
+    steps:
+      - name: S_WF_040_1
+        type: Bash
+        configuration:
+          priority: 100
+          chronological: true
+        execution:
+          onExecute:
+            - echo "${step_name} running"
+      - name: S_WF_040_2
+        type: Bash
+        configuration:
+          chronological: true
+          inputSteps:
+            - name: S_WF_040_1
+        execution:
+          onExecute:
+            - echo "${step_name} running"
