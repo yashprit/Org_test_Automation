@@ -1,0 +1,31 @@
+resources:
+  - name: S_WF_036_resource
+    type: PropertyBag
+    configuration:
+      key: value
+
+pipelines:
+
+  - name: S_WF_036
+    steps:
+      - name: S_WF_036_001
+        type: Bash
+        configuration:
+          outputResources:
+            - name: S_WF_036_resource
+        execution:
+          onExecute:
+            - echo "${step_name} running"
+            - write_output S_WF_036_resource "lastRunId=$run_id"
+
+  - name: S_WF_036_2
+    steps:
+      - name: S_WF_036_002
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_WF_036_resource
+        execution:
+          onExecute:
+            - echo "${step_name} running"
+            - echo "$lastRunId"

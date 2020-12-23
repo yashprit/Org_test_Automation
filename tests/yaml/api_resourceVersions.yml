@@ -1,12 +1,12 @@
 resources:
   - name: resourceversions
-    type: GitRepo
+    type: PropertyBag
     configuration:
      gitProvider: s_gitHub
      path: jfbetapipeorg/Org_test_Automation
 
   - name: resourceversionProjectAdmin
-    type: GitRepo
+    type: PropertyBag
     configuration:
      gitProvider: s_gitHub
      path: jfbetapipeorg/Org_test_Automation
