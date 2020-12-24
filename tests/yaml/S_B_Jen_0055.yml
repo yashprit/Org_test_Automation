@@ -1,29 +1,26 @@
 resources:
-  - name: S_B_Jen_0055
+  - name: S_B_Jen_0055_pb
     type: PropertyBag
     configuration:
-      passing: 0
-      failing: 0
-
+      key: value
+      foo: bar
 pipelines:
-  - name: S_B_Jen_0055_pipelines
+  - name: S_B_Jen_0055
     steps:
-
-    - name: S_B_Jen_0055
-      type: Jenkins
-      configuration:
-        jenkinsJobName: auto_job
-        jenkinsBranchName: master 
-        integrations:
-          - name: S_B_jenkins
+      - name: S_B_Jen_0055_1
+        type: Bash 
         outputResources:
-          - name: S_B_Jen_0055
-          
-    - name: S_B_Jen_0055_bash
-      type: Bash
-      configuration:
-        inputResources:
-          - name: S_B_Jen_0055  # optional
-      execution:
-        onExecute:
-          - echo "hello"
+          - name: S_B_Jen_0055_pb
+        execution:
+          onStart:
+            - echo "executing step.."
+      - name: S_B_Jen_0055_2
+        type: Jenkins
+        configuration:
+          inputSteps:
+            - name: S_B_Jen_0055_1
+          inputResources:
+            - name: S_B_Jen_0055_pb
+          jenkinsJobName: testPipeline
+          integrations:
+            - name: S_B_Jenkins

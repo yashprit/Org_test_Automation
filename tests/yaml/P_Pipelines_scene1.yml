@@ -1,0 +1,103 @@
+pipelines:
+  - name: pipeline_voluptatem_1
+    steps:
+      - name: step_itaque_1
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+      - name: step_velit_2
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_itaque_1
+      - name: step_et_3
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_velit_2
+      - name: step_modi_4
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_et_3
+            - name: step_itaque_1
+      - name: step_enim_5
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_et_3
+            - name: step_velit_2
+            - name: step_itaque_1
+            - name: step_modi_4
+      - name: step_facilis_6
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_enim_5
+            - name: step_velit_2
+            - name: step_modi_4
+            - name: step_et_3
+            - name: step_itaque_1
+      - name: step_quaerat_7
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_itaque_1
+      - name: step_vel_8
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_facilis_6
+            - name: step_velit_2
+            - name: step_et_3
+      - name: step_qui_9
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_modi_4
+            - name: step_facilis_6
+            - name: step_et_3
+      - name: step_omnis_10
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            - 'echo "Executing step on ${stepvar_id}"'
+        configuration:
+          inputSteps:
+            - name: step_vel_8
+            - name: step_qui_9

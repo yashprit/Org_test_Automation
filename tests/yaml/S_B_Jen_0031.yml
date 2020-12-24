@@ -1,26 +1,26 @@
 pipelines:
-  - name: S_B_Jen_0031_pipelines
+  - name: S_B_Jen_0031
     steps:
-      - name: S_B_Jen_0031_bash1
-        type: Bash
+      - name: S_B_Jen_0031_1
+        type: Bash 
         execution:
+          onStart:
+            - echo "executing onStart"
           onExecute:
-            - echo "executing step.."
-            
-      - name: S_B_Jen_0031
+            - sleep 5s
+      - name: S_B_Jen_0031_2
         type: Jenkins
         configuration:
-          jenkinsJobName: auto_job
           inputSteps:
-            - name: S_B_Jen_0031_bash1
+            - name: S_B_Jen_0031_1
+          jenkinsJobName: testPipeline 
           integrations:
-            - name: S_B_jenkins
-          
-      - name: S_B_Jen_0031_bash2
-        type: Bash
+            - name: S_B_Jenkins
+      - name: S_B_Jen_0031_3
+        type: Bash 
         configuration:
           inputSteps:
-            - name: S_B_Jen_0031
+            - name: S_B_Jen_0031_2
         execution:
           onExecute:
             - echo "executing step.."
