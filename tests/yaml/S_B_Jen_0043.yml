@@ -3,9 +3,11 @@ pipelines:
     steps:
       - name: S_B_Jen_0043_1
         type: Bash
+        configuration:
         execution:
           onExecute:
             - echo "executing step.."
+            - cat doesnotexist.txt
             
       - name: S_B_Jen_0043_2
         type: Jenkins

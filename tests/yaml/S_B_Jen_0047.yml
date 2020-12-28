@@ -5,7 +5,7 @@ pipelines:
         type: Jenkins
         configuration:
           jenkinsJobName: testPipeline   
-        buildParameters:
-          run1: 'test1frombash'
-        integrations:
-          - name: S_B_Jenkins  
+          buildParameters:
+            run1: 'test1frombash'
+          integrations:
+            - name: S_B_Jenkins  
