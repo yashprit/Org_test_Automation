@@ -9,8 +9,9 @@ pipelines:
     steps:
       - name: S_B_Jen_0055_1
         type: Bash 
-        outputResources:
-          - name: S_B_Jen_0055_pb
+        configuration:
+          outputResources:
+            - name: S_B_Jen_0055_pb
         execution:
           onStart:
             - echo "executing step.."
