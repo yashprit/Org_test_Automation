@@ -1,12 +1,84 @@
+resources:
+  - name: S_connecting_resource_node_test
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+
+
 pipelines:
-  - name: pipelines_S_PipelineSource
+  - name: pipelines_S_PipelineSource_node_test
     steps:
       - name: S_PipelineSource
         type: Bash
         configuration:
+          outputResources: 
+            - name: S_connecting_resource_node_test
           integrations:
             - name: s_artifactory
         execution:
           onExecute:
             - echo automation > test.sh
             - jfrog rt u test.sh example-repo-local/setup/test.sh
+            - write_output S_connecting_resource_node_test "test:value"
+
+      - name: S_win_2019
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputResources:
+            - name: S_connecting_resource_node_test
+        execution:
+          onExecute:
+            - write-output "Hi"
+            - docker images
+
+      - name: S_u16dynamic
+        type: Bash
+        configuration:
+          nodePool: u16dynamic
+          inputResources:
+            - name: S_connecting_resource_node_test
+        execution:
+          onExecute:
+            - docker images
+
+      - name: S_c7dynamic
+        type: Bash
+        configuration:
+          nodePool: c7dynamic
+          inputResources:
+            - name: S_connecting_resource_node_test
+        execution:
+          onExecute:
+            - docker images
+
+      - name: S_u18dynamic
+        type: Bash
+        configuration:
+          nodePool: u18dynamic
+          inputResources:
+            - name: S_connecting_resource_node_test
+        execution:
+          onExecute:
+            - docker images
+
+      - name: S_u20dynamic
+        type: Bash
+        configuration:
+          nodePool: u20dynamic
+          inputResources:
+            - name: S_connecting_resource_node_test
+        execution:
+          onExecute:
+            - docker images
+            
+      - name: S_c8dynamic
+        type: Bash
+        configuration:
+          nodePool: c8dynamic
+          inputResources:
+            - name: S_connecting_resource_node_test
+        execution:
+          onExecute:
+            - docker images
