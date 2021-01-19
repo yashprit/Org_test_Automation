@@ -1,11 +1,10 @@
-
 pipelines:
 
   - name: S_WF_025
     configuration:
       nodePool: win_2019
     steps:
-
+    
       - name: S_WF_025_001
         type: PowerShell
         execution:
