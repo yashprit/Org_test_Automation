@@ -1,0 +1,27 @@
+resources:
+  - name: github_repo
+    type: GitRepo
+    configuration:
+      path: jfbetapipeorg/Org_test_Automation
+      gitProvider: s_gitHub
+      buildOn:
+        commit: false
+        pullRequestCreate: true
+
+pipelines:
+  - name: WH_generic_0001
+    steps:
+      - name: WH_generic_0001_001
+        type: Bash
+        configuration:
+          inputResources:
+            - name: github_repo
+              trigger: true
+        execution:
+          onExecute:
+            - printenv
+            - base_branch=$(find_resource_variable "github_repo" "baseCommitRef")
+            - head_branch=$(find_resource_variable "github_repo" "headCommitRef")
+            - echo "base_branch - ${base_branch}"
+            - echo "head_branch - ${head_branch}"
+            - if [ "$head_branch" != "WH_generic_0001" ]; then exit 1; fi
