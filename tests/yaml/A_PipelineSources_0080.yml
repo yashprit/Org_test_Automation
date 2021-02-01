@@ -1,0 +1,8 @@
+pipelines:
+  - name: pipeline_A_PipelineSources_0080
+    steps:
+      - name: step_A_PipelineSources_0080
+        type: Bash
+        execution:
+          onExecute:
+            - echo "testing"
