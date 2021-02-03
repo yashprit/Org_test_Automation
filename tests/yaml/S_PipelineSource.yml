@@ -20,7 +20,7 @@ pipelines:
           onExecute:
             - echo automation > test.sh
             - jfrog rt u test.sh example-repo-local/setup/test.sh
-            - write_output S_connecting_resource_node_test "test:value"
+            - write_output S_connecting_resource_node_test "test=value"
 
       - name: S_win_2019
         type: PowerShell
