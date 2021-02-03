@@ -32,7 +32,7 @@ pipelines:
             - name: api_out_runs_propertyBag
         execution:
           onExecute:
-            - sleep 30000
+            - sleep 30s
             - echo runs > cache.file
             - add_cache_files cache.file runs.file
             - echo "state=pipeline2" > cache.txt
