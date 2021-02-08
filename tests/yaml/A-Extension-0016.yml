@@ -1,0 +1,23 @@
+
+resources:
+  - name: testResource
+    type: test/TestResource
+    configuration:
+      foo: bar
+
+pipelines:
+ - name: PipelineExtension_automation
+   configuration:
+       nodePool: win_2019
+   steps:
+      - name: step1
+        type: test/HealthCheck
+        configuration:
+           healthCheckUrl: https://www.google.com/
+           notifyOnSuccess: true
+           notifyOnFailure: true
+           stuff:
+              - "hi"
+              - "hello"
+           inputResources:
+            - name: testResource
