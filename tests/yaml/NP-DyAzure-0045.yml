@@ -1,0 +1,11 @@
+pipelines:
+  - name: pipelines_NP_DyAzure_0045
+    steps:
+      - name: NP_DyAzure_0045
+        type: Bash
+        configuration:
+          nodePool: azure_dynamic_node_u16_with_diskSize
+        execution:
+          onExecute:
+            - echo "executing step on Azure dynamic node pool"
+            - df -h

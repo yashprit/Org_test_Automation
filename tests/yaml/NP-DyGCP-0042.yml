@@ -1,0 +1,11 @@
+pipelines:
+  - name: pipelines_NP_DyGCP_0042
+    steps:
+      - name: NP_DyGCP_0042
+        type: Bash
+        configuration:
+          nodePool: gcp_nodepool_0042_disk_size
+        execution:
+          onExecute:
+            - echo "executing step on GCP dynamic node pool"
+            - df -h
