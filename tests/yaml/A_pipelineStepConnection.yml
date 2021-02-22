@@ -1,3 +1,10 @@
+resources:
+  - name: resource_A_PipelineConnections_0001
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+      
 pipelines:
   - name: pipelineStepConnection_automation
     steps:
@@ -12,3 +19,35 @@ pipelines:
           onComplete:
             - echo "state=pipeline2" > pipeline_state.txt
             - add_pipeline_files pipeline_state.txt pipeline_state_file 
+
+
+  - name: pipeline1_A_PipelineConnections_0001
+    steps:
+      - name: step1_A_PipelineConnections_0001
+        type: Bash
+        configuration:
+          outputResources:
+            - name: resource_A_PipelineConnections_0001
+        execution:
+          onExecute:
+            - write_output resource_A_PipelineConnections_0001 runId=$run_number
+  - name: pipeline2_A_PipelineConnections_0001
+    steps:
+      - name: step2_A_PipelineConnections_0001
+        type: Bash
+        configuration:
+          inputResources:
+            - name: resource_A_PipelineConnections_0001
+        execution:
+          onExecute:
+            - printenv
+  - name: pipeline3_A_PipelineConnections_0001
+    steps:
+      - name: step3_A_PipelineConnections_0001
+        type: Bash
+        configuration:
+          inputResources:
+            - name: resource_A_PipelineConnections_0001
+        execution:
+          onExecute:
+            - printenv
