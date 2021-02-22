@@ -1,15 +1,11 @@
 resources:
-  - name: S_HelmDeploy_PropertyBag_0001_resource
-    type: PropertyBag
-    configuration:
-      runNumber: 0
-  - name: S_HelmDeploy_HelmChart_0001_resource
-    type: HelmChart
+  - name: S_HelmDeploy_FileSpec_0001_resource
+    type: FileSpec
     configuration:
       sourceArtifactory: s_artifactory
-      repository: simplecharts
-      chart: simplehelm
-      version: 0.0.0
+      pattern: >-
+        helmgeneric/
+      recursive: true
 
 pipelines:
   - name: pipeline_S_HelmDeploy_0001
@@ -17,11 +13,11 @@ pipelines:
       - name: S_HelmDeploy_0001
         type: HelmDeploy
         configuration:
+          helmVersion: 3
           releaseName: release
           integrations:
             - name: s_artifactory
             - name: s_kubernetes
           inputResources:
-            - name: S_HelmDeploy_PropertyBag_0001_resource
+            - name: S_HelmDeploy_FileSpec_0001_resource
               newVersionOnly: true
-            - name: S_HelmDeploy_HelmChart_0001_resource

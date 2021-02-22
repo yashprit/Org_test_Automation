@@ -1,9 +1,5 @@
 resources:
-  - name: S_HelmDeploy_PropertyBag_0001_resource
-    type: PropertyBag
-    configuration:
-      runNumber: 0
-  - name: S_HelmDeploy_HelmChart_0001_resource
+  - name: S_HelmDeploy_HelmChart_0008_resource
     type: HelmChart
     configuration:
       sourceArtifactory: s_artifactory
@@ -12,16 +8,16 @@ resources:
       version: 0.0.0
 
 pipelines:
-  - name: pipeline_S_HelmDeploy_0001
+  - name: pipeline_S_HelmDeploy_0008
     steps:
-      - name: S_HelmDeploy_0001
+      - name: S_HelmDeploy_0008
         type: HelmDeploy
         configuration:
+          chartPath: ./
+          helmVersion: 3
           releaseName: release
           integrations:
             - name: s_artifactory
             - name: s_kubernetes
           inputResources:
-            - name: S_HelmDeploy_PropertyBag_0001_resource
-              newVersionOnly: true
-            - name: S_HelmDeploy_HelmChart_0001_resource
+            - name: S_HelmDeploy_HelmChart_0008_resource
