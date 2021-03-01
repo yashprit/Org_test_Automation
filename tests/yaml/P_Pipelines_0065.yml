@@ -1,0 +1,47 @@
+resources:
+  - name: P_Pipelines_0065_resource
+    type: PropertyBag
+    configuration:
+      runNumber: 0
+
+pipelines:
+  - name: pipelines_P_Pipelines_0065_1
+    configuration:
+      chronological: true
+    steps:
+      - name: P_Pipelines_0065_1
+        type: Bash
+        configuration:
+          outputResources:
+            - name: P_Pipelines_0065_resource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            - write_output P_Pipelines_0065_resource runNumber=$run_number
+
+  - name: pipelines_P_Pipelines_0065_2
+    configuration:
+      dependencyMode:
+        waitOnParentComplete: true
+    steps:
+      - name: P_Pipelines_0065_2_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_Pipelines_0065_resource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - echo "$res_P_Pipelines_0065_resource_runNumber"
+      - name: P_Pipelines_0065_2_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: P_Pipelines_0065_2_1
+          inputResources:
+            - name: P_Pipelines_0065_resource
+        execution:
+          onExecute:
+            - echo "$res_P_Pipelines_0065_resource_runNumber"
+            - if [ $res_P_Pipelines_0065_resource_runNumber -lt 2 ]; then exit 1; fi

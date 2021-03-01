@@ -1,11 +1,11 @@
 pipelines:
 
-  - name: pipelines_P_Pipelines_0063
+  - name: pipelines_P_Pipelines_0064
     configuration:
       retentionPolicy:
-        maxAgeDays: 1
+        minRuns: 0
     steps:
-      - name: P_Pipelines_0063_1
+      - name: P_Pipelines_0064_1
         type: Bash
         execution:
           onExecute:
