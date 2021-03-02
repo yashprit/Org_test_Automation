@@ -1,0 +1,110 @@
+resources:
+  - name: S_PS_DistributeReleaseBundle_0003_BuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: s_artifactory
+      buildName: 'name'
+      buildNumber: '1'
+  - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: s_distribution
+      name: name
+      version: '1'
+  - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: s_distribution
+      name: name
+      version: '1'
+  - name: S_PS_DistributeReleaseBundle_0003_DistributionRule
+    type: DistributionRule
+    configuration:
+      sourceDistribution: s_distribution
+      serviceName: "*"
+      siteName: "*"
+      cityName: "*"
+      countryCodes:
+        - "*"
+
+pipelines:
+  - name: pipeline_S_PS_DistributeReleaseBundle_0003
+    configuration:
+      nodePool: win_2019
+    steps:
+      - name: S_PS_DistributeReleaseBundle_0003_1
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_artifactory
+          outputResources:
+            - name: S_PS_DistributeReleaseBundle_0003_BuildInfo
+        execution:
+          onExecute:
+            - Set-Content -Path S_PS_DistributeReleaseBundle_0003.txt -Value ${run_id}
+            - jfrog rt upload S_PS_DistributeReleaseBundle_0003.txt test-automation-generic-local
+            - jfrog rt build-publish ${JFROG_CLI_BUILD_NAME} ${JFROG_CLI_BUILD_NUMBER}
+            - write_output S_PS_DistributeReleaseBundle_0003_BuildInfo buildName=${JFROG_CLI_BUILD_NAME} buildNumber=${JFROG_CLI_BUILD_NUMBER}
+      - name: S_PS_DistributeReleaseBundle_0003_2
+        type: CreateReleaseBundle
+        configuration:
+          releaseBundleName: ${JFROG_CLI_BUILD_NAME}
+          releaseBundleVersion: ${run_id}
+          dryRun: false
+          sign: true
+          inputResources:
+            - name: S_PS_DistributeReleaseBundle_0003_BuildInfo
+          outputResources:
+            - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1
+      - name: S_PS_DistributeReleaseBundle_0003_3
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1
+            - name: S_PS_DistributeReleaseBundle_0003_DistributionRule
+          outputResources:
+            - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2
+      - name: S_PS_DistributeReleaseBundle_0003_4
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1
+            - name: S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2
+        execution:
+          onExecute:
+            - Write-Output "Deleting distribution..."
+            - |
+              $distributionUrl = $res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2_sourceDistribution_url
+              $encoded_auth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("${res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2_sourceDistribution_user}:${res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2_sourceDistribution_apikey}"))
+              $releaseBundleName = (find_resource_variable "S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2" name)
+              $releaseBundleVersion = (find_resource_variable "S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2" version)
+              check_no_verify_ssl
+              Set-Content -Path ${step_tmp_dir}\request.json -Value '{"dry_run": false, "distribution_rules": [{"site_name": "*"}], "on_success": "delete"}'
+              $headers = @{'Authorization' = "Basic $encoded_auth";'Content-Type' = "application/json"}
+              Invoke-WebRequest "${distributionUrl}/api/v1/distribution/${releaseBundleName}/${releaseBundleVersion}/delete" -Method Post -Headers $headers -TimeoutSec 60 -InFile "$step_tmp_dir\request.json" -ContentType 'application/json' -UseBasicParsing -OutFile "${step_tmp_dir}\response" -PassThru
+              Remove-Item "$step_tmp_dir\request.json"
+              $trackerId = (ConvertFrom-JSON (Get-Content "${step_tmp_dir}\response")).id
+              if ("$trackerId" -eq "") { throw "Unable to track distribution without ID" }
+              Remove-Item -Force "${step_tmp_dir}\response"
+              while ( $True ) {
+                try {
+                  $Response = Invoke-WebRequest "${distributionUrl}/api/v1/release_bundle/${releaseBundleName}/${releaseBundleVersion}/distribution/${trackerId}" -Method Get -Headers $headers -TimeoutSec 60 -UseBasicParsing -OutFile "${step_tmp_dir}\response" -PassThru
+                  $statusCode = $Response.StatusCode
+                }
+                catch {
+                  $statusCode = $_.Exception.Response.StatusCode.value__
+                }
+
+                if ($statusCode -eq 404) {
+                  break
+                } elseif ($statusCode -gt 299) {
+                  throw "Distribution returned $statusCode"
+                }
+
+                Start-Sleep -Seconds 5
+              }
+            - Write-Output "Checking resource..."
+            - if ("$res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1_name" -ne "$res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2_name") { throw "Wrong name" }
+            - if ("$res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1_version" -ne "$res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2_version") { throw "Wrong version" }
+            - if ("$res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_1_isSigned" -ne "$res_S_PS_DistributeReleaseBundle_0003_ReleaseBundle_2_isSigned") { throw "Wrong isSigned" }
