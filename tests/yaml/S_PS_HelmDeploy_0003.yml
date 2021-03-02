@@ -37,7 +37,7 @@ pipelines:
             - jfrog --version
             - $json = @{key="helmgeneric";rclass="local";packageType="generic";description="This repo is a test repo used by test autmation";repoLayoutRef="simple-default"} | ConvertTo-Json -Compress  | Out-File c:\myrequest.json -Encoding Ascii -Force
             - jfrog rt repo-create c:\myrequest.json
-            - jfrog rt u $res_S_PS_HelmDeploy_GitRepo_0003_resourcePath/files/simplehelm-0.3.0.tgz "helmgeneric/" --explode
+            - jfrog rt u $res_S_PS_HelmDeploy_GitRepo_0003_resourcePath/tests/core/helmdeploy/simplehelm-0.3.0.tgz "helmgeneric/" --explode
 
       - name: deploy_helm_chart_from_generic_repo
         type: HelmDeploy
