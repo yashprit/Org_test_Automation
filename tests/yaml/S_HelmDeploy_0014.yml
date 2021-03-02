@@ -36,12 +36,12 @@ pipelines:
           onExecute:
             - request='{"key":"simplecharts", "rclass":"local", "packageType":"helm", "description":"This repo is a test repo used by test autmation", "repoLayoutRef":"simple-default"}'
             - echo $request > request.json
-            - jfrog rt repo-delete simplecharts || true
+            - jfrog rt repo-delete simplecharts --quiet || true
             - jfrog rt repo-create request.json
             - jfrog rt u ${res_S_HelmDeploy_GitRepo_0014_resource_resourcePath}/tests/core/helmdeploy/simplehelm-0.3.0.tgz "simplecharts/"
             - jfrog rt u ${res_S_HelmDeploy_GitRepo_0014_resource_resourcePath}/tests/core/helmdeploy/index.yaml "simplecharts/"
           onFailure:
-            - jfrog rt repo-delete simplecharts
+            - jfrog rt repo-delete simplecharts --quiet
 
       - name: deploy_helm_chart_from_helm_repo
         type: HelmDeploy
@@ -50,7 +50,7 @@ pipelines:
             - name: trigger_pipeline_S_HelmDeploy_0014
           integrations:
             - name: s_artifactory
-            - name: k8s
+            - name: s_kubernetes
           inputResources:
             - name: S_HelmDeploy_FileSpec_0014_helmrepo_resource
           chartPath: ./
@@ -61,7 +61,6 @@ pipelines:
           flags: "--wait --timeout 900s -n ${k8s_namespace} --set image.repository=trriplejay/simplehelm --set image.tag=latest"
           valueFilePaths:
             - values.yaml
-          # dryRun: true
           lint: true
           lintFlags: "--strict"
           test: true
@@ -74,27 +73,7 @@ pipelines:
             - tar xzvf helm.tar.gz
             - chmod +x ./linux-amd64/helm
             - sudo mv ./linux-amd64/helm /usr/local/bin/helm3
-          onFailure:
-            - jfrog rt repo-delete simplecharts
-
-      - name: clean_helm_deploy_from_helm_repo
-        type: Bash
-        configuration:
-          integrations:
-            - name: s_artifactory
-            - name: k8s
-          inputSteps:
-            - name: deploy_helm_chart_from_helm_repo
-        execution:
-          onStart:
-            - ls -l $res_simpleHelmFileSpec_resourcePath
-            - export HELM_VERSION=3.4.0
-            - echo "================= Adding helm cli $HELM_VERSION ======================================"
-            - curl -sSL -o helm.tar.gz https://get.helm.sh/helm-v"$HELM_VERSION"-linux-amd64.tar.gz
-            - tar xzvf helm.tar.gz
-            - chmod +x ./linux-amd64/helm
-            - sudo mv ./linux-amd64/helm /usr/local/bin/helm3
-          onExecute:
-            - jfrog rt repo-delete simplecharts || true
-            - helm3 delete ${release_name_from_helm_repo} --namespace ${k8s_namespace}
+          onComplete:
+            - jfrog rt repo-delete simplecharts --quiet || true
+            - helm3 delete ${release_name_from_helm_repo} --namespace ${k8s_namespace} || true
 

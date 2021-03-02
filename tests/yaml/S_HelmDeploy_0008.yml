@@ -1,3 +1,4 @@
+
 resources:
   - name: S_HelmDeploy_HelmChart_0008_resource
     type: HelmChart
@@ -13,7 +14,6 @@ pipelines:
       - name: S_HelmDeploy_0008
         type: HelmDeploy
         configuration:
-          chartPath: ./
           helmVersion: 3
           releaseName: release
           integrations:

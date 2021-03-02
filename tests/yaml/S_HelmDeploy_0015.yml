@@ -37,11 +37,11 @@ pipelines:
           onExecute:
             - request='{"key":"helmgeneric", "rclass":"local", "packageType":"generic", "description":"This repo is a test repo used by test autmation", "repoLayoutRef":"simple-default"}'
             - echo $request > request.json
-            - jfrog rt repo-delete helmgeneric || true
+            - jfrog rt repo-delete helmgeneric --quiet || true
             - jfrog rt repo-create request.json
             - jfrog rt u ${res_S_HelmDeploy_GitRepo_0015_resource_resourcePath}/tests/core/helmdeploy/simplehelm-0.3.0.tgz "helmgeneric/" --explode
           onFailure:
-            - jfrog rt repo-delete helmgeneric
+            - jfrog rt repo-delete helmgeneric --quiet
 
       - name: deploy_helm_chart_generic
         type: HelmDeploy
@@ -59,7 +59,6 @@ pipelines:
           flags: "--force --wait --timeout 900s --set image.repository=trriplejay/simplehelm --set image.tag=latest"
           valueFilePaths:
             - values.yaml
-          # dryRun: true
           lint: true
           lintFlags: "--strict"
           test: true
@@ -72,27 +71,6 @@ pipelines:
             - tar xzvf helm.tar.gz
             - chmod +x ./linux-amd64/helm
             - sudo mv ./linux-amd64/helm /usr/local/bin/helm3
-          onFailure:
-            - jfrog rt repo-delete helmgeneric
-
-      - name: clean_helm_deploy_generic
-        type: Bash
-        configuration:
-          integrations:
-            - name: s_artifactory
-            - name: s_kubernetes
-          inputSteps:
-            - name: deploy_helm_chart_generic
-        execution:
-          onStart:
-            - ls -l $res_simpleHelmFileSpec_resourcePath
-            - export HELM_VERSION=3.4.0
-            - echo "================= Adding helm cli $HELM_VERSION ======================================"
-            - curl -sSL -o helm.tar.gz https://get.helm.sh/helm-v"$HELM_VERSION"-linux-amd64.tar.gz
-            - tar xzvf helm.tar.gz
-            - chmod +x ./linux-amd64/helm
-            - sudo mv ./linux-amd64/helm /usr/local/bin/helm3
-          onExecute:
-            - jfrog rt repo-delete helmgeneric || true
-            - helm3 delete ${release_name_generic} --namespace ${k8s_namespace}
-
+          onComplete:
+            - jfrog rt repo-delete helmgeneric --quiet || true
+            - helm3 delete ${release_name_generic} --namespace ${k8s_namespace} || true
