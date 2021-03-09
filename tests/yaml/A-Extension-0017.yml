@@ -1,0 +1,24 @@
+resources:
+  - name: testResource
+    type: test/TestResource
+    configuration:
+      foo: bar
+      sourceArtifactory: s_artifactory
+      gitProvider: s_gitHub
+
+pipelines:
+ - name: PipelineExtension_automation
+   steps:
+      - name: step1
+        type: Bash
+        configuration:
+           inputResources:
+            - name: testResource
+        execution:
+          onExecute:
+            - echo "$res_testResource_sourceArtifactory_url"
+            - echo "$res_testResource_gitProvider_url"
+            - |
+              if [ "$res_testResource_gitProvider_url" != "https://api.github.com" ]; then
+               exit 1
+              fi
