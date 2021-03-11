@@ -1,0 +1,41 @@
+pipelines:
+  - name: S_NC_PS_001
+    steps:
+      - name: S_NC_PS_001_001
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          affinityGroup: S_NC_PS_001
+          environmentVariables:
+            dockerimage: mcr.microsoft.com/windows/nanoserver:1809-amd64
+        execution:
+          onExecute:
+            # Generate random container name
+            - $env:RAND_ID = -join ((65..90) + (97..122) | Get-Random -Count 8 | % {[char]$_})
+            - $env:CONT_NAME="win-$env:RAND_ID"
+            - echo "Container name $env:CONT_NAME"
+            - add_run_variables container_name=$env:CONT_NAME
+            # Create container
+            - docker run -d --name $env:CONT_NAME $env:dockerimage
+
+      - name: S_NC_PS_001_002
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          affinityGroup: S_NC_PS_001
+          inputSteps:
+            - name: S_NC_PS_001_001
+        execution:
+          onExecute:
+            # Get run container name
+            - echo "Container name $env:container_name"
+            # Count container by name
+            # Count should be equals 1 since container was created by previous step on same affinity group
+            - $env:COUNT=$(docker ps -aq -f name=$env:container_name | Measure-Object -line).Lines
+            - echo "Count $env:COUNT"
+            - |
+              if ("$env:COUNT" -ne "1") {
+                Write-Error "Error" -ErrorAction Stop
+              }
+            # Delete container
+            - docker rm -fv $env:container_name

@@ -1,0 +1,34 @@
+pipelines:
+  # This test is only effective if the steps run on the same node
+  - name: S_NC_Bash_002
+    steps:
+      - name: S_NC_Bash_002_001
+        type: Bash
+        configuration:
+          nodePool: test_automation_S_NC_kubernetesNodePool
+        execution:
+          onExecute:
+            # Generate random container name
+            - RAND_ID=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 8)
+            - CONT_NAME="alpine-$RAND_ID"
+            - echo "Container name $CONT_NAME"
+            - add_run_variables container_name=$CONT_NAME
+            # Create container
+            - docker run -d --name $CONT_NAME alpine
+
+      - name: S_NC_Bash_002_002
+        type: Bash
+        configuration:
+          nodePool: test_automation_S_NC_kubernetesNodePool
+          inputSteps:
+            - name: S_NC_Bash_002_001
+        execution:
+          onExecute:
+            # Get run container name
+            - echo "Container name $container_name"
+            # Count container by name
+            # Count should be equals 0 since container was created by previous step on different affinity group
+            - COUNT=$(docker ps -aq -f name=$container_name | wc -l)
+            - echo "Count $COUNT"
+            - |
+              [[ "$COUNT" == "0" ]]

@@ -1,0 +1,38 @@
+pipelines:
+  # This test is only effective if executed on a node poll with a single static node to assure the steps will run on the same node
+  - name: S_NC_PS_002
+    steps:
+      - name: S_NC_PS_002_001
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          environmentVariables:
+            dockerimage: mcr.microsoft.com/windows/nanoserver:1809-amd64
+        execution:
+          onExecute:
+            # Generate random container name
+            - $env:RAND_ID = -join ((65..90) + (97..122) | Get-Random -Count 8 | % {[char]$_})
+            - $env:CONT_NAME="win-$env:RAND_ID"
+            - echo "Container name $env:CONT_NAME"
+            - add_run_variables container_name=$env:CONT_NAME
+            # Create container
+            - docker run -d --name $env:CONT_NAME $env:dockerimage
+
+      - name: S_NC_PS_002_002
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputSteps:
+            - name: S_NC_PS_002_001
+        execution:
+          onExecute:
+            # Get run container name
+            - echo "Container name $env:container_name"
+            # Count container by name
+            # Count should be equals 0 since container was created by previous step on different affinity group
+            - $env:COUNT=$(docker ps -aq -f name=$env:container_name | Measure-Object -line).Lines
+            - echo "Count $env:COUNT"
+            - |
+              if ("$env:COUNT" -ne "0") {
+                Write-Error "Error" -ErrorAction Stop
+              }
