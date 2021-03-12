@@ -1,0 +1,26 @@
+pipelines:
+  - name: A_Steps_0101
+    steps:
+      - name: A_Steps_0101
+        type: Bash
+        execution:
+          onExecute:
+            - echo "testing"
+
+  - name: A_Steps_0102
+    steps:
+      - name: A_Steps_0102
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - 'run=$(curl -H "Authorization: apiToken ${builder_api_token}" -H "Content-Type: application/json" --silent ${pipelines_api_url}/runs/${run_id})'
+            - pipelineSourceId=$(echo "$run" | jq '.pipelineSourceId' | tr -d '[:space:]')
+            - 'step=$(curl -H "Authorization: apiToken ${builder_api_token}" -H "Content-Type: application/json" --silent ${pipelines_api_url}/steps?names=A_Steps_0101&pipelineSourceIds=${pipelineSourceId})'
+            - stepId=$(echo "$step" | jq '.[0].id')
+            - pipelineStepId=$(echo "$step" | jq '.[0].pipelineStepId')
+            - pipelineId=$(echo "$step" | jq '.[0].pipelineId')
+            - projectId=$(echo "$step" | jq '.[0].projectId')
+            - jfrog rt download --fail-no-op --insecure-tls=${no_verify_ssl} "*/projects/${projectId}/pipelines/${pipelineId}/stepConsoles/${pipelineStepId}/step_${stepId}_consoles.gz" "step_${stepId}_consoles.gz"
