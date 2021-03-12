@@ -1,0 +1,16 @@
+
+resources:
+  - name: A_Extension_0023_resource
+    type: PropertyBag
+    configuration:
+      test: A_Extension_0023
+
+pipelines:
+ - name: A_Extension_0023
+   steps:
+      - name: A_Extension_0023_step
+        type: UploadArtifact
+        configuration:
+          targetPath: "test-automation-generic-local/A_Extension_0023"
+          outputResources:
+            - name: A_Extension_0023_resource

@@ -1,0 +1,10 @@
+
+pipelines:
+ - name: A_Extension_0021
+   steps:
+      - name: A_Extension_0021
+        type: UploadArtifact
+        configuration:
+          targetPath: "test-automation-generic-local/A_Extension_0021"
+          integrations:
+            - name: s_artifactory

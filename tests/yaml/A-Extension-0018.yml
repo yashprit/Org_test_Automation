@@ -1,0 +1,8 @@
+
+pipelines:
+ - name: A_Extension_0018
+   steps:
+      - name: A_Extension_0018-invalidName
+        type: UploadArtifact
+        configuration:
+          targetPath: "test-automation-generic-local/A_Extension_0018"

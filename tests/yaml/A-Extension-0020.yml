@@ -1,0 +1,7 @@
+
+pipelines:
+ - name: A_Extension_0020
+   steps:
+      - type: UploadArtifact
+        configuration:
+          targetPath: "test-automation-generic-local/A_Extension_0020"

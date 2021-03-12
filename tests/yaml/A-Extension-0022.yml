@@ -1,0 +1,16 @@
+
+resources:
+  - name: A_Extension_0022_resource
+    type: PropertyBag
+    configuration:
+      test: A_Extension_0022
+
+pipelines:
+ - name: A_Extension_0022
+   steps:
+      - name: A_Extension_0022_step
+        type: UploadArtifact
+        configuration:
+          targetPath: "test-automation-generic-local/A_Extension_0022"
+          inputResources:
+            - name: A_Extension_0022_resource
