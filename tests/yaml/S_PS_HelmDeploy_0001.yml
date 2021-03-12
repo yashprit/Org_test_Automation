@@ -35,7 +35,7 @@ pipelines:
         execution:
           onExecute:
             - jfrog --version
-            - $json = @{key="helmgeneric";rclass="local";packageType="generic";description="This repo is a test repo used by test autmation";repoLayoutRef="simple-default"} | ConvertTo-Json -Compress  | Out-File c:\myrequest.json -Encoding Ascii -Force
+            - $json = @{key="helmgeneric";rclass="local";packageType="generic";description="This repo is a test repo used by test automation";repoLayoutRef="simple-default"} | ConvertTo-Json -Compress  | Out-File c:\myrequest.json -Encoding Ascii -Force
             - jfrog rt repo-create c:\myrequest.json
             - jfrog rt u $res_S_PS_HelmDeploy_GitRepo_0001_resourcePath/tests/core/helmdeploy/simplehelm-0.3.0.tgz "helmgeneric/" --explode
 
@@ -58,17 +58,6 @@ pipelines:
           lintFlags: "--strict"
           test: true
         execution:
-          onStart:
-            - try { get-command "helm" } catch {}
-            - try { get-command "helm3" } catch {}
-            - choco uninstall -y kubernetes-helm -force -a
-            - $global:HELM3_VERSION = "3.4.0"
-            - choco install -y kubernetes-helm --version=$global:HELM3_VERSION -m -force
-            - $global:HELM2_VERSION = "2.16.1"
-            - choco install -y kubernetes-helm --version=$global:HELM2_VERSION -m -force
-            - Set-Alias -Name helm3 -Value "C:\ProgramData\chocolatey\lib\kubernetes-helm.3.4.0\tools\windows-amd64\helm.exe" -Scope Global
-            - try { get-command "helm3" } catch {}
           onComplete:
             - jfrog rt repo-delete helmgeneric
-            - helm3 delete $simplehelm-generic-$run_id --namespace $k8s_namespace
-
+            - helm3 delete simplehelm-generic-$run_id --namespace $k8s_namespace

@@ -34,7 +34,7 @@ pipelines:
               trigger: false
         execution:
           onExecute:
-            - request='{"key":"simplecharts", "rclass":"local", "packageType":"helm", "description":"This repo is a test repo used by test autmation", "repoLayoutRef":"simple-default"}'
+            - request='{"key":"simplecharts", "rclass":"local", "packageType":"helm", "description":"This repo is a test repo used by test automation", "repoLayoutRef":"simple-default"}'
             - echo $request > request.json
             - jfrog rt repo-delete simplecharts --quiet || true
             - jfrog rt repo-create request.json
@@ -65,15 +65,8 @@ pipelines:
           lintFlags: "--strict"
           test: true
         execution:
-          onStart:
-            - ls -l $res_simpleHelmFileSpec_resourcePath
-            - export HELM_VERSION=3.4.0
-            - echo "================= Adding helm cli $HELM_VERSION ======================================"
-            - curl -sSL -o helm.tar.gz https://get.helm.sh/helm-v"$HELM_VERSION"-linux-amd64.tar.gz
-            - tar xzvf helm.tar.gz
-            - chmod +x ./linux-amd64/helm
-            - sudo mv ./linux-amd64/helm /usr/local/bin/helm3
           onComplete:
             - jfrog rt repo-delete simplecharts --quiet || true
-            - helm3 delete ${release_name_from_helm_repo} --namespace ${k8s_namespace} || true
+            - helm3 delete ${release_name_from_helm_repo} --namespace ${k8s_namespace}
+            
 

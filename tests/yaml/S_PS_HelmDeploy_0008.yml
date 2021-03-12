@@ -1,13 +1,12 @@
 resources:
-  - name: S_PS_HelmDeploy_FileSpec_0004_helm_res
-    type: FileSpec
+  - name: S_PS_HelmDeploy_BuildInfo_0008
+    type: BuildInfo
     configuration:
       sourceArtifactory: s_artifactory
-      pattern: >-
-        simplecharts/
-      recursive: true
+      buildName: helmbuild
+      buildNumber: 1
 
-  - name: S_PS_HelmDeploy_GitRepo_0004
+  - name: S_PS_HelmDeploy_GitRepo_0008
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -16,45 +15,50 @@ resources:
         include: master
 
 pipelines:
-  - name: S_PS_HelmDeploy_FileSpec_0004_helm
+  - name: S_PS_HelmDeploy_BuildInfo_0008_from_repo
     configuration:
       environmentVariables:
         readOnly:
-          release_name_from_helm_repo: "simplehelm-from-repo-${run_id}"
+          release_name_from_repo: "simplehelm-from-repo-${run_id}"
           k8s_namespace: "pipe-master-pool"
       nodePool: win_2019
     steps:
-      - name: trigger_pipeline_S_PS_HelmDeploy_0004
+      - name: S_PS_HelmDeploy_0008_create_build
         type: PowerShell
         configuration:
           integrations:
             - name: s_artifactory
           inputResources:
-            - name: S_PS_HelmDeploy_GitRepo_0004
-              trigger: true
+            - name: S_PS_HelmDeploy_GitRepo_0008
+          outputResources:
+            - name: S_PS_HelmDeploy_BuildInfo_0008
         execution:
           onExecute:
             - jfrog --version
             - $json = @{key="simplecharts";rclass="local";packageType="helm";description="This repo is a test repo used by test automation";repoLayoutRef="simple-default"} | ConvertTo-Json -Compress  | Out-File c:\myrequest.json -Encoding Ascii -Force
             - jfrog rt repo-create c:\myrequest.json
-            - jfrog rt u $res_S_PS_HelmDeploy_GitRepo_0004_resourcePath/tests/core/helmdeploy/simplehelm-0.3.0.tgz "simplecharts/"
-            - jfrog rt u $res_S_PS_HelmDeploy_GitRepo_0004_resourcePath/tests/core/helmdeploy/index.yaml "simplecharts/"
+            - cd $res_S_PS_HelmDeploy_GitRepo_0008_resourcePath/tests/core/helmdeploy
+            - jfrog rt u simplehelm-0.3.0.tgz "simplecharts/"
+            - jfrog rt bce ${JFROG_CLI_BUILD_NAME} ${JFROG_CLI_BUILD_NUMBER}
+            - jfrog rt bp ${JFROG_CLI_BUILD_NAME} ${JFROG_CLI_BUILD_NUMBER}
+            - write_output S_PS_HelmDeploy_BuildInfo_0008 buildName=${JFROG_CLI_BUILD_NAME} buildNumber=${JFROG_CLI_BUILD_NUMBER}
+          onFailure:
+            - jfrog rt repo-delete simplecharts --quiet
 
       - name: deploy_helm_chart_from_helm_repo
         type: HelmDeploy
         configuration:
           inputSteps:
-            - name: trigger_pipeline_S_PS_HelmDeploy_0004
+            - name: S_PS_HelmDeploy_0008_create_build
           integrations:
+            - name: s_artifactory
             - name: s_kubernetes
           inputResources:
-            - name: S_PS_HelmDeploy_FileSpec_0004_helm_res
+            - name: S_PS_HelmDeploy_BuildInfo_0008
           helmVersion: 3
-          releaseName: ${release_name_from_helm_repo}
-          chartPath: ./doesntExist/
-          chartName: simplehelm
-          chartVersion: 0.3.0
-          flags: "--wait --timeout 900s -n ${k8s_namespace} --set image.repository=trriplejay/simplehelm --set image.tag=latest"
+          releaseName: ${release_name_from_repo}
+          chartPath: ./pathDoesntExist/
+          flags: "--force --wait --timeout 900s --set image.repository=trriplejay/simplehelm --set image.tag=latest"
           valueFilePaths:
             - values.yaml
           lint: true
@@ -62,5 +66,5 @@ pipelines:
           test: true
         execution:
           onComplete:
-            - jfrog rt repo-delete simplecharts --quiet || true
+            - jfrog rt repo-delete simplecharts --quiet
             - helm3 delete simplehelm-from-repo-$run_id --namespace $k8s_namespace
