@@ -1,0 +1,15 @@
+pipelines:
+  - name: P_Pipelines_0074
+    configuration:
+      environmentVariables:
+        readOnly:
+          pipe_env_var:
+            values:
+              - value1
+              - value2
+    steps:
+      - name: P_Pipelines_0074_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo $pipe_env_var
