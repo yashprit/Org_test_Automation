@@ -7,4 +7,4 @@ pipelines:
           timeoutSeconds: 10
         execution:
           onExecute:
-            - sleep 2m
+            - sleep 3m
