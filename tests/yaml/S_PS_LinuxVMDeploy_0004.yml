@@ -1,0 +1,44 @@
+resources:
+  - name: LinuxVMDeploy_WINDOWS_fileSpec
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      pattern: "test-automation-generic-local/LinuxVMDeploy_WINDOWS_fileSpec.txt"
+
+  - name: myVMError
+    type: VmCluster
+    configuration:
+      sshKey: VM_DEPLOY_SSHKEY
+      targets:
+        - ${int_s_VM_DEPLOY_VM_ADDRESS_0}
+        - ${int_s_VM_DEPLOY_VM_ADDRESS_ERROR_0}
+        - ${int_s_VM_DEPLOY_VM_ADDRESS_ERROR_1}
+
+pipelines:
+  - name: S_PS_LinuxVMDeploy_0004
+    steps:
+      - name: S_PS_LinuxVMDeploy_0004_1
+        type: Powershell
+        configuration:
+          nodePool: win_2019
+          integrations:
+            - name: s_artifactory
+          outputResources:
+            - name: LinuxVMDeploy_WINDOWS_fileSpec
+        execution:
+          onExecute:
+            - echo "File spec ${run_id}" > LinuxVMDeploy_WINDOWS_fileSpec.txt
+            - jfrog rt upload LinuxVMDeploy_WINDOWS_fileSpec.txt test-automation-generic-local
+      - name: S_PS_LinuxVMDeploy_0004_2
+        type: jfrog_dev/LinuxVMDeploy
+        configuration:
+          nodePool: win_2019
+          integrations:
+            - name: s_VM_DEPLOY
+          inputResources:
+            - name: myVMError
+            - name: LinuxVMDeploy_WINDOWS_fileSpec
+          deployCommand: "echo 'deployCommand runs.'"
+          rollbackCommand: "echo 'rollBackCommand runs.'"
+          sshUser: ubuntu
+          fastFail: false
