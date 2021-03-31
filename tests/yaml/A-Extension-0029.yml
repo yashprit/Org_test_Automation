@@ -1,0 +1,31 @@
+resources:
+  - name: A_Extension_0029_res1
+    type: GitRepo
+    configuration:
+      path: jfbetapipeorg/Org_test_Automation
+      gitProvider: s_gitHub
+      branches:
+        include: ^{{gitBranch}}$
+      files:
+        include: \bexecTemplates\/.+\b
+  - name: A_Extension_0029_res2
+    type: test/TestResource
+    configuration:
+      foo: Hello
+      sourceArtifactory: s_artifactory
+      gitProvider: s_gitHub
+
+pipelines:
+ - name: PipelineExtension_A_Extension_0029_automation
+   steps:
+      - name: A_Extension_0029
+        type: test/HealthCheck
+        configuration:
+           healthCheckUrl: https://www.google.com/
+           notifyOnSuccess: true
+           notifyOnFailure: true
+           etc:
+             example: bar
+           inputResources:
+            - name: A_Extension_0029_res1
+            - name: A_Extension_0029_res2
