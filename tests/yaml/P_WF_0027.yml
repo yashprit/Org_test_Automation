@@ -50,7 +50,7 @@ resources:
       key1: value1
       key2: value2
 pipelines:
-  - name: P_Pipelines_0043
+  - name: P_WF_0027
     steps:
       - name: step_quam_1
         type: Bash

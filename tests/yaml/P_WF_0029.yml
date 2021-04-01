@@ -250,7 +250,7 @@ resources:
       key1: value1
       key2: value2
 pipelines:
-  - name: P_Pipelines_0045
+  - name: P_WF_0029
     steps:
       - name: step_saepe_1
         type: Bash

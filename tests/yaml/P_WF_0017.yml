@@ -1,42 +1,42 @@
 pipelines:
 
-  - name: pipelines_P_Pipelines_0033_1
+  - name: P_WF_0017_1
     configuration:
       dependencyMode:
         waitOnChildComplete: true
     steps:
-      - name: P_Pipelines_0033_1
+      - name: P_WF_0017_1
         type: Bash
         configuration:
           outputResources:
-            - name: P_Pipelines_0033_resource1
-            - name: P_Pipelines_0033_resource2
+            - name: P_WF_0017_resource1
+            - name: P_WF_0017_resource2
         execution:
           onExecute:
             - echo "executing step..."
             - sleep 10
-            - write_output P_Pipelines_0033_resource1 test=$run_number
-            - write_output P_Pipelines_0033_resource2 test=$run_number
+            - write_output P_WF_0017_resource1 test=$run_number
+            - write_output P_WF_0017_resource2 test=$run_number
 
-  - name: pipelines_P_Pipelines_0033_2
+  - name: P_WF_0017_2
     steps:
-      - name: P_Pipelines_0033_2
+      - name: P_WF_0017_2
         type: Bash
         configuration:
           inputResources:
-            - name: P_Pipelines_0033_resource1
+            - name: P_WF_0017_resource1
         execution:
           onExecute:
             - echo "executing step..."
             - sleep 10
 
-  - name: pipelines_P_Pipelines_0033_3
+  - name: P_WF_0017_3
     steps:
-      - name: P_Pipelines_0033_3
+      - name: P_WF_0017_3
         type: Bash
         configuration:
           inputResources:
-            - name: P_Pipelines_0033_resource2
+            - name: P_WF_0017_resource2
         execution:
           onExecute:
             - echo "executing step..."
@@ -44,11 +44,11 @@ pipelines:
 
 
 resources:
-  - name: P_Pipelines_0033_resource1
+  - name: P_WF_0017_resource1
     type: PropertyBag
     configuration:
       test: test
-  - name: P_Pipelines_0033_resource2
+  - name: P_WF_0017_resource2
     type: PropertyBag
     configuration:
       test: test

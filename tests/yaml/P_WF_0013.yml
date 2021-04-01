@@ -1,12 +1,12 @@
 pipelines:
 
-  - name: pipelines_P_Pipelines_0021
+  - name: P_WF_0013
     configuration:
-      dependencyMode:
-        waitOnParentSuccess: true
+      chronological: true
     steps:
-      - name: P_Pipelines_0021
+      - name: P_WF_0013
         type: Bash
         execution:
           onExecute:
             - echo "executing step..."
+            - sleep 10

@@ -1,11 +1,12 @@
 pipelines:
 
-  - name: pipelines_P_Pipelines_0016
+  - name: P_WF_0014
     configuration:
       chronological: false
     steps:
-      - name: P_Pipelines_0016
+      - name: P_WF_0014
         type: Bash
         execution:
           onExecute:
             - echo "executing step..."
+            - sleep 10

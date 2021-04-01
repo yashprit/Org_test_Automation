@@ -1,0 +1,47 @@
+resources:
+  - name: P_WF_0025_resource
+    type: PropertyBag
+    configuration:
+      runNumber: 0
+
+pipelines:
+  - name: P_WF_0025_1
+    configuration:
+      chronological: true
+    steps:
+      - name: P_WF_0025_1
+        type: Bash
+        configuration:
+          outputResources:
+            - name: P_WF_0025_resource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            - write_output P_WF_0025_resource runNumber=$run_number
+
+  - name: P_WF_0025_2
+    configuration:
+      dependencyMode:
+        waitOnParentComplete: true
+    steps:
+      - name: P_WF_0025_2_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_WF_0025_resource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - echo "$res_P_WF_0025_resource_runNumber"
+      - name: P_WF_0025_2_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: P_WF_0025_2_1
+          inputResources:
+            - name: P_WF_0025_resource
+        execution:
+          onExecute:
+            - echo "$res_P_WF_0025_resource_runNumber"
+            - if [ $res_P_WF_0025_resource_runNumber -lt 2 ]; then exit 1; fi

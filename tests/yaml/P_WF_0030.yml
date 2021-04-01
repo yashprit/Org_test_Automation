@@ -1,5 +1,5 @@
 pipelines:
-  - name: P_Pipelines_0046
+  - name: P_WF_0030
     steps:
       - name: step_itaque_1
         type: Bash

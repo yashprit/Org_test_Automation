@@ -1,5 +1,5 @@
 pipelines:
-  - name: P_Pipelines_0047
+  - name: P_WF_0031
     steps:
       - name: step_ipsa_1
         type: Bash

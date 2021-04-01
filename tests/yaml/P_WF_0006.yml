@@ -1,11 +1,11 @@
 pipelines:
 
-  - name: pipelines_P_Pipelines_0018
+  - name: P_WF_0006
     configuration:
       dependencyMode:
-        waitOnParentComplete: true
+        waitOnParentComplete: "false"
     steps:
-      - name: P_Pipelines_0018
+      - name: P_WF_0006
         type: Bash
         execution:
           onExecute:
