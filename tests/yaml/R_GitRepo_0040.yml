@@ -1,6 +1,9 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: r_bitbucket
     type: GitRepo
     configuration:
       gitProvider: s_bitbucket
-      path: jfbetapipeorg/org_test_automation
+      path: {{ .Values.BitbucketCloud.org_test_automation.path }}

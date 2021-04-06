@@ -1,11 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: S_PS_UTIL
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
-      branches:
-        include: master
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
 
 pipelines:
   - name: pipeline_S_PS_UTIL_0068
@@ -22,6 +23,7 @@ pipelines:
         execution:
           onExecute:
             - get-childitem $res_S_PS_UTIL_resourcePath
+            - choco install python2
             - python --version
             - python -m pip install --upgrade pip
             - pip --version

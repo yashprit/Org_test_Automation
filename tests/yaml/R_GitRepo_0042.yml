@@ -3,4 +3,4 @@ resources:
    type: GitRepo
    configuration:
      gitProvider: s_githubEnterprise
-     path: shiptest/test
+     path: {{ .Values.GitHubEnterprise.test.path }}

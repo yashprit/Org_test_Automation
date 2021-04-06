@@ -1,9 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: push_image_artifactory_gitRepo
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:  # optional
         include: master
 
@@ -34,11 +37,11 @@ pipelines:
             - jfrog rt docker-push $artifactoryRegistry_url/test-automation-docker-local/jfreq:$image_tag test-automation-docker-local
 
   - name: P_Pipelines_0013
-    configuration:  
+    configuration:
       environmentVariables:
         readOnly:
           image_tag: latest
-      runtime:       
+      runtime:
         type: image
         image:
           custom:
@@ -56,6 +59,6 @@ pipelines:
             - echo $image_tag
             - echo $artifactoryRegistry_url
             - |
-              [ $step_image_name == $artifactoryRegistry_url/test-automation-docker-local/jfreq ] 
+              [ $step_image_name == $artifactoryRegistry_url/test-automation-docker-local/jfreq ]
             - |
               [ $step_image_tag == $image_tag ]

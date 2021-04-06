@@ -1,12 +1,15 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: A_Hooks
     type: GitRepo
     configuration:
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:
         include: master
       gitProvider: s_gitHub
-      
+
 pipelines:
   - name: PipelineSteps_automation
     steps:
@@ -22,4 +25,4 @@ pipelines:
             - echo "executing step..."
           onComplete:
             - echo "state=step" > step_state.txt
-            - add_cache_files step_state.txt step_state_file 
+            - add_cache_files step_state.txt step_state_file

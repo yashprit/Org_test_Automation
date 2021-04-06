@@ -1,10 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
 
 resources:
   - name: S_PS_R_GIT_0007_GitRepo
     type: GitRepo
     configuration:
       gitProvider: s_bitbucket
-      path: jfbeta/jfrogtesting
+      path: {{ .Values.BitbucketCloud.jfrogtesting.path }}
       branches:
         include: master
       buildOn:  # optional

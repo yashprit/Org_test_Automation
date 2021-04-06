@@ -1,10 +1,13 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: repo_pipe
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
-          
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+
 pipelines:
   - name: UtilityNotification
     steps:
@@ -16,11 +19,9 @@ pipelines:
             - name: slack
           inputResources:
             - name: repo_pipe
-            
+
         execution:
-          onExecute: 
-            - pushd $res_repo_pipe_resourcePath    
+          onExecute:
+            - pushd $res_repo_pipe_resourcePath
             - send_notification slack
             - popd
-
-

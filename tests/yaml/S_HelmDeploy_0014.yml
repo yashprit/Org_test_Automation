@@ -1,3 +1,6 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
 
   - name: S_HelmDeploy_FileSpec_0014_helmrepo_resource
@@ -12,7 +15,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:
         include: master
 
@@ -68,5 +71,3 @@ pipelines:
           onComplete:
             - jfrog rt repo-delete simplecharts --quiet || true
             - helm3 delete ${release_name_from_helm_repo} --namespace ${k8s_namespace}
-            
-

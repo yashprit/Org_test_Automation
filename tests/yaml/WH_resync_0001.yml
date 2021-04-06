@@ -1,12 +1,15 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: WH_resync_0001_repo
     type: GitRepo
     configuration:
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       gitProvider: s_gitHub
       branches:
         include: ^{{gitBranch}}$
-  
+
 pipelines:
   - name: WH_resync_0001_pipeline
     steps:

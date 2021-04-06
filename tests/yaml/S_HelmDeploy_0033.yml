@@ -1,3 +1,6 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: S_HelmDeploy_0033_BuildInfo_resource
     type: BuildInfo
@@ -10,7 +13,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:
         include: master
 
@@ -97,4 +100,3 @@ pipelines:
             - jfrog rt repo-delete helmgeneric --quiet || true
             - echo "Deleting helm resources..."
             - helm3 delete simplehelm-generic-$run_id --namespace $K8S_NAMESPACE
-

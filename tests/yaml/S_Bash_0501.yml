@@ -39,15 +39,10 @@ pipelines:
             - |
               [ ! -z "$res_S_Bash_0501_Image_registry_secretAccessKey" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_registry_accessKeyId" ] 
+              [ ! -z "$res_S_Bash_0501_Image_registry_accessKeyId" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_region" ] 
+              [ ! -z "$res_S_Bash_0501_Image_region" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_resourcePath" ] 
+              [ ! -z "$res_S_Bash_0501_Image_resourcePath" ]
             - |
-              [ ! -z "$res_S_Bash_0501_Image_imageName" ]   
-   
-   
- 
-  
-  
+              [ ! -z "$res_S_Bash_0501_Image_imageName" ]

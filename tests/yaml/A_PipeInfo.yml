@@ -1,12 +1,15 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: resource_A_Pipeinfo_gitRepo
     type: GitRepo
     configuration:
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:
         include: master
       gitProvider: s_gitHub
-      
+
   - name: resource_A_Pipeinfo_propertyBag
     type: PropertyBag
     configuration:

@@ -1,10 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
 
 resources:
   - name: S_PS_R_GIT_0013_GitRepo
     type: GitRepo
     configuration:
       gitProvider: s_bitbucketServer
-      path: PIP/automation
+      path: {{ .Values.BitbucketServer.automation.path }}
       branches:
         include: master
       buildOn:  # optional

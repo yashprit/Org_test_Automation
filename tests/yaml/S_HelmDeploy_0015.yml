@@ -1,3 +1,6 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
 
   - name: S_HelmDeploy_FileSpec_0015_generic_resource
@@ -13,7 +16,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
-      path: jfbetapipeorg/Org_test_Automation
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:
         include: master
 
@@ -66,4 +69,3 @@ pipelines:
           onComplete:
             - jfrog rt repo-delete helmgeneric --quiet || true
             - helm3 delete ${release_name_generic} --namespace ${k8s_namespace}
-

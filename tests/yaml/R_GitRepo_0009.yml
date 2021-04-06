@@ -1,9 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   # This resource is for BitBucketServer
   - name: r_GitRepo
     type: GitRepo
     configuration:
-      path: PIP/automation
+      path: {{ .Values.BitbucketServer.automation.path }}
       files:  # optional
         include: readme
         exclude:

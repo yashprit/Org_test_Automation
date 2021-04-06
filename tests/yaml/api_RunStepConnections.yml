@@ -1,9 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
  - name: r_gitHub
    type: GitRepo
    configuration:
      gitProvider: s_gitHub
-     path: jfbetapipeorg/Org_test_Automation
+     path: {{ .Values.GitHub.Org_test_Automation.path }}
 
 pipelines:
 
@@ -41,7 +44,7 @@ pipelines:
           onExecute:
             - echo runStepConnections > cachefile.txt
             - add_cache_files cachefile.txt my_file
-            
+
   - name: pipelines_RunStepConnectionsProjectAdmin
 
     steps:
@@ -57,8 +60,8 @@ pipelines:
             env2: value
         execution:
           onExecute:
-            - echo "hello"    
-            
+            - echo "hello"
+
       - name: s_Bash_ProjectAdmin1
         type: Bash
         configuration:
@@ -74,4 +77,4 @@ pipelines:
         execution:
           onExecute:
             - echo runStepConnections > cachefile.txt
-            - add_cache_files cachefile.txt my_file            
+            - add_cache_files cachefile.txt my_file
