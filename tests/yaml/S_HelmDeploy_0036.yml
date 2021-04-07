@@ -16,7 +16,7 @@ pipelines:
           BUNDLE_VERSION: "1"
           BUNDLE_NAME: helm_bundle_not_exist
     steps:
-      - name: S_HelmDeploy_0036_create_build
+      - name: S_HelmDeploy_0036_create_bundle
         type: Bash
         configuration:
           integrations:

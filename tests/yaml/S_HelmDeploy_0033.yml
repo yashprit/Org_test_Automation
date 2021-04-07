@@ -34,7 +34,7 @@ pipelines:
           JFROG_CLI_BUILD_NAME: helmbuild_generic
           JFROG_CLI_BUILD_NUMBER: ${run_id}
     steps:
-      - name: S_HelmDeploy_0033_create_build
+      - name: S_HelmDeploy_0033_create_bundle
         type: Bash
         configuration:
           integrations:

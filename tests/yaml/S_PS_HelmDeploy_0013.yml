@@ -50,6 +50,7 @@ pipelines:
         type: HelmDeploy
         configuration:
           integrations:
+            - name: s_artifactory
             - name: s_kubernetes
           inputResources:
             - name: S_PS_HelmDeploy_ReleaseBundle_0013
