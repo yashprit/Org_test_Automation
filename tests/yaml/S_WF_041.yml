@@ -1,0 +1,11 @@
+pipelines:
+  - name: S_WF_041
+    steps:
+      - name: S_WF_041
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_WF_041_BuildInfo
+        execution:
+          onExecute:
+            - echo "step_1"

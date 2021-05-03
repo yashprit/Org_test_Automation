@@ -1,0 +1,11 @@
+pipelines:
+  - name: Environments_WF_010
+    steps:
+      - name: Environments_WF_010
+        type: Bash
+        configuration:
+          inputResources:
+            - name: Environments_WF_010_BuildInfo
+        execution:
+          onExecute:
+            - echo "step_1"
