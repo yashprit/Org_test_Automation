@@ -55,7 +55,7 @@ pipelines:
         execution:
           onExecute:
             # create an invalid signature file
-            - export head_sig_path=$(jfrog rt s artifactory-pipe-info/pipeline_S_PromoteBuild_0018@{{gitBranch}}/*/s-S_PromoteBuild_0018_2.json.sig | jq '.[0].path')
+            - export head_sig_path=$(jfrog rt s artifactory-pipe-info/pipeline_S_PromoteBuild_0018/{{gitBranch}}/*/s-S_PromoteBuild_0018_2.json.sig | jq '.[0].path')
             - execute_command "jfrog rt u $res_S_PromoteBuild_0018_GitRepo_resourcePath/tests/artifacts/invalidGPGSig $head_sig_path --quiet"
       - name: S_PromoteBuild_0018_4
         type: PromoteBuild
@@ -69,4 +69,4 @@ pipelines:
           targetRepository: test-automation-go-local
         execution:
           onComplete:
-            - execute_command "jfrog rt delete artifactory-pipe-info/pipeline_S_PromoteBuild_0018@{{gitBranch}} --quiet"
+            - execute_command "jfrog rt delete artifactory-pipe-info/pipeline_S_PromoteBuild_0018/{{gitBranch}} --quiet"
