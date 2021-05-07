@@ -1,6 +1,6 @@
 pipelines:
 
-  - name: P_WF_0022_1
+  - name: pipelines_P_WF_0022_1
     steps:
       - name: P_WF_0022_1
         type: Bash
@@ -13,7 +13,7 @@ pipelines:
             - sleep 10
             - write_output P_WF_0022_resource1 test=$run_number
 
-  - name: P_WF_0022_2
+  - name: pipelines_P_WF_0022_2
     configuration:
       dependencyMode:
         waitOnParentComplete: true
@@ -32,7 +32,7 @@ pipelines:
             - sleep 10
             - write_output P_WF_0022_resource2 test=$run_number
 
-  - name: P_WF_0022_3
+  - name: pipelines_P_WF_0022_3
     steps:
       - name: P_WF_0022_3
         type: Bash

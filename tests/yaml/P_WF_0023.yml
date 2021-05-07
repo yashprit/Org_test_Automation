@@ -1,6 +1,6 @@
 pipelines:
 
-  - name: P_WF_0023_1
+  - name: pipelines_P_WF_0023_1
     configuration:
       dependencyMode:
         waitOnChildComplete: true
@@ -16,7 +16,7 @@ pipelines:
             - sleep 10
             - write_output P_WF_0023_resource test=$run_number
 
-  - name: P_WF_0023_2
+  - name: pipelines_P_WF_0023_2
     configuration:
       dependencyMode:
         waitOnParentComplete: true

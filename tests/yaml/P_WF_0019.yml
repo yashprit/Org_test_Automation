@@ -2,16 +2,16 @@ pipelines:
 
   - name: P_WF_0019_1
     steps:
-      - name: P_Pipelines_0036_1
+      - name: P_WF_0019_1
         type: Bash
         configuration:
           outputResources:
-            - name: P_Pipelines_0036_resource
+            - name: P_WF_0019_resource
         execution:
           onExecute:
             - echo "executing step..."
             - sleep 10
-            - write_output P_Pipelines_0036_resource test=$run_number
+            - write_output P_WF_0019_resource test=$run_number
 
   - name: P_WF_0019_2
     configuration:

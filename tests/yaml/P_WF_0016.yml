@@ -1,6 +1,6 @@
 pipelines:
 
-  - name: P_WF_0016_1
+  - name: pipelines_P_WF_0016_1
     steps:
       - name: P_WF_0016_1
         type: Bash
@@ -13,7 +13,7 @@ pipelines:
             - sleep 60
             - write_output P_WF_0016_resource1 test=$run_number
 
-  - name: P_WF_0016_2
+  - name: pipelines_P_WF_0016_2
     configuration:
       dependencyMode:
         waitOnParentComplete: true
