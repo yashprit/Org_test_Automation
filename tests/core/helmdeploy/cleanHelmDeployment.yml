@@ -1,0 +1,23 @@
+pipelines:
+  - name: CleanHelmDeployment
+    configuration:
+      environmentVariables:
+        readOnly:
+          RELEASE_NAME: "simplehelm-test"
+          K8S_NAMESPACE: "pipe-master-pool"
+    steps:
+      - name: CleanHelmResource
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_kubernetes
+        execution:
+          onStart:
+            - export HELM_VERSION=3.4.0
+            - echo "================= Adding helm cli $HELM_VERSION ======================================"
+            - curl -sSL -o helm.tar.gz https://get.helm.sh/helm-v"$HELM_VERSION"-linux-amd64.tar.gz
+            - tar xzvf helm.tar.gz
+            - chmod +x ./linux-amd64/helm
+            - sudo mv ./linux-amd64/helm /usr/local/bin/helm3
+          onExecute:
+            - helm3 delete ${RELEASE_NAME} --namespace $K8S_NAMESPACE
