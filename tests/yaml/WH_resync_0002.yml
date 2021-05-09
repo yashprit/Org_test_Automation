@@ -1,0 +1,21 @@
+resources:
+  - name: WH_resync_0002_repo
+    type: GitRepo
+    configuration:
+      path: jfbetapipeorg/Org_test_Automation
+      gitProvider: s_gitHub
+      branches:
+        include: ^{{gitBranch}}$
+  
+pipelines:
+  - name: WH_resync_0002_pipeline
+    steps:
+      - name: WH_resync_0002_step
+        type: Bash
+        configuration:
+          inputResources:
+            - name: WH_resync_0002_repo
+              trigger: false
+        execution:
+          onExecute:
+            - echo "WH_resync_0002_step"
