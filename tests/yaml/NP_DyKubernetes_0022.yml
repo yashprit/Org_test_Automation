@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipelines_NP_DyKubernetes_0022
+    steps:
+      - name: NP_DyKubernetes_0022
+        type: Bash
+        configuration:
+          nodePool: NP_DyKubernetes_0022
+        execution:
+          onExecute:
+            - sleep 2m

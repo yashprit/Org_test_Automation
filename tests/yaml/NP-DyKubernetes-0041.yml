@@ -4,7 +4,7 @@ pipelines:
       - name: NP_DyKubernetes_0041
         type: Bash
         configuration:
-          nodePool: k8s_dynamic_node_u16_with_diskSize
+          nodePool: NP_DyKubernetes_0041
         execution:
           onExecute:
             - echo "executing step on k8s dynamic node pool"
