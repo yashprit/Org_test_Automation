@@ -1,0 +1,31 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: S_SYC_HBGDeploy_5978_0003_resource
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      branches:
+        include: master
+
+pipelines:
+  - name: S_SYC_HBGDeploy_5978_0003
+    steps:
+      - name: S_SYC_HBGDeploy_5978_0003_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          chartPath: ./
+          namespace: namespace
+          blueReleaseName: blue
+          greenReleaseName: green
+          roleServices:
+            - blueReferenceName: blueService
+              greenReferenceName: greenService
+              idleName: idleService
+              liveName: liveName
+          integrations:
+            - name: s_kubernetes
+          inputResources:
+            - name: S_SYC_HBGDeploy_5978_0003_resource
