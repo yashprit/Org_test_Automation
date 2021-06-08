@@ -4,11 +4,11 @@ valuesFilePath: ../values/gitRepoValues.yml
 resources:
   - name: S_SYC_HBGDeploy_5978_0004_resource
     type: FileSpec
-      configuration:
-        sourceArtifactory: s_artifactory
-        pattern: >-
-          helmgeneric/
-        recursive: true
+    configuration:
+      sourceArtifactory: s_artifactory
+      pattern: >-
+        helmgeneric/
+      recursive: true
 
 pipelines:
   - name: S_SYC_HBGDeploy_5978_0004
