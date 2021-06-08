@@ -1,0 +1,26 @@
+resources:
+  - name: S_SYC_HBGDeploy_5978_0014_resource
+    type: HelmChart
+    configuration:
+      sourceArtifactory: s_artifactory
+      repository: helm
+      chart: app
+      version: 0.0.1
+
+pipelines:
+  - name: S_SYC_HBGDeploy_5978_0014
+    steps:
+      - name: S_SYC_HBGDeploy_5978_0014_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          namespace: namespace
+          blueReleaseName: blue
+          greenReleaseName: green
+          roleServices:
+            - blueReferenceName: greenService
+              idleName: idleService
+              liveName: liveName
+          integrations:
+            - name: s_kubernetes
+          inputResources:
+            - name: S_SYC_HBGDeploy_5978_0014_resource
