@@ -1,6 +1,3 @@
-template: true
-valuesFilePath: ../values/gitRepoValues.yml
-
 resources:
   - name: S_SYC_HBGDeploy_5978_0004_resource
     type: FileSpec
