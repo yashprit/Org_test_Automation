@@ -22,6 +22,7 @@ pipelines:
               idleName: idleService
               liveName: liveName
           integrations:
+            - name: s_artifactory
             - name: s_kubernetes
           inputResources:
             - name: S_SYC_HBGDeploy_5978_0006_resource
