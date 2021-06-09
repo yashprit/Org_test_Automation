@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  simplehelm:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2021-01-28T00:02:09.634051Z
+    description: A Helm chart for Kubernetes
+    digest: 7563c8ac9f8e39fe8172040dbf709f1e2858775e46b22fc64544d493fedf2c0f
+    name: simplehelm
+    urls:
+    - local://simplehelm-0.3.0.tgz
+    version: "0.3.0"
+generated: 2021-02-16T21:17:55.535042Z
