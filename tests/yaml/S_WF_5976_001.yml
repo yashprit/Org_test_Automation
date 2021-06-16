@@ -1,0 +1,10 @@
+pipelines:
+  - name: pipeline_S_WF_5976_001
+    steps:
+      - name: S_WF_5976_001
+        type: Bash
+        configuration:
+          timeoutSeconds: 31536000 # one year
+        execution:
+          onExecute:
+            - echo "Testing"
