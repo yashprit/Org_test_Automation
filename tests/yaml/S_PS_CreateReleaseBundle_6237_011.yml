@@ -1,0 +1,77 @@
+resources:
+  - name: S_PS_CreateReleaseBundle_6237_011_BuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: s_artifactory
+      buildName: 'name'
+      buildNumber: '1'
+
+  - name: S_PS_CreateReleaseBundle_6237_011_ReleaseBundle
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: s_distribution
+      name: name
+      version: '1'
+
+pipelines:
+  - name: pipeline_S_PS_CreateReleaseBundle_6237_011
+    configuration:
+      nodePool: win_2019
+    steps:
+      - name: S_PS_CreateReleaseBundle_6237_011_1
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_artifactory
+          outputResources:
+            - name: S_PS_CreateReleaseBundle_6237_011_BuildInfo
+        execution:
+          onExecute:
+            - add_run_variables JFROG_CLI_BUILD_NUMBER=${run_id}
+            - Set-Content -Path S_PS_CreateReleaseBundle_6237_011.txt -Value ${run_id}
+            - jfrog rt upload S_PS_CreateReleaseBundle_6237_011.txt test-automation-generic-local --insecure-tls=$no_verify_ssl
+            - jfrog rt build-publish --insecure-tls=${no_verify_ssl} ${JFROG_CLI_BUILD_NAME} ${JFROG_CLI_BUILD_NUMBER}
+            - write_output S_PS_CreateReleaseBundle_6237_011_BuildInfo buildName="${JFROG_CLI_BUILD_NAME}" buildNumber="${JFROG_CLI_BUILD_NUMBER}"
+
+      - name: S_PS_CreateReleaseBundle_6237_011_2
+        type: CreateReleaseBundle
+        configuration:
+          releaseBundleName: ${JFROG_CLI_BUILD_NAME}
+          releaseBundleVersion: ${run_id}
+          dryRun: false
+          sign: true
+          inputResources:
+            - name: S_PS_CreateReleaseBundle_6237_011_BuildInfo
+          outputResources:
+            - name: S_PS_CreateReleaseBundle_6237_011_ReleaseBundle
+
+      - name: S_PS_CreateReleaseBundle_6237_011_3
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_CreateReleaseBundle_6237_011_ReleaseBundle
+          integrations:
+            - name: s_artifactory
+            - name: s_distribution
+        execution:
+          onExecute:
+            - |
+              $releaseBundleName = find_resource_variable S_PS_CreateReleaseBundle_6237_011_ReleaseBundle name
+              $releaseBundleVersion = find_resource_variable S_PS_CreateReleaseBundle_6237_011_ReleaseBundle version
+              $distributionUrl = $res_S_PS_CreateReleaseBundle_6237_011_ReleaseBundle_sourceDistribution_url
+              $encoded_auth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("${res_S_PS_CreateReleaseBundle_6237_011_ReleaseBundle_sourceDistribution_user}:${res_S_PS_CreateReleaseBundle_6237_011_ReleaseBundle_sourceDistribution_apikey}"))
+              check_no_verify_ssl
+              $headers = @{'Authorization' = "Basic $encoded_auth";'Content-Type' = "application/json"}
+              $response = Invoke-WebRequest "${distributionUrl}/api/v1/release_bundle/${releaseBundleName}/${releaseBundleVersion}" -Method Get -Headers $headers -TimeoutSec 60 -ContentType 'application/json' -UseBasicParsing -OutFile "${step_tmp_dir}\response" -PassThru
+              $artifactSha = $response.Headers['X-Checksum-Sha256']
+              $artifactPath = "${releaseBundleName}/${releaseBundleVersion}"
+              $headers = @{'Authorization' = "apiToken $builder_api_token"}
+              $stepArtifact = Invoke-RestMethod -Method Get -ContentType 'application/json' -Headers $headers -Uri "${pipelines_api_url}/stepArtifacts?artifactPath=${artifactPath}&artifactSha=${artifactSha}&artifactType=releaseBundle" -UseBasicParsing
+              Write-Output "Deleting release bundle..."
+              jfrog config add distribution --overwrite --insecure-tls=$no_verify_ssl --dist-url $int_s_distribution_url --user $int_s_distribution_user --apikey $int_s_distribution_apikey --interactive=false
+              jfrog config use distribution
+              jfrog rt release-bundle-delete --delete-from-dist=true --insecure-tls=$no_verify_ssl $releaseBundleName $releaseBundleVersion
+              jfrog config remove distribution
+              Write-Output "Checking resources..."
+              Write-Output $stepArtifact
+              if ( $stepArtifact.artifactSha -ne "$artifactSha" ) { throw "Wrong SHA" }

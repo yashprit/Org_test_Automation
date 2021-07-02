@@ -1,0 +1,75 @@
+resources:
+  - name: S_PS_CreateReleaseBundle_6237_004_Aql
+    type: Aql
+    configuration:
+      sourceArtifactory: s_artifactory
+      query: 'items.find({"$and": [{"repo": {"$eq": "test-automation-generic-local"}}, {"name": {"$match": "S_PS_CreateReleaseBundle_6237_004.txt"}}]})'
+      mappings:
+        - name: myMapping
+          input: test-automation-generic-local/S_PS_CreateReleaseBundle_6237_004.(.*)
+          output: test-automation-generic-local/S_PS_CreateReleaseBundle_6237_004_1.$1
+
+  - name: S_PS_CreateReleaseBundle_6237_004_ReleaseBundle
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: s_distribution
+      name: name
+      version: '1'
+
+pipelines:
+  - name: pipeline_S_PS_CreateReleaseBundle_6237_004
+    configuration:
+      nodePool: win_2019
+    steps:
+      - name: S_PS_CreateReleaseBundle_6237_004_1
+        type: PowerShell
+        configuration:
+          integrations:
+            - name: s_artifactory
+          outputResources:
+            - name: S_PS_CreateReleaseBundle_6237_004_Aql
+        execution:
+          onExecute:
+            - add_run_variables JFROG_CLI_BUILD_NUMBER=${run_id}
+            - Set-Content -Path S_PS_CreateReleaseBundle_6237_004.txt -Value ${run_id}
+            - jfrog rt upload S_PS_CreateReleaseBundle_6237_004.txt test-automation-generic-local --insecure-tls=$no_verify_ssl
+
+      - name: S_PS_CreateReleaseBundle_6237_004_2
+        type: CreateReleaseBundle
+        configuration:
+          releaseBundleName: ${JFROG_CLI_BUILD_NAME}
+          releaseBundleVersion: ${run_id}
+          dryRun: false
+          inputResources:
+            - name: S_PS_CreateReleaseBundle_6237_004_Aql
+          outputResources:
+            - name: S_PS_CreateReleaseBundle_6237_004_ReleaseBundle
+
+      - name: S_PS_CreateReleaseBundle_6237_004_3
+        type: PowerShell
+        configuration:
+          inputResources:
+            - name: S_PS_CreateReleaseBundle_6237_004_ReleaseBundle
+          integrations:
+            - name: s_artifactory
+            - name: s_distribution
+        execution:
+          onExecute:
+            - |
+              $releaseBundleName = find_resource_variable S_PS_CreateReleaseBundle_6237_004_ReleaseBundle name
+              $releaseBundleVersion = find_resource_variable S_PS_CreateReleaseBundle_6237_004_ReleaseBundle version
+              $distributionUrl = $res_S_PS_CreateReleaseBundle_6237_004_ReleaseBundle_sourceDistribution_url
+              $encoded_auth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("${res_S_PS_CreateReleaseBundle_6237_004_ReleaseBundle_sourceDistribution_user}:${res_S_PS_CreateReleaseBundle_6237_004_ReleaseBundle_sourceDistribution_apikey}"))
+              check_no_verify_ssl
+              $headers = @{'Authorization' = "Basic $encoded_auth";'Content-Type' = "application/json"}
+              $releaseBundle = Invoke-RestMethod "${distributionUrl}/api/v1/release_bundle/${releaseBundleName}/${releaseBundleVersion}" -Method Get -Headers $headers -TimeoutSec 60 -ContentType 'application/json' -UseBasicParsing
+              Write-Output "Deleting release bundle..."
+              jfrog config add distribution --overwrite --insecure-tls=$no_verify_ssl --dist-url $int_s_distribution_url --user $int_s_distribution_user --apikey $int_s_distribution_apikey --interactive=false
+              jfrog config use distribution
+              jfrog rt release-bundle-delete --delete-from-dist=true --insecure-tls=$no_verify_ssl $releaseBundleName $releaseBundleVersion
+              jfrog config remove distribution
+              Write-Output "Checking resources..."
+              $mappedArtifact = $releaseBundle.artifacts | Where {$_.sourceRepoPath -eq "test-automation-generic-local/S_PS_CreateReleaseBundle_6237_004.txt"}
+              Write-Output $mappedArtifact
+              if ( $mappedArtifact.sourceRepoPath -ne "test-automation-generic-local/S_PS_CreateReleaseBundle_6237_004.txt" ) { throw "Wrong source path" }
+              if ( $mappedArtifact.targetRepoPath -ne "test-automation-generic-local/S_PS_CreateReleaseBundle_6237_004_1.txt" ) { throw "Wrong target path" }
