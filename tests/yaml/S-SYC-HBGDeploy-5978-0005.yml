@@ -1,0 +1,27 @@
+resources:
+  - name: S_SYC_HBGDeploy_5978_0005_resource
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: s_artifactory
+      buildName: helmbuild
+      buildNumber: 1
+
+pipelines:
+  - name: S_SYC_HBGDeploy_5978_0005
+    steps:
+      - name: S_SYC_HBGDeploy_5978_0005_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          chartPath: ./
+          namespace: namespace
+          blueReleaseName: blue
+          greenReleaseName: green
+          roleServices:
+            - blueReferenceName: blueService
+              greenReferenceName: greenService
+              idleName: idleService
+              liveName: liveName
+          integrations:
+            - name: s_kubernetes
+          inputResources:
+            - name: S_SYC_HBGDeploy_5978_0005_resource

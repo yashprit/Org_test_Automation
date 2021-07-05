@@ -1,0 +1,16 @@
+pipelines:
+  - name: S_SYC_HBGDeploy_5978_0024
+    steps:
+      - name: S_SYC_HBGDeploy_5978_0024_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          namespace: namespace
+          blueReleaseName: blue
+          greenReleaseName: green
+          roleServices:
+            - blueReferenceName: blueService
+              greenReferenceName: greenService
+              idleName: idleService
+              liveName: liveName
+          integrations:
+            - name: s_kubernetes

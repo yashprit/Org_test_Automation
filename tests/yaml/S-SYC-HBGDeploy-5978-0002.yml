@@ -1,0 +1,41 @@
+resources:
+  - name: S_SYC_HBGDeploy_5978_0002_resource
+    type: HelmChart
+    configuration:
+      sourceArtifactory: s_artifactory
+      repository: simplecharts
+      chart: simplehelm
+      version: 0.0.0
+
+pipelines:
+  - name: S_SYC_HBGDeploy_5978_0002
+    steps:
+      - name: S_SYC_HBGDeploy_5978_0002_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          helmVersion: 2
+          namespace: namespace
+          blueReleaseName: blue
+          blueFlags: "--debug"
+          blueValueFilePaths:
+            - values.yaml
+          greenReleaseName: green
+          greenFlags: "--debug"
+          greenValueFilePaths:
+            - values.yaml
+          roleServices:
+            - blueReferenceName: blueService
+              greenReferenceName: greenService
+              idleName: idleService
+              idleCustomProperties: ".spec.test = \"idle\""
+              liveName: liveName
+              liveCustomProperties: ".spec.test = \"live\""
+          dryRun: true
+          lint: true
+          lintFlags: "--strict"
+          test: true
+          testFlags: "--debug"
+          integrations:
+            - name: s_kubernetes
+          inputResources:
+            - name: S_SYC_HBGDeploy_5978_0002_resource

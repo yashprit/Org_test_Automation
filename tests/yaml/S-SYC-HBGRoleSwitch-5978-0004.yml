@@ -1,0 +1,9 @@
+pipelines:
+  - name: S_SYC_HBGRoleSwitch_5978_0004
+    steps:
+      - name: S_SYC_HBGRoleSwitch_5978_0004_2
+        type: HelmBlueGreenRoleSwitch
+        configuration:
+          deployStep: S_SYC_HBGRoleSwitch_5978_0004_1
+          integrations:
+            - name: s_kubernetes
