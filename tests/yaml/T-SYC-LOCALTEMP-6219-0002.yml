@@ -2,9 +2,9 @@ template: true   # required for local templates
 valuesFilePath: ../values/gitRepoValuess.yml # invalid values yml file path
 
 pipelines:
-  - name: Pipeline-T-SYC-LOCALTEMP-6219-0002
+  - name: Pipeline_T_SYC_LOCALTEMP_6219_0002
     steps:
-      - name: T-SYC-LOCALTEMP-6219-0002_0001
+      - name: T_SYC_LOCALTEMP_6219_0002_0001
         type: Bash
         execution:
           onStart:

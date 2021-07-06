@@ -2,9 +2,9 @@ template: true   # required for local templates
 valuesFilePath:  # empty values yml file path
 
 pipelines:
-  - name: Pipeline-T-SYC-LOCALTEMP-6219-0003
+  - name: Pipeline_T_SYC_LOCALTEMP_6219_0003
     steps:
-      - name: T-SYC-LOCALTEMP-6219-0003_0001
+      - name: T_SYC_LOCALTEMP_6219_0003_0001
         type: Bash
         execution:
           onStart:
