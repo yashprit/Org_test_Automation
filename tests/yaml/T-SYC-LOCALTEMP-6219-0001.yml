@@ -1,0 +1,19 @@
+template: true   # required for local templates
+valuesFilePath: ../values/gitRepoValues.yml # valid values yml file path
+
+pipelines:
+  - name: Pipeline-T-SYC-LOCALTEMP-6219-0001
+    steps:
+      - name: T-SYC-LOCALTEMP-6219-0001_0001
+        type: Bash
+        execution:
+          onStart:
+            - echo "Preparing for work..."
+          onExecute:
+            - printenv
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"
