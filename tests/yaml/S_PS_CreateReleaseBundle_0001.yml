@@ -40,3 +40,26 @@ pipelines:
             - name: S_PS_CreateReleaseBundle_0001_BuildInfo
           outputResources:
             - name: S_PS_CreateReleaseBundle_0001_ReleaseBundle
+
+      - name: S_PS_CreateReleaseBundle_0001_3
+        type: PowerShell
+        configuration:
+          inputSteps:
+            - name: S_PS_CreateReleaseBundle_0001_2
+          integrations:
+            - name: s_artifactory
+            - name: s_distribution
+        execution:
+          onExecute:
+            - |
+              $encoded_auth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("${int_s_distribution_user}:${int_s_distribution_apikey}"))
+              check_no_verify_ssl
+              $headers = @{'Authorization' = "Basic $encoded_auth";'Content-Type' = "application/json"}
+              try {
+                $request = Invoke-WebRequest "${int_s_distribution_url}/api/v1/release_bundle/${JFROG_CLI_BUILD_NAME}/${run_id}" -Method Get -Headers $headers -TimeoutSec 60 -ContentType 'application/json' -UseBasicParsing
+                Write-Output $request
+              } catch {
+                $statusCode = $_.Exception.Response.StatusCode.Value__
+                Write-Output $_.Exception.Response.StatusCode.Value__
+              }
+              if ( $statusCode -ne 404 ) { throw "Expected 404" }
