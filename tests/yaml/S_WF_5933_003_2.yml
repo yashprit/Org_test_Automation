@@ -1,0 +1,20 @@
+pipelines:
+  - name: pipeline_S_WF_5933_003
+    configuration:
+      affinityGroup: S_WF_5933_003_affinityGroup
+    steps:
+      - name: S_WF_5933_003_1
+        type: PowerShell
+        configuration:
+          affinityGroup: S_WF_5933_003_affinityGroup2
+        execution:
+          onExecute:
+            - Write-Output "test"
+      - name: S_WF_5933_003_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_5933_003_1
+        execution:
+          onExecute:
+            - echo "test"
