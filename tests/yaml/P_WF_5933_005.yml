@@ -1,0 +1,27 @@
+resources:
+  - name: P_WF_5933_005_resource
+    type: PropertyBag
+    configuration:
+      test: test
+
+pipelines:
+  - name: pipeline_P_WF_5933_005
+    configuration:
+      inputResources:
+        - name: P_WF_5933_005_resource
+    steps:
+      - name: P_WF_5933_005_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+      - name: P_WF_5933_005_2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_WF_5933_005_resource
+          inputSteps:
+            - name: P_WF_5933_005_1
+        execution:
+          onExecute:
+            - echo "executing step..."

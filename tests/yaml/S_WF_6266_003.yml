@@ -1,0 +1,11 @@
+pipelines:
+  - name: pipeline_S_WF_6266_003
+    steps:
+      - name: S_WF_6266_003
+        type: Bash
+        configuration:
+          timeoutSeconds: 150
+          nodePool: nodePool_timeout_restrictions
+        execution:
+          onExecute:
+            - echo "Testing"

@@ -1,0 +1,37 @@
+resources:
+  - name: S_SYC_HBGCleanUp_5933_002_resource
+    type: HelmChart
+    configuration:
+      sourceArtifactory: s_artifactory
+      repository: helm
+      chart: app
+      version: 0.0.1
+
+pipelines:
+  - name: S_SYC_HBGCleanUp_5933_002
+    configuration:
+      integrations:
+        - name: s_kubernetes
+    steps:
+      - name: S_SYC_HBGCleanUp_5933_002_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          namespace: namespace
+          blueReleaseName: blue
+          greenReleaseName: green
+          roleServices:
+            - blueReferenceName: blueService
+              greenReferenceName: greenService
+              idleName: idleService
+              liveName: liveName
+          inputResources:
+            - name: S_SYC_HBGCleanUp_5933_002_resource
+
+      - name: S_SYC_HBGCleanUp_5933_002_2
+        type: HelmBlueGreenCleanup
+        configuration:
+          deployStep: S_SYC_HBGCleanUp_5933_002_1
+          inputSteps:
+            - name: S_SYC_HBGCleanUp_5933_002_1
+          integrations:
+            - name: S_SYC_HBGCleanUp_5933_002_kubernetes

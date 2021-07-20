@@ -1,0 +1,28 @@
+resources:
+  - name: S_SYC_HBGDeploy_5933_001_resource
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      pattern: helmgeneric/
+      recursive: true
+
+pipelines:
+  - name: S_SYC_HBGDeploy_5933_001
+    configuration:
+      inputResources:
+        - name: S_SYC_HBGDeploy_5933_001_resource
+    steps:
+      - name: S_SYC_HBGDeploy_5933_001_1
+        type: HelmBlueGreenDeploy
+        configuration:
+          chartPath: ./
+          namespace: namespace
+          blueReleaseName: blue
+          greenReleaseName: green
+          roleServices:
+            - blueReferenceName: blueService
+              greenReferenceName: greenService
+              idleName: idleService
+              liveName: liveName
+          integrations:
+            - name: s_kubernetes

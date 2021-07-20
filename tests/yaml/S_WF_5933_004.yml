@@ -1,0 +1,18 @@
+pipelines:
+  - name: pipeline_S_WF_5933_004
+    configuration:
+      affinityGroup: S_WF_5933_004_affinity.group
+    steps:
+      - name: S_WF_5933_004_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "test"
+      - name: S_WF_5933_004_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_5933_004_1
+        execution:
+          onExecute:
+            - echo "test"

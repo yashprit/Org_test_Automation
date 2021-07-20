@@ -1,0 +1,19 @@
+template: true   # required for local templates
+valuesFilePath:  # empty values yml file path
+
+pipelines:
+  - name: Pipeline_T_SYC_LOCALTEMP_6219_0003
+    steps:
+      - name: T_SYC_LOCALTEMP_6219_0003_0001
+        type: Bash
+        execution:
+          onStart:
+            - echo "Preparing for work..."
+          onExecute:
+            - printenv
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"

@@ -1,12 +1,3 @@
-resources:
-  - name: S_SYC_HBGRoleSwitch_5978_0004_resource
-    type: HelmChart
-    configuration:
-      sourceArtifactory: s_artifactory
-      repository: helm
-      chart: app
-      version: 0.0.1
-
 pipelines:
   - name: S_SYC_HBGRoleSwitch_5978_0004
     steps:
