@@ -3,7 +3,7 @@ valuesFilePath: ../values/gitRepoValues.yml
 
 resources:
   - name: P_PipelineSource_6351_001_git_repo
-    type: Git
+    type: GitRepo
     configuration:
       path: {{ .Values.GitHub.Org_test_Automation.path }}
       branches:
