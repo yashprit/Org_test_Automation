@@ -1,0 +1,37 @@
+pipelines:
+  - name: pipeline_S_WF_6379_002
+    steps:
+      - name: S_WF_6379_002_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Testing..."
+
+      - name: S_WF_6379_002_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6379_002_1
+        execution:
+          onExecute:
+            - add_run_variables step="one"
+
+      - name: S_WF_6379_002_3
+        type: Bash
+        configuration:
+          priority: 500
+          inputSteps:
+            - name: S_WF_6379_002_1
+        execution:
+          onExecute:
+            - add_run_variables step="two"
+
+      - name: S_WF_6379_002_4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6379_002_2
+            - name: S_WF_6379_002_3
+        execution:
+          onExecute:
+            - if [ "$step" != "two" ]; then exit 1; fi
