@@ -1,0 +1,16 @@
+pipelines:
+  - name: P_SYC_Pipelines_5176
+    steps:
+      - name: P_SYC_Pipelines_5176_003
+        type: Bash
+        execution:
+          onStart:
+            - echo "Preparing for work..."
+          onExecute:
+            - printenv
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"
