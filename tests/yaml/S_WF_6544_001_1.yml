@@ -1,0 +1,42 @@
+resources:
+  - name: S_WF_6544_001_resource_1
+    type: PropertyBag
+    configuration:
+      property: value
+  - name: S_WF_6544_001_resource_2
+    type: PropertyBag
+    configuration:
+      property: value
+  - name: S_WF_6544_001_resource_3
+    type: PropertyBag
+    configuration:
+      property: value
+  - name: S_WF_6544_001_resource_4
+    type: PropertyBag
+    configuration:
+      property: value
+  - name: S_WF_6544_001_resource_5
+    type: PropertyBag
+    configuration:
+      property: value
+  - name: S_WF_6544_001_resource_6
+    type: PropertyBag
+    configuration:
+      property: value
+
+pipelines:
+  - name: pipeline_S_WF_6544_001
+    steps:
+      - name: S_WF_6544_001_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_WF_6544_001_resource_1
+            - name: S_WF_6544_001_resource_2
+            - name: S_WF_6544_001_resource_3
+            - name: S_WF_6544_001_resource_4
+            - name: S_WF_6544_001_resource_5
+            - name: S_WF_6544_001_resource_6
+        execution:
+          onExecute:
+            - Write-Output "test"
