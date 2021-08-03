@@ -1,0 +1,28 @@
+pipelines:
+  - name: pipeline_S_WF_6380_003
+    steps:
+      - name: S_WF_6380_003_1
+        type: Matrix
+        stepMode: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - env1: one
+            - env1: two
+        execution:
+          onExecute:
+            - add_run_variables steplet_${steplet_number}_variable=${env1} step_${env1}_stepletId=${steplet_id}
+      - name: S_WF_6380_003_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name:  S_WF_6380_003_1
+        execution:
+          onExecute:
+            - "stepVariables=$(curl -sS -H \"Authorization: Bearer $builder_api_token\" -H 'Content-Type: application/json' ${pipelines_api_url}/stepVariables?runIds=${run_id})"
+            - if [ "$(echo "$stepVariables" | jq 'length')" != "2" ]; then return 1; fi
+            - stepOne=$(echo "$stepVariables" | jq ".[] | select(.stepletId == $step_one_stepletId)")
+            - stepTwo=$(echo "$stepVariables" | jq ".[] | select(.stepletId == $step_two_stepletId)")
+            - stepOneVariables=$(echo "$stepOne" | jq '.variables.runVariables')
+            - stepTwoVariables=$(echo "$stepTwo" | jq '.variables.runVariables')
+            - if [ "$(echo "$stepOneVariables" | jq 'length')" != "2" ]; then return 1; fi
+            - if [ "$(echo "$stepTwoVariables" | jq 'length')" != "2" ]; then return 1; fi

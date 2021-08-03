@@ -8,7 +8,7 @@ resources:
     type: PropertyBag
     configuration:
       pipelines: "user_out"
-      
+
   - name: api_in_runs_propertyBag_2
     type: PropertyBag
     configuration:
@@ -18,7 +18,7 @@ resources:
     type: PropertyBag
     configuration:
       pipelines: "user_out_2"
-      
+
 
 pipelines:
   - name: api_runs
@@ -39,7 +39,7 @@ pipelines:
             - add_run_files cache.txt run_state_file
             - add_pipeline_files cache.txt pipe_state_file
             - write_output api_out_runs_propertyBag "pipelines=$run_id"
-            
+
       - name: api_runs_step_in
         type: Bash
         configuration:
@@ -66,3 +66,18 @@ pipelines:
             - add_cache_files cache.file runs.file
             - echo "state=pipeline2" > cache.txt
             - add_run_files cache.txt run_state_file
+
+  - name: api_runs_old_state
+    steps:
+      - name: api_runs_old_state
+        type: Bash
+        execution:
+          onExecute:
+            - mkdir run_state
+            - echo 'export var1="one"' > run_state/run.env
+            - tar -czf run.tar.gz -C run_state .
+            - if [ "$no_verify_ssl"  == "true" ]; then curl_opts="--insecure"; fi
+            - "curl -H 'Content-Type: application/json; charset=utf-8' -H \"Authorization: Bearer $builder_api_token\" -o url_output \ -XGET \"${pipelines_api_url}/runs/${run_id}/artifactUrl?artifactName=${run_id}.tar.gz\" $curl_opts"
+            - headers="$(jq -r '.putOpts' url_output)"
+            - url="$(jq -r '.put' url_output)"
+            - eval "curl $headers -XPUT \"$url\" -T run.tar.gz $curl_opts"

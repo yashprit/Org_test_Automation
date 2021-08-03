@@ -1,0 +1,59 @@
+resources:
+  - name: S_WF_6380_008_PropertyBag
+    type: PropertyBag
+    configuration:
+      property: test
+
+pipelines:
+  - name: pipeline_S_WF_6380_008
+    steps:
+      - name: S_WF_6380_008_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Testing..."
+      - name: S_WF_6380_008_2
+        type: Bash
+        configuration:
+          priority: 9999 # make sure this one runs before or at the same time as S_WF_6380_008_3
+          inputSteps:
+            - name: S_WF_6380_008_1
+        execution:
+          onExecute:
+            - add_run_variables step_one_id=${step_id}
+      - name: S_WF_6380_008_3
+        type: Bash
+        configuration:
+          priority: 10000 # make sure this one runs after or at the same time as S_WF_6380_008_2
+          inputSteps:
+            - name: S_WF_6380_008_1
+          outputResources:
+            - name: S_WF_6380_008_PropertyBag
+        execution:
+          onExecute:
+            - add_run_variables step_two_id=${step_id}
+      - name: S_WF_6380_008_4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_008_2
+          inputResources:
+            - name: S_WF_6380_008_PropertyBag
+        execution:
+          onExecute:
+            - if [ "$no_verify_ssl"  == "true" ]; then curl_opts="--insecure"; fi
+            - 'curl -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Bearer $builder_api_token" -XGET $curl_opts "${pipelines_api_url}/steps?runIds=${run_id}&names=S_WF_6380_008_5" --output response.json'
+            - stepId=$(cat response.json | jq -r '.[0].id')
+            - echo "Step ID $stepId"
+            - 'curl -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Bearer $builder_api_token" -XPUT $curl_opts "${pipelines_api_url}/steps/${stepId}" -d "{\"statusCode\": 4013}"'
+      - name: S_WF_6380_008_5
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_008_2
+            - name: S_WF_6380_008_4
+          inputResources:
+            - name: S_WF_6380_008_PropertyBag
+        execution:
+          onExecute:
+            - echo "Testing..."
