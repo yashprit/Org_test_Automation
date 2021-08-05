@@ -1,9 +1,18 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
 resources:
   - name: r_6495_resourceVersion
     type: PropertyBag
     configuration:
      gitProvider: s_gitHub
      path: jfbetapipeorg/Org_test_Automation
+
+ - name: r_6495_GitRepo_resourceVersion
+   type: GitRepo
+   configuration:
+     gitProvider: s_gitHub
+     path: {{ .Values.GitHub.Org_test_Automation.path }}
 
   - name: r_6495_resourceVersion_PA
     type: PropertyBag
