@@ -1,11 +1,11 @@
 resources:
-  - name: resourceversions
+  - name: r_6495_resourceVersion
     type: PropertyBag
     configuration:
      gitProvider: s_gitHub
      path: jfbetapipeorg/Org_test_Automation
 
-  - name: resourceversionProjectAdmin
+  - name: r_6495_resourceVersion_PA
     type: PropertyBag
     configuration:
      gitProvider: s_gitHub
@@ -18,7 +18,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: resourceversions
+            - name: r_6495_resourceVersion
           runtime:
             type: host
         execution:
