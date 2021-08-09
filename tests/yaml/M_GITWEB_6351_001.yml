@@ -1,0 +1,28 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: M_GITWEB_6351_001_gitrepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      branches:
+        include: {{gitBranch}}
+      buildOn:
+        pullRequestCreate: true
+        pullRequestClose: true
+
+pipelines:
+  - name: M_GITWEB_6351_001
+    steps:
+      - name: M_GITWEB_6351_001_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: M_GITWEB_6351_001_gitrepo
+        execution:
+          onExecute:
+            - pushd ${res_M_GITWEB_6351_001_gitrepo_resourcePath}
+            - ls -la
+            - popd
