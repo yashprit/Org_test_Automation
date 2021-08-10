@@ -1,0 +1,12 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: WH_BBS_PR_5167_0001_gitrepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_bitbucketServer
+      path: {{ .Values.BitbucketServer.test.path }}
+      buildOn:
+        commit: false
+        pullRequestCreate: true 
