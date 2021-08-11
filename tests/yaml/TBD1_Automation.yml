@@ -5,7 +5,7 @@ resources:
   - name: TBD1_gitrepo
     type: GitRepo
     configuration:
-      gitProvider: s_bitbucketServer
+      gitProvider: s_gitHub
       path: {{ .Values.BitbucketServer.test.path }}
       branches:
         include: master
