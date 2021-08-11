@@ -12,8 +12,6 @@ resources:
 
 pipelines:
   - name: TBD1_normalStepPipeline
-    configuration:
-      nodePool: Automation_AWS_TBD1
     steps:
       - name: normalStep
         type: Bash
