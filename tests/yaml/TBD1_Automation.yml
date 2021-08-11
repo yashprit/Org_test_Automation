@@ -1,0 +1,38 @@
+template: true
+valuesFilePath: ./values.yml
+
+resources:
+  - name: TBD1_gitrepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_bitbucketServer
+      path: {{ .Values.BitbucketServer.test.path }}
+      branches:
+        include: master
+
+pipelines:
+  - name: TBD1_automation
+    configuration:
+      nodePool: Automation_AWS_TBD1
+    steps:
+      - name: normalStep
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Normal Step"
+  - name: matrix
+    steps:
+      - name: matrixStep
+        type: Matrix
+        stepletMultipliers:
+          fastFail: true
+          environmentVariables:
+            - foo: 1
+            - foo: 2
+        configuration:
+          multiNode: true
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo $foo
