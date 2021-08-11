@@ -26,7 +26,9 @@ pipelines:
           fastFail: true
           environmentVariables:
             - foo: 1
+              bar: echo bar1
             - foo: 2
+              bar: echo bar2
         configuration:
           multiNode: true
           runtime:
@@ -34,3 +36,5 @@ pipelines:
         execution:
           onExecute:
             - echo $foo
+            - sleep 5;
+            - $bar
