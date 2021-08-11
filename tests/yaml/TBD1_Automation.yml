@@ -1,5 +1,5 @@
 template: true
-valuesFilePath: ./values.yml
+valuesFilePath: ../values/gitRepoValues.yml
 
 resources:
   - name: TBD1_gitrepo
