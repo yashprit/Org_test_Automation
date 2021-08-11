@@ -11,7 +11,7 @@ resources:
         include: master
 
 pipelines:
-  - name: TBD1_automation
+  - name: TBD1_normalStepPipeline
     configuration:
       nodePool: Automation_AWS_TBD1
     steps:
@@ -20,7 +20,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Normal Step"
-  - name: matrix
+  - name: TBD1_matrixStepPipeline
     steps:
       - name: matrixStep
         type: Matrix
