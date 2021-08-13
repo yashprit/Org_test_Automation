@@ -1,0 +1,13 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: T_SYC_LOCALTEMP_6517_0001_res
+    type: GitRepo
+    configuration:
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      gitProvider: s_gitHub
+      branches:
+        include: ^{{gitBranch}}$
+      files:
+        include: \bexecTemplates\/.+\b

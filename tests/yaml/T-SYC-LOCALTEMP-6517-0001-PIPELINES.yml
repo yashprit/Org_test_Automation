@@ -1,0 +1,11 @@
+pipelines:
+ - name: T_SYC_LOCALTEMP_6517_0001_pipeline
+   steps:
+      - name: T_SYC_LOCALTEMP_6517_0001_step
+        type: Bash
+        configuration:
+           inputResources:
+            - name: T_SYC_LOCALTEMP_6517_0001_res
+        execution:
+          onExecute:
+            - echo "Executing Step for resource"
