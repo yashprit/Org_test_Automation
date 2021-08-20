@@ -1,6 +1,3 @@
-template: true
-valuesFilePath: ../values/gitRepoValues.yml
-
 pipelines:
  - name: api_passthrough_pipeInfo_pipeline
    steps:

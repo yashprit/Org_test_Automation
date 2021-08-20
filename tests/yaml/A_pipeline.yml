@@ -1,7 +1,7 @@
 pipelines:
-  - name: pipeline_automation
+  - name: A_pipeline_6495_1
     steps:
-      - name: api_pipeline
+      - name: S_A_pipeline_6495
         type: Bash
         configuration:
           integrations:
