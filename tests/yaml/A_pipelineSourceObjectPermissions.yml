@@ -1,7 +1,7 @@
 pipelines:
-  - name: pipeline_automation
+  - name: A_PSObjectPermission_6495
     steps:
-      - name: api_pipeline
+      - name: S_A_PSObjectPermission_6495_1
         type: Bash
         configuration:
           integrations:
