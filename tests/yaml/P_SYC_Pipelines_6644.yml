@@ -1,0 +1,19 @@
+pipelines:
+  - name: P_SYC_Pipelines_6644_001
+    steps:
+      - name: P_SYC_Pipelines_6644_001
+        type: Bash
+        execution:
+          onExecute:
+            - sleep 5m
+  - name: P_SYC_Pipelines_6644_002
+    steps:
+      - name: P_SYC_Pipelines_6644_002
+        type: Matrix
+        stepletMultipliers:
+          environmentVariables:
+            - mins: 200
+            - mins: 300
+        execution:
+          onExecute:
+            - sleep $mins

@@ -1,0 +1,8 @@
+pipelines:
+  - name: P_SYC_Pipelines_6644_001
+    steps:
+      - name: P_SYC_Pipelines_6644_001
+        type: Bash
+        execution:
+          onExecute:
+            - sleep 5m
