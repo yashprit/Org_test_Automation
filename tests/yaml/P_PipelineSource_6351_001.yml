@@ -1,0 +1,25 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: P_PipelineSource_6351_001_git_repo
+    type: GitRepo
+    configuration:
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      branches:
+        include: master
+      gitProvider: s_gitHub
+
+pipelines:
+  - name: P_PipelineSource_6351_001
+    steps:
+      - name: P_PipelineSource_6351_001_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_PipelineSource_6351_001_git_repo
+        execution:
+          onExecute:
+            - pushd ${res_P_PipelineSource_6351_001_git_repo_resourcePath}
+            - ls -la
+            - popd
