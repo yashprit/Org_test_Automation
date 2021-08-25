@@ -3,7 +3,7 @@ resources:
   - name: A_RunResourceVersions_Image
     type: Image
     configuration:
-      registry: i_dockerRegistry
+      registry: s_dockerRegistry
       imageName: shippabledocker/sample_node_pvt
       imageTag: master
 
