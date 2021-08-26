@@ -1,6 +1,6 @@
 resources:
-- name: r_githubEnterprise
-   type: GitRepo
-   configuration:
-     gitProvider: s_githubEnterprise
-     path: {{ .Values.GitHubEnterprise.test.path }}
+   - name: r_githubEnterprise
+     type: GitRepo
+     configuration:
+       gitProvider: s_githubEnterprise
+       path: {{ .Values.GitHubEnterprise.test.path }}
