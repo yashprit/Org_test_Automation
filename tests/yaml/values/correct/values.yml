@@ -1,7 +1,7 @@
 GitRepo:
   name: fooGitRepo
   gitProvider: s_gitHub
-  path: elioengcomp/Org_test_Automation
+  path: jfbetapipeorg/Org_test_Automation
   branches:
     include: 'master'
 
