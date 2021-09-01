@@ -1,0 +1,86 @@
+pipelines:
+  - name: S_Bash_CancelRun_6110_0001
+    steps:
+      - name: S_Bash_CancelRun_6110_0001_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0001_1"
+            - sleep 60
+      - name: S_Bash_CancelRun_6110_0001_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_CancelRun_6110_0001_1
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0001_2 should never run"
+            - exit 1
+  - name: S_Bash_CancelRun_6110_0002
+    steps:
+      - name: S_Bash_CancelRun_6110_0002_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0002_1"
+            - sleep 60
+      - name: S_Bash_CancelRun_6110_0002_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_CancelRun_6110_0002_1
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0002_2 should never run"
+            - exit 1
+  - name: S_Bash_CancelRun_6110_0003
+    steps:
+      - name: S_Bash_CancelRun_6110_0003_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0003_1"
+            - sleep 60
+      - name: S_Bash_CancelRun_6110_0003_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_CancelRun_6110_0003_1
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0003_2 should never run"
+            - exit 1
+  - name: S_Bash_CancelRun_6110_0004
+    steps:
+      - name: S_Bash_CancelRun_6110_0004_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0004_1"
+            - sleep 60
+      - name: S_Bash_CancelRun_6110_0004_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_CancelRun_6110_0004_1
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0004_2 should never run"
+            - exit 1
+  - name: S_Bash_CancelRun_6110_0005
+    steps:
+      - name: S_Bash_CancelRun_6110_0005_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0005_1"
+            - sleep 60
+      - name: S_Bash_CancelRun_6110_0005_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_Bash_CancelRun_6110_0005_1
+        execution:
+          onExecute:
+            - echo "S_Bash_CancelRun_6110_0005_2 should never run"
+            - exit 1

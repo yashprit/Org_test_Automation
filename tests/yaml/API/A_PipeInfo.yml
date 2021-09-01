@@ -1,5 +1,5 @@
 template: true
-valuesFilePath: ../values/gitRepoValues.yml
+valuesFilePath: ../../values/gitRepoValues.yml
 
 resources:
   - name: resource_A_Pipeinfo_gitRepo
@@ -17,9 +17,9 @@ resources:
       runID: 1
 
 pipelines:
-  - name: PipeInfo_automation
+  - name: p_stepArtifacts
     steps:
-      - name: api_pipeinfo_step1
+      - name: s_stepArtifacts_001
         type: Bash
         configuration:
           inputResources:
@@ -32,12 +32,12 @@ pipelines:
           onComplete:
             - add_run_variables current_runid=$run_id
             - add_run_variables commitSha=$res_jatin_gitrepo2_commitSha
-      - name: api_pipeinfo_step2
+      - name: s_stepArtifacts_002
         type: Matrix
         stepMode: Bash
         configuration:
           inputSteps:
-            - name: api_pipeinfo_step1
+            - name: s_stepArtifacts_001
         stepletMultipliers:
           environmentVariables:
             - animal:    dog
@@ -52,11 +52,11 @@ pipelines:
           onExecute:
             - echo "I am executing matrix steplet ${steplet_id}"
             - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
-      - name: api_pipeinfo_step3
+      - name: s_stepArtifacts_003
         type: Bash
         configuration:
           inputSteps:
-            - name: api_pipeinfo_step2
+            - name: s_stepArtifacts_002
           outputResources:
             - name: resource_A_Pipeinfo_propertyBag
         execution:

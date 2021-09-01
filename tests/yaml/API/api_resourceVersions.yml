@@ -1,5 +1,5 @@
 template: true
-valuesFilePath: ../values/gitRepoValues.yml
+valuesFilePath: ../../values/gitRepoValues.yml
 
 resources:
   - name: r_6495_resourceVersion
@@ -23,7 +23,7 @@ resources:
 pipelines:
   - name: api_resourceVersions
     steps:
-      - name: node
+      - name: s_resourceVersions
         type: Bash
         configuration:
           inputResources:

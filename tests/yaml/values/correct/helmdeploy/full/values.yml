@@ -45,7 +45,7 @@ PromoteBuild:
 HelmDeploy:
   name: HelmDeployStep
   chartPath: '.'
-  releaseName: simplehelm-test
+  releaseName: simplehelm-test-${run_number}
   flags: '--force --wait --timeout 900s --set image.repository=trriplejay/simplehelm --set image.tag=latest'
   lint: true
   lintFlags: '--strict'

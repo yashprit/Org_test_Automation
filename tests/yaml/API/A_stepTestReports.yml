@@ -1,46 +1,46 @@
 template: true
-valuesFilePath: ../values/gitRepoValues.yml
+valuesFilePath: ../../values/gitRepoValues.yml
 
 resources:
-  - name: script_repo1
+  - name: r_stepTestReports
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
       path: {{ .Values.GitHub.Org_test_Automation.path }}
 
 pipelines:
-  - name: test_stepTestReports
+  - name: P_stepTestReports
     steps:
-      - name: testReport
+      - name: s_stepTestReports
         type: Bash
         configuration:
           inputResources:
-            - name: script_repo1
+            - name: r_stepTestReports
         execution:
           onExecute:
-            - cd $res_script_repo1_resourcePath
+            - cd $res_r_stepTestReports_resourcePath
             - python -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
-            - cd $res_script_repo1_resourcePath
+            - cd $res_r_stepTestReports_resourcePath
             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-            - save_tests $res_script_repo1_resourcePath/test-reports/results.xml
+            - save_tests $res_r_stepTestReports_resourcePath/test-reports/results.xml
 
-  - name: test_stepTestReports_ProjecrAdmin
+  - name: P_stepTestReports_ProjecrAdmin
     steps:
-      - name: testReportProjectAdmin
+      - name: s_stepTestReportsProjectAdmin
         type: Bash
         configuration:
           inputResources:
-            - name: script_repo1
+            - name: r_stepTestReports
         execution:
           onExecute:
-            - cd $res_script_repo1_resourcePath
+            - cd $res_r_stepTestReports_resourcePath
             - python -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
-            - cd $res_script_repo1_resourcePath
+            - cd $res_r_stepTestReports_resourcePath
             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-            - save_tests $res_script_repo1_resourcePath/test-reports/results.xml
+            - save_tests $res_r_stepTestReports_resourcePath/test-reports/results.xml
