@@ -2,7 +2,7 @@ template: true
 valuesFilePath: ../values/gitRepoValues.yml
 
 resources:
-  - name: S-Matrix-6230-0001_gitrepo
+  - name: S_Matrix_6230_0001_gitrepo
     type: GitRepo
     configuration:
       gitProvider: s_gitHub
@@ -11,17 +11,24 @@ resources:
         include: master
 
 pipelines:
-  - name: S-Matrix-6230-0001_normalStepPipeline
+  - name: S_Matrix_6230_0001_normalStepPipeline
     steps:
       - name: normalStep
         type: Bash
+        configuration:
+          nodePool: Automation_AWS_S-Matrix-6230-0001
         execution:
           onExecute:
             - echo "Normal Step"
-  - name: S-Matrix-6230-0001_matrixStepPipeline
+  - name: S_Matrix_6230_0001_matrixStepPipeline
     steps:
       - name: matrixStep
         type: Matrix
+        configuration:
+          nodePool: Automation_AWS_S-Matrix-6230-0001
+          multiNode: true
+          runtime:
+            type: host
         stepletMultipliers:
           fastFail: true
           environmentVariables:
@@ -29,10 +36,6 @@ pipelines:
               bar: echo bar1
             - foo: 2
               bar: echo bar2
-        configuration:
-          multiNode: true
-          runtime:
-            type: host
         execution:
           onExecute:
             - echo $foo
