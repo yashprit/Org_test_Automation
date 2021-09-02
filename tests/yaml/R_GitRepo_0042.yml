@@ -1,6 +1,8 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
 resources:
    - name: r_githubEnterprise
      type: GitRepo
      configuration:
        gitProvider: s_githubEnterprise
-       path: {{ .Values.GitHubEnterprise.test.path }}
+       path: {{ .Values.GitHubEnterprise.Org_test_Automation.path }}
