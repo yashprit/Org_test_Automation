@@ -1,6 +1,6 @@
 GitHub:
   Org_test_Automation:
-    path: elioengcomp/Org_test_Automation
+    path: jfbetapipeorg/Org_test_Automation
   Org_test_Automation_bash:
     path: jfbetapipeorg/Org_test_Automation_bash
   Org_test_Automation_PowerShell:
@@ -8,7 +8,7 @@ GitHub:
 
 GitHubEnterprise:
   Org_test_Automation:
-    path: elioengcomp/Org_test_Automation
+    path: jfbetapipeorg/Org_test_Automation
   test_automation:
     path: jfbeta/test_automation
   test:
