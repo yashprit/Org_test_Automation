@@ -1,0 +1,214 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: R_GitRepo_5961_001_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      branches:
+        include: {{gitBranch}}
+
+  - name: R_GitRepo_5961_001
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestSourceBranches:
+        include: ^R_GitRepo_5961$
+
+  - name: R_GitRepo_5961_002
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestSourceBranches:
+        exclude: ^R_GitRepo_5961$
+
+  - name: R_GitRepo_5961_003
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestSourceBranches:
+        include: ^R_GitRepo_5961$
+        exclude: ^R_GitRepo_5961$
+
+  - name: R_GitRepo_5961_004
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestTargetBranches:
+        include: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_005
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestTargetBranches:
+        exclude: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_006
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestTargetBranches:
+        include: ^{{gitBranch}}$
+        exclude: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_007
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestSourceBranches:
+        include:  ^R_GitRepo_5961$
+      pullRequestTargetBranches:
+        exclude: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_008
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      pullRequestSourceBranches:
+        exclude:  ^R_GitRepo_5961$
+      pullRequestTargetBranches:
+        include: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_009
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      branches:
+        exclude: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_010
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+      branches:
+        include: ^{{gitBranch}}$
+
+  - name: R_GitRepo_5961_011
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      buildOn:
+        pullRequestCreate: true
+        commit: false
+
+pipelines:
+  - name: pipeline_R_GitRepo_5961_001_openPullRequest
+    steps:
+      - name: R_GitRepo_5961_001_openPullRequest
+        type: Bash
+        configuration:
+          inputResources:
+            - name: R_GitRepo_5961_001_GitRepo
+              trigger: false
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - |
+              curl -X GET -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${int_s_gitHub_token}" \
+              "https://api.github.com/repos/${res_R_GitRepo_5961_001_GitRepo_path}/pulls?state=all&sort=updated&direction=desc&head=${res_R_GitRepo_5961_001_GitRepo_path%%/*}:R_GitRepo_5961&base={{gitBranch}}" \
+              -o pull_requests.json
+            - pull_request_number=$(cat pull_requests.json | jq -r '.[0].number')
+            - 'echo "Pull request: $pull_request_number"'
+            - |
+              if [ "$pull_request_number" != "null" ]; then
+                status_code=$(curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+                -H "Authorization: token ${int_s_gitHub_token}" \
+                -w %{http_code} --silent -o /dev/null \
+                "https://api.github.com/repos/${res_R_GitRepo_5961_001_GitRepo_path}/pulls/${pull_request_number}" \
+                -d "{\"title\":\"${run_id}\",\"state\":\"open\"}")
+                if [ "$status_code" != 200 ]; then
+                  echo "Status code: $status_code"
+                  pull_request_number="null" # Can't reopen (likely branch deleted)
+                fi
+              fi
+            - cd $res_R_GitRepo_5961_001_GitRepo_resourcePath
+            - git checkout -b R_GitRepo_5961
+            - echo "$run_id" > test.txt
+            - git add test.txt
+            - git commit -m "$run_id"
+            - origin=$(git config remote.origin.url | sed "s#ssh://##" | sed "s#https://##" | sed "s#:#/#" | sed "s#git@##")
+            - host=$(echo "$origin" | cut -d '/' -f 1 )
+            - git remote set-url origin https://$origin
+            - git config --global credential.helper store
+            - echo "https://token:${int_s_gitHub_token}@${host}" > ~/.git-credentials
+            - git push origin R_GitRepo_5961 -f
+            - rm ~/.git-credentials
+            - |
+              if [ "$pull_request_number" == "null" ]; then
+                curl -X POST -H "Accept: application/vnd.github.v3+json" \
+                -H "Authorization: token ${int_s_gitHub_token}" \
+                "https://api.github.com/repos/${res_R_GitRepo_5961_001_GitRepo_path}/pulls" \
+                -d "{\"head\":\"R_GitRepo_5961\",\"base\":\"{{gitBranch}}\",\"title\":\"${run_id}\"}"
+              fi
+
+  - name: pipeline_R_GitRepo_5961_001_closePullRequest
+    steps:
+      - name: R_GitRepo_5961_001_closePullRequest
+        type: Bash
+        configuration:
+          inputResources:
+            - name: R_GitRepo_5961_001_GitRepo
+              trigger: false
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - |
+              curl -X GET -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${int_s_gitHub_token}" \
+              "https://api.github.com/repos/${res_R_GitRepo_5961_001_GitRepo_path}/pulls?state=all&sort=updated&direction=desc&head=${res_R_GitRepo_5961_001_GitRepo_path%%/*}:R_GitRepo_5961&base={{gitBranch}}" \
+              -o pull_requests.json
+            - pull_request_number=$(cat pull_requests.json | jq -r '.[0].number')
+            - |
+              if [ "$pull_request_number" != "null" ]; then
+                curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+                -H "Authorization: token ${int_s_gitHub_token}" \
+                "https://api.github.com/repos/${res_R_GitRepo_5961_001_GitRepo_path}/pulls/${pull_request_number}" \
+                -d '{"state":"closed"}'
+              fi
