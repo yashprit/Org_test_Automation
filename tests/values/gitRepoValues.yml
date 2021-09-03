@@ -35,3 +35,7 @@ BitbucketServer:
     path: PIP/test_automation
   test:
     path: ~ranjanks/test
+
+Projects:
+  FirstProjectKey: proj1
+  SecondProjectKey: proj2
