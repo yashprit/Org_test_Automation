@@ -1,0 +1,92 @@
+pipelines:
+  - name: api_stepVariables
+    steps:
+      - name: api_stepVariables
+        type: Bash
+        configuration:
+          environmentVariables:
+            env1: value1
+            env2: value2
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_5
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_6
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_7
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_8
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_9
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"
+      - name: api_stepVariables_10
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: api_stepVariables
+        execution:
+          onExecute:
+            - echo "testing"

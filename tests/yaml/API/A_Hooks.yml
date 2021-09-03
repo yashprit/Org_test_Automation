@@ -1,5 +1,5 @@
 template: true
-valuesFilePath: ../values/gitRepoValues.yml
+valuesFilePath: ../../values/gitRepoValues.yml
 
 resources:
   - name: A_Hooks
@@ -11,9 +11,9 @@ resources:
       gitProvider: s_gitHub
 
 pipelines:
-  - name: PipelineSteps_automation
+  - name: pipelines_A_Hooks
     steps:
-      - name: api_PipelineSteps
+      - name: S_A_Hooks
         type: Bash
         configuration:
           inputResources:

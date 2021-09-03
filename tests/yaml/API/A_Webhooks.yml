@@ -1,0 +1,28 @@
+template: true
+valuesFilePath: ../../values/gitRepoValues.yml
+
+resources:
+  - name: r_webhooks
+    type: GitRepo
+    configuration:
+      path: {{ .Values.GitHub.Org_test_Automation_PowerShell.path }}
+      branches:
+        include: master
+      gitProvider: s_gitHub
+
+pipelines:
+  - name: P_A_Webhooks
+    steps:
+      - name: s_A_Webhooks
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_webhooks
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - echo "executing step..."
+          onComplete:
+            - echo "state=step" > step_state.txt
+            - add_cache_files step_state.txt step_state_file

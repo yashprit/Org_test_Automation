@@ -1,7 +1,7 @@
 pipelines:
   - name: Pipelines_IdentityFavorites
     steps:
-      - name: api_PipelineSteps
+      - name: api_IdentityFavorites_001
         type: Bash
         execution:
           onExecute:
@@ -9,7 +9,7 @@ pipelines:
             
   - name: Pipelines_IdentityF_admin
     steps:
-      - name: api_PipelineSteps
+      - name: api_IdentityFavorites_002
         type: Bash
         execution:
           onExecute:
@@ -17,7 +17,7 @@ pipelines:
      
   - name: Pipelines_IdentityF_member
     steps:
-      - name: api_PipelineSteps
+      - name: api_IdentityFavorites_003
         type: Bash
         execution:
           onExecute:
@@ -25,7 +25,7 @@ pipelines:
           
   - name: Pipelines_IdentityF_projectadmin
     steps:
-      - name: api_PipelineSteps
+      - name: api_IF_001_projectadmin
         type: Bash
         execution:
           onExecute:

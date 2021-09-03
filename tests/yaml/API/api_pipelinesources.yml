@@ -1,7 +1,7 @@
 pipelines:
-  - name: pipeline_api_PipelineSteps
+  - name: pipeline_api_PipelineSources
     steps:
-      - name: api_PipelineSteps
+      - name: P_pipelineSources
         type: Bash
         execution:
           onExecute:

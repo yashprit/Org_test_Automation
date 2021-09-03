@@ -1,0 +1,58 @@
+template: true
+valuesFilePath: ../../values/gitRepoValues.yml
+
+resources:
+  - name: r_resources
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation_bash.path }}
+
+  - name: A_DEL_PP_0014
+    type: PropertyBag
+    configuration:
+      key1: value1
+
+  - name: A_Resources_0017
+    type: PropertyBag
+    configuration:
+      key1: value1
+      
+  - name: A_PUT_PP_0009
+    type: PropertyBag
+    configuration:
+      key1: value1
+      
+  - name: A_Resources_0018
+    type: PropertyBag
+    configuration:
+      key1: value1
+
+  - name: A_PO_PP_0033
+    type: PropertyBag
+    configuration:
+      key1: value1
+
+  - name: A_Resources_0019
+    type: PropertyBag
+    configuration:
+      key1: value1
+
+  - name: A_Resources_0020
+    type: PropertyBag
+    configuration:
+      key1: value1
+     
+pipelines:
+  - name: P_resources
+    steps:
+    - name: s_resources
+      type: Bash
+      configuration:
+        integrations:
+          - name: s_gitHub
+        inputResources:
+          - name: r_resources
+      execution:
+        onExecute:
+          - echo "hi"

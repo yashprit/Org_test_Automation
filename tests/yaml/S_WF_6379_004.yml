@@ -1,0 +1,48 @@
+resources:
+  - name: S_WF_6379_004_PropertyBag
+    type: PropertyBag
+    configuration:
+      property: test
+
+pipelines:
+  - name: pipeline_S_WF_6379_004
+    steps:
+      - name: S_WF_6379_004_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Testing..."
+
+      - name: S_WF_6379_004_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6379_004_1
+          outputResources:
+           - name: S_WF_6379_004_PropertyBag
+        execution:
+          onExecute:
+            - add_run_variables step="one"
+
+      - name: S_WF_6379_004_3
+        type: Bash
+        configuration:
+          priority: 500
+          inputSteps:
+            - name: S_WF_6379_004_1
+        execution:
+          onExecute:
+            - add_run_variables step="two"
+
+      - name: S_WF_6379_004_4
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_WF_6379_004_PropertyBag
+          inputSteps:
+            - name: S_WF_6379_004_3
+        execution:
+          onExecute:
+            - cat $run_dir/workspace/run.env
+            - echo $step
+            - if [ "$step" != "one" ]; then exit 1; fi
