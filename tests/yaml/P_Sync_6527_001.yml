@@ -8,9 +8,6 @@ pipelines:
     steps:
       - name: P_Sync_6527_001_1
         type: Bash
-        configuration:
-          inputResources:
-            - name: P_Sync_6527_001_gitrepo
         execution:
           onExecute:
             - ls -la
