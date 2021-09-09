@@ -1,0 +1,53 @@
+pipelines:
+  - name: pipeline_S_WF_6380_002
+    steps:
+      - name: S_WF_6380_002_1
+        type: Bash
+        execution:
+          onExecute:
+            - mkdir test_directory
+            - echo ${run_id} > test_directory/my_file_1
+            - add_run_files test_directory test_directory
+            - add_run_variables step_one_id=${step_id} step_one_stepletId=${steplet_id}
+      - name: S_WF_6380_002_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_002_1
+        execution:
+          onExecute:
+            - mkdir test_directory
+            - echo ${run_id} > test_directory/my_file_2
+            - add_run_files test_directory test_directory
+            - add_run_variables step_two_id=${step_id} step_two_stepletId=${steplet_id}
+      - name: S_WF_6380_002_3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_002_2
+          integrations:
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - if [ -z "$step_one_id" ]; then echo "First stepId not found"; return 1; fi
+            - if [ -z "$step_two_id" ]; then echo "Second stepId not found"; return 1; fi
+            - if [ -z "$step_one_stepletId" ]; then echo "First stepletId not found"; return 1; fi
+            - if [ -z "$step_two_stepletId" ]; then echo "Second stepletId not found"; return 1; fi
+            - echo "/projects/${project_id}/pipelines/*/runs/${run_id}/steps/${step_one_id}/state/${step_one_stepletId}.tar.gz"
+            - stepletOneFilePath=$(jfrog rt search "*/projects/${project_id}/pipelines/*/runs/${run_id}/steps/${step_one_id}/state/${step_one_stepletId}.tar.gz" | jq -r '.[0].path')
+            - stepletTwoFilePath=$(jfrog rt search "*/projects/${project_id}/pipelines/*/runs/${run_id}/steps/${step_two_id}/state/${step_two_stepletId}.tar.gz" | jq -r '.[0].path')
+            - if [ "$stepletOneFilePath" == "null" ]; then echo "First steplet not found"; return 1; fi
+            - if [ "$stepletTwoFilePath" == "null" ]; then echo "Second steplet not found"; return 1; fi
+            - jfrog rt download --insecure-tls=${no_verify_ssl} --flat=true "$stepletOneFilePath" stepletOne.tar.gz
+            - jfrog rt download --insecure-tls=${no_verify_ssl} --flat=true "$stepletTwoFilePath" stepletTwo.tar.gz
+            - ls
+            - mkdir stepletOne
+            - mkdir stepletTwo
+            - tar -xf stepletOne.tar.gz -C stepletOne
+            - tar -xf stepletTwo.tar.gz -C stepletTwo
+            - ls stepletOne
+            - ls stepletTwo
+            - if [ ! -f stepletOne/test_directory/my_file_1 ]; then return 1; fi
+            - if [ -f stepletOne/test_directory/my_file_2 ]; then return 1; fi
+            - if [ ! -f stepletTwo/test_directory/my_file_2 ]; then return 1; fi
+            - if [ -f stepletTwo/test_directory/my_file_1 ]; then return 1; fi

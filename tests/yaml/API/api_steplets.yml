@@ -28,3 +28,35 @@ pipelines:
           onExecute:
             - echo api_steplets > cachefile.txt
             - add_cache_files cachefile.txt my_file
+
+  - name: api_steplets_old_run_state
+    steps:
+      - name: api_steplets_old_run_state
+        type: Bash
+        execution:
+          onExecute:
+            - mkdir run_state
+            - echo 'export var1="one"' > run_state/run.env
+            - tar -czf run.tar.gz -C run_state .
+            - if [ "$no_verify_ssl"  == "true" ]; then curl_opts="--insecure"; fi
+            - "curl -H 'Content-Type: application/json; charset=utf-8' -H \"Authorization: Bearer $builder_api_token\" -o url_output \ -XGET \"${pipelines_api_url}/runs/${run_id}/artifactUrl?artifactName=${run_id}.tar.gz\" $curl_opts"
+            - headers="$(jq -r '.putOpts' url_output)"
+            - url="$(jq -r '.put' url_output)"
+            - eval "curl $headers -XPUT \"$url\" -T run.tar.gz $curl_opts"
+
+  - name: api_steplets_new_run_state
+    steps:
+      - name: api_steplets_new_run_state
+        type: Bash
+        execution:
+          onExecute:
+            - echo "testing" > run_state
+            - add_run_files run_state run_state
+
+  - name: api_steplets_no_run_state
+    steps:
+      - name: api_steplets_no_run_state
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Testing..."

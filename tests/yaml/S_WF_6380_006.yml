@@ -1,0 +1,43 @@
+resources:
+  - name: S_WF_6380_006_PropertyBag
+    type: PropertyBag
+    configuration:
+      property: test
+
+pipelines:
+  - name: pipeline_S_WF_6380_006
+    steps:
+      - name: S_WF_6380_006_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Testing..."
+      - name: S_WF_6380_006_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_006_1
+        execution:
+          onExecute:
+            - add_run_variables step_one_id=${step_id}
+      - name: S_WF_6380_006_3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_006_1
+          outputResources:
+            - name: S_WF_6380_006_PropertyBag
+        execution:
+          onExecute:
+            - add_run_variables step_two_id=${step_id}
+      - name: S_WF_6380_006_4
+        type: Bash
+        configuration:
+          nodePool: nodePool_6380_006
+          inputSteps:
+            - name: S_WF_6380_006_2
+          inputResources:
+            - name: S_WF_6380_006_PropertyBag
+        execution:
+          onExecute:
+            - echo "Testing..."

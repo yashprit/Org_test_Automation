@@ -1,0 +1,56 @@
+pipelines:
+  - name: pipeline_S_WF_6380_005
+    steps:
+      - name: S_WF_6380_005_1
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+        execution:
+          onExecute:
+            - New-Item -Name "test_directory" -ItemType Directory
+            - Set-Content -Path "test_directory/my_file_1" -Value ${run_id}
+            - add_run_files test_directory test_directory
+            - add_run_variables step_one_id=${step_id} step_one_stepletId=${steplet_id}
+      - name: S_WF_6380_005_2
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputSteps:
+            - name: S_WF_6380_005_1
+        execution:
+          onExecute:
+            - New-Item -Name "test_directory" -ItemType Directory
+            - Set-Content -Path "test_directory/my_file_2" -Value ${run_id}
+            - add_run_files test_directory test_directory
+            - add_run_variables step_two_id=${step_id} step_two_stepletId=${steplet_id}
+      - name: S_WF_6380_005_3
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputSteps:
+            - name: S_WF_6380_005_2
+          integrations:
+            - name: s_artifactory
+        execution:
+          onExecute:
+            - Write-Output "${step_one_id} ${step_two_id}"
+            - if ( -not ${step_one_id} ) { throw "First stepId not found" }
+            - if ( -not ${step_two_id} ) { throw "Second stepId not found" }
+            - if ( -not ${step_one_stepletId} ) { throw "First stepletId not found" }
+            - if ( -not ${step_two_stepletId} ) { throw "Second stepletId not found" }
+            - |
+              $stepletOneFilePath = (jfrog rt search "*/projects/${project_id}/pipelines/*/runs/${run_id}/steps/${step_one_id}/state/${step_one_stepletId}.tar.gz" | ConvertFrom-JSON)[0].path
+              if ( -not $stepletOneFilePath ) { throw "First steplet not found" }
+              jfrog rt download --insecure-tls=${no_verify_ssl} --flat=true "$stepletOneFilePath" stepletOne.tar.gz
+            - |
+              $stepletTwoFilePath = (jfrog rt search "*/projects/${project_id}/pipelines/*/runs/${run_id}/steps/${step_two_id}/state/${step_two_stepletId}.tar.gz" | ConvertFrom-JSON)[0].path
+              if ( -not $stepletTwoFilePath ) { throw "Second steplet not found" }
+              jfrog rt download --insecure-tls=${no_verify_ssl} --flat=true "$stepletTwoFilePath" stepletTwo.tar.gz
+            - mkdir stepletOne
+            - mkdir stepletTwo
+            - tar -xf stepletOne.tar.gz -C stepletOne
+            - tar -xf stepletTwo.tar.gz -C stepletTwo
+            - if ( -not (Test-Path stepletOne/test_directory/my_file_1) ) { throw "Missing file one" }
+            - if ( Test-Path stepletOne/test_directory/my_file_2 ) { throw "Found file two" }
+            - if ( -not (Test-Path stepletTwo/test_directory/my_file_2) ) { throw "Missing file two" }
+            - if ( Test-Path stepletTwo/test_directory/my_file_1 ) { throw "Found file one" }

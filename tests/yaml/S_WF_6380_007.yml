@@ -1,0 +1,48 @@
+resources:
+  - name: S_WF_6380_007_PropertyBag
+    type: PropertyBag
+    configuration:
+      property: test
+
+pipelines:
+  - name: pipeline_S_WF_6380_007
+    steps:
+      - name: S_WF_6380_007_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Testing..."
+      - name: S_WF_6380_007_2
+        type: Bash
+        configuration:
+          priority: 9999 # make sure this one runs before or at the same time as S_WF_6380_007_3
+          inputSteps:
+            - name: S_WF_6380_007_1
+        execution:
+          onExecute:
+            - add_run_variables step_one_id=${step_id}
+      - name: S_WF_6380_007_3
+        type: Bash
+        configuration:
+          priority: 10000 # make sure this one runs after or at the same time as S_WF_6380_007_2
+          inputSteps:
+            - name: S_WF_6380_007_1
+          outputResources:
+            - name: S_WF_6380_007_PropertyBag
+        execution:
+          onExecute:
+            - add_run_variables step_two_id=${step_id}
+            - if [ "$no_verify_ssl"  == "true" ]; then curl_opts="--insecure"; fi
+            - stepStatus=""
+            - 'while [ "$stepStatus" != "4002" ]; do sleep 5; curl -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Bearer $builder_api_token" -XGET $curl_opts "${pipelines_api_url}/steps?runIds=${run_id}&names=S_WF_6380_007_2" --output response.json; stepStatus=$(cat response.json | jq -r ".[0].statusCode"); echo "Status: $stepStatus"; done'
+            - return 1
+      - name: S_WF_6380_007_4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_007_2
+          inputResources:
+            - name: S_WF_6380_007_PropertyBag
+        execution:
+          onExecute:
+            - echo "Testing..."
