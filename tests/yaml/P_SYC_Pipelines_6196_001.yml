@@ -1,0 +1,20 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: P_SYC_Pipelines_6196_001_git_repo
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation.path }}
+      branches:
+        include: master
+
+pipelines:
+  - name: P_SYC_Pipelines_6196_001
+    steps:
+      - name: P_SYC_Pipelines_6196_001_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "P_SYC_Pipelines_6196_001"
