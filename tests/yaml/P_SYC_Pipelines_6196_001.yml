@@ -11,9 +11,9 @@ resources:
         include: master
 
 pipelines:
-  - name: P_SYC_Pipelines_6196_001
+  - name: test_pipeline1
     steps:
-      - name: P_SYC_Pipelines_6196_001_1
+      - name: step1
         type: Bash
         execution:
           onExecute:
