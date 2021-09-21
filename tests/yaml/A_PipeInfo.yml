@@ -60,4 +60,4 @@ pipelines:
           onExecute:
             - echo $current_runid
             - add_pipeline_variables prev_runid=$run_id
-            - write_output resource_A_Pipeinfo_propertyBag commitSha=$commitSha runID=$current_runid
+            - write_output resource_A_Pipeinfo_property commitSha=$commitSha runID=$current_runid
