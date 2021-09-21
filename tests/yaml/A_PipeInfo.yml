@@ -1,5 +1,5 @@
 resources:
-  - name: resource_A_Pipeinfo_gitRepo
+  - name: resource_A_Pipeinfo_git
     type: GitRepo
     configuration:
       path: jfbetapipeorg/Org_test_Automation
@@ -7,7 +7,7 @@ resources:
         include: master
       gitProvider: s_gitHub
 
-  - name: resource_A_Pipeinfo_propertyBag
+  - name: resource_A_Pipeinfo_property
     type: PropertyBag
     configuration:
       commitSha: 1
@@ -20,7 +20,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: resource_A_Pipeinfo_gitRepo
+            - name: resource_A_Pipeinfo_git
           integrations:
             - name: s_gitHub
         execution:
@@ -55,7 +55,7 @@ pipelines:
           inputSteps:
             - name: api_pipeinfo_step2
           outputResources:
-            - name: resource_A_Pipeinfo_propertyBag
+            - name: resource_A_Pipeinfo_property
         execution:
           onExecute:
             - echo $current_runid
