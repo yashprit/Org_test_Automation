@@ -23,9 +23,9 @@ pipelines:
         execution:
           onExecute:
             - get-childitem $res_S_PS_UTIL_resourcePath
-            - choco install python2
-            - python --version
-            - python -m pip install --upgrade pip
+            - choco install python3
+            - python3 --version
+            - python3 -m pip install --upgrade pip
             - pip --version
             - pip install pytest
             - pytest --version

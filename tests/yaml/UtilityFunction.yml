@@ -65,7 +65,7 @@ pipelines:
             - cat encrypted.txt
             - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
             - cat decrypted.txt
-            - python -m py_compile tests/core/sampleExecutionFile/calc.py
+            - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
