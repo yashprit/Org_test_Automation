@@ -23,8 +23,8 @@ pipelines:
         execution:
           onExecute:
             - get-childitem $res_S_PS_UTIL_resourcePath
-            - python --version
-            - python -m pip install --upgrade pip
+            - python3 --version
+            - python3 -m pip install --upgrade pip
             - pip --version
             - pip install pytest
             - pytest --version
