@@ -4,7 +4,7 @@ pipelines:
       - name: Environments_WF_002_1
         type: Bash
         configuration:
-          nodePool: Environments_WF_1_DEV
+          nodePool: first_Environments_WF_1_DEV
         execution:
           onExecute:
             - echo "step_1"
