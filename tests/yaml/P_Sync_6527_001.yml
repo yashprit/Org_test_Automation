@@ -1,0 +1,13 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+pipelines:
+  - name: P_Sync_6527_001
+    configuration:
+      nodePool: {{ .Values.Projects.FirstProjectKey }}_i_automationnode_projects_6527_1
+    steps:
+      - name: P_Sync_6527_001_1
+        type: Bash
+        execution:
+          onExecute:
+            - ls -la
