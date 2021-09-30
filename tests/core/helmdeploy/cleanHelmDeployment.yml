@@ -3,7 +3,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          RELEASE_NAME: "simplehelm-test"
+          RELEASE_NAME: 'simplehelm-test-${run_number}'
           K8S_NAMESPACE: "pipe-master-pool"
     steps:
       - name: CleanHelmResource
