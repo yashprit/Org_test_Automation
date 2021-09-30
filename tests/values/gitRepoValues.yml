@@ -37,5 +37,5 @@ BitbucketServer:
     path: ~ranjanks/test
 
 Projects:
-  FirstProjectKey: proj1
-  SecondProjectKey: proj2
+  FirstProjectKey: first
+  SecondProjectKey: second
