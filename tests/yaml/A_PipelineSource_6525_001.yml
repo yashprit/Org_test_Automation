@@ -1,0 +1,11 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+pipelines:
+  - name: A_PipelineSource_6525_001
+    steps:
+      - name: A_PipelineSource_6525_001_1
+        type: Bash
+        execution:
+          onExecute:
+            - ls -la
