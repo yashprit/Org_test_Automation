@@ -22,9 +22,8 @@ pipelines:
           priority: 4
         execution:
           onStart:
-            - Write-Output "step_4_var - ${step_4_var}"
-            - if ("$step_4_var" -ne "step_4") { throw "variable does not match expected value" }
-            - add_run_variables step_2_var="step_2"
+            - if (-not (Test-Path -Path $shared_workspace/step_4 -PathType Leaf)) { throw "Missing file from step_4" }
+            - Set-Content -Path ${shared_workspace}/step_2 -Value step_2
           onExecute:
             - Write-Output "step 2 is running"
 
@@ -37,9 +36,13 @@ pipelines:
           priority: 1
         execution:
           onStart:
-            - Write-Output "step_1_var - ${step_1_var}"
             - if ("$step_1_var" -ne "step_1") { throw "variable does not match expected value" }
-            - add_run_variables step_3_var="step_3"
+            - if (Test-Path -Path $shared_workspace/step_2 -PathType Leaf) { throw "step_2 ran first" }
+            - if (Test-Path -Path $shared_workspace/step_3 -PathType Leaf) { throw "step_3 ran first" }
+            - if (Test-Path -Path $shared_workspace/step_4 -PathType Leaf) { throw "step_4 ran first" }
+            - if (Test-Path -Path $shared_workspace/step_5 -PathType Leaf) { throw "step_5 ran first" }
+            - if (Test-Path -Path $shared_workspace/step_6 -PathType Leaf) { throw "step_6 ran first" }
+            - Set-Content -Path ${shared_workspace}/step_3 -Value step_3
           onExecute:
             - Write-Output "step 3 is running"
 
@@ -52,9 +55,8 @@ pipelines:
           priority: 3
         execution:
           onStart:
-            - Write-Output "step_3_var - ${step_3_var}"
-            - if ("$step_3_var" -ne "step_3") { throw "variable does not match expected value" }
-            - add_run_variables step_4_var="step_4"
+            - if (-not (Test-Path -Path $shared_workspace/step_3 -PathType Leaf)) { throw "Missing file from step_3" }
+            - Set-Content -Path ${shared_workspace}/step_4 -Value step_4
           onExecute:
             - Write-Output "step 4 is running"
 
@@ -69,9 +71,8 @@ pipelines:
           priority: 4
         execution:
           onStart:
-            - Write-Output "step_6_var - ${step_6_var}"
-            - if ("$step_6_var" -ne "step_6") { throw "variable does not match expected value" }
-            - add_run_variables step_5_var="step_5"
+            - if (-not (Test-Path -Path $shared_workspace/step_6 -PathType Leaf)) { throw "Missing file from step_6" }
+            - Set-Content -Path ${shared_workspace}/step_5 -Value step_5
           onExecute:
             - Write-Output "step 5 is running"
 
@@ -86,13 +87,10 @@ pipelines:
           priority: 2
         execution:
           onStart:
-            - Write-Output "step_2_var - ${step_2_var}"
-            - Write-Output "step_3_var - ${step_3_var}"
-            - Write-Output "step_4_var - ${step_4_var}"
-            - if ("$step_2_var" -ne "step_2") { throw "variable does not match expected value" }
-            - if ("$step_3_var" -ne "step_3") { throw "variable does not match expected value" }
-            - if ("$step_4_var" -ne "step_4") { throw "variable does not match expected value" }
-            - add_run_variables step_6_var="step_6"
+            - if (-not (Test-Path -Path $shared_workspace/step_2 -PathType Leaf)) { throw "Missing file from step_2" }
+            - if (-not (Test-Path -Path $shared_workspace/step_3 -PathType Leaf)) { throw "Missing file from step_3" }
+            - if (-not (Test-Path -Path $shared_workspace/step_4 -PathType Leaf)) { throw "Missing file from step_4" }
+            - Set-Content -Path ${shared_workspace}/step_6 -Value step_6
           onExecute:
             - Write-Output "step 6 is running"
 
@@ -106,17 +104,11 @@ pipelines:
           priority: 2
         execution:
           onStart:
-            - Write-Output "step_1_var - ${step_1_var}"
-            - Write-Output "step_2_var - ${step_2_var}"
-            - Write-Output "step_3_var - ${step_3_var}"
-            - Write-Output "step_4_var - ${step_4_var}"
-            - Write-Output "step_5_var - ${step_5_var}"
-            - Write-Output "step_6_var - ${step_6_var}"
             - if ("$step_1_var" -ne "step_1") { throw "variable does not match expected value" }
-            - if ("$step_2_var" -ne "step_2") { throw "variable does not match expected value" }
-            - if ("$step_3_var" -ne "step_3") { throw "variable does not match expected value" }
-            - if ("$step_4_var" -ne "step_4") { throw "variable does not match expected value" }
-            - if ("$step_5_var" -ne "step_5") { throw "variable does not match expected value" }
-            - if ("$step_6_var" -ne "step_6") { throw "variable does not match expected value" }
+            - if (-not (Test-Path -Path $shared_workspace/step_2 -PathType Leaf)) { throw "Missing file from step_2" }
+            - if (-not (Test-Path -Path $shared_workspace/step_3 -PathType Leaf)) { throw "Missing file from step_3" }
+            - if (-not (Test-Path -Path $shared_workspace/step_4 -PathType Leaf)) { throw "Missing file from step_4" }
+            - if (-not (Test-Path -Path $shared_workspace/step_5 -PathType Leaf)) { throw "Missing file from step_5" }
+            - if (-not (Test-Path -Path $shared_workspace/step_6 -PathType Leaf)) { throw "Missing file from step_6" }
           onExecute:
             - Write-Output "step 7 is running"
