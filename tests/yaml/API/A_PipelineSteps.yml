@@ -3,9 +3,6 @@ pipelines:
     steps:
       - name: api_PipelineSteps
         type: Bash
-        configuration:
-          integrations:
-            - name: s_gitHub
         execution:
           onExecute:
             - echo "executing step..."
@@ -17,9 +14,6 @@ pipelines:
     steps:
       - name: api_PipelineSteps_ProjectAdmin
         type: Bash
-        configuration:
-          integrations:
-            - name: s_gitHub
         execution:
           onExecute:
             - echo "executing step..."
