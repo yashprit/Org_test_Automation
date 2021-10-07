@@ -20,9 +20,8 @@ pipelines:
           priority: 4
         execution:
           onStart:
-            - echo "step_4_var - ${step_4_var}"
-            - if [ "$step_4_var" != "step_4" ]; then exit 1; fi
-            - add_run_variables step_2_var="step_2"
+            - if [ ! -f $shared_workspace/step_4 ]; then echo "Missing file from step_4"; return 1; fi
+            - echo step_2 > ${shared_workspace}/step_2
           onExecute:
             - echo "step 2 is running"
 
@@ -35,9 +34,13 @@ pipelines:
           priority: 1
         execution:
           onStart:
-            - echo "step_1_var - ${step_1_var}"
             - if [ "$step_1_var" != "step_1" ]; then exit 1; fi
-            - add_run_variables step_3_var="step_3"
+            - if [ -f $shared_workspace/step_2 ]; then echo "step_2 ran first"; return 1; fi
+            - if [ -f $shared_workspace/step_3 ]; then echo "step_3 ran first"; return 1; fi
+            - if [ -f $shared_workspace/step_4 ]; then echo "step_4 ran first"; return 1; fi
+            - if [ -f $shared_workspace/step_5 ]; then echo "step_5 ran first"; return 1; fi
+            - if [ -f $shared_workspace/step_6 ]; then echo "step_6 ran first"; return 1; fi
+            - echo step_3 > ${shared_workspace}/step_3
           onExecute:
             - echo "step 3 is running"
 
@@ -50,9 +53,8 @@ pipelines:
           priority: 3
         execution:
           onStart:
-            - echo "step_3_var - ${step_3_var}"
-            - if [ "$step_3_var" != "step_3" ]; then exit 1; fi
-            - add_run_variables step_4_var="step_4"
+            - if [ ! -f $shared_workspace/step_3 ]; then echo "Missing file from step_3"; return 1; fi
+            - echo step_4 > ${shared_workspace}/step_4
           onExecute:
             - echo "step 4 is running"
 
@@ -67,9 +69,8 @@ pipelines:
           priority: 4
         execution:
           onStart:
-            - echo "step_6_var - ${step_6_var}"
-            - if [ "$step_6_var" != "step_6" ]; then exit 1; fi
-            - add_run_variables step_5_var="step_5"
+            - if [ ! -f $shared_workspace/step_6 ]; then echo "Missing file from step_6"; return 1; fi
+            - echo step_5 > ${shared_workspace}/step_5
           onExecute:
             - echo "step 5 is running"
 
@@ -84,13 +85,10 @@ pipelines:
           priority: 2
         execution:
           onStart:
-            - echo "step_2_var - ${step_2_var}"
-            - echo "step_3_var - ${step_3_var}"
-            - echo "step_4_var - ${step_4_var}"
-            - if [ "$step_2_var" != "step_2" ]; then exit 1; fi
-            - if [ "$step_3_var" != "step_3" ]; then exit 1; fi
-            - if [ "$step_4_var" != "step_4" ]; then exit 1; fi
-            - add_run_variables step_6_var="step_6"
+            - if [ ! -f $shared_workspace/step_2 ]; then echo "Missing file from step_2"; return 1; fi
+            - if [ ! -f $shared_workspace/step_3 ]; then echo "Missing file from step_3"; return 1; fi
+            - if [ ! -f $shared_workspace/step_4 ]; then echo "Missing file from step_4"; return 1; fi
+            - echo step_6 > ${shared_workspace}/step_6
           onExecute:
             - echo "step 6 is running"
 
@@ -104,17 +102,11 @@ pipelines:
           priority: 2
         execution:
           onStart:
-            - echo "step_1_var - ${step_1_var}"
-            - echo "step_2_var - ${step_2_var}"
-            - echo "step_3_var - ${step_3_var}"
-            - echo "step_4_var - ${step_4_var}"
-            - echo "step_5_var - ${step_5_var}"
-            - echo "step_6_var - ${step_6_var}"
             - if [ "$step_1_var" != "step_1" ]; then exit 1; fi
-            - if [ "$step_2_var" != "step_2" ]; then exit 1; fi
-            - if [ "$step_3_var" != "step_3" ]; then exit 1; fi
-            - if [ "$step_4_var" != "step_4" ]; then exit 1; fi
-            - if [ "$step_5_var" != "step_5" ]; then exit 1; fi
-            - if [ "$step_6_var" != "step_6" ]; then exit 1; fi
+            - if [ ! -f $shared_workspace/step_2 ]; then echo "Missing file from step_2"; return 1; fi
+            - if [ ! -f $shared_workspace/step_3 ]; then echo "Missing file from step_3"; return 1; fi
+            - if [ ! -f $shared_workspace/step_4 ]; then echo "Missing file from step_4"; return 1; fi
+            - if [ ! -f $shared_workspace/step_5 ]; then echo "Missing file from step_5"; return 1; fi
+            - if [ ! -f $shared_workspace/step_6 ]; then echo "Missing file from step_6"; return 1; fi
           onExecute:
             - echo "step 7 is running"
