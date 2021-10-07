@@ -3,9 +3,9 @@ pipelines:
     steps:
       - name: S_A_pipeline_6495
         type: Bash
-        configuration:
-          integrations:
-            - name: s_gitHub
+#         configuration:
+#           integrations:
+#             - name: s_gitHub
         execution:
           onExecute:
             - echo "hi"
