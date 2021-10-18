@@ -1,0 +1,69 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: A_Templates_6971_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.templates.path }}
+      branches:
+        include: ^A-Templates-6971$
+
+pipelines:
+  - name: pipeline_A_Templates_6971_pushReleases
+    steps:
+      - name: A_Templates_6971_pushReleases
+        type: Bash
+        configuration:
+          inputResources:
+            - name: A_Templates_6971_GitRepo
+              trigger: false
+          integrations:
+            - name: s_gitHub
+        execution:
+          onExecute:
+            - cd $res_A_Templates_6971_GitRepo_resourcePath
+            - git checkout -b A-Templates-6971
+            - origin=$(git config remote.origin.url | sed "s#ssh://##" | sed "s#https://##" | sed "s#:#/#" | sed "s#git@##")
+            - host=$(echo "$origin" | cut -d '/' -f 1 )
+            - git remote set-url origin https://$origin
+            - git config --global credential.helper store
+            - echo "https://token:${int_s_gitHub_token}@${host}" > ~/.git-credentials
+            - echo "Creating 1.0.0 release for A_Templates_6971_002"
+            - git tag -d shippable/A_Templates_6971_002@1.0.0 || true
+            - git tag shippable/A_Templates_6971_002@1.0.0
+            - git push origin shippable/A_Templates_6971_002@1.0.0 -f
+            - |
+              curl -X POST -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${int_s_gitHub_token}" \
+              "https://api.github.com/repos/${res_A_Templates_6971_GitRepo_path}/releases" \
+              -d '{"tag_name":"shippable/A_Templates_6971_002@1.0.0"}'
+            - echo "Creating 1.0.0 release for A_Templates_6971_003"
+            - git tag -d shippable/A_Templates_6971_003@1.0.0 || true
+            - git tag shippable/A_Templates_6971_003@1.0.0
+            - git push origin shippable/A_Templates_6971_003@1.0.0 -f
+            - |
+              curl -X POST -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${int_s_gitHub_token}" \
+              "https://api.github.com/repos/${res_A_Templates_6971_GitRepo_path}/releases" \
+              -d '{"tag_name":"shippable/A_Templates_6971_003@1.0.0"}'
+            - echo "Creating 1.0.0 release for A_Templates_6971_005"
+            - git tag -d shippable/A_Templates_6971_005@1.0.0 || true
+            - git tag shippable/A_Templates_6971_005@1.0.0
+            - git push origin shippable/A_Templates_6971_005@1.0.0 -f
+            - |
+              curl -X POST -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${int_s_gitHub_token}" \
+              "https://api.github.com/repos/${res_A_Templates_6971_GitRepo_path}/releases" \
+              -d '{"tag_name":"shippable/A_Templates_6971_005@1.0.0"}'
+            - echo "Creating 1.0.0 release for A_Templates_6971_006"
+            - git tag -d shippable/A_Templates_6971_006@1.0.0 || true
+            - git tag shippable/A_Templates_6971_006@1.0.0
+            - git push origin shippable/A_Templates_6971_006@1.0.0 -f
+            - |
+              curl -X POST -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${int_s_gitHub_token}" \
+              "https://api.github.com/repos/${res_A_Templates_6971_GitRepo_path}/releases" \
+              -d '{"tag_name":"shippable/A_Templates_6971_006@1.0.0"}'
+            - rm ~/.git-credentials
